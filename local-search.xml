@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>MIPI-概述</title>
+    <link href="/2023/10/28/MIPI-%E6%A6%82%E8%BF%B0/"/>
+    <url>/2023/10/28/MIPI-%E6%A6%82%E8%BF%B0/</url>
+    
+    <content type="html"><![CDATA[<ul><li>参考<ul><li><a href="https://zhuanlan.zhihu.com/p/92682047"class="uri">https://zhuanlan.zhihu.com/p/92682047</a></li></ul></li></ul><hr /><h2 id="关于-mipi">1. 关于 MIPI</h2><ul><li>MIPI：Mobile Industry ProcessorInterface，MIPI联盟发起的为移动应用处理器部分接口制定的开放标准。</li><li>MIPI 包含了一套协议和标准，MIPIalliance官网可以看到下面几种应用场景，都有相对应的协议。<div data-align="center"><img src="./MIPI-概述/3201119-20230902162549960-1373239895.png" width = 60%/></div></li><li>以 Mobile System 为例，如下图。<div data-align="center"><img src="./MIPI-概述/3201119-20230902163024179-34270586.png" width = 40%/></div></li></ul><h2 id="mipi-multimedia">2. MIPI Multimedia</h2><ul><li>下图为MIPIMultimedia涉及到的协议。分为三层：应用层、协议层和物理层。<div data-align="center"><img src="./MIPI-概述/3201119-20230902171954203-567302188.png" width = 50%/></div></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>MIPI 接口协议</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>硬件预取</title>
     <link href="/2023/10/28/%E7%A1%AC%E4%BB%B6%E9%A2%84%E5%8F%96/"/>
     <url>/2023/10/28/%E7%A1%AC%E4%BB%B6%E9%A2%84%E5%8F%96/</url>

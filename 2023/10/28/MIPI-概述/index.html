@@ -16,23 +16,27 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;373038275 《A Primer on Hardware Prefetching》 http:&#x2F;&#x2F;home.ustc.edu.cn&#x2F;~shaojiemike&#x2F;posts&#x2F;cache&#x2F; http:&#x2F;&#x2F;staff.ustc.edu.cn&#x2F;~xhzhou&#x2F;CA-Spring2020&#x2F;chapter04-03.pdf">
+    <meta name="description" content="参考  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;92682047    1. 关于 MIPI  MIPI：Mobile Industry Processor Interface，MIPI联盟发起的为移动应用处理器部分接口制定的开放标准。 MIPI 包含了一套协议和标准，MIPI alliance官网可以看到下面几种应用场景，都有相对应的协议。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="硬件预取">
-<meta property="og:url" content="http://example.com/2023/10/28/%E7%A1%AC%E4%BB%B6%E9%A2%84%E5%8F%96/index.html">
+<meta property="og:title" content="MIPI-概述">
+<meta property="og:url" content="http://example.com/2023/10/28/MIPI-%E6%A6%82%E8%BF%B0/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;373038275 《A Primer on Hardware Prefetching》 http:&#x2F;&#x2F;home.ustc.edu.cn&#x2F;~shaojiemike&#x2F;posts&#x2F;cache&#x2F; http:&#x2F;&#x2F;staff.ustc.edu.cn&#x2F;~xhzhou&#x2F;CA-Spring2020&#x2F;chapter04-03.pdf">
+<meta property="og:description" content="参考  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;92682047    1. 关于 MIPI  MIPI：Mobile Industry Processor Interface，MIPI联盟发起的为移动应用处理器部分接口制定的开放标准。 MIPI 包含了一套协议和标准，MIPI alliance官网可以看到下面几种应用场景，都有相对应的协议。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-10-28T08:52:12.000Z">
-<meta property="article:modified_time" content="2023-10-28T09:15:31.679Z">
+<meta property="og:image" content="http://example.com/2023/10/28/MIPI-%E6%A6%82%E8%BF%B0/MIPI-%E6%A6%82%E8%BF%B0/3201119-20230902162549960-1373239895.png">
+<meta property="og:image" content="http://example.com/2023/10/28/MIPI-%E6%A6%82%E8%BF%B0/MIPI-%E6%A6%82%E8%BF%B0/3201119-20230902163024179-34270586.png">
+<meta property="og:image" content="http://example.com/2023/10/28/MIPI-%E6%A6%82%E8%BF%B0/MIPI-%E6%A6%82%E8%BF%B0/3201119-20230902171954203-567302188.png">
+<meta property="article:published_time" content="2023-10-28T12:07:36.000Z">
+<meta property="article:modified_time" content="2023-10-28T12:35:39.815Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2023/10/28/MIPI-%E6%A6%82%E8%BF%B0/MIPI-%E6%A6%82%E8%BF%B0/3201119-20230902162549960-1373239895.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>硬件预取 - 可达达鸭</title>
+  <title>MIPI-概述 - 可达达鸭</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -225,7 +229,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="硬件预取"></span>
+            <span id="subtitle" data-typed-text="MIPI-概述"></span>
           
         </div>
 
@@ -236,8 +240,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-28 16:52" pubdate>
-          2023年10月28日 下午
+        <time datetime="2023-10-28 20:07" pubdate>
+          2023年10月28日 晚上
         </time>
       </span>
     
@@ -248,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          242 字
         
       </span>
     
@@ -259,7 +263,7 @@
         
         
         
-          13 分钟
+          3 分钟
         
       </span>
     
@@ -304,12 +308,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">硬件预取</h1>
+            <h1 id="seo-header">MIPI-概述</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年10月28日 下午
+                    本文最后更新于：2023年10月28日 晚上
                   
                 
               </p>
@@ -320,117 +324,33 @@
                 <ul>
 <li>参考
 <ul>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/373038275"
-class="uri">https://zhuanlan.zhihu.com/p/373038275</a></li>
-<li>《A Primer on Hardware Prefetching》</li>
-<li><a target="_blank" rel="noopener" href="http://home.ustc.edu.cn/~shaojiemike/posts/cache/"
-class="uri">http://home.ustc.edu.cn/~shaojiemike/posts/cache/</a></li>
-<li><a
-target="_blank" rel="noopener" href="http://staff.ustc.edu.cn/~xhzhou/CA-Spring2020/chapter04-03.pdf"
-class="uri">http://staff.ustc.edu.cn/~xhzhou/CA-Spring2020/chapter04-03.pdf</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/92682047"
+class="uri">https://zhuanlan.zhihu.com/p/92682047</a></li>
 </ul></li>
 </ul>
 <hr />
-<h2 id="预取相关">1. 预取相关</h2>
-<h3 id="为什么需要预取">1.1 为什么需要预取</h3>
+<h2 id="关于-mipi">1. 关于 MIPI</h2>
 <ul>
-<li>Cache的设计可以一定程度上弥补CPU和内存之间的速度差距。</li>
-<li>多级Cache的设计与两种类型的内存访问局限性相关，分别为：时间局域性和空间局域性。但局域性原理依赖于两个基本前提：
-<ul>
-<li>（1）缓存的大小适合所有的工作负载和访问模式。
-<ul>
-<li>但，工作负载的容量需求变化是高度动态的，不同工作负载下所适合的缓存层次和容量与速度之间的权衡各不同。</li>
-</ul></li>
-<li>（2）分配和替换缓存项的策略适用于所有工作负载和访问模式。
-<ul>
-<li>但，内存访问模式也是高度动态的，所以很难说某个分配策略可以在所有情况下都表现良好。</li>
-</ul></li>
-</ul></li>
-<li>考虑到上面的内容，Cache虽然可以一定程度上提升性能，但仍还需要其它的优化算法。</li>
+<li>MIPI：Mobile Industry Processor
+Interface，MIPI联盟发起的为移动应用处理器部分接口制定的开放标准。</li>
+<li>MIPI 包含了一套协议和标准，MIPI
+alliance官网可以看到下面几种应用场景，都有相对应的协议。
+<div data-align="center">
+<img src="./MIPI-概述/3201119-20230902162549960-1373239895.png" srcset="/img/loading.gif" lazyload width = 60%/>
+</div></li>
+<li>以 Mobile System 为例，如下图。
+<div data-align="center">
+<img src="./MIPI-概述/3201119-20230902163024179-34270586.png" srcset="/img/loading.gif" lazyload width = 40%/>
+</div></li>
 </ul>
-<h3 id="预取算法">1.2 预取算法</h3>
+<h2 id="mipi-multimedia">2. MIPI Multimedia</h2>
 <ul>
-<li>预取算法，是一种利用存储器的空闲带宽，提前预测取数据来隐藏内存访问延迟的方法。
-<ul>
-<li>通过预测后续的内存访问，并提前完成该访问，（访问可能与CPU的其它不需要内存访问的操作并行进行），隐藏内存访问延时。</li>
-<li>假设理想情况，预测都命中了，那么内存访问几乎不会造成任何延时开销；但实际上，预测并不总是及时/正确的。</li>
-</ul></li>
-<li>预测机制需要考虑以下因素
-<ul>
-<li>内存访问的地址的预测</li>
-<li>预测何时发出预取
-<ul>
-<li>如果太早，会在暂存位置（这里假设是cache）保持一段时间，期间可能会挤走有用的cacheline，也可能会被其它挤走。</li>
-<li>如果太晚，没有实现隐藏内存访问延迟的功能。</li>
-</ul></li>
-<li>选择合适的暂存 预取数据/地址 的位置</li>
-</ul></li>
-<li>预取实现方式
-<ul>
-<li>硬件</li>
-<li>软件</li>
-<li>编译器</li>
-</ul></li>
-<li>评估指标
-<ul>
-<li>覆盖率（coverage）
-<ul>
-<li>预取命中占总访存比例。</li>
-</ul></li>
-<li>准确度（accuracy）
-<ul>
-<li>所有预取中有效预取的占比。</li>
-</ul></li>
-</ul></li>
+<li>下图为MIPI
+Multimedia涉及到的协议。分为三层：应用层、协议层和物理层。
+<div data-align="center">
+<img src="./MIPI-概述/3201119-20230902171954203-567302188.png" srcset="/img/loading.gif" lazyload width = 50%/>
+</div></li>
 </ul>
-<h3 id="预取值-暂存位置">1.3 预取值 暂存位置</h3>
-<ul>
-<li>根据预取值的暂存位置，可以分为绑定预取和非绑定预取。</li>
-<li>绑定预取(binding prefetch)
-<ul>
-<li>预取值直接加载到处理器的寄存器中。</li>
-<li>在发起预取之后，寄存器的值将会被绑定。</li>
-<li>缺点
-<ul>
-<li>消耗了宝贵的寄存器资源。</li>
-<li>在预取地址错误时，可能会导致程序语义错误。<br />
-</li>
-</ul></li>
-</ul></li>
-<li>非绑定预取(non-binding prefetch)
-<ul>
-<li>将预取值放入cache中，或是用于增强cache层次的补充缓冲区(supplemental
-buffer)。</li>
-<li>对于多核，预取值所在的cache或是buffer也需要满足cache
-coherence，因此该部分地址空间的信息可能也会改变。</li>
-<li>目前大部分处理器使用的都是非绑定预取策略。</li>
-</ul></li>
-</ul>
-<h2 id="地址预测">2. 地址预测</h2>
-<ul>
-<li>如果没有准确的预测到地址，可能导致污染cache（将有效的cacheline内容挤出），以及消耗了额外的通信量和争用资源。</li>
-<li>数据的地址预测
-<ul>
-<li>主要考虑是对 独立变量还是数据结构元素或是其它数据类型
-的访问，以及数据在程序中执行的操作。
-<ul>
-<li>举例：按顺序读取数组的每一个元素等，这种数据结构和操作方式很好预测。</li>
-<li>举例：对变量交错访问/多个数据结构之间的遍历访问等，这种预测较为复杂。</li>
-</ul></li>
-</ul></li>
-<li>指令的地址预测
-<ul>
-<li>主要考虑程序是 顺序执行 还是 执行分支（一些跳转指令）。</li>
-</ul></li>
-<li>Cache 层级对地址预测的影响
-<ul>
-<li>在最高层，处理器和L1 Cache的接口
-包含了所有可以用来预测内存引用的信息，基于这些信息可以实现高精度的预取。</li>
-<li>在较低的层级中，关于预测内存引用的信息会被过滤。例如高层cache命中后，相关的信息就不会传到低层cache，只能观察到来自高层缺失的信息。</li>
-<li>因此地址预测还与cache块的放置策略和替换策略相关。</li>
-</ul></li>
-</ul>
-<p>​</p>
 
                 
               </div>
@@ -449,7 +369,7 @@ coherence，因此该部分地址空间的信息可能也会改变。</li>
     
       <span class="category-chain">
         
-  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E8%AE%BE%E8%AE%A1/" class="category-chain-item">计算机组成与设计</a>
+  <a href="/categories/MIPI-%E6%8E%A5%E5%8F%A3%E5%8D%8F%E8%AE%AE/" class="category-chain-item">MIPI 接口协议</a>
   
   
 
@@ -469,8 +389,8 @@ coherence，因此该部分地址空间的信息可能也会改变。</li>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>硬件预取</div>
-      <div>http://example.com/2023/10/28/硬件预取/</div>
+      <div>MIPI-概述</div>
+      <div>http://example.com/2023/10/28/MIPI-概述/</div>
     </div>
     <div class="license-meta">
       
@@ -514,15 +434,15 @@ coherence，因此该部分地址空间的信息可能也会改变。</li>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/28/MIPI-%E6%A6%82%E8%BF%B0/" title="MIPI-概述">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MIPI-概述</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2023/10/28/%E7%A1%AC%E4%BB%B6%E9%A2%84%E5%8F%96/" title="硬件预取">
+                        <span class="hidden-mobile">硬件预取</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
