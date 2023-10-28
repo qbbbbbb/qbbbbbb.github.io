@@ -16,21 +16,27 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://binbinqian.cn/about/index.html">
+    <meta name="description" content="参考  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;362287272 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;282949543 https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhangduang_KHKW&#x2F;article&#x2F;details&#x2F;121953275     波形文件来自NXP的IIC user manual.   1. I2C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="I2C协议（一）">
+<meta property="og:url" content="http://binbinqian.cn/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="可达达鸭">
+<meta property="og:description" content="参考  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;362287272 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;282949543 https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhangduang_KHKW&#x2F;article&#x2F;details&#x2F;121953275     波形文件来自NXP的IIC user manual.   1. I2C">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-10-27T14:50:17.000Z">
-<meta property="article:modified_time" content="2023-10-27T14:52:03.362Z">
+<meta property="og:image" content="http://binbinqian.cn/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%80%EF%BC%89/3201119-20230618154435605-1791635155.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%80%EF%BC%89/3201119-20230618155923953-611387111.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%80%EF%BC%89/3201119-20230618154320356-1776344245.png">
+<meta property="article:published_time" content="2023-10-28T13:35:14.000Z">
+<meta property="article:modified_time" content="2023-10-28T13:39:34.217Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://binbinqian.cn/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%80%EF%BC%89/3201119-20230618154435605-1791635155.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>关于 - 可达达鸭</title>
+  <title>I2C协议（一） - 可达达鸭</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -117,7 +123,7 @@
   <header>
     
 
-<div class="header-inner" style="height: 60vh;">
+<div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -223,9 +229,57 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="关于"></span>
+            <span id="subtitle" data-typed-text="I2C协议（一）"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-10-28 21:35" pubdate>
+          2023年10月28日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
 
         
       </div>
@@ -241,63 +295,243 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div id="board"
-          >
-          
-            <div class="about-avatar">
-              <img src="/img/avatar.png" srcset="/img/loading.gif" lazyload class="img-fluid" alt="avatar">
-            </div>
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
-<div class="text-center">
-  <div class="about-info">
-    <div class="about-name">可达达鸭</div>
-    <div class="about-intro"></div>
-    <div class="about-icons">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
       
-        
-        
-        
-        <a href=https://www.cnblogs.com/qianbinbin class="
-           hint--bottom hint--rounded"
-           aria-label=博客园
-           target="_blank"
-        >
-          <i class="iconfont icon-books" aria-hidden="true"></i>
-          
-        </a>
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">I2C协议（一）</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2023年10月28日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <ul>
+<li>参考
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/362287272"
+class="uri">https://zhuanlan.zhihu.com/p/362287272</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/282949543"
+class="uri">https://zhuanlan.zhihu.com/p/282949543</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/zhangduang_KHKW/article/details/121953275"
+class="uri">https://blog.csdn.net/zhangduang_KHKW/article/details/121953275</a></li>
+</ul></li>
+</ul>
+<hr />
+<ul>
+<li>波形文件来自NXP的IIC user manual.</li>
+</ul>
+<hr />
+<h2 id="i2c-用来做什么">1. I2C 用来做什么？</h2>
+<ul>
+<li>全称：Inter-Integrated Circuit.</li>
+<li>一个双向，两线（SCL/SDA）制总线协议；用于主控器件和外围设备器件互联通信。简化PCB布线，降低成本。</li>
+<li>I2C是一种多主机总线，所以也提供了仲裁功能，仲裁相关内容见<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17489279.html">这篇博客</a>。</li>
+</ul>
+<h2 id="i2c-的5种速率模式">2. I2C 的5种速率模式</h2>
+<ul>
+<li>对于不同的器件使用不同的模式，一共有5种模式，具体可看<a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/362287272">这篇文章</a>.</li>
+</ul>
+<h2 id="通信过程">3. 通信过程</h2>
+<ul>
+<li>（1）当总线空闲时，SDA和SCL都处于高电平状态。</li>
+<li>（2）当主设备决定开始通讯时，需要<strong>首先发送开始信号</strong>
+。</li>
+<li>（3）发送从机设备的地址（7
+bits）以及1bit数据传送方向（R/W）；一共8bit，一个字节大小的数据。</li>
+<li>（4）被寻址的从机发送应答信号给主机。</li>
+<li>（5）发送器送出一个字节的数据，接收器收到完毕返回一个应答信号给主机。（发送器和接收器根据（3）中指定的传送方向分别选择为主机/从机）。</li>
+<li>（6）重复（5）直到通信完成后，主机发送停止信号释放总线。</li>
+<li>注意：<strong>发送数据过程中不可以改变数据传送方向，在（3）那步指定之后就不可更改。</strong>除非重启通信。</li>
+</ul>
+<h2 id="i2c的基础信号">4. I2C的基础信号</h2>
+<ul>
+<li>起始、停止、应答和非应答信号。
+<ul>
+<li>起始信号：SCL处于高电平时，SDA从高电平到低电平变化，为起始信号。</li>
+<li>停止信号：SCL处于高电平时，SDA从低电平到高电平变化，为停止信号。
+<img src="3201119-20230618154435605-1791635155.png" srcset="/img/loading.gif" lazyload /></li>
+<li>应答信号：其出现在一个字节传输完成之后，第9个SCL时钟周期内，SDA总线的控制权从主机给到从机，SDA总线由于上拉电阻的原因为高，如果从机正确的收到了数据，那么会将SDA拉低。
+<ul>
+<li>主机发现SDA被拉低之后，可以选择下一步操作（发下一字节的传输/停止传输）。</li>
+<li>需要注意，应答信号是接收设备给发送设备的反馈信号，而并不一定是从机给主机的反馈信号。
+<img src="3201119-20230618155923953-611387111.png" srcset="/img/loading.gif" lazyload /></li>
+</ul></li>
+<li>非应答信号：第9个SCL时钟周期，SDA保持高电平，表示非应答，主机就需要发送停止信号，结束通信。以下情况可能会出现非应答：
+<ul>
+<li>主机指定的地址，I2C总线上没有对应地址的从机设备。</li>
+<li>主机发送从机地址，希望通信时；从机正忙，没办法通信。</li>
+<li>主机接收从机发送的数据，主机产生非应答信号，告诉从机不要再发数据了，传输结束了。</li>
+</ul></li>
+</ul></li>
+<li>数据有效性
+<ul>
+<li>I2C在进行数据传送时，在SCL为低电平时发送器向SDA上送1bit数据，此时SDA可以发生变化；在SCL为高电平时，接收器从SDA上采样1bit数据，SDA需要保持稳定。
+<img src="3201119-20230618154320356-1776344245.png" srcset="/img/loading.gif" lazyload /></li>
+</ul></li>
+<li>I2C传输的一帧有9位信号，包括一个字节的传输信号和1bit的应答/非应答信号。对于第一笔主机发送从机的传输包括（地址7bits
++ 传输方向1bit）+ 1bit应答信号。
+<ul>
+<li>对于1字节的数据，先发送高位，再传送低位。<br />
+</li>
+</ul></li>
+<li>前面介绍的SCL和SDA高低电平判断有些混乱，这里做一下总结。
+<ul>
+<li>在开始和结束的判断，需要判断SCL信号为高电平时，SDA的变化。</li>
+<li>在采样SDA时，需要判断SCL信号是否为高电平/低电平采样。</li>
+<li>在判断应答/非应答，需要在SCL为高电平时，判断SDA信号是否被拉高/拉低。</li>
+</ul></li>
+</ul>
+<hr />
+<p>如有问题，请指正！！</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
       
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
         
-        
-        
-        <a  class="qr-trigger
-           "
-           
-           target="_self"
-        >
-          <i class="iconfont icon-wechat-fill" aria-hidden="true"></i>
-          
-            <img class="qr-img" src="/img/wechat.jpg" srcset="/img/loading.gif" lazyload alt="qrcode" />
-          
-        </a>
+  <a href="/categories/%E4%B8%B2%E8%A1%8C%E6%8E%A5%E5%8F%A3%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" class="category-chain-item">串行接口通信协议</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>I2C协议（一）</div>
+      <div>http://binbinqian.cn/2023/10/28/I2C协议（一）/</div>
+    </div>
+    <div class="license-meta">
       
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>qianbinbin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年10月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/10/28/I2S%E5%8D%8F%E8%AE%AE/" title="I2S协议">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">I2S协议</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/" title="I2C协议（二）">
+                        <span class="hidden-mobile">I2C协议（二）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
     </div>
   </div>
 </div>
 
-<article class="about-content page-content mt-5">
-  <div class="markdown-body">
-    
-  </div>
-
-  
-</article>
-
 
 
 
@@ -330,11 +564,8 @@
 
 
 
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+
     
 
     
@@ -447,6 +678,46 @@
   
 
 
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
 
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>

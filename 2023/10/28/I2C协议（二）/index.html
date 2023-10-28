@@ -16,23 +16,31 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;373038275 《A Primer on Hardware Prefetching》 http:&#x2F;&#x2F;home.ustc.edu.cn&#x2F;~shaojiemike&#x2F;posts&#x2F;cache&#x2F; http:&#x2F;&#x2F;staff.ustc.edu.cn&#x2F;~xhzhou&#x2F;CA-Spring2020&#x2F;chapter04-03.pdf     1. 预">
+    <meta name="description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhangduang_KHKW&#x2F;article&#x2F;details&#x2F;121953275 https:&#x2F;&#x2F;blog.csdn.net&#x2F;u010027547&#x2F;article&#x2F;details&#x2F;47779975 https:&#x2F;&#x2F;blog.csdn.net&#x2F;NeoZng&#x2F;article&#x2F;details&#x2F;128486366 https:&#x2F;&#x2F;www.cnblogs">
 <meta property="og:type" content="article">
-<meta property="og:title" content="硬件预取">
-<meta property="og:url" content="http://binbinqian.cn/2023/10/28/%E7%A1%AC%E4%BB%B6%E9%A2%84%E5%8F%96/index.html">
+<meta property="og:title" content="I2C协议（二）">
+<meta property="og:url" content="http://binbinqian.cn/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;373038275 《A Primer on Hardware Prefetching》 http:&#x2F;&#x2F;home.ustc.edu.cn&#x2F;~shaojiemike&#x2F;posts&#x2F;cache&#x2F; http:&#x2F;&#x2F;staff.ustc.edu.cn&#x2F;~xhzhou&#x2F;CA-Spring2020&#x2F;chapter04-03.pdf     1. 预">
+<meta property="og:description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhangduang_KHKW&#x2F;article&#x2F;details&#x2F;121953275 https:&#x2F;&#x2F;blog.csdn.net&#x2F;u010027547&#x2F;article&#x2F;details&#x2F;47779975 https:&#x2F;&#x2F;blog.csdn.net&#x2F;NeoZng&#x2F;article&#x2F;details&#x2F;128486366 https:&#x2F;&#x2F;www.cnblogs">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-10-28T08:52:12.000Z">
-<meta property="article:modified_time" content="2023-10-28T09:15:31.679Z">
+<meta property="og:image" content="http://binbinqian.cn/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230618163225074-2122545585.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230618163641198-821963823.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230618183803454-485534870.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230903220933713-114181872.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230903221220802-876809426.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230903213717676-1981068318.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230618184525407-257373124.png">
+<meta property="article:published_time" content="2023-10-28T13:35:05.000Z">
+<meta property="article:modified_time" content="2023-10-28T13:54:01.562Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://binbinqian.cn/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230618163225074-2122545585.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>硬件预取 - 可达达鸭</title>
+  <title>I2C协议（二） - 可达达鸭</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -225,7 +233,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="硬件预取"></span>
+            <span id="subtitle" data-typed-text="I2C协议（二）"></span>
           
         </div>
 
@@ -236,8 +244,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-28 16:52" pubdate>
-          2023年10月28日 下午
+        <time datetime="2023-10-28 21:35" pubdate>
+          2023年10月28日 晚上
         </time>
       </span>
     
@@ -248,7 +256,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          1.6k 字
         
       </span>
     
@@ -259,7 +267,7 @@
         
         
         
-          13 分钟
+          14 分钟
         
       </span>
     
@@ -304,12 +312,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">硬件预取</h1>
+            <h1 id="seo-header">I2C协议（二）</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年10月28日 下午
+                    本文最后更新于：2023年10月28日 晚上
                   
                 
               </p>
@@ -319,104 +327,69 @@
                 
                 <ul>
 <li>参考<ul>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/373038275">https://zhuanlan.zhihu.com/p/373038275</a></li>
-<li>《A Primer on Hardware Prefetching》</li>
-<li><a target="_blank" rel="noopener" href="http://home.ustc.edu.cn/~shaojiemike/posts/cache/">http://home.ustc.edu.cn/~shaojiemike/posts/cache/</a></li>
-<li><a target="_blank" rel="noopener" href="http://staff.ustc.edu.cn/~xhzhou/CA-Spring2020/chapter04-03.pdf">http://staff.ustc.edu.cn/~xhzhou/CA-Spring2020/chapter04-03.pdf</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangduang_KHKW/article/details/121953275">https://blog.csdn.net/zhangduang_KHKW/article/details/121953275</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010027547/article/details/47779975">https://blog.csdn.net/u010027547/article/details/47779975</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/NeoZng/article/details/128486366">https://blog.csdn.net/NeoZng/article/details/128486366</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/DoreenLiu/p/14297191.html">https://www.cnblogs.com/DoreenLiu/p/14297191.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/388835566?utm_id=0">https://zhuanlan.zhihu.com/p/388835566?utm_id=0</a></li>
 </ul>
 </li>
 </ul>
 <hr>
-<h2 id="1-预取相关"><a href="#1-预取相关" class="headerlink" title="1. 预取相关"></a>1. 预取相关</h2><h3 id="1-1-为什么需要预取"><a href="#1-1-为什么需要预取" class="headerlink" title="1.1 为什么需要预取"></a>1.1 为什么需要预取</h3><ul>
-<li>Cache的设计可以一定程度上弥补CPU和内存之间的速度差距。</li>
-<li>多级Cache的设计与两种类型的内存访问局限性相关，分别为：时间局域性和空间局域性。但局域性原理依赖于两个基本前提：<ul>
-<li>（1）缓存的大小适合所有的工作负载和访问模式。<ul>
-<li>但，工作负载的容量需求变化是高度动态的，不同工作负载下所适合的缓存层次和容量与速度之间的权衡各不同。</li>
+<h2 id="1-仲裁机制"><a href="#1-仲裁机制" class="headerlink" title="1. 仲裁机制"></a>1. 仲裁机制</h2><ul>
+<li>I2C是一个多主机的通信协议，那么就会出现 多个主机都申请SDA总线权限发送开始信号和从机地址 的情况，这就需要仲裁机制。</li>
 </ul>
-</li>
-<li>（2）分配和替换缓存项的策略适用于所有工作负载和访问模式。 <ul>
-<li>但，内存访问模式也是高度动态的，所以很难说某个分配策略可以在所有情况下都表现良好。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>考虑到上面的内容，Cache虽然可以一定程度上提升性能，但仍还需要其它的优化算法。</li>
-</ul>
-<h3 id="1-2-预取算法"><a href="#1-2-预取算法" class="headerlink" title="1.2 预取算法"></a>1.2 预取算法</h3><ul>
-<li>预取算法，是一种利用存储器的空闲带宽，提前预测取数据来隐藏内存访问延迟的方法。<ul>
-<li>通过预测后续的内存访问，并提前完成该访问，（访问可能与CPU的其它不需要内存访问的操作并行进行），隐藏内存访问延时。</li>
-<li>假设理想情况，预测都命中了，那么内存访问几乎不会造成任何延时开销；但实际上，预测并不总是及时&#x2F;正确的。</li>
-</ul>
-</li>
-<li>预测机制需要考虑以下因素<ul>
-<li>内存访问的地址的预测</li>
-<li>预测何时发出预取<ul>
-<li>如果太早，会在暂存位置（这里假设是cache）保持一段时间，期间可能会挤走有用的cacheline，也可能会被其它挤走。</li>
-<li>如果太晚，没有实现隐藏内存访问延迟的功能。</li>
-</ul>
-</li>
-<li>选择合适的暂存 预取数据&#x2F;地址 的位置</li>
-</ul>
-</li>
-<li>预取实现方式<ul>
-<li>硬件</li>
-<li>软件</li>
-<li>编译器</li>
-</ul>
-</li>
-<li>评估指标<ul>
-<li>覆盖率（coverage）<ul>
-<li>预取命中占总访存比例。</li>
-</ul>
-</li>
-<li>准确度（accuracy）<ul>
-<li>所有预取中有效预取的占比。</li>
+<h3 id="1-1-SCL的同步"><a href="#1-1-SCL的同步" class="headerlink" title="1.1 SCL的同步"></a>1.1 SCL的同步</h3><ul>
+<li>这里以两个主机为例，可以拓展到多个主机上。目的：多个主机产生一个可公用的时钟。</li>
+<li>两个主机的时钟频率不同，相位不同，使用时钟同步机制如下图所示：<ul>
+<li>总线空闲时，SCL被上拉电阻拉高，当开始通信时，CLK1首先变成低电平，SCL也变成低电平，CLK2看到SCL拉低，便自己也拉低，并开始<strong>计数</strong>到CLK2虚线（原本应该拉低的位置）。</li>
+<li>CLK2的低电平时间比CLK1要长，所以CLK1从拉高开始<strong>计数</strong>到CLK2和CLK1同时拉高（此时SCL也被拉高）的位置。 </li>
+<li>至此，CLK1获得了需要延长的低电平时间，CLK2获得了需要减短的高电平时间，都是通过前面计数得到的。CLK1和CLK2可以根据计数值进行调整，完成时钟的同步。<br><img src="/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230618163225074-2122545585.png" srcset="/img/loading.gif" lazyload></li>
 </ul>
 </li>
 </ul>
-</li>
+<h3 id="1-2-时钟扩展"><a href="#1-2-时钟扩展" class="headerlink" title="1.2 时钟扩展"></a>1.2 时钟扩展</h3><ul>
+<li>目的：I2C可以动态的调整总线的通信速率。</li>
+<li>时钟扩展是从机发起的。<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17488308.html">这篇博客</a>介绍了非应答信号，即从机正忙，没办法通信。SCL是正常由主机控制，在SCL为高电平时，主机采到第9个SCL周期，SDA为高，此时为非应答；主机就会发起停止信号，结束通信。</li>
+<li>现在想要即使出现非应答也可以等待从机忙完之后可以继续传输的情况，可以对SCL信号做处理，如下。</li>
 </ul>
-<h3 id="1-3-预取值-暂存位置"><a href="#1-3-预取值-暂存位置" class="headerlink" title="1.3 预取值 暂存位置"></a>1.3 预取值 暂存位置</h3><ul>
-<li>根据预取值的暂存位置，可以分为绑定预取和非绑定预取。</li>
-<li>绑定预取(binding prefetch)<ul>
-<li>预取值直接加载到处理器的寄存器中。</li>
-<li>在发起预取之后，寄存器的值将会被绑定。</li>
-<li>缺点<ul>
-<li>消耗了宝贵的寄存器资源。</li>
-<li>在预取地址错误时，可能会导致程序语义错误。</li>
+</li>
+<li>时钟扩展在基于上面描述，增加了从机可以控制SCL信号的硬件电路，从机在第9个SCL周期将SCL拉低，由于正忙，没办法接收处理传输的数据；主机检测到SCL被拉低，便会进入等待状态。等待从机忙完可以处理时，将SCL释放（I2C两条总线都接了上拉电阻，默认是高电平）并返回主机ACK信号，主机可以进行下一步的操作。</li>
+</ul>
+<h3 id="1-3-SDA仲裁"><a href="#1-3-SDA仲裁" class="headerlink" title="1.3 SDA仲裁"></a>1.3 SDA仲裁</h3><ul>
+<li>**”线与逻辑”**，在SCL为高电平时，SDA的数据等于各个主机的数据相与；每个主机将自己的数据和SDA上的数据进行比对，如果不一致，便知道失去了仲裁，就不再向SDA写数据。</li>
+<li>如果两个主机都是向相同地址从机发起通信，那么仲裁继续，直到后续的数据位决定总线的归属权。</li>
+<li>这种仲裁方式并不会破坏数据的有效性，因为总是有主机可以进行通信，且数据不会被改变。但这种仲裁方式无法提前设定主机的优先级。<br><img src="/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230618163641198-821963823.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<h2 id="2-读写时序"><a href="#2-读写时序" class="headerlink" title="2. 读写时序"></a>2. 读写时序</h2><ul>
+<li><p>相同传送方向，不需要每次传输主机都发送开始信号。<br><img src="/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230618183803454-485534870.png" srcset="/img/loading.gif" lazyload> </p>
+</li>
+<li><p>主机写给从机</p>
+<ul>
+<li>其中器件地址为slave地址信息，而字地址为读&#x2F;写从机内部存储单元的地址信息。<br><img src="/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230903220933713-114181872.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+<li><p>主机读从机数据</p>
+<ul>
+<li>当前地址读 <ul>
+<li>I2C在读写操作之后，内部的地址指针自动加1，因此当前地址读不需要再次发送从机内部存储单元地址信息了。<br><img src="/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230903221220802-876809426.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+<li>随机地址读<ul>
+<li>如下图所示，需要先Start Bit、发送slave地址，并设置传输为写方向；之后发送内部寄存器地址。这个过程称为Dummy Write.</li>
+<li>之后再次重新发送Start Bit、slave地址，并设置传输为读方向。从机应答，从机发送8bit数据。</li>
+<li>为什么需要<strong>Dummy Write</strong>？因为是随机读，我们需要让从机存储单元的地址指针指向随机读取的地址，所以可以先进行Dummy Write，让存储单元的地址指针指向随机读的地址，等待从机应答后，就可以读取数据了。<br><img src="/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230903213717676-1981068318.png" srcset="/img/loading.gif" lazyload></li>
 </ul>
 </li>
 </ul>
 </li>
-<li>非绑定预取(non-binding prefetch)<ul>
-<li>将预取值放入cache中，或是用于增强cache层次的补充缓冲区(supplemental buffer)。 </li>
-<li>对于多核，预取值所在的cache或是buffer也需要满足cache coherence，因此该部分地址空间的信息可能也会改变。</li>
-<li>目前大部分处理器使用的都是非绑定预取策略。</li>
+<li><p>主机读后写&#x2F;写后读</p>
+<ul>
+<li>传输过程中，改变传送方向，不需要主机发送停止信号释放总线，只需要重新发送开始信号就可以。<br><img src="/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230618184525407-257373124.png" srcset="/img/loading.gif" lazyload></li>
 </ul>
 </li>
 </ul>
-<h2 id="2-地址预测"><a href="#2-地址预测" class="headerlink" title="2. 地址预测"></a>2. 地址预测</h2><ul>
-<li>如果没有准确的预测到地址，可能导致污染cache（将有效的cacheline内容挤出），以及消耗了额外的通信量和争用资源。</li>
-<li>数据的地址预测<ul>
-<li>主要考虑是对 独立变量还是数据结构元素或是其它数据类型 的访问，以及数据在程序中执行的操作。<ul>
-<li>举例：按顺序读取数组的每一个元素等，这种数据结构和操作方式很好预测。</li>
-<li>举例：对变量交错访问&#x2F;多个数据结构之间的遍历访问等，这种预测较为复杂。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>指令的地址预测<ul>
-<li>主要考虑程序是 顺序执行 还是 执行分支（一些跳转指令）。</li>
-</ul>
-</li>
-<li>Cache 层级对地址预测的影响<ul>
-<li>在最高层，处理器和L1 Cache的接口 包含了所有可以用来预测内存引用的信息，基于这些信息可以实现高精度的预取。</li>
-<li>在较低的层级中，关于预测内存引用的信息会被过滤。例如高层cache命中后，相关的信息就不会传到低层cache，只能观察到来自高层缺失的信息。</li>
-<li>因此地址预测还与cache块的放置策略和替换策略相关。</li>
-</ul>
-</li>
-</ul>
-<p>​    </p>
 
                 
               </div>
@@ -435,7 +408,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E8%AE%BE%E8%AE%A1/" class="category-chain-item">计算机组成与设计</a>
+  <a href="/categories/%E4%B8%B2%E8%A1%8C%E6%8E%A5%E5%8F%A3%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" class="category-chain-item">串行接口通信协议</a>
   
   
 
@@ -455,8 +428,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>硬件预取</div>
-      <div>http://binbinqian.cn/2023/10/28/硬件预取/</div>
+      <div>I2C协议（二）</div>
+      <div>http://binbinqian.cn/2023/10/28/I2C协议（二）/</div>
     </div>
     <div class="license-meta">
       
@@ -500,15 +473,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/28/MIPI-%E6%A6%82%E8%BF%B0/" title="MIPI-概述">
+                      <a href="/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%80%EF%BC%89/" title="I2C协议（一）">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MIPI-概述</span>
+                        <span class="hidden-mobile">I2C协议（一）</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2023/10/28/%E4%B8%B2%E8%A1%8C%E6%8E%A5%E5%8F%A3%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE-%E6%A6%82%E8%BF%B0/" title="串行接口通信协议-概述">
+                        <span class="hidden-mobile">串行接口通信协议-概述</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
