@@ -16,26 +16,25 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;alifpga&#x2F;p&#x2F;7902759.html https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;323353814     1. FIR 物理意义 滤波，就是输入信号频率 X(f) 和期望的频率特征函数 H(f) 进行相乘；这是在频域的计算。那么在时间域，是做了一个卷积的计算。 因此FIR做的就是将各个时刻的输入和对应的权重参数相">
+    <meta name="description" content="参考  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;102293437 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;102326184 公众号：老秦谈芯     后续有时间的情况下，可以阅读《计算机组成与设计-硬件软件接口》第五章的内容，对写的博客进行补充。   1. 为什么需要Cache  运行一个进程的步骤（假设为一个变量a加1）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FIR &amp; IIR 滤波器">
-<meta property="og:url" content="http://binbinqian.cn/2023/10/28/FIR%20&%20IIR%20%E6%BB%A4%E6%B3%A2%E5%99%A8/index.html">
+<meta property="og:title" content="关于Cache">
+<meta property="og:url" content="http://binbinqian.cn/2023/10/29/%E5%85%B3%E4%BA%8ECache/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;alifpga&#x2F;p&#x2F;7902759.html https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;323353814     1. FIR 物理意义 滤波，就是输入信号频率 X(f) 和期望的频率特征函数 H(f) 进行相乘；这是在频域的计算。那么在时间域，是做了一个卷积的计算。 因此FIR做的就是将各个时刻的输入和对应的权重参数相">
+<meta property="og:description" content="参考  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;102293437 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;102326184 公众号：老秦谈芯     后续有时间的情况下，可以阅读《计算机组成与设计-硬件软件接口》第五章的内容，对写的博客进行补充。   1. 为什么需要Cache  运行一个进程的步骤（假设为一个变量a加1）">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/28/FIR%20&%20IIR%20%E6%BB%A4%E6%B3%A2%E5%99%A8/3201119-20230718173257360-1137724047.png">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/28/FIR%20&%20IIR%20%E6%BB%A4%E6%B3%A2%E5%99%A8/3201119-20230718224246063-1237397880.png">
-<meta property="article:published_time" content="2023-10-28T14:06:54.000Z">
-<meta property="article:modified_time" content="2023-10-29T07:41:31.429Z">
+<meta property="og:image" content="http://binbinqian.cn/2023/10/29/%E5%85%B3%E4%BA%8ECache/3201119-20230609101424628-456798622.png">
+<meta property="article:published_time" content="2023-10-29T03:24:34.000Z">
+<meta property="article:modified_time" content="2023-10-29T10:43:13.630Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://binbinqian.cn/2023/10/28/FIR%20&%20IIR%20%E6%BB%A4%E6%B3%A2%E5%99%A8/3201119-20230718173257360-1137724047.png">
+<meta name="twitter:image" content="http://binbinqian.cn/2023/10/29/%E5%85%B3%E4%BA%8ECache/3201119-20230609101424628-456798622.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>FIR &amp; IIR 滤波器 - 可达达鸭</title>
+  <title>关于Cache - 可达达鸭</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -228,7 +227,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="FIR &amp; IIR 滤波器"></span>
+            <span id="subtitle" data-typed-text="关于Cache"></span>
           
         </div>
 
@@ -239,8 +238,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-28 22:06" pubdate>
-          2023年10月28日 晚上
+        <time datetime="2023-10-29 11:24" pubdate>
+          2023年10月29日 上午
         </time>
       </span>
     
@@ -251,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          812 字
+          2k 字
         
       </span>
     
@@ -262,7 +261,7 @@
         
         
         
-          7 分钟
+          17 分钟
         
       </span>
     
@@ -315,17 +314,53 @@
     
     <div class="category row nomargin-x">
       <a class="category-item 
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="数字信号处理"
-        id="heading-e10491ffae5e895f78327ed37d3c445b" role="tab" data-toggle="collapse" href="#collapse-e10491ffae5e895f78327ed37d3c445b"
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="计算机组成与设计"
+        id="heading-f11e5860098dfc9633bfc0eb2a18e35f" role="tab" data-toggle="collapse" href="#collapse-f11e5860098dfc9633bfc0eb2a18e35f"
         aria-expanded="true"
       >
-        数字信号处理
-        <span class="list-group-count">(1)</span>
+        计算机组成与设计
+        <span class="list-group-count">(5)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
-      <div class="category-collapse collapse show" id="collapse-e10491ffae5e895f78327ed37d3c445b"
-           role="tabpanel" aria-labelledby="heading-e10491ffae5e895f78327ed37d3c445b">
+      <div class="category-collapse collapse show" id="collapse-f11e5860098dfc9633bfc0eb2a18e35f"
+           role="tabpanel" aria-labelledby="heading-f11e5860098dfc9633bfc0eb2a18e35f">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/10/28/%E7%A1%AC%E4%BB%B6%E9%A2%84%E5%8F%96/" title="硬件预取"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">硬件预取</span>
+        </a>
+      
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Cache"
+        id="heading-ab0cf104f39708eabd07b8cb67e149ba" role="tab" data-toggle="collapse" href="#collapse-ab0cf104f39708eabd07b8cb67e149ba"
+        aria-expanded="true"
+      >
+        Cache
+        <span class="list-group-count">(4)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-ab0cf104f39708eabd07b8cb67e149ba"
+           role="tabpanel" aria-labelledby="heading-ab0cf104f39708eabd07b8cb67e149ba">
         
         
           
@@ -334,15 +369,46 @@
     
       
       
-        <a href="/2023/10/28/FIR%20&amp;%20IIR%20%E6%BB%A4%E6%B3%A2%E5%99%A8/" title="FIR &amp; IIR 滤波器"
+        <a href="/2023/10/29/Cache-%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5&amp;%E6%9B%B4%E6%96%B0%E7%AD%96%E7%95%A5/" title="Cache-分配策略&amp;更新策略"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Cache-分配策略&amp;更新策略</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/10/29/Cache-%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84%E7%BC%93%E5%AD%98&amp;%E5%A4%9A%E8%B7%AF%E7%BB%84%E8%BF%9E%E7%BC%93%E5%AD%98/" title="Cache-直接映射缓存&amp;多路组连缓存"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Cache-直接映射缓存&amp;多路组连缓存</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/10/29/Cache-%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80&amp;%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80/" title="Cache-虚拟地址&amp;物理地址"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Cache-虚拟地址&amp;物理地址</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/10/29/%E5%85%B3%E4%BA%8ECache/" title="关于Cache"
            class="list-group-item list-group-item-action
            active">
-          <span class="category-post">FIR &amp; IIR 滤波器</span>
+          <span class="category-post">关于Cache</span>
         </a>
       
     
   </div>
 
+        
+      </div>
+    </div>
+  
         
       </div>
     </div>
@@ -359,12 +425,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">FIR &amp; IIR 滤波器</h1>
+            <h1 id="seo-header">关于Cache</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年10月29日 下午
+                    本文最后更新于：2023年10月29日 晚上
                   
                 
               </p>
@@ -373,56 +439,102 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考<ul>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/alifpga/p/7902759.html">https://www.cnblogs.com/alifpga/p/7902759.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/323353814">https://www.zhihu.com/question/323353814</a></li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="1-FIR-物理意义"><a href="#1-FIR-物理意义" class="headerlink" title="1. FIR 物理意义"></a>1. FIR 物理意义</h2><ul>
-<li>滤波，就是输入信号频率 X(f) 和期望的频率特征函数 H(f) 进行相乘；这是在频域的计算。那么在时间域，是做了一个卷积的计算。</li>
-<li>因此FIR做的就是将各个时刻的输入和对应的权重参数相乘，并叠加之后输出。<ul>
-<li>如下图所示，为一N点的FIR滤波器。满足$ y(n) &#x3D; \sum\limits_{k&#x3D;0}^{N-1}h(k)x(n-k)$</li>
-</ul>
-</li>
-</ul>
-<p><img src="/2023/10/28/FIR%20&%20IIR%20%E6%BB%A4%E6%B3%A2%E5%99%A8/3201119-20230718173257360-1137724047.png" srcset="/img/loading.gif" lazyload></p>
+<li>参考
 <ul>
-<li>由于FIR每一时刻的输出都取决于之前有限个输入，因此是“有限冲激响应”。</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102293437"
+class="uri">https://zhuanlan.zhihu.com/p/102293437</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102326184"
+class="uri">https://zhuanlan.zhihu.com/p/102326184</a></li>
+<li>公众号：老秦谈芯</li>
+</ul></li>
 </ul>
-<h2 id="2-IIR-物理意义"><a href="#2-IIR-物理意义" class="headerlink" title="2. IIR 物理意义"></a>2. IIR 物理意义</h2><ul>
-<li>IIR 滤波器设计的基本方法<ul>
-<li>先设计一个合适的模拟滤波器，然后利用复值映射把模拟滤波器变换成数字滤波器。</li>
-</ul>
-</li>
-<li>模拟原型滤波器<ul>
-<li>有 巴特沃斯滤波器、切比雪夫滤波器、贝塞尔滤波器、椭圆滤波器等。</li>
-<li>之后有时间会进行更详细的学习。</li>
-</ul>
-</li>
-<li>模拟滤波器到数字滤波器的变换<ul>
-<li>主要有两种方法<ul>
-<li>脉冲响应不变法：从时域响应出发，让数字滤波器的单位脉冲响应h(n)模仿模拟滤波器的单位冲激响应ha(t)，h(n)等于ha(t)的取样值。  </li>
-<li>双线性变换法：从频率响应出发，让数字滤波器的频率响应逼近模拟滤波器的频率响应，进而求得数字滤波器得系统函数。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>无限冲激响应的理解<ul>
-<li><p>首先看IIR滤波器表达式:<br>$$<br> y[n] &#x3D; a_0x[n]+a_1x[n-1]+a_2x[n-2]+a_3x[n-3]+…<br> +b_1y[n-1]+b_2y[n-2]+b_3y[n-3]+…<br>$$ </p>
+<hr />
 <ul>
-<li>可以看到该公式是存在一个递归关系的，本步的计算结果会作为下一步的输入，无限递归下去。</li>
+<li>后续有时间的情况下，可以阅读《计算机组成与设计-硬件软件接口》第五章的内容，对写的博客进行补充。</li>
 </ul>
-</li>
-<li><p>由于IIR是由模拟滤波器变换得到的，以下面滤波器为例。</p>
+<hr />
+<h2 id="为什么需要cache">1. 为什么需要Cache</h2>
 <ul>
-<li>当给输入一个电压值（给输入一个冲激信号），电容会被充电，但是当电压值取消后，电容的电荷会被逐渐放掉，但是理论上永远不会变成0，导致输入会在无限长的时间产生影响。</li>
+<li>运行一个进程的步骤（假设为一个变量a加1）
+<ul>
+<li>首先从磁盘（辅存）中读出可执行程序，并将其load到主存储器中。</li>
+<li>CPU从主存储器中读出地址为A的数据发到CPU的通用寄存器中。</li>
+<li>将通用寄存器的值加1.</li>
+<li>CPU再将通用寄存器的值写给主存储器。</li>
+</ul></li>
+<li>上面的步骤中，第三步的速度很快，但是第二步和第四步，与主存的交互很慢。为了解决这个问题，使用一块速度极快但是容量小的存储设备：cache
+meomory。</li>
 </ul>
-<p><img src="/2023/10/28/FIR%20&%20IIR%20%E6%BB%A4%E6%B3%A2%E5%99%A8/3201119-20230718224246063-1237397880.png" srcset="/img/loading.gif" lazyload></p>
-</li>
+<p><img src="3201119-20230609101424628-456798622.png" srcset="/img/loading.gif" lazyload /></p>
+<ul>
+<li>将Cache放在CPU和主存之间，作为主存数据的缓存，当CPU想从主存中取数据会首先检查Cache中是否有对应地址的数据，如果有的话就可以直接取出给CPU使用。</li>
 </ul>
-</li>
+<h2 id="多级cache存储结构">2. 多级Cache存储结构</h2>
+<ul>
+<li>Cache不可避免的需要在容量和速度之间进行平衡，但是即使多级Cache的速度仍比主存要快的多.</li>
+<li>以Cortex-A53为例，三级Cache分布如下
+<ul>
+<li>每个CPU都有一个L1 Cache，L1
+Cache会分为单独的ICache（指令）和DCache（数据）。
+<ul>
+<li>ICache和DCache本质是一样的，L1 Cache单独分开的原因：
+<ul>
+<li>CPU执行时，可以同时从两个Cache中获取指令和数据，做到硬件上的并行，提升性能。</li>
+<li>DCache不仅需要考虑读出还要考虑写入的问题；而ICache只会被读取。分开两个电路设计，为了更快！</li>
+</ul></li>
+<li>L1
+Cache是最接近处理器的，要求其与CPU有近似的速度，也就注定了其容量不能太大，一般使用SRAM实现。</li>
+<li>L1
+Cache中，ICache和DCache的大小一般32-64KB，2-4个时钟周期访问时间。</li>
+</ul></li>
+<li>一个Cluster内所有的CPU都共享一个L2 Cache。
+<ul>
+<li>L2
+Cache是指令和数据共享，速度可以比CPU慢一些，主要功能是尽量保存更多的内容。</li>
+<li>一般也是SRAM实现，大小为256KB-2MB，10-20个时钟周期的访问时间。
+<ul>
+<li>虽然与L1一样都是SRAM实现，但是L1的SRAM设计是为了速度进行优化，采用更复杂更大更多的晶体管，因此成本和功耗都增加了不少。</li>
+</ul></li>
+</ul></li>
+<li>所有的Cluster之间共享L3 Cache。而L3 Cache通过总线与主存相连。
+<ul>
+<li>在一些系统设计中，L3 cache及更高级采用的是DRAM设计，成本更低。</li>
+<li>L3 Cache一般大小为8-80MB，20-50个时钟周期的访问时间。</li>
+</ul></li>
+</ul></li>
+<li>注意：上面描述的多个cluster就有多个二级缓存，那么就牵扯到<strong>缓存一致性</strong>的问题，后面会介绍。</li>
+</ul>
+<h2 id="多级cache之间的配合">3. 多级Cache之间的配合</h2>
+<ul>
+<li>inclusive cache（一个地址的数据可以存在多级缓存中）
+<ul>
+<li>CPU想获取主存某地址的数据时，首先先访问L1
+Cache，看是否命中，如果命中直接返回数据给GPU。</li>
+<li>如果L1 Cache缺失，则会在L2
+Cache中继续寻找，如果找到，那么会把数据返回给L1和CPU.(返回给L1是为了下次可以在L1的时候就命中)。</li>
+<li>同理，L2找不到去找L3，找到返回L1,L2，CPU。</li>
+<li>如果
+L3也缺失，CPU只能去主存储器中找数据，找到返回给L1,L2,L3,CPU。</li>
+</ul></li>
+<li>exclusive cache：某一地址的数据只能存在于多级Cache中的一级。</li>
+</ul>
+<h2 id="cache对代码的影响">4. Cache对代码的影响</h2>
+<ul>
+<li>首先看两端代码片段 <figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs abnf">int arr[<span class="hljs-number">10</span>][<span class="hljs-number">128</span>]<span class="hljs-comment">;</span><br><br>for (i <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-comment">; i &lt; 10; i++)</span><br>        for (j <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-comment">; j &lt; 128; j++)</span><br>                arr[i][j] <span class="hljs-operator">=</span> <span class="hljs-number">1</span><span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure> <figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs abnf">int arr[<span class="hljs-number">10</span>][<span class="hljs-number">128</span>]<span class="hljs-comment">;</span><br><br>for (i <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-comment">; i &lt; 128; i++)</span><br>        for (j <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-comment">; j &lt; 10; j++)</span><br>                arr[j][i] <span class="hljs-operator">=</span> <span class="hljs-number">1</span><span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure></li>
+<li>假设cache line的大小是64字节</li>
+<li>首先分析第一段代码
+<ul>
+<li>cache控制器发现arr[0][0]缺失，便从主存中取出arr[0][0]到arr[0][15]（int数据类型占4个字节）。对于arr[0][1]-[15]来说就命中了。</li>
+<li>之后到arr[0][16]时，又缺失，便又会在主存那里load出16个数据，64个字节。</li>
+<li>这种情况得命中率还是较高的。</li>
+</ul></li>
+<li>分析第二段代码
+<ul>
+<li>cache控制器发现arr[0][0]缺失，便从主存中取出arr[0][0]到arr[0][15]，之后读第二个数据arr[1][0]，结果发现又缺失了，依次类推。</li>
+<li>当访问到arr[0][1]时，需要考虑cache的大小，如果大于数组arr的大小，那么经过前面的一系列缓存，arr[0][0]-
+arr[9][15]都被缓存下来，与第一段代码差不多的命中率。</li>
+<li>但是如果cache的大小小于数组的大小，那么第二段代码的命中率就没有第一段高，自然要消耗更多的时间从主存中load数据。</li>
+</ul></li>
 </ul>
 
                 
@@ -442,8 +554,15 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/" class="category-chain-item">数字信号处理</a>
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E8%AE%BE%E8%AE%A1/" class="category-chain-item">计算机组成与设计</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E8%AE%BE%E8%AE%A1/Cache/" class="category-chain-item">Cache</a>
+  
+  
+
   
 
       </span>
@@ -462,8 +581,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>FIR &amp; IIR 滤波器</div>
-      <div>http://binbinqian.cn/2023/10/28/FIR &amp; IIR 滤波器/</div>
+      <div>关于Cache</div>
+      <div>http://binbinqian.cn/2023/10/29/关于Cache/</div>
     </div>
     <div class="license-meta">
       
@@ -475,7 +594,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年10月28日</div>
+          <div>2023年10月29日</div>
         </div>
       
       
@@ -507,9 +626,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/29/%E5%85%B3%E4%BA%8ECache/" title="关于Cache">
+                      <a href="/2023/10/29/Cache-%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84%E7%BC%93%E5%AD%98&amp;%E5%A4%9A%E8%B7%AF%E7%BB%84%E8%BF%9E%E7%BC%93%E5%AD%98/" title="Cache-直接映射缓存&amp;多路组连缓存">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">关于Cache</span>
+                        <span class="hidden-mobile">Cache-直接映射缓存&amp;多路组连缓存</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -517,8 +636,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/28/I2S%E5%8D%8F%E8%AE%AE/" title="I2S协议">
-                        <span class="hidden-mobile">I2S协议</span>
+                      <a href="/2023/10/28/FIR%20&amp;%20IIR%20%E6%BB%A4%E6%B3%A2%E5%99%A8/" title="FIR &amp; IIR 滤波器">
+                        <span class="hidden-mobile">FIR &amp; IIR 滤波器</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

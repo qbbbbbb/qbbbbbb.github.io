@@ -16,26 +16,23 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;alifpga&#x2F;p&#x2F;7902759.html https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;323353814     1. FIR 物理意义 滤波，就是输入信号频率 X(f) 和期望的频率特征函数 H(f) 进行相乘；这是在频域的计算。那么在时间域，是做了一个卷积的计算。 因此FIR做的就是将各个时刻的输入和对应的权重参数相">
+    <meta name="description" content="参考  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;107096130    1. VIVT（Virtually Indexed Virtually Tagged）  虚拟高速缓存：以虚拟地址作为查找对象。 首先虚拟地址给cache，如果命中，则返回数据给cpu，如果未命中，则将虚拟地址通过MMU转化为物理地址，根据物理地址从主存中读取数据。 优点  不">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FIR &amp; IIR 滤波器">
-<meta property="og:url" content="http://binbinqian.cn/2023/10/28/FIR%20&%20IIR%20%E6%BB%A4%E6%B3%A2%E5%99%A8/index.html">
+<meta property="og:title" content="Cache-虚拟地址&amp;物理地址">
+<meta property="og:url" content="http://binbinqian.cn/2023/10/29/Cache-%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80&%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;alifpga&#x2F;p&#x2F;7902759.html https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;323353814     1. FIR 物理意义 滤波，就是输入信号频率 X(f) 和期望的频率特征函数 H(f) 进行相乘；这是在频域的计算。那么在时间域，是做了一个卷积的计算。 因此FIR做的就是将各个时刻的输入和对应的权重参数相">
+<meta property="og:description" content="参考  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;107096130    1. VIVT（Virtually Indexed Virtually Tagged）  虚拟高速缓存：以虚拟地址作为查找对象。 首先虚拟地址给cache，如果命中，则返回数据给cpu，如果未命中，则将虚拟地址通过MMU转化为物理地址，根据物理地址从主存中读取数据。 优点  不">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/28/FIR%20&%20IIR%20%E6%BB%A4%E6%B3%A2%E5%99%A8/3201119-20230718173257360-1137724047.png">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/28/FIR%20&%20IIR%20%E6%BB%A4%E6%B3%A2%E5%99%A8/3201119-20230718224246063-1237397880.png">
-<meta property="article:published_time" content="2023-10-28T14:06:54.000Z">
-<meta property="article:modified_time" content="2023-10-29T07:41:31.429Z">
+<meta property="article:published_time" content="2023-10-29T12:44:55.000Z">
+<meta property="article:modified_time" content="2023-10-29T12:50:12.625Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://binbinqian.cn/2023/10/28/FIR%20&%20IIR%20%E6%BB%A4%E6%B3%A2%E5%99%A8/3201119-20230718173257360-1137724047.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>FIR &amp; IIR 滤波器 - 可达达鸭</title>
+  <title>Cache-虚拟地址&amp;物理地址 - 可达达鸭</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -228,7 +225,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="FIR &amp; IIR 滤波器"></span>
+            <span id="subtitle" data-typed-text="Cache-虚拟地址&amp;物理地址"></span>
           
         </div>
 
@@ -239,8 +236,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-28 22:06" pubdate>
-          2023年10月28日 晚上
+        <time datetime="2023-10-29 20:44" pubdate>
+          2023年10月29日 晚上
         </time>
       </span>
     
@@ -251,7 +248,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          812 字
+          2.2k 字
         
       </span>
     
@@ -262,7 +259,7 @@
         
         
         
-          7 分钟
+          19 分钟
         
       </span>
     
@@ -315,17 +312,53 @@
     
     <div class="category row nomargin-x">
       <a class="category-item 
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="数字信号处理"
-        id="heading-e10491ffae5e895f78327ed37d3c445b" role="tab" data-toggle="collapse" href="#collapse-e10491ffae5e895f78327ed37d3c445b"
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="计算机组成与设计"
+        id="heading-f11e5860098dfc9633bfc0eb2a18e35f" role="tab" data-toggle="collapse" href="#collapse-f11e5860098dfc9633bfc0eb2a18e35f"
         aria-expanded="true"
       >
-        数字信号处理
-        <span class="list-group-count">(1)</span>
+        计算机组成与设计
+        <span class="list-group-count">(5)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
-      <div class="category-collapse collapse show" id="collapse-e10491ffae5e895f78327ed37d3c445b"
-           role="tabpanel" aria-labelledby="heading-e10491ffae5e895f78327ed37d3c445b">
+      <div class="category-collapse collapse show" id="collapse-f11e5860098dfc9633bfc0eb2a18e35f"
+           role="tabpanel" aria-labelledby="heading-f11e5860098dfc9633bfc0eb2a18e35f">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/10/28/%E7%A1%AC%E4%BB%B6%E9%A2%84%E5%8F%96/" title="硬件预取"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">硬件预取</span>
+        </a>
+      
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Cache"
+        id="heading-ab0cf104f39708eabd07b8cb67e149ba" role="tab" data-toggle="collapse" href="#collapse-ab0cf104f39708eabd07b8cb67e149ba"
+        aria-expanded="true"
+      >
+        Cache
+        <span class="list-group-count">(4)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-ab0cf104f39708eabd07b8cb67e149ba"
+           role="tabpanel" aria-labelledby="heading-ab0cf104f39708eabd07b8cb67e149ba">
         
         
           
@@ -334,15 +367,46 @@
     
       
       
-        <a href="/2023/10/28/FIR%20&amp;%20IIR%20%E6%BB%A4%E6%B3%A2%E5%99%A8/" title="FIR &amp; IIR 滤波器"
+        <a href="/2023/10/29/Cache-%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5&amp;%E6%9B%B4%E6%96%B0%E7%AD%96%E7%95%A5/" title="Cache-分配策略&amp;更新策略"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Cache-分配策略&amp;更新策略</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/10/29/Cache-%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84%E7%BC%93%E5%AD%98&amp;%E5%A4%9A%E8%B7%AF%E7%BB%84%E8%BF%9E%E7%BC%93%E5%AD%98/" title="Cache-直接映射缓存&amp;多路组连缓存"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Cache-直接映射缓存&amp;多路组连缓存</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/10/29/Cache-%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80&amp;%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80/" title="Cache-虚拟地址&amp;物理地址"
            class="list-group-item list-group-item-action
            active">
-          <span class="category-post">FIR &amp; IIR 滤波器</span>
+          <span class="category-post">Cache-虚拟地址&amp;物理地址</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/10/29/%E5%85%B3%E4%BA%8ECache/" title="关于Cache"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">关于Cache</span>
         </a>
       
     
   </div>
 
+        
+      </div>
+    </div>
+  
         
       </div>
     </div>
@@ -359,12 +423,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">FIR &amp; IIR 滤波器</h1>
+            <h1 id="seo-header">Cache-虚拟地址&amp;物理地址</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年10月29日 下午
+                    本文最后更新于：2023年10月29日 晚上
                   
                 
               </p>
@@ -373,56 +437,146 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考<ul>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/alifpga/p/7902759.html">https://www.cnblogs.com/alifpga/p/7902759.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/323353814">https://www.zhihu.com/question/323353814</a></li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="1-FIR-物理意义"><a href="#1-FIR-物理意义" class="headerlink" title="1. FIR 物理意义"></a>1. FIR 物理意义</h2><ul>
-<li>滤波，就是输入信号频率 X(f) 和期望的频率特征函数 H(f) 进行相乘；这是在频域的计算。那么在时间域，是做了一个卷积的计算。</li>
-<li>因此FIR做的就是将各个时刻的输入和对应的权重参数相乘，并叠加之后输出。<ul>
-<li>如下图所示，为一N点的FIR滤波器。满足$ y(n) &#x3D; \sum\limits_{k&#x3D;0}^{N-1}h(k)x(n-k)$</li>
-</ul>
-</li>
-</ul>
-<p><img src="/2023/10/28/FIR%20&%20IIR%20%E6%BB%A4%E6%B3%A2%E5%99%A8/3201119-20230718173257360-1137724047.png" srcset="/img/loading.gif" lazyload></p>
+<li>参考
 <ul>
-<li>由于FIR每一时刻的输出都取决于之前有限个输入，因此是“有限冲激响应”。</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/107096130"
+class="uri">https://zhuanlan.zhihu.com/p/107096130</a></li>
+</ul></li>
 </ul>
-<h2 id="2-IIR-物理意义"><a href="#2-IIR-物理意义" class="headerlink" title="2. IIR 物理意义"></a>2. IIR 物理意义</h2><ul>
-<li>IIR 滤波器设计的基本方法<ul>
-<li>先设计一个合适的模拟滤波器，然后利用复值映射把模拟滤波器变换成数字滤波器。</li>
-</ul>
-</li>
-<li>模拟原型滤波器<ul>
-<li>有 巴特沃斯滤波器、切比雪夫滤波器、贝塞尔滤波器、椭圆滤波器等。</li>
-<li>之后有时间会进行更详细的学习。</li>
-</ul>
-</li>
-<li>模拟滤波器到数字滤波器的变换<ul>
-<li>主要有两种方法<ul>
-<li>脉冲响应不变法：从时域响应出发，让数字滤波器的单位脉冲响应h(n)模仿模拟滤波器的单位冲激响应ha(t)，h(n)等于ha(t)的取样值。  </li>
-<li>双线性变换法：从频率响应出发，让数字滤波器的频率响应逼近模拟滤波器的频率响应，进而求得数字滤波器得系统函数。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>无限冲激响应的理解<ul>
-<li><p>首先看IIR滤波器表达式:<br>$$<br> y[n] &#x3D; a_0x[n]+a_1x[n-1]+a_2x[n-2]+a_3x[n-3]+…<br> +b_1y[n-1]+b_2y[n-2]+b_3y[n-3]+…<br>$$ </p>
+<hr />
+<h2 id="vivtvirtually-indexed-virtually-tagged">1. VIVT（Virtually
+Indexed Virtually Tagged）</h2>
 <ul>
-<li>可以看到该公式是存在一个递归关系的，本步的计算结果会作为下一步的输入，无限递归下去。</li>
-</ul>
-</li>
-<li><p>由于IIR是由模拟滤波器变换得到的，以下面滤波器为例。</p>
+<li>虚拟高速缓存：以虚拟地址作为查找对象。</li>
+<li>首先虚拟地址给cache，如果命中，则返回数据给cpu，如果未命中，则将虚拟地址通过MMU转化为物理地址，根据物理地址从主存中读取数据。</li>
+<li>优点
 <ul>
-<li>当给输入一个电压值（给输入一个冲激信号），电容会被充电，但是当电压值取消后，电容的电荷会被逐渐放掉，但是理论上永远不会变成0，导致输入会在无限长的时间产生影响。</li>
+<li>不需要在查找cache过程将虚拟地址翻译成物理地址，节省了MMU转换的时间，提高访问cache的访问速度。</li>
+</ul></li>
+<li>缺点
+<ul>
+<li>引入软件使用上的问题，歧义（ambiguity）和别名（alias）。</li>
+</ul></li>
 </ul>
-<p><img src="/2023/10/28/FIR%20&%20IIR%20%E6%BB%A4%E6%B3%A2%E5%99%A8/3201119-20230718224246063-1237397880.png" srcset="/img/loading.gif" lazyload></p>
-</li>
+<h2 id="歧义">2. 歧义</h2>
+<ul>
+<li>歧义是指数据在cache中有相同的tag和index。</li>
+<li>发生情况：<strong>不同进程，相同的虚拟地址映射不同的物理地址。</strong>
+<ul>
+<li>可能出现A进程地址a映射的数据为b，而B进程地址a映射的数据为c，当A进程运行时，访问地址a会将数据b加载到cache上，而进程B运行时，访问地址a时命中了并将数据b返回给CPU，但是实际上B进程应该把数据c给CPU。</li>
+</ul></li>
+<li>解决方法：切换进程，flush cache，主要有两种。
+<ul>
+<li>使主存储器有效：首先将主存置为有效，将cacheline上已经修改的数据写回主存上，避免修改的数据丢失。</li>
+<li>使高速缓存无效：首先将cacheline都置为无效，保证切换时不会有进程误命中上一进程的数据。</li>
+</ul></li>
+<li>所以对于VIVT来说，每次进程切换时，都可能出现大量的cache缺失，且只要切换进程就需要flush
+cache，导致性能的缺失。</li>
 </ul>
-</li>
+<h2 id="别名">3. 别名</h2>
+<ul>
+<li>发生情况：不同虚拟地址映射到相同物理地址。
+<ul>
+<li>可能出现物理地址A对应的虚拟地址为B和C，index值B&lt;C,那么当程序想要修改物理地址A对应的数据时，采用写回策略，对B进行修改，且修改的值没有同步到主存中，当程序想要访问虚拟地址C时，命中，但是取出的数据是未修改的。</li>
+</ul></li>
+<li>解决方法
+<ul>
+<li>（1）采用nocache映射，不通过cache映射，CPU直接去主存读写数据。既适用于不同进程共享数据也适用于相同进程共享数据。</li>
+<li>（2）不同进程共享数据，可以选择在进程切换时，flush
+cache，（主要因为存在一个向主存写数据的过程）。</li>
+<li>（3）同一进程共享数据，保证虚拟地址cache大小对齐，保证每次虚拟地址都会找到同一个cacheline，下面有更详细的描述。</li>
+</ul></li>
+</ul>
+<h2 id="piptphysically-indexed-physically-tagged">4. PIPT（Physically
+Indexed Physically Tagged)</h2>
+<ul>
+<li>物理高速缓存：为了解决VIVT歧义和别名的问题，tag和index都取自物理地址，对于物理地址来说tag和index都是唯一的。</li>
+<li>实现过程
+<ul>
+<li>CPU发出的虚拟地址首先经过MMU转化为物理地址，给到cache控制器观察是否命中。如果未命中，将去主存中根据物理地址取出数据。</li>
+</ul></li>
+<li>缺点
+<ul>
+<li>硬件设计较VIVT要复杂很多，需要等待MMU转换之后才可以查cache。</li>
+<li>为了加快MMU转换速度，硬件上也会加一块TLB，虚拟地址和物理地址转换可以<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17466384.html">这篇博客</a>。</li>
+<li>很多CPU都使用PIPT高速缓存。</li>
+</ul></li>
+</ul>
+<h2 id="viptvirtually-indexed-physically-tagged">5. VIPT（Virtually
+Indexed Physically Tagged）</h2>
+<ul>
+<li>物理标记的虚拟高速缓存</li>
+<li>使用虚拟index查找cacheline，与此同时，将虚拟地址给MMU转换为物理地址。MMU转换完之后cache也查找结束了，此时比对物理tag是否相同，以判断是否命中cache。</li>
+<li>不会存在歧义
+<ul>
+<li>关键在于 VIPT的tag使用的是物理地址的PFN，是唯一的。</li>
+</ul></li>
+<li>不会存在别名（特定情况下）
+<ul>
+<li>对于大部分系统来说，虚拟地址和物理地址之间的映射最小是以页为单位，在<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17466384.html">这篇博客</a>中有介绍，页addr[11:0]内的内容无论是物理地址还是虚拟地址都是相同的。</li>
+<li>所以对于直接映射高速缓存，如果cache的大小小于等于4KB，那么意味着虚拟地址和物理地址的index是一样的，此时VIPT和PIPT是相同的。</li>
+<li>对于多路组相连高速缓存，每一组大小小于等于4KB，使用虚拟地址（此时等于物理地址）来做index寻址，并选择物理地址的tag来选择命中哪路的cache
+line。</li>
+</ul></li>
+<li>别名问题
+<ul>
+<li>若cache的大小大于4KB，还是会出现别名问题。</li>
+<li>目的：避免相同物理地址的数据被加载到不同cacheline中。
+<ul>
+<li>解决方法：相同物理地址数据对应的虚拟地址满足cache大小对齐。</li>
+<li>举例：cache大小8KB = 2^13，cache line大小为256B =
+2^8，那么虚拟地址应该是下表几种情况，这样才会都找到第4行cacheline，不会出现别名的情况。</li>
+<li>Linux实现中，采用该方法解决的别名问题。
+<style>
+.center 
+{
+width: auto;
+display: table;
+margin-left: auto;
+margin-right: auto;
+}
+</style></li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="center">
+<table>
+<thead>
+<tr class="header">
+<th>address</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0_00100_0000_0000</td>
+</tr>
+<tr class="even">
+<td>1_00100_0000_0000</td>
+</tr>
+<tr class="odd">
+<td>10_00100_0000_0000</td>
+</tr>
+<tr class="even">
+<td>...</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>对于L1
+Cache的ICache，如果使用VIPT，虽然存在别名问题，但是考虑其为<strong>只读</strong>，所以即使多个虚拟地址对应一个物理地址也没有关系。</li>
+</ul>
+<h2 id="不存在的pivt高速缓存">6. 不存在的PIVT高速缓存</h2>
+<ul>
+<li>没有任何优点，首先需要通过MMU转换，消耗时间。还存在歧义和别名的问题。</li>
+</ul>
+<h2 id="总结">7. 总结</h2>
+<ul>
+<li>VIVT几乎没有人使用，软件维护成本过高。</li>
+<li>对于多路组相连高速缓存的一路大小小于等于4KB，采用VIPT。</li>
+<li>对于一路大于4KB的，一般采用PIPT，VIPT也可以，但是还是需要特殊处理一下别名问题。</li>
 </ul>
 
                 
@@ -442,8 +596,15 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/" class="category-chain-item">数字信号处理</a>
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E8%AE%BE%E8%AE%A1/" class="category-chain-item">计算机组成与设计</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E8%AE%BE%E8%AE%A1/Cache/" class="category-chain-item">Cache</a>
+  
+  
+
   
 
       </span>
@@ -462,8 +623,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>FIR &amp; IIR 滤波器</div>
-      <div>http://binbinqian.cn/2023/10/28/FIR &amp; IIR 滤波器/</div>
+      <div>Cache-虚拟地址&amp;物理地址</div>
+      <div>http://binbinqian.cn/2023/10/29/Cache-虚拟地址&amp;物理地址/</div>
     </div>
     <div class="license-meta">
       
@@ -475,7 +636,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年10月28日</div>
+          <div>2023年10月29日</div>
         </div>
       
       
@@ -507,9 +668,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/29/%E5%85%B3%E4%BA%8ECache/" title="关于Cache">
+                      <a href="/2023/10/29/TLB/" title="TLB">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">关于Cache</span>
+                        <span class="hidden-mobile">TLB</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -517,8 +678,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/28/I2S%E5%8D%8F%E8%AE%AE/" title="I2S协议">
-                        <span class="hidden-mobile">I2S协议</span>
+                      <a href="/2023/10/29/Cache-%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5&amp;%E6%9B%B4%E6%96%B0%E7%AD%96%E7%95%A5/" title="Cache-分配策略&amp;更新策略">
+                        <span class="hidden-mobile">Cache-分配策略&amp;更新策略</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

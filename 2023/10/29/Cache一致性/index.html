@@ -16,11 +16,13 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://binbinqian.cn/categories/index.html">
+    <meta property="og:type" content="article">
+<meta property="og:title" content="Cache一致性">
+<meta property="og:url" content="http://binbinqian.cn/2023/10/29/Cache%E4%B8%80%E8%87%B4%E6%80%A7/index.html">
 <meta property="og:site_name" content="可达达鸭">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-10-29T12:45:44.000Z">
+<meta property="article:modified_time" content="2023-10-29T12:45:44.971Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -28,11 +30,17 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>分类 - 可达达鸭</title>
+  <title>Cache一致性 - 可达达鸭</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
 
@@ -109,7 +117,7 @@
   <header>
     
 
-<div class="header-inner" style="height: 60vh;">
+<div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -215,9 +223,57 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="分类"></span>
+            <span id="subtitle" data-typed-text="Cache一致性"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-10-29 20:45" pubdate>
+          2023年10月29日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          0 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          1 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
 
         
       </div>
@@ -233,306 +289,170 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Cache一致性</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2023年10月29日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
                 
 
-
-
-
-
-<div class="category-list">
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
   
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="计算机组成与设计"
-        id="heading-f11e5860098dfc9633bfc0eb2a18e35f" role="tab" data-toggle="collapse" href="#collapse-f11e5860098dfc9633bfc0eb2a18e35f"
-        aria-expanded="false"
-      >
-        计算机组成与设计
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E8%AE%BE%E8%AE%A1/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>5</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-f11e5860098dfc9633bfc0eb2a18e35f"
-           role="tabpanel" aria-labelledby="heading-f11e5860098dfc9633bfc0eb2a18e35f">
-        
-        
-          
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2023/10/28/%E7%A1%AC%E4%BB%B6%E9%A2%84%E5%8F%96/" title="硬件预取"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">硬件预取</span>
-        </a>
-      
-    
-  </div>
-
-          
-  
-    
-    
-    
-    <div class="category-sub row nomargin-x">
-      <a class="category-subitem collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Cache"
-        id="heading-ab0cf104f39708eabd07b8cb67e149ba" role="tab" data-toggle="collapse" href="#collapse-ab0cf104f39708eabd07b8cb67e149ba"
-        aria-expanded="false"
-      >
-        Cache
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E8%AE%BE%E8%AE%A1/Cache/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>4</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-ab0cf104f39708eabd07b8cb67e149ba"
-           role="tabpanel" aria-labelledby="heading-ab0cf104f39708eabd07b8cb67e149ba">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2023/10/29/Cache-%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80&amp;%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80/" title="Cache-虚拟地址&amp;物理地址"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Cache-虚拟地址&amp;物理地址</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/10/29/Cache-%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5&amp;%E6%9B%B4%E6%96%B0%E7%AD%96%E7%95%A5/" title="Cache-分配策略&amp;更新策略"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Cache-分配策略&amp;更新策略</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/10/29/Cache-%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84%E7%BC%93%E5%AD%98&amp;%E5%A4%9A%E8%B7%AF%E7%BB%84%E8%BF%9E%E7%BC%93%E5%AD%98/" title="Cache-直接映射缓存&amp;多路组连缓存"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Cache-直接映射缓存&amp;多路组连缓存</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/10/29/%E5%85%B3%E4%BA%8ECache/" title="关于Cache"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">关于Cache</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="串行接口通信协议"
-        id="heading-49d1fa253fe2dddc874f6c9a03e4474a" role="tab" data-toggle="collapse" href="#collapse-49d1fa253fe2dddc874f6c9a03e4474a"
-        aria-expanded="false"
-      >
-        串行接口通信协议
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/%E4%B8%B2%E8%A1%8C%E6%8E%A5%E5%8F%A3%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>4</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-49d1fa253fe2dddc874f6c9a03e4474a"
-           role="tabpanel" aria-labelledby="heading-49d1fa253fe2dddc874f6c9a03e4474a">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2023/10/28/I2S%E5%8D%8F%E8%AE%AE/" title="I2S协议"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">I2S协议</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%80%EF%BC%89/" title="I2C协议（一）"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">I2C协议（一）</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/" title="I2C协议（二）"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">I2C协议（二）</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/10/28/%E4%B8%B2%E8%A1%8C%E6%8E%A5%E5%8F%A3%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE-%E6%A6%82%E8%BF%B0/" title="串行接口通信协议-概述"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">串行接口通信协议-概述</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="MIPI 接口协议"
-        id="heading-eceb049bd3a5ec8a8d005b2a6156933e" role="tab" data-toggle="collapse" href="#collapse-eceb049bd3a5ec8a8d005b2a6156933e"
-        aria-expanded="false"
-      >
-        MIPI 接口协议
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/MIPI-%E6%8E%A5%E5%8F%A3%E5%8D%8F%E8%AE%AE/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>2</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-eceb049bd3a5ec8a8d005b2a6156933e"
-           role="tabpanel" aria-labelledby="heading-eceb049bd3a5ec8a8d005b2a6156933e">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2023/10/28/MIPI-CSI/" title="MIPI-CSI"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">MIPI-CSI</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/10/28/MIPI-%E6%A6%82%E8%BF%B0/" title="MIPI-概述"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">MIPI-概述</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="数字信号处理"
-        id="heading-e10491ffae5e895f78327ed37d3c445b" role="tab" data-toggle="collapse" href="#collapse-e10491ffae5e895f78327ed37d3c445b"
-        aria-expanded="false"
-      >
-        数字信号处理
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>1</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-e10491ffae5e895f78327ed37d3c445b"
-           role="tabpanel" aria-labelledby="heading-e10491ffae5e895f78327ed37d3c445b">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2023/10/28/FIR%20&amp;%20IIR%20%E6%BB%A4%E6%B3%A2%E5%99%A8/" title="FIR &amp; IIR 滤波器"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">FIR &amp; IIR 滤波器</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
   
 </div>
 
 
-              </div>
-            </div>
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Cache一致性</div>
+      <div>http://binbinqian.cn/2023/10/29/Cache一致性/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>qianbinbin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年10月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
           </div>
         </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/10/29/TLB/" title="TLB">
+                        <span class="hidden-mobile">TLB</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
       </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
     
 
     
@@ -646,6 +566,142 @@
 
 
 
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
