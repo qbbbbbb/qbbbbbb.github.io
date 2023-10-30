@@ -16,12 +16,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;102293437 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;102326184 公众号：老秦谈芯     后续有时间的情况下，可以阅读《计算机组成与设计-硬件软件接口》第五章的内容，对写的博客进行补充。   1. 为什么需要Cache  运行一个进程的步骤（假设为一个变量a加1）">
+    <meta name="description" content="参考 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;102293437 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;102326184 公众号：老秦谈芯      后续有时间的情况下，可以阅读《计算机组成与设计-硬件软件接口》第五章的内容，对写的博客进行补充。   1. 为什么需要Cache 运行一个进程的步骤（假设为一个变量a加1） 首先从磁盘（辅存）中读出可执行程序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于Cache">
 <meta property="og:url" content="http://binbinqian.cn/2023/10/29/%E5%85%B3%E4%BA%8ECache/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;102293437 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;102326184 公众号：老秦谈芯     后续有时间的情况下，可以阅读《计算机组成与设计-硬件软件接口》第五章的内容，对写的博客进行补充。   1. 为什么需要Cache  运行一个进程的步骤（假设为一个变量a加1）">
+<meta property="og:description" content="参考 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;102293437 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;102326184 公众号：老秦谈芯      后续有时间的情况下，可以阅读《计算机组成与设计-硬件软件接口》第五章的内容，对写的博客进行补充。   1. 为什么需要Cache 运行一个进程的步骤（假设为一个变量a加1） 首先从磁盘（辅存）中读出可执行程序">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/10/29/%E5%85%B3%E4%BA%8ECache/3201119-20230609101424628-456798622.png">
 <meta property="article:published_time" content="2023-10-29T03:24:34.000Z">
@@ -451,7 +451,7 @@
     
       
       
-        <a href="/2023/10/30/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B8%8E%E6%89%A7%E8%A1%8C/" title="计算机系统层次"
+        <a href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1/" title="计算机系统层次"
            class="list-group-item list-group-item-action
            ">
           <span class="category-post">计算机系统层次</span>
@@ -494,102 +494,88 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考
-<ul>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102293437"
-class="uri">https://zhuanlan.zhihu.com/p/102293437</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102326184"
-class="uri">https://zhuanlan.zhihu.com/p/102326184</a></li>
+<li>参考<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102293437">https://zhuanlan.zhihu.com/p/102293437</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102326184">https://zhuanlan.zhihu.com/p/102326184</a></li>
 <li>公众号：老秦谈芯</li>
-</ul></li>
 </ul>
-<hr />
+</li>
+</ul>
+<hr>
 <ul>
 <li>后续有时间的情况下，可以阅读《计算机组成与设计-硬件软件接口》第五章的内容，对写的博客进行补充。</li>
 </ul>
-<hr />
-<h2 id="为什么需要cache">1. 为什么需要Cache</h2>
-<ul>
-<li>运行一个进程的步骤（假设为一个变量a加1）
-<ul>
+<hr>
+<h2 id="1-为什么需要Cache"><a href="#1-为什么需要Cache" class="headerlink" title="1. 为什么需要Cache"></a>1. 为什么需要Cache</h2><ul>
+<li>运行一个进程的步骤（假设为一个变量a加1）<ul>
 <li>首先从磁盘（辅存）中读出可执行程序，并将其load到主存储器中。</li>
 <li>CPU从主存储器中读出地址为A的数据发到CPU的通用寄存器中。</li>
 <li>将通用寄存器的值加1.</li>
 <li>CPU再将通用寄存器的值写给主存储器。</li>
-</ul></li>
-<li>上面的步骤中，第三步的速度很快，但是第二步和第四步，与主存的交互很慢。为了解决这个问题，使用一块速度极快但是容量小的存储设备：cache
-meomory。</li>
 </ul>
-<p><img src="3201119-20230609101424628-456798622.png" srcset="/img/loading.gif" lazyload /></p>
+</li>
+<li>上面的步骤中，第三步的速度很快，但是第二步和第四步，与主存的交互很慢。为了解决这个问题，使用一块速度极快但是容量小的存储设备：cache meomory。</li>
+</ul>
+<p><img src="/2023/10/29/%E5%85%B3%E4%BA%8ECache/3201119-20230609101424628-456798622.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>将Cache放在CPU和主存之间，作为主存数据的缓存，当CPU想从主存中取数据会首先检查Cache中是否有对应地址的数据，如果有的话就可以直接取出给CPU使用。</li>
 </ul>
-<h2 id="多级cache存储结构">2. 多级Cache存储结构</h2>
-<ul>
+<h2 id="2-多级Cache存储结构"><a href="#2-多级Cache存储结构" class="headerlink" title="2. 多级Cache存储结构"></a>2. 多级Cache存储结构</h2><ul>
 <li>Cache不可避免的需要在容量和速度之间进行平衡，但是即使多级Cache的速度仍比主存要快的多.</li>
-<li>以Cortex-A53为例，三级Cache分布如下
-<ul>
-<li>每个CPU都有一个L1 Cache，L1
-Cache会分为单独的ICache（指令）和DCache（数据）。
-<ul>
-<li>ICache和DCache本质是一样的，L1 Cache单独分开的原因：
-<ul>
+<li>以Cortex-A53为例，三级Cache分布如下<ul>
+<li>每个CPU都有一个L1 Cache，L1 Cache会分为单独的ICache（指令）和DCache（数据）。<ul>
+<li>ICache和DCache本质是一样的，L1 Cache单独分开的原因：<ul>
 <li>CPU执行时，可以同时从两个Cache中获取指令和数据，做到硬件上的并行，提升性能。</li>
 <li>DCache不仅需要考虑读出还要考虑写入的问题；而ICache只会被读取。分开两个电路设计，为了更快！</li>
-</ul></li>
-<li>L1
-Cache是最接近处理器的，要求其与CPU有近似的速度，也就注定了其容量不能太大，一般使用SRAM实现。</li>
-<li>L1
-Cache中，ICache和DCache的大小一般32-64KB，2-4个时钟周期访问时间。</li>
-</ul></li>
-<li>一个Cluster内所有的CPU都共享一个L2 Cache。
-<ul>
-<li>L2
-Cache是指令和数据共享，速度可以比CPU慢一些，主要功能是尽量保存更多的内容。</li>
-<li>一般也是SRAM实现，大小为256KB-2MB，10-20个时钟周期的访问时间。
-<ul>
+</ul>
+</li>
+<li>L1 Cache是最接近处理器的，要求其与CPU有近似的速度，也就注定了其容量不能太大，一般使用SRAM实现。</li>
+<li>L1 Cache中，ICache和DCache的大小一般32-64KB，2-4个时钟周期访问时间。</li>
+</ul>
+</li>
+<li>一个Cluster内所有的CPU都共享一个L2 Cache。<ul>
+<li>L2 Cache是指令和数据共享，速度可以比CPU慢一些，主要功能是尽量保存更多的内容。</li>
+<li>一般也是SRAM实现，大小为256KB-2MB，10-20个时钟周期的访问时间。<ul>
 <li>虽然与L1一样都是SRAM实现，但是L1的SRAM设计是为了速度进行优化，采用更复杂更大更多的晶体管，因此成本和功耗都增加了不少。</li>
-</ul></li>
-</ul></li>
-<li>所有的Cluster之间共享L3 Cache。而L3 Cache通过总线与主存相连。
-<ul>
+</ul>
+</li>
+</ul>
+</li>
+<li>所有的Cluster之间共享L3 Cache。而L3 Cache通过总线与主存相连。 <ul>
 <li>在一些系统设计中，L3 cache及更高级采用的是DRAM设计，成本更低。</li>
 <li>L3 Cache一般大小为8-80MB，20-50个时钟周期的访问时间。</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>注意：上面描述的多个cluster就有多个二级缓存，那么就牵扯到<strong>缓存一致性</strong>的问题，后面会介绍。</li>
 </ul>
-<h2 id="多级cache之间的配合">3. 多级Cache之间的配合</h2>
-<ul>
-<li>inclusive cache（一个地址的数据可以存在多级缓存中）
-<ul>
-<li>CPU想获取主存某地址的数据时，首先先访问L1
-Cache，看是否命中，如果命中直接返回数据给GPU。</li>
-<li>如果L1 Cache缺失，则会在L2
-Cache中继续寻找，如果找到，那么会把数据返回给L1和CPU.(返回给L1是为了下次可以在L1的时候就命中)。</li>
+<h2 id="3-多级Cache之间的配合"><a href="#3-多级Cache之间的配合" class="headerlink" title="3. 多级Cache之间的配合"></a>3. 多级Cache之间的配合</h2><ul>
+<li>inclusive cache（一个地址的数据可以存在多级缓存中）<ul>
+<li>CPU想获取主存某地址的数据时，首先先访问L1 Cache，看是否命中，如果命中直接返回数据给GPU。</li>
+<li>如果L1 Cache缺失，则会在L2 Cache中继续寻找，如果找到，那么会把数据返回给L1和CPU.(返回给L1是为了下次可以在L1的时候就命中)。</li>
 <li>同理，L2找不到去找L3，找到返回L1,L2，CPU。</li>
-<li>如果
-L3也缺失，CPU只能去主存储器中找数据，找到返回给L1,L2,L3,CPU。</li>
-</ul></li>
+<li>如果 L3也缺失，CPU只能去主存储器中找数据，找到返回给L1,L2,L3,CPU。</li>
+</ul>
+</li>
 <li>exclusive cache：某一地址的数据只能存在于多级Cache中的一级。</li>
 </ul>
-<h2 id="cache对代码的影响">4. Cache对代码的影响</h2>
-<ul>
-<li>首先看两端代码片段 <figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs abnf">int arr[<span class="hljs-number">10</span>][<span class="hljs-number">128</span>]<span class="hljs-comment">;</span><br><br>for (i <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-comment">; i &lt; 10; i++)</span><br>        for (j <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-comment">; j &lt; 128; j++)</span><br>                arr[i][j] <span class="hljs-operator">=</span> <span class="hljs-number">1</span><span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure> <figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs abnf">int arr[<span class="hljs-number">10</span>][<span class="hljs-number">128</span>]<span class="hljs-comment">;</span><br><br>for (i <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-comment">; i &lt; 128; i++)</span><br>        for (j <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-comment">; j &lt; 10; j++)</span><br>                arr[j][i] <span class="hljs-operator">=</span> <span class="hljs-number">1</span><span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure></li>
+<h2 id="4-Cache对代码的影响"><a href="#4-Cache对代码的影响" class="headerlink" title="4. Cache对代码的影响"></a>4. Cache对代码的影响</h2><ul>
+<li>首先看两端代码片段<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs abnf">int arr[<span class="hljs-number">10</span>][<span class="hljs-number">128</span>]<span class="hljs-comment">;</span><br><br>for (i <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-comment">; i &lt; 10; i++)</span><br>        for (j <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-comment">; j &lt; 128; j++)</span><br>                arr[i][j] <span class="hljs-operator">=</span> <span class="hljs-number">1</span><span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs abnf">int arr[<span class="hljs-number">10</span>][<span class="hljs-number">128</span>]<span class="hljs-comment">;</span><br><br>for (i <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-comment">; i &lt; 128; i++)</span><br>        for (j <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-comment">; j &lt; 10; j++)</span><br>                arr[j][i] <span class="hljs-operator">=</span> <span class="hljs-number">1</span><span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure></li>
 <li>假设cache line的大小是64字节</li>
-<li>首先分析第一段代码
-<ul>
+<li>首先分析第一段代码<ul>
 <li>cache控制器发现arr[0][0]缺失，便从主存中取出arr[0][0]到arr[0][15]（int数据类型占4个字节）。对于arr[0][1]-[15]来说就命中了。</li>
 <li>之后到arr[0][16]时，又缺失，便又会在主存那里load出16个数据，64个字节。</li>
 <li>这种情况得命中率还是较高的。</li>
-</ul></li>
-<li>分析第二段代码
-<ul>
+</ul>
+</li>
+<li>分析第二段代码<ul>
 <li>cache控制器发现arr[0][0]缺失，便从主存中取出arr[0][0]到arr[0][15]，之后读第二个数据arr[1][0]，结果发现又缺失了，依次类推。</li>
-<li>当访问到arr[0][1]时，需要考虑cache的大小，如果大于数组arr的大小，那么经过前面的一系列缓存，arr[0][0]-
-arr[9][15]都被缓存下来，与第一段代码差不多的命中率。</li>
+<li>当访问到arr[0][1]时，需要考虑cache的大小，如果大于数组arr的大小，那么经过前面的一系列缓存，arr[0][0]- arr[9][15]都被缓存下来，与第一段代码差不多的命中率。</li>
 <li>但是如果cache的大小小于数组的大小，那么第二段代码的命中率就没有第一段高，自然要消耗更多的时间从主存中load数据。</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
                 
@@ -756,6 +742,21 @@ arr[9][15]都被缓存下来，与第一段代码差不多的命中率。</li>
 
 
 
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
 
 
 
