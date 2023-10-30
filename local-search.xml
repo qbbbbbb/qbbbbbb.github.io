@@ -4,6 +4,27 @@
   
   
   <entry>
+    <title>计算机系统层次</title>
+    <link href="/2023/10/30/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B8%8E%E6%89%A7%E8%A1%8C/"/>
+    <url>/2023/10/30/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B8%8E%E6%89%A7%E8%A1%8C/</url>
+    
+    <content type="html"><![CDATA[<ul><li>参考<ul><li><a href="https://www.icourse163.org/learn/NJU-1001625001"class="uri">https://www.icourse163.org/learn/NJU-1001625001</a></li></ul></li></ul><h2 id="计算机系统层次">1. 计算机系统层次</h2><ul><li>软件程序的转换处理过程</li><li>以C-源程序为例，在GCC+Linux平台中的处理如下：<ul><li>（1）首先输入源程序文件hello.c，经过<strong>预处理</strong>（使用cpp）得到hello.i文件，其仍为源程序。</li><li>（2）对hello.i文件进行<strong>编译</strong>，得到hello.s文件，其为汇编语言程序。</li><li>（3）将hello.s文件送入<strong>汇编器</strong>中，得到hello.o文件，其为可重定位目标程序（二进制，机器语言）。</li><li>（4）在程序中可能还有其它源程序参与，所以需要拿到其它源程序的.o文件，并进行<strong>链接</strong>，得到可执行目标程序（二进制）。</li></ul></li><li>上面介绍为计算机软件层实现的，从<strong>高级语言源程序-汇编语言源程序-机器语言目标程序</strong>的过程。<ul><li>而在计算机硬件层面，有<strong>指令译码器</strong>对机器语言的<strong>二进制指令进行译码</strong>，生成对应的控制信号来实现计算机的一些硬件操作。</li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>计算机组成与设计</category>
+      
+      <category>软件层</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Cache一致性</title>
     <link href="/2023/10/29/Cache%E4%B8%80%E8%87%B4%E6%80%A7/"/>
     <url>/2023/10/29/Cache%E4%B8%80%E8%87%B4%E6%80%A7/</url>
