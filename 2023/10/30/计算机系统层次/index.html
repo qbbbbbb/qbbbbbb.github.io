@@ -28,8 +28,9 @@
 <meta property="og:image" content="http://binbinqian.cn/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1/image-20231030215107334.png">
 <meta property="og:image" content="http://binbinqian.cn/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1/3.png">
 <meta property="og:image" content="http://binbinqian.cn/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1/4.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1/811006-20180503113716101-439702289.png">
 <meta property="article:published_time" content="2023-10-30T06:45:56.000Z">
-<meta property="article:modified_time" content="2023-10-30T14:26:01.516Z">
+<meta property="article:modified_time" content="2023-10-31T09:13:18.236Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://binbinqian.cn/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1/image-20231030201350657.png">
@@ -254,7 +255,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k 字
+          2.9k 字
         
       </span>
     
@@ -265,7 +266,7 @@
         
         
         
-          16 分钟
+          25 分钟
         
       </span>
     
@@ -489,7 +490,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年10月30日 晚上
+                    本文最后更新于：2023年10月31日 下午
                   
                 
               </p>
@@ -589,24 +590,95 @@ target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/175159
 <p><img src="2.png" srcset="/img/loading.gif" lazyload style="zoom:50%;" /></p></li>
 <li><p>C语言程序举例</p>
 <ul>
-<li>下图中，swap()函数中的temp变量为局部变量，其被分配在栈中，不会在过程外被引用，因此不是符号定义。</li>
-<li>图中text节为代码节，data节为已初始化后的数据节，bss为未初始化的数据节。
+<li>下图为<strong>可重定位目标文件和可执行目标文件</strong>之间映射关系。
 <ul>
+<li>注意：swap()函数中的temp变量为局部变量，其被分配在栈中，不会在过程外被引用，因此不是符号定义。</li>
 <li>在链接过程中会将相同的节进行合并。并完成符号解析和重定位。</li>
+<li>图中text节为代码节，data节为已初始化后的数据节，bss为未初始化的全局变量和局部静态变量。还有许多其它未介绍的节，可以网上查阅。
+<ul>
+<li>注意：bss节中默认初始值为0，因此在磁盘并不需要占实际空间，只需要在节头表中声明此处需要多少长度的内存空间。</li>
+<li>在写入虚拟内存时，需要为4个节分配存储空间，分别为text，data，bss 和
+rodata。</li>
+<li>节头表包括了每个节的节名、偏移、大小、访问属性、对齐方式等信息。</li>
+</ul></li>
 </ul></li>
 </ul>
 <p><img src="image-20231030215107334.png" srcset="/img/loading.gif" lazyload style="zoom:50%;" /></p>
 <p><img src="3.png" srcset="/img/loading.gif" lazyload alt="3" style="zoom:50%;" /></p>
 <ul>
-<li><p>下图为磁盘中的可执行文件和虚拟内存之间的映射关系。</p>
+<li><p>下图为磁盘中的<strong>可执行目标文件和虚拟内存</strong>之间的映射关系。</p>
 <ul>
-<li>其中ELF(Executable and Linkable Format)
-为Linux下的目标文件格式。</li>
-<li>在磁盘中的这段存储空间存在一个程序（段）头表，其包含了磁盘中可执行文件和虚拟内存的地址映射关系。</li>
+<li>其中<strong>ELF</strong>为Linux下的<strong>目标文件格式</strong>，后面会进行详细介绍。
+<ul>
+<li>ELF头
+包括了文件类型，大端/小端，机器类型，以及程序头表和节头表相关信息（偏移、大小、个数等）。
+<ul>
+<li>对于可执行目标文件，ELF头需要给字段 e_entry
+执行程序时第一条指令的地址。而在可重定位文件中因为并不需要进行执行，所以该字段为0.</li>
+</ul></li>
+</ul></li>
+<li>其中程序（段）头表中说明了每个段的属性，包括：可执行目标文件中的节与虚拟地址的映射关系、段的大小、在虚拟空间中的位置、对齐方式以及访问属性等。
+<ul>
+<li>程序头表中有<strong>两个表项为可装入段</strong>(即：Type=LOAD)，完成向虚拟空间装入<strong>只读代码段以及读写数据段。</strong></li>
+</ul></li>
+<li>像前面介绍，在写入虚拟内存时，只需要为4个节分配存储空间。因此下图中可执行目标文件灰色部分的节不需要装入到存储空间。</li>
+<li>另外，可执行目标文件比可重定位目标文件<strong>多了一个.init节</strong>，用于定义_init函数，该函数是用来进行执行目标文件时的初始化工作的。</li>
 </ul>
 <p><img src="4.png" srcset="/img/loading.gif" lazyload alt="4" style="zoom:50%;" /></p></li>
 </ul></li>
 </ul>
+<h3 id="目标文件">2.5 目标文件</h3>
+<ul>
+<li>三类目标文件
+<ul>
+<li>可重定位目标文件 (.o)
+<ul>
+<li>为汇编之后得到的文件，其代码和数据可以和其它可重定位文件合并为可执行文件。</li>
+<li>每个.o文件的代码和数据地址都是从0开始。</li>
+</ul></li>
+<li>可执行目标文件（Linux默认为a.out，windows中为*.exe）
+<ul>
+<li>包含代码和数据可以被直接映射到虚拟内存中被执行。</li>
+<li>代码和数据的地址为虚拟内存空间中的地址。</li>
+</ul></li>
+<li>共享的目标文件（Linux中的*.so）
+<ul>
+<li>特殊的可重定位目标文件，能够在运行时自动被装入到内存中并自动链接到某个存在相关调用的可执行目标文件中。</li>
+<li>这种是<strong>动态的被链接</strong>，区别于前面添加多个相关的可重定位目标文件进行的<strong>静态链接</strong>。</li>
+<li>更详细的会在后续动态链接处进行介绍。</li>
+</ul></li>
+</ul></li>
+<li>目标文件格式
+<ul>
+<li>DOS 操作系统：COM格式。
+<ul>
+<li>仅包含代码和数据，且被加载到内存的固定位置，不采用虚拟地址。</li>
+</ul></li>
+<li>System V UNIX 早期版本：COFF格式。
+<ul>
+<li>不仅包含代码和数据，还包含<strong>重定位信息、调试信息、符号表等</strong>。</li>
+</ul></li>
+<li>Windows：PE格式，COFF的变种。</li>
+<li>Linux：ELF (Executable and Linkable Format) 格式，COFF的变种。</li>
+</ul></li>
+</ul>
+<h2 id="elf格式">3. ELF格式</h2>
+<ul>
+<li><p>存在两种视图，包括链接视图(Linkable)和执行视图(Executable)。</p>
+<ul>
+<li><p>链接视图</p>
+<ul>
+<li>主要展示被链接的情况，按照相同特征划分为不同节。</li>
+</ul></li>
+<li><p>执行视图</p>
+<ul>
+<li>主要展示被执行的情况，将具有相同访问属性的节合并成段。</li>
+<li>前面也有介绍，段的属性被包括在程序（段）头表中。</li>
+</ul>
+<p><img src="811006-20180503113716101-439702289.png" srcset="/img/loading.gif" lazyload /></p></li>
+</ul></li>
+</ul>
+<p>​</p>
 
                 
               </div>

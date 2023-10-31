@@ -1423,7 +1423,7 @@ figure.highlight td.code > pre {
 }
 .markdown-body {
   font-size: 1rem;
-  line-height: 2.2;
+  line-height: 2;
   font-family: var(--font-family-sans-serif);
   margin-bottom: 2rem;
   color: var(--post-text-color);
