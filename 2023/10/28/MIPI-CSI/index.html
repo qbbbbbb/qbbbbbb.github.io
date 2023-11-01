@@ -16,12 +16,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;sinat_43629962&#x2F;article&#x2F;details&#x2F;123089993 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;599531271 https:&#x2F;&#x2F;www.mipi.org&#x2F;    1. CSI（Camera Serial Interface）  观察下图，可以看到CSI是单向差分串行接口，传">
+    <meta name="description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;sinat_43629962&#x2F;article&#x2F;details&#x2F;123089993 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;599531271 https:&#x2F;&#x2F;www.mipi.org&#x2F;     1. CSI（Camera Serial Interface） 观察下图，可以看到CSI是单向差分串行接口，传输数据和时钟信号。CCI(">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MIPI-CSI">
 <meta property="og:url" content="http://binbinqian.cn/2023/10/28/MIPI-CSI/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;sinat_43629962&#x2F;article&#x2F;details&#x2F;123089993 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;599531271 https:&#x2F;&#x2F;www.mipi.org&#x2F;    1. CSI（Camera Serial Interface）  观察下图，可以看到CSI是单向差分串行接口，传">
+<meta property="og:description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;sinat_43629962&#x2F;article&#x2F;details&#x2F;123089993 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;599531271 https:&#x2F;&#x2F;www.mipi.org&#x2F;     1. CSI（Camera Serial Interface） 观察下图，可以看到CSI是单向差分串行接口，传输数据和时钟信号。CCI(">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI/3201119-20230903112723912-1950951905.png">
 <meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI/3201119-20230903115043490-1797678616.png">
@@ -389,144 +389,110 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考
-<ul>
-<li><a
-target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_43629962/article/details/123089993"
-class="uri">https://blog.csdn.net/sinat_43629962/article/details/123089993</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/599531271"
-class="uri">https://zhuanlan.zhihu.com/p/599531271</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.mipi.org/"
-class="uri">https://www.mipi.org/</a></li>
-</ul></li>
+<li>参考<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_43629962/article/details/123089993">https://blog.csdn.net/sinat_43629962/article/details/123089993</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/599531271">https://zhuanlan.zhihu.com/p/599531271</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.mipi.org/">https://www.mipi.org/</a></li>
 </ul>
-<hr />
-<h2 id="csicamera-serial-interface">1. CSI（Camera Serial
-Interface）</h2>
-<ul>
-<li>观察下图，可以看到CSI是<strong>单向差分</strong>串行接口，传输数据和时钟信号。CCI(Camera
-Control
-Interface)是<strong>双线、双向、半双工的串行接口</strong>。数据传输协议符合I2C标准。I2C相关知识见<a
-target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17488308.html">这篇博客</a>。</li>
+</li>
 </ul>
-<div data-align="center">
-<img src="3201119-20230903112723912-1950951905.png" srcset="/img/loading.gif" lazyload width = 50%/>
-</div>
+<hr>
+<h2 id="1-CSI（Camera-Serial-Interface）"><a href="#1-CSI（Camera-Serial-Interface）" class="headerlink" title="1. CSI（Camera Serial Interface）"></a>1. CSI（Camera Serial Interface）</h2><ul>
+<li>观察下图，可以看到CSI是<strong>单向差分</strong>串行接口，传输数据和时钟信号。CCI(Camera Control Interface)是<strong>双线、双向、半双工的串行接口</strong>。数据传输协议符合I2C标准。I2C相关知识见<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17488308.html">这篇博客</a>。</li>
+</ul>
+<div align=center><img src="3201119-20230903112723912-1950951905.png" srcset="/img/loading.gif" lazyload width = 50%/></div>
+
 <ul>
-<li>CSI-2 layer Definitions
-<ul>
-<li>如下图所示，CSI-2可以分为5层，分别为：应用层、组包/解包层，底层协议层（Low
-Level Protocol）、通道管理层和物理层。下面对每一层进行解释。</li>
-<li>PHY Layer：物理层
-<ul>
-<li>该层定义了传输介质，输入/输出电路和时钟的机制，以便可以正确的从bit
-stream中捕获正确的0/1.</li>
+<li>CSI-2 layer Definitions<ul>
+<li>如下图所示，CSI-2可以分为5层，分别为：应用层、组包&#x2F;解包层，底层协议层（Low Level Protocol）、通道管理层和物理层。下面对每一层进行解释。</li>
+<li>PHY Layer：物理层<ul>
+<li>该层定义了传输介质，输入&#x2F;输出电路和时钟的机制，以便可以正确的从bit stream中捕获正确的0&#x2F;1.</li>
 <li>记录传输介质的电气参数特性以及数据和时钟之间的时序关系，记录了传输的起始位(SoT)和终止位(EoT)。</li>
-</ul></li>
-<li>Protocal Layer：协议层
-<ul>
-<li>Pixel2Byte/Byte2Pixel Packing/Unpacking Layer：像素/字节转换层。
-<ul>
+</ul>
+</li>
+<li>Protocal Layer：协议层<ul>
+<li>Pixel2Byte&#x2F;Byte2Pixel Packing&#x2F;Unpacking Layer：像素&#x2F;字节转换层。<ul>
 <li>Transmitter在将从Application接收到的数据发送前需要将像素数据转换为对应的字节流。Receiver在将数据提供给Application之前，需要将字节流数据转换为像素数据。</li>
-</ul></li>
-<li>Low Level Protocol(LLP)：底层协议层
-<ul>
+</ul>
+</li>
+<li>Low Level Protocol(LLP)：底层协议层<ul>
 <li>指的是SoT与EoT之间的数据包字节流协议，最小单元是字节。</li>
-</ul></li>
-<li>Lane Management：Lane管理层
-<ul>
-<li>Lane
-是指一对差分数据对，在上面Figure1中，有N对差分数据，所以有N个Lane。</li>
+</ul>
+</li>
+<li>Lane Management：Lane管理层<ul>
+<li>Lane 是指一对差分数据对，在上面Figure1中，有N对差分数据，所以有N个Lane。</li>
 <li>在Transimitter端，需要把上层打包好的数据按顺序依次Distribute到不同的lane上。</li>
 <li>而在Reciever端需要从不同的lane上依次接收数据并把其按顺序Merge起来。</li>
-</ul></li>
-<li>总结
-<ul>
-<li>在Transmitter端，从Apllication层接收到的数据，被打包成字节流数据包，可以选择将错误检查信息附加在要发送的数据流上，在底层协议层进行传输，并在Lane
-Management层进行分发到不同的Lane上。</li>
-<li>在Reciever端，从PHY层接收到数据后，经过Lane
-Management层进行按序Merge，在底层协议层传输时，可以将Transmitter附加的信息剥离下来，并通过相对应的逻辑进行解释，检查数据发送的完整性和正确性。</li>
-</ul></li>
-</ul></li>
-<li>Application layer
-<ul>
-<li>该层主要用于不同场景对数据进行处理的过程，对于Transimitter，一般为Camera生成数据包；对于Reciever，多为SOC对数据进行处理。</li>
-</ul></li>
-</ul></li>
 </ul>
-<div data-align="center">
-<img src="3201119-20230903115043490-1797678616.png" srcset="/img/loading.gif" lazyload width = 50%/>
-</div>
-<h2 id="ccicamera-control-interface">2. CCI（Camera Control
-Interface）</h2>
-<h3 id="cci-主从机定义">2.1 CCI 主从机定义</h3>
-<ul>
+</li>
+<li>总结<ul>
+<li>在Transmitter端，从Apllication层接收到的数据，被打包成字节流数据包，可以选择将错误检查信息附加在要发送的数据流上，在底层协议层进行传输，并在Lane Management层进行分发到不同的Lane上。</li>
+<li>在Reciever端，从PHY层接收到数据后，经过Lane Management层进行按序Merge，在底层协议层传输时，可以将Transmitter附加的信息剥离下来，并通过相对应的逻辑进行解释，检查数据发送的完整性和正确性。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Application layer<ul>
+<li>该层主要用于不同场景对数据进行处理的过程，对于Transimitter，一般为Camera生成数据包；对于Reciever，多为SOC对数据进行处理。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div align=center><img src="3201119-20230903115043490-1797678616.png" srcset="/img/loading.gif" lazyload width = 50%/></div>
+
+<h2 id="2-CCI（Camera-Control-Interface）"><a href="#2-CCI（Camera-Control-Interface）" class="headerlink" title="2. CCI（Camera Control Interface）"></a>2. CCI（Camera Control Interface）</h2><h3 id="2-1-CCI-主从机定义"><a href="#2-1-CCI-主从机定义" class="headerlink" title="2.1 CCI 主从机定义"></a>2.1 CCI 主从机定义</h3><ul>
 <li>I2C支持多主机多从机传输，但CCI只支持一个主机的传输。</li>
 <li>CCI将CSI的Transmitter配置为Slave，而将Reciever配置为Master。</li>
 </ul>
-<h3 id="cci-message-types">2.2 CCI Message Types</h3>
-<ul>
-<li>CCI
-传输信息类型包括：Start信号、ACK信号、Stop信号以及从机地址、从机内部寄存器子地址。
-<ul>
-<li>CCI的从机地址位为7bit，8bit DATA传输，以及8bit/16bit
-INDEX传输。</li>
-</ul></li>
+<h3 id="2-2-CCI-Message-Types"><a href="#2-2-CCI-Message-Types" class="headerlink" title="2.2 CCI Message Types"></a>2.2 CCI Message Types</h3><ul>
+<li>CCI 传输信息类型包括：Start信号、ACK信号、Stop信号以及从机地址、从机内部寄存器子地址。<ul>
+<li>CCI的从机地址位为7bit，8bit DATA传输，以及8bit&#x2F;16bit INDEX传输。</li>
 </ul>
-<div data-align="center">
-<img src="3201119-20230903161249778-1539658959.png" srcset="/img/loading.gif" lazyload width = 50%/>
-</div>
-<h3 id="读写操作">2.3 读写操作</h3>
-<ul>
-<li><p>CCI支持四种读操作和两种写操作，下面展开介绍。</p></li>
+</li>
+</ul>
+<div align=center><img src="3201119-20230903161249778-1539658959.png" srcset="/img/loading.gif" lazyload width = 50%/></div>
+
+<h3 id="2-3-读写操作"><a href="#2-3-读写操作" class="headerlink" title="2.3 读写操作"></a>2.3 读写操作</h3><ul>
+<li><p>CCI支持四种读操作和两种写操作，下面展开介绍。</p>
+</li>
 <li><p>（1）随机位置单次读</p>
 <ul>
-<li>如下图所示，主机先会发起一个虚拟的写操作，指定好从机地址以及INDEX值后，再发起读操作。至于为什么需要Dummy
-Write可以看<a
-target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17489279.html">这篇博客</a>。</li>
+<li>如下图所示，主机先会发起一个虚拟的写操作，指定好从机地址以及INDEX值后，再发起读操作。至于为什么需要Dummy Write可以看<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17489279.html">这篇博客</a>。</li>
 <li>和I2C一样，更改数据传输方向需要再次发起开始信号Sr，并且主机需要再次给从机的地址，但不需要给INDEX值。</li>
 <li>完成一次数据读操作之后，将SDA信号拉高表示主机不应答，结束传输。</li>
 </ul>
-<div data-align="center">
-<img src="3201119-20230903163440137-201009953.png" srcset="/img/loading.gif" lazyload width = 50%/>
-</div></li>
+<div align=center><img src="3201119-20230903163440137-201009953.png" srcset="/img/loading.gif" lazyload width = 50%/></div>
+</li>
 <li><p>（2）随机位置连续读</p>
-<div data-align="center">
-<img src="3201119-20230903224825560-1446970425.png" srcset="/img/loading.gif" lazyload width = 50%/>
-</div></li>
+<div align=center><img src="3201119-20230903224825560-1446970425.png" srcset="/img/loading.gif" lazyload width = 50%/></div>
+</li>
 <li><p>（3）当前位置单次读</p>
 <ul>
 <li>使用的是Previous_index + 1，不需要Dummy Write。</li>
 </ul>
-<div data-align="center">
-<img src="3201119-20230903223348145-837229902.png" srcset="/img/loading.gif" lazyload width = 50%/>
-</div></li>
+<div align=center><img src="3201119-20230903223348145-837229902.png" srcset="/img/loading.gif" lazyload width = 50%/></div>
+</li>
 <li><p>（4）当前位置连续读</p>
-<div data-align="center">
-<img src="3201119-20230903224946740-1858592558.png" srcset="/img/loading.gif" lazyload width = 50%/>
-</div></li>
-<li><p>（5）随机位置单次写</p>
-<div data-align="center">
-<img src="3201119-20230903225103926-1703203642.png" srcset="/img/loading.gif" lazyload width = 50%/>
-</div></li>
+<div align=center><img src="3201119-20230903224946740-1858592558.png" srcset="/img/loading.gif" lazyload width = 50%/></div>
+</li>
+<li><p>（5）随机位置单次写 </p>
+<div align=center><img src="3201119-20230903225103926-1703203642.png" srcset="/img/loading.gif" lazyload width = 50%/></div>
+</li>
 <li><p>（6）随机位置连续写</p>
 <ul>
 <li>下图中，我认为最后一个Data对应的Index值应为M+L-1。</li>
 </ul>
-<div data-align="center">
-<img src="3201119-20230903225324858-1566777564.png" srcset="/img/loading.gif" lazyload width = 50%/>
-</div></li>
+<div align=center><img src="3201119-20230903225324858-1566777564.png" srcset="/img/loading.gif" lazyload width = 50%/></div></li>
 </ul>
-<h3 id="cci-multi-byte-registers">2.4 CCI Multi-Byte Registers</h3>
-<ul>
-<li>CSI-2 协议支持以下寄存器宽度
-<ul>
+<h3 id="2-4-CCI-Multi-Byte-Registers"><a href="#2-4-CCI-Multi-Byte-Registers" class="headerlink" title="2.4 CCI Multi-Byte Registers"></a>2.4 CCI Multi-Byte Registers</h3><ul>
+<li>CSI-2 协议支持以下寄存器宽度<ul>
 <li>8-bits - 常用寄存器宽度</li>
-<li>16bits - parameters like line-length, frame-length and exposure
-values（曝光值）</li>
+<li>16bits - parameters like line-length, frame-length and exposure values（曝光值）</li>
 <li>32bits - 用于高精度的寄存器宽度</li>
 <li>64bits - for needs of future sensors</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
                 
