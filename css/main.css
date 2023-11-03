@@ -433,7 +433,7 @@ sup > a::before,
   .navbar .dropdown-collapse,
   .top-nav-collapse,
   .navbar-col-show {
-    background: rgba(173,170,163,0.7);
+    background: rgba(1,30,52,0.7);
     -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(3px);
   }
@@ -442,7 +442,7 @@ sup > a::before,
   .navbar .dropdown-collapse,
   .top-nav-collapse,
   .navbar-col-show {
-    background: #adaaa3;
+    background: #011e34;
   }
 }
 @media (max-width: 767px) {
@@ -855,7 +855,7 @@ i.iconfont {
   --link-hover-color: #30a9de;
   --link-hover-bg-color: #f8f9fa;
   --line-color: #eaecef;
-  --navbar-bg-color: #adaaa3;
+  --navbar-bg-color: #011E34;
   --navbar-text-color: #fff;
   --subtitle-color: #fff;
   --scrollbar-color: #c4c6c9;
