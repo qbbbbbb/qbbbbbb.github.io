@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_52505851&#x2F;category_12399093.html https:&#x2F;&#x2F;blog.csdn.net&#x2F;hanlin1985&#x2F;article&#x2F;details&#x2F;3132210 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;wahahahehehe&#x2F;p&#x2F;15164437.html https:&#x2F;&#x2F;www.cnblogs.com&#x2F;lesro">
+    <meta name="description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_52505851&#x2F;category_12399093.html https:&#x2F;&#x2F;blog.csdn.net&#x2F;hanlin1985&#x2F;article&#x2F;details&#x2F;3132210 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;wahahahehehe&#x2F;p&#x2F;15164437.html https:&#x2F;&#x2F;www.cnblogs.co">
 <meta property="og:type" content="article">
 <meta property="og:title" content="栈 &amp; 堆">
 <meta property="og:url" content="http://binbinqian.cn/2023/11/01/%E6%A0%88%20&%20%E5%A0%86/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_52505851&#x2F;category_12399093.html https:&#x2F;&#x2F;blog.csdn.net&#x2F;hanlin1985&#x2F;article&#x2F;details&#x2F;3132210 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;wahahahehehe&#x2F;p&#x2F;15164437.html https:&#x2F;&#x2F;www.cnblogs.com&#x2F;lesro">
+<meta property="og:description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_52505851&#x2F;category_12399093.html https:&#x2F;&#x2F;blog.csdn.net&#x2F;hanlin1985&#x2F;article&#x2F;details&#x2F;3132210 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;wahahahehehe&#x2F;p&#x2F;15164437.html https:&#x2F;&#x2F;www.cnblogs.co">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/01/%E6%A0%88%20&%20%E5%A0%86/3201119-20230906220555789-544830672.png">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/01/%E6%A0%88%20&%20%E5%A0%86/3201119-20230906222236489-589165970.png">
@@ -255,7 +255,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k 字
+          1.7k 字
         
       </span>
     
@@ -581,104 +581,107 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_52505851/category_12399093.html">https://blog.csdn.net/qq_52505851/category_12399093.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/hanlin1985/article/details/3132210">https://blog.csdn.net/hanlin1985/article/details/3132210</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wahahahehehe/p/15164437.html">https://www.cnblogs.com/wahahahehehe/p/15164437.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lesroad/p/10389971.html">https://www.cnblogs.com/lesroad/p/10389971.html</a></li>
+<li>参考
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_52505851/category_12399093.html"
+class="uri">https://blog.csdn.net/qq_52505851/category_12399093.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/hanlin1985/article/details/3132210"
+class="uri">https://blog.csdn.net/hanlin1985/article/details/3132210</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wahahahehehe/p/15164437.html"
+class="uri">https://www.cnblogs.com/wahahahehehe/p/15164437.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lesroad/p/10389971.html"
+class="uri">https://www.cnblogs.com/lesroad/p/10389971.html</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<hr>
-<h2 id="1-栈-寄存器"><a href="#1-栈-寄存器" class="headerlink" title="1. 栈 &amp; 寄存器"></a>1. 栈 &amp; 寄存器</h2><ul>
+<hr />
+<h2 id="栈-寄存器">1. 栈 &amp; 寄存器</h2>
+<ul>
 <li><p>栈的用处</p>
 <ul>
-<li>（1）RISC-V 划分了x10-x17八个寄存器为参数寄存器，用于传递参数或返回值。考虑到如果参数&#x2F;局部变量很多，8个寄存器放不下，那么需要开辟栈空间存储。</li>
+<li>（1）RISC-V
+划分了x10-x17八个寄存器为参数寄存器，用于传递参数或返回值。考虑到如果参数/局部变量很多，8个寄存器放不下，那么需要开辟栈空间存储。</li>
 <li>（2）用于保护和恢复函数调用过程中的相关信息，如返回地址、上下文寄存器信息等。这些信息可以帮助函数（中断）在执行完毕后返回到正确的位置。</li>
-</ul>
-</li>
+</ul></li>
 <li><p>栈：后进先出（LIFO），栈指针指向栈的顶部，从高地址向低地址，为压栈过程，存入数据；从低地址向高地址，为弹栈过程，取出数据。</p>
 <ul>
 <li>下面代码中，由于diffofsums()函数，出现无条件跳转指令。当参数寄存器足以使用，那么不需要开辟栈空间。</li>
 </ul>
-<p><img src="/2023/11/01/%E6%A0%88%20&%20%E5%A0%86/3201119-20230906220555789-544830672.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="3201119-20230906220555789-544830672.png" srcset="/img/loading.gif" lazyload /></p>
 <ul>
 <li>如果参数寄存器不足以使用，可以将参数先压入栈中，需要使用时再从栈中取出。临时寄存器在<strong>使用之后</strong>不需要弹栈恢复。</li>
-<li>如果为了避免函数调用修改掉主寄存器中的内容，可以通过下面步骤实现。<ul>
+<li>如果为了避免函数调用修改掉主寄存器中的内容，可以通过下面步骤实现。
+<ul>
 <li>在栈上分配空间存储对应数目的寄存器值。</li>
 <li>将寄存器s3,t0,t1的值存到栈上，等待函数运算结束之后，再从栈中取出恢复寄存器旧值。</li>
 <li>使用寄存器进行相对应的运算。</li>
 <li>将运算后的结果给到调用者层的寄存器a0。</li>
 <li>将栈中的其它值弹出，恢复寄存器s3,t0,t1的旧值。</li>
 <li>释放栈空间。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p><img src="/2023/11/01/%E6%A0%88%20&%20%E5%A0%86/3201119-20230906222236489-589165970.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="3201119-20230906222236489-589165970.png" srcset="/img/loading.gif" lazyload /></p>
 <ul>
 <li>每个函数有自己的栈空间，也只能访问自己的栈。</li>
-</ul>
-</li>
+</ul></li>
 <li><p>为了减少压栈和栈弹出的次数，RISC-V将19个寄存器分为了两组：</p>
 <ul>
-<li>临时寄存器：调用者不会再使用他们，所以不需要被保存和恢复（压栈&#x2F;弹栈）。如上面代码中的t0，t1.（x5-x7,x28-x31）</li>
-<li>保存寄存器：希望在调用前后需要保持相同值的寄存器，需要压栈&#x2F;弹栈。如上面代码中的s3，在调用函数之后需要其仍未调用前的旧值.（x8-x9,x18-x27）</li>
+<li>临时寄存器：调用者不会再使用他们，所以不需要被保存和恢复（压栈/弹栈）。如上面代码中的t0，t1.（x5-x7,x28-x31）</li>
+<li>保存寄存器：希望在调用前后需要保持相同值的寄存器，需要压栈/弹栈。如上面代码中的s3，在调用函数之后需要其仍未调用前的旧值.（x8-x9,x18-x27）</li>
 </ul>
-<p><img src="/2023/11/01/%E6%A0%88%20&%20%E5%A0%86/3201119-20230906232325563-433575287.png" srcset="/img/loading.gif" lazyload></p>
-</li>
+<p><img src="3201119-20230906232325563-433575287.png" srcset="/img/loading.gif" lazyload /></p></li>
 <li><p>嵌套过程</p>
 <ul>
-<li>非叶函数：是指调用了其它函数或者改变非易失性寄存器的函数。  <ul>
+<li>非叶函数：是指调用了其它函数或者改变非易失性寄存器的函数。
+<ul>
 <li>非易失性寄存器：在断电后仍能保持内容不变的寄存器，常用于保存一些重要的数据或状态，如程序计数器、栈指针、返回地址等。</li>
 <li>易失性寄存器：在断电后，会丢失其内容的寄存器，常用于保存一些临时的数据或操作数，例如通用寄存器、浮点寄存器、向量寄存器等。</li>
-<li>一般来说，被调用函数需要保护（压栈&#x2F;弹栈）非易失性寄存器的值。而被调函数可以自由的使用易失性寄存器的值，不需要保存&#x2F;恢复它们的值。</li>
-</ul>
-</li>
-<li>在非叶函数调用时，遵循下面两条规则：<ul>
+<li>一般来说，被调用函数需要保护（压栈/弹栈）非易失性寄存器的值。而被调函数可以自由的使用易失性寄存器的值，不需要保存/恢复它们的值。</li>
+</ul></li>
+<li>在非叶函数调用时，遵循下面两条规则：
+<ul>
 <li>调用者保存规则：调用者需要将所有调用后还需要的参数存储器或临时存储器压栈保存。</li>
 <li>被调用者保存规则：被调用者将返回地址寄存器x1和被调用者使用的保存寄存器压栈。</li>
-</ul>
-</li>
+</ul></li>
 <li>代码示例如下所示。</li>
 </ul>
-<p><img src="/2023/11/01/%E6%A0%88%20&%20%E5%A0%86/3201119-20230907111834366-1859723362.png" srcset="/img/loading.gif" lazyload></p>
-</li>
+<p><img src="3201119-20230907111834366-1859723362.png" srcset="/img/loading.gif" lazyload /></p></li>
 </ul>
-<h2 id="2-堆"><a href="#2-堆" class="headerlink" title="2. 堆"></a>2. 堆</h2><ul>
-<li>堆和栈的区别<ul>
+<h2 id="堆">2. 堆</h2>
+<ul>
+<li>堆和栈的区别
+<ul>
 <li>栈：后进先出（LIFO），由编译器自动分配和释放。使用一级缓存，调用完立即释放。</li>
-<li>堆：可对任意位置进行操作，通常由程序员手动分配，使用完需及时释放(free)，不然容易造成内存泄漏。 </li>
-<li>更为详细的介绍可以看<a target="_blank" rel="noopener" href="https://blog.csdn.net/hanlin1985/article/details/3132210">这篇博客</a>。</li>
-</ul>
-</li>
-<li>下图为Linux操作系统下RISC-V分配内存的规定。<ul>
-<li>栈从用户地址空间的<strong>高端向下生长</strong>。<ul>
+<li>堆：可对任意位置进行操作，通常由程序员手动分配，使用完需及时释放(free)，不然容易造成内存泄漏。</li>
+<li>更为详细的介绍可以看<a
+target="_blank" rel="noopener" href="https://blog.csdn.net/hanlin1985/article/details/3132210">这篇博客</a>。</li>
+</ul></li>
+<li>下图为Linux操作系统下RISC-V分配内存的规定。
+<ul>
+<li>栈从用户地址空间的<strong>高端向下生长</strong>。
+<ul>
 <li>函数内局部变量的存储单元都可以在栈上创建，并在函数执行结束时这些存储单元自动被释放。</li>
 <li>栈内存分配运算<strong>内置于处理器的指令集</strong>中，效率很高，但是分配的内存容量有限。</li>
-</ul>
-</li>
+</ul></li>
 <li>内存的低端是保留的，再往上是RISC-V的机器代码，称为代码段。</li>
 <li>再往上是静态数据段，用于存放静态数据、全局数据和常量。</li>
-<li>再往上就是堆<ul>
-<li>对于链表这类数据结构，往往随着生命周期增长或缩短，存放在堆内。</li>
-<li>关于数组是存放在栈&#x2F;堆&#x2F;静态数据段，主要看是如何声明的。<ul>
-<li>如果是程序员 new malloc， 则是存放在堆中的。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>堆和栈是相向生长，随着两个段的此消彼长达到内存的高效使用。</li>
-</ul>
-</li>
-</ul>
-<img src="3201119-20230918160341670-703117698.png" srcset="/img/loading.gif" lazyload style="zoom:33%;" />
-
+<li>再往上就是堆
 <ul>
-<li>程序员可以通过显示函数调用来分配(malloc)和释放(free)堆上的空间。<ul>
+<li>对于链表这类数据结构，往往随着生命周期增长或缩短，存放在堆内。</li>
+<li>关于数组是存放在栈/堆/静态数据段，主要看是如何声明的。
+<ul>
+<li>如果是程序员 new malloc， 则是存放在堆中的。</li>
+</ul></li>
+</ul></li>
+<li>堆和栈是相向生长，随着两个段的此消彼长达到内存的高效使用。</li>
+</ul></li>
+</ul>
+<p><img src="3201119-20230918160341670-703117698.png" srcset="/img/loading.gif" lazyload style="zoom:33%;" /></p>
+<ul>
+<li>程序员可以通过显示函数调用来分配(malloc)和释放(free)堆上的空间。
+<ul>
 <li>如果忘记释放空间，可能会导致内存泄漏，最终耗尽大量内存。</li>
 <li>如果过早释放空间，可能会导致悬空指针，导致指针指向错误的位置。</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 
                 
