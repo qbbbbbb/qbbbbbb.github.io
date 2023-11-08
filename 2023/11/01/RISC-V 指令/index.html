@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考  《计算机组成与设计 第五版》 《RISC-V-Reader-Chinese-v2p1》（包云岗老师） 《手把手教你设计CPU RISC-V处理器》 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_38915354&#x2F;article&#x2F;details&#x2F;115696721 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;374235855 https:&#x2F;&#x2F;blog.c">
+    <meta name="description" content="参考 《计算机组成与设计 第五版》 《RISC-V-Reader-Chinese-v2p1》（包云岗老师） 《手把手教你设计CPU RISC-V处理器》 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_38915354&#x2F;article&#x2F;details&#x2F;115696721 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;374235855 https:&#x2F;&#x2F;blog.csdn.net&#x2F;w">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RISC-V 指令">
 <meta property="og:url" content="http://binbinqian.cn/2023/11/01/RISC-V%20%E6%8C%87%E4%BB%A4/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考  《计算机组成与设计 第五版》 《RISC-V-Reader-Chinese-v2p1》（包云岗老师） 《手把手教你设计CPU RISC-V处理器》 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_38915354&#x2F;article&#x2F;details&#x2F;115696721 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;374235855 https:&#x2F;&#x2F;blog.c">
+<meta property="og:description" content="参考 《计算机组成与设计 第五版》 《RISC-V-Reader-Chinese-v2p1》（包云岗老师） 《手把手教你设计CPU RISC-V处理器》 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_38915354&#x2F;article&#x2F;details&#x2F;115696721 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;374235855 https:&#x2F;&#x2F;blog.csdn.net&#x2F;w">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/01/RISC-V%20%E6%8C%87%E4%BB%A4/3201119-20230702170812050-2086168818.png">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/01/RISC-V%20%E6%8C%87%E4%BB%A4/3201119-20230702221434146-1599458281.png">
@@ -254,7 +254,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.5k 字
+          5.6k 字
         
       </span>
     
@@ -265,7 +265,7 @@
         
         
         
-          46 分钟
+          47 分钟
         
       </span>
     
@@ -580,277 +580,259 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考
-<ul>
+<li>参考<ul>
 <li>《计算机组成与设计 第五版》</li>
 <li>《RISC-V-Reader-Chinese-v2p1》（包云岗老师）</li>
 <li>《手把手教你设计CPU RISC-V处理器》</li>
-<li><a
-target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38915354/article/details/115696721"
-class="uri">https://blog.csdn.net/qq_38915354/article/details/115696721</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/374235855"
-class="uri">https://zhuanlan.zhihu.com/p/374235855</a></li>
-<li><a
-target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46623752/article/details/125770550"
-class="uri">https://blog.csdn.net/weixin_46623752/article/details/125770550</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/sucaiwa/article/details/129328891"
-class="uri">https://blog.csdn.net/sucaiwa/article/details/129328891</a></li>
-</ul></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38915354/article/details/115696721">https://blog.csdn.net/qq_38915354/article/details/115696721</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/374235855">https://zhuanlan.zhihu.com/p/374235855</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46623752/article/details/125770550">https://blog.csdn.net/weixin_46623752/article/details/125770550</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/sucaiwa/article/details/129328891">https://blog.csdn.net/sucaiwa/article/details/129328891</a></li>
 </ul>
-<hr />
-<h2 id="寄存器相关">1. 寄存器相关</h2>
-<ul>
-<li>RISC-V
-架构可选32bit（RV32）/64bit(RV64)，可选32个寄存器（I架构）/16个寄存器（E架构）。
-<ul>
-<li>考虑<strong>整数通用寄存器组</strong>：其中0寄存器被预留为常数0，其余31/15个寄存器为通用整数寄存器。</li>
-<li>考虑<strong>浮点寄存器组</strong>（一般为F/D类扩展指令集），有32个通用浮点寄存器；寄存器位宽由扩展指令集类型决定，F类：单精度、32bit，D类：双精度、64bit。</li>
-</ul></li>
-<li>RISC-V 的汇编语言是对寄存器的数据进行处理。
-<ul>
+</li>
+</ul>
+<hr>
+<h2 id="1-寄存器相关"><a href="#1-寄存器相关" class="headerlink" title="1. 寄存器相关"></a>1. 寄存器相关</h2><ul>
+<li>RISC-V 架构可选32bit（RV32）&#x2F;64bit(RV64)，可选32个寄存器（I架构）&#x2F;16个寄存器（E架构）。 <ul>
+<li>考虑<strong>整数通用寄存器组</strong>：其中0寄存器被预留为常数0，其余31&#x2F;15个寄存器为通用整数寄存器。 </li>
+<li>考虑<strong>浮点寄存器组</strong>（一般为F&#x2F;D类扩展指令集），有32个通用浮点寄存器；寄存器位宽由扩展指令集类型决定，F类：单精度、32bit，D类：双精度、64bit。</li>
+</ul>
+</li>
+<li>RISC-V 的汇编语言是对寄存器的数据进行处理。<ul>
 <li>算术运算（加、减、立即数加）。</li>
 <li>数据传输（取：从存储器取数据到寄存器；存：从寄存器读数据存到存储器，更多关于存储器访问指令下面有介绍）。</li>
-<li>逻辑运算（与，或，异或...）。</li>
-<li>移位操作（逻辑左/右移，算数左/右移）。</li>
+<li>逻辑运算（与，或，异或…）。</li>
+<li>移位操作（逻辑左&#x2F;右移，算数左&#x2F;右移）。</li>
 <li>条件分支（相等、不等、大于、小于跳转）。</li>
 <li>无条件跳转（跳转 - 链接）。</li>
-</ul></li>
-<li>存储器访问指令
-<ul>
+</ul>
+</li>
+<li>存储器访问指令<ul>
 <li>对于更复杂的数据结构（例如数组和结构体）包含比寄存器更多的数据元素，只能存放于存储器中，使用数据传输指令进行读取。</li>
 <li>与RISC架构策略一致，只有Load和Store指令可以访问存储器，其它指令都不可访问存储器。</li>
 <li>存储器读写指令基本单位是<strong>字节（Byte）</strong>。</li>
 <li>RISC-V架构存储模式只支持小端格式。</li>
 <li>RISC-V推荐使用地址对齐的存储器读写操作，但也支持地址非对齐。</li>
-<li>RISC-V架构的考虑硬件架构复杂度，<strong>不支持读写指令下存储地址自增/自减的模式。</strong></li>
-</ul></li>
+<li>RISC-V架构的考虑硬件架构复杂度，<strong>不支持读写指令下存储地址自增&#x2F;自减的模式。</strong></li>
 </ul>
-<h2 id="rv32i-指令格式">2. RV32I 指令格式</h2>
-<ul>
-<li>下图介绍了六种基本指令格式
-<div data-align="center">
-<img src="3201119-20230702170812050-2086168818.png" srcset="/img/loading.gif" lazyload width = 60%/>
-</div></li>
-<li>R-type
-<ul>
-<li>实现rs1，rs2两个寄存器的值运算，并将运算后的结果存在rd中。opcode 和
-func 共同决定实现哪种运算。</li>
-</ul></li>
-<li>I-type
-<ul>
-<li>可以实现带一个常数的算数指令以及Load指令。
-注意immediate字段为补码值。<br />
 </li>
-<li>对于Load指令：可以取相对于rd中的基地址+imm字节的数据。
+</ul>
+<h2 id="2-RV32I-指令格式"><a href="#2-RV32I-指令格式" class="headerlink" title="2. RV32I 指令格式"></a>2. RV32I 指令格式</h2><ul>
+<li><p>下图介绍了六种基本指令格式</p>
+<div align=center><img src="3201119-20230702170812050-2086168818.png" srcset="/img/loading.gif" lazyload width = 60%/></div>
+</li>
+<li><p>R-type</p>
 <ul>
-<li>例如下面的指令，从x22寄存器中获取基地址，并加上偏移地址（64/8bit =
-8Byte） ，取出字，放到x9寄存器中。
+<li>实现rs1，rs2两个寄存器的值运算，并将运算后的结果存在rd中。opcode 和 func 共同决定实现哪种运算。</li>
+</ul>
+</li>
+<li><p>I-type</p>
 <ul>
-<li>其中(x)22放在rs1寄存器中，(x)9放在rd字段，64放在imm字段。
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">lw</span> <span class="hljs-built_in">x9</span>, <span class="hljs-number">64</span>(<span class="hljs-built_in">x22</span>)<br></code></pre></td></tr></table></figure></li>
-</ul></li>
-</ul></li>
+<li>可以实现带一个常数的算数指令以及Load指令。 注意immediate字段为补码值。  </li>
+<li>对于Load指令：可以取相对于rd中的基地址+imm字节的数据。<ul>
+<li>例如下面的指令，从x22寄存器中获取基地址，并加上偏移地址（64&#x2F;8bit &#x3D; 8Byte） ，取出字，放到x9寄存器中。<ul>
+<li>其中(x)22放在rs1寄存器中，(x)9放在rd字段，64放在imm字段。<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">lw</span> <span class="hljs-built_in">x9</span>, <span class="hljs-number">64</span>(<span class="hljs-built_in">x22</span>)<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>考虑到逻辑操作中的<strong>移位</strong>，使用的也是I型指令格式，考虑到寄存器位宽为32bit，所以shamt也不会超过32，所以imm只需要划出5bit空间，其余几bit作为额外的操作码字段。</li>
-</ul></li>
-<li>S-type
+</ul>
+</li>
+<li><p>S-type</p>
 <ul>
 <li>用于Store指令，immediate字段仍为补码值。</li>
 <li>存在两个源寄存器，一个存放基址，一个存放数据。</li>
-<li>设计选择与R-type保持类似的指令格式，将imm进行拆分，可以一定程度降低硬件的复杂性。
+<li>设计选择与R-type保持类似的指令格式，将imm进行拆分，可以一定程度降低硬件的复杂性。<ul>
+<li>例如下面的指令，x9中写着要存入的值，x10中写着存储器基地址，并加上偏移地址（240&#x2F;8bit &#x3D; 30Byte）。<ul>
+<li>其中(x)9放在rs2字段中，(x)10放在rs1字段中，240放在imm字段中（要被拆分）。<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">sw</span> <span class="hljs-built_in">x9</span>, <span class="hljs-number">240</span>(<span class="hljs-built_in">x10</span>)<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>U-type</p>
 <ul>
-<li>例如下面的指令，x9中写着要存入的值，x10中写着存储器基地址，并加上偏移地址（240/8bit
-= 30Byte）。
-<ul>
-<li>其中(x)9放在rs2字段中，(x)10放在rs1字段中，240放在imm字段中（要被拆分）。
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">sw</span> <span class="hljs-built_in">x9</span>, <span class="hljs-number">240</span>(<span class="hljs-built_in">x10</span>)<br></code></pre></td></tr></table></figure></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li>U-type
-<ul>
-<li>I、S型指令格式中已经有12bit
-imm，但是需要考虑有时常数很大，12bit不够，此时可以使用LUI指令。
-<ul>
-<li>将高20bit常数加载到寄存器的第31-12bit，低12bit用常数0填充。之后可以使用
-addi 指令与低12bit立即数相加，以实现对32bit寄存器数值的配置。</li>
-<li>需要注意：ADDI指令处理的立即数为有符号数，使用ADDI指令加上低12bit时，如果12bit最高位为1，那么做的是减法而不是加法。
-<ul>
-<li>此时需要进行补值，对于 ADDI
-的12bit最高位为1的情况，加上2^12即可。相关处理可以看<a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/374235855">这篇文章</a>。</li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li>B-type
+<li>I、S型指令格式中已经有12bit imm，但是需要考虑有时常数很大，12bit不够，此时可以使用LUI指令。<ul>
+<li>将高20bit常数加载到寄存器的第31-12bit，低12bit用常数0填充。之后可以使用 addi 指令与低12bit立即数相加，以实现对32bit寄存器数值的配置。</li>
+<li>需要注意：ADDI指令处理的立即数为有符号数，使用ADDI指令加上低12bit时，如果12bit最高位为1，那么做的是减法而不是加法。<ul>
+<li>此时需要进行补值，对于 ADDI 的12bit最高位为1的情况，加上2^12即可。相关处理可以看<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/374235855">这篇文章</a>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>B-type</p>
 <ul>
 <li>比较两个源寄存器rs1和rs2，并进行跳转。</li>
-<li>例子如下：
-<ul>
-<li>指令格式上可以看到imm[0]被舍弃掉了，因为该bit被设置为0；汇编器根据label的地址计算出相对当前PC值的偏移量为16bytes
-= 'b1_0000，映射如下图。 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-keyword">beq</span> <span class="hljs-built_in">x19</span>, <span class="hljs-built_in">x10</span>, label<br></code></pre></td></tr></table></figure>
-<div data-align="center">
-<img src="3201119-20230702221434146-1599458281.png" srcset="/img/loading.gif" lazyload width = 60%/>
-</div></li>
-</ul></li>
-<li>看到这里，其实就会有一个疑问，为什么B型和J型立即数在inst中分散的奇奇怪怪，但是寄存器却是固定位置的，知乎上搜到了这个问题的一些<a
-target="_blank" rel="noopener" href="https://www.zhihu.com/question/405003253">回答</a>。我认为其中有一个解释的很有道理，为了平衡（寄存器索引到读出寄存器值的时间）和（通过inst生成参与操作的立即数选择逻辑的时间），提高整体的运算速度。</li>
-</ul></li>
-<li>J-type
-<ul>
-<li>主要用在无条件跳转指令jal和jalr上。 <figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dos">jal <span class="hljs-built_in">rd</span>, <span class="hljs-built_in">label</span><br>jalr <span class="hljs-built_in">rd</span>, rsl, imm<br></code></pre></td></tr></table></figure></li>
-<li>jal
-<ul>
-<li>主要实现两步：
-<ul>
-<li>J-type和前面介绍的B-type一样，舍弃掉imm[0]，强制设置该bit为0；将imm偏移量加到该指令的PC值，得到最终跳转目标地址。RV32I的J指令格式中imm有21bit，但是imm[0]被舍弃掉了，因此可以跳转±2^(21-1)
-= ±1MB，其中21-1是因为有1bit的符号位。<br />
+<li>例子如下：<ul>
+<li>指令格式上可以看到imm[0]被舍弃掉了，因为该bit被设置为0；汇编器根据label的地址计算出相对当前PC值的偏移量为16bytes &#x3D; ‘b1_0000，映射如下图。<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-keyword">beq</span> <span class="hljs-built_in">x19</span>, <span class="hljs-built_in">x10</span>, label<br></code></pre></td></tr></table></figure>
+<div align=center><img src="3201119-20230702221434146-1599458281.png" srcset="/img/loading.gif" lazyload width = 60%/></div></li>
+</ul>
 </li>
+<li>看到这里，其实就会有一个疑问，为什么B型和J型立即数在inst中分散的奇奇怪怪，但是寄存器却是固定位置的，知乎上搜到了这个问题的一些<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/405003253">回答</a>。我认为其中有一个解释的很有道理，为了平衡（寄存器索引到读出寄存器值的时间）和（通过inst生成参与操作的立即数选择逻辑的时间），提高整体的运算速度。</li>
+</ul>
+</li>
+<li><p>J-type</p>
+<ul>
+<li>主要用在无条件跳转指令jal和jalr上。<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dos">jal <span class="hljs-built_in">rd</span>, <span class="hljs-built_in">label</span><br>jalr <span class="hljs-built_in">rd</span>, rsl, imm<br></code></pre></td></tr></table></figure></li>
+<li>jal <ul>
+<li>主要实现两步：<ul>
+<li>J-type和前面介绍的B-type一样，舍弃掉imm[0]，强制设置该bit为0；将imm偏移量加到该指令的PC值，得到最终跳转目标地址。RV32I的J指令格式中imm有21bit，但是imm[0]被舍弃掉了，因此可以跳转±2^(21-1) &#x3D; ±1MB，其中21-1是因为有1bit的符号位。  </li>
 <li>并且将下一条指令的PC（当前指令PC值+4）写入寄存器rd中。+4是因为对于RV32I来说，其指令长度为4个字节，且使用字节寻址。将下一条地址写入寄存器中，是为返回做准备。</li>
-</ul></li>
-</ul></li>
-<li>jalr
-<ul>
+</ul>
+</li>
+</ul>
+</li>
+<li>jalr<ul>
 <li>！！<strong>注意，jalr不是J型指令格式而是I型指令格式。</strong></li>
-<li>imm的12bit立即数为偏移量，基地址保存在rs1中，两者相加为最终跳转的目标地址。只能跳转±2KB（2^11=2KB，去掉符号位）。</li>
-<li>jalr也需要将下一条指令的PC值写入rd寄存器中。
-<div data-align="center">
-<img src="3201119-20230702233922982-373352789.png" srcset="/img/loading.gif" lazyload width = 60%/>
-</div></li>
-</ul></li>
-</ul></li>
+<li>imm的12bit立即数为偏移量，基地址保存在rs1中，两者相加为最终跳转的目标地址。只能跳转±2KB（2^11&#x3D;2KB，去掉符号位）。</li>
+<li>jalr也需要将下一条指令的PC值写入rd寄存器中。<div align=center><img src="3201119-20230702233922982-373352789.png" srcset="/img/loading.gif" lazyload width = 60%/></div></li>
 </ul>
-<h2 id="risc-v-寻址模式">3. RISC-V 寻址模式</h2>
-<ul>
-<li>PC 相对寻址
-<ul>
-<li>前面介绍的B型和J型都是分支跳转指令；前者的寻址范围为基于当前PC值
--4096~4096，后者的寻址范围为基于当前PC值 -2^(20) ~ 2^(20).</li>
-</ul></li>
-<li>基址寻址
-<ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-RISC-V-寻址模式"><a href="#3-RISC-V-寻址模式" class="headerlink" title="3. RISC-V 寻址模式"></a>3. RISC-V 寻址模式</h2><ul>
+<li>PC 相对寻址<ul>
+<li>前面介绍的B型和J型都是分支跳转指令；前者的寻址范围为基于当前PC值 -4096~4096，后者的寻址范围为基于当前PC值 -2^(20) ~ 2^(20).</li>
+</ul>
+</li>
+<li>基址寻址<ul>
 <li>如S型指令。</li>
-</ul></li>
-<li>寄存器寻址
-<ul>
-<li>如R型指令。</li>
-</ul></li>
-<li>立即数寻址
-<ul>
-<li>如I型指令。
-<div data-align="center">
-<img src="3201119-20230921162921388-1215879610.png" srcset="/img/loading.gif" lazyload width = 60%/>
-</div></li>
-</ul></li>
 </ul>
-<h2 id="risc-v-原子指令">4. RISC-V 原子指令</h2>
-<ul>
+</li>
+<li>寄存器寻址<ul>
+<li>如R型指令。</li>
+</ul>
+</li>
+<li>立即数寻址<ul>
+<li>如I型指令。<div align=center><img src="3201119-20230921162921388-1215879610.png" srcset="/img/loading.gif" lazyload width = 60%/></div></li>
+</ul>
+</li>
+</ul>
+<h2 id="4-RISC-V-原子指令"><a href="#4-RISC-V-原子指令" class="headerlink" title="4. RISC-V 原子指令"></a>4. RISC-V 原子指令</h2><ul>
 <li>对于单处理器，任务之间的同步机制可以通过<strong>加锁和解锁</strong>实现。</li>
 <li>对于多处理器有以下方法。</li>
 </ul>
-<h3 id="硬件原语">4.1 硬件原语</h3>
-<ul>
-<li>通过一组硬件原语（例如CAS、TAS、TTAS、FAA），实现在进行内存单元读取和写入之间不能插入其他操作。
-<ul>
-<li>程序员需要使用一些基本的硬件原语来构建同步原语库。原语相关的解释可以看<a
-target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8E%9F%E8%AF%AD">这篇文章</a>，其主要特点为在执行过程中不可被中断。</li>
+<h3 id="4-1-硬件原语"><a href="#4-1-硬件原语" class="headerlink" title="4.1 硬件原语"></a>4.1 硬件原语</h3><ul>
+<li>通过一组硬件原语（例如CAS、TAS、TTAS、FAA），实现在进行内存单元读取和写入之间不能插入其他操作。<ul>
+<li>程序员需要使用一些基本的硬件原语来构建同步原语库。原语相关的解释可以看<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8E%9F%E8%AF%AD">这篇文章</a>，其主要特点为在执行过程中不可被中断。</li>
 <li>考虑到使用单条同步原语对处理器的设计要求较高，因为需要在单条不可中断的指令中完成存储器的读和写操作。</li>
-</ul></li>
 </ul>
-<h3 id="原子指令">4.2 原子指令</h3>
-<h4 id="lrsc">4.2.1 lr/sc</h4>
-<ul>
+</li>
+</ul>
+<h3 id="4-2-原子指令"><a href="#4-2-原子指令" class="headerlink" title="4.2 原子指令"></a>4.2 原子指令</h3><h4 id="4-2-1-lr-sc"><a href="#4-2-1-lr-sc" class="headerlink" title="4.2.1 lr&#x2F;sc"></a>4.2.1 lr&#x2F;sc</h4><ul>
 <li><p>使用指令对，第二条指令返回一个值，该值表示指令对是否被原子执行。没有<strong>其他处理器</strong>在该指令对之间执行，则可认为是完成原子操作。</p>
 <ul>
 <li>在RISC-V中，该指令对为lr(load reserved)和sc(store conditional).</li>
-</ul></li>
+</ul>
+</li>
 <li><p>lr指令格式如下</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">lr.&#123;w/d&#125;.&#123;aq/rl&#125; rd, (rs1)<br></code></pre></td></tr></table></figure>
+
 <ul>
-<li>其中w/d分别对应为word（32bits）和double word（64bits）。</li>
-<li>其中aq/rl分别对应为acquire/release。lr和sc可以通过这两个后缀添加额外的内存访问顺序限制。具体会在内存访问相关内容的<a
-target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17723730.html">博客</a>中进行介绍。
-<ul>
+<li>其中w&#x2F;d分别对应为word（32bits）和double word（64bits）。</li>
+<li>其中aq&#x2F;rl分别对应为acquire&#x2F;release。lr和sc可以通过这两个后缀添加额外的内存访问顺序限制。具体会在内存访问相关内容的<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17723730.html">博客</a>中进行介绍。<ul>
 <li>注意：成功的sc才代表这个原子指令的执行，失败的sc不产生任何内存操作，自然也不会对内存访问顺序的约束产生任何影响。</li>
-</ul></li>
-<li>其中{}中的内容不是必须填写的，编译器能够根据当前的运行环境自动进行设置。<br />
+</ul>
 </li>
-</ul></li>
+<li>其中{}中的内容不是必须填写的，编译器能够根据当前的运行环境自动进行设置。</li>
+</ul>
+</li>
 <li><p>sc指令格式如下</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sc.&#123;w/d&#125;.&#123;aq/rl&#125; rd, rs2, (rs1)<br></code></pre></td></tr></table></figure>
+
 <ul>
 <li>与lr指令参数含义相同。</li>
-</ul></li>
-<li><p>lr/sc 指令伪代码描述</p>
+</ul>
+</li>
+<li><p>lr&#x2F;sc 指令伪代码描述</p>
 <ul>
-<li>第2行，从rs1地址处取数据加载到rd寄存器中。</li>
-<li>第3行，在rs1内存地址上设置保留标记(reservation set)。</li>
-<li>第5行，在将rs2寄存器的数据写到rs1地址之前，会首先检查rs1内存地址是否有设置保留标记。
+<li><p>第2行，从rs1地址处取数据加载到rd寄存器中。</p>
+</li>
+<li><p>第3行，在rs1内存地址上设置保留标记(reservation set)。</p>
+</li>
+<li><p>第5行，在将rs2寄存器的数据写到rs1地址之前，会首先检查rs1内存地址是否有设置保留标记。</p>
 <ul>
 <li>如果有，那么将rs2寄存器的数据写入rs1内存地址中；并将rd寄存器的值设置为0.表示保存成功。</li>
 <li>如果没有，则不完成保存rs2寄存器数据到rs1内存地址的过程，并向rd寄存器写入一个非零值，表示保存失败。</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//lr指令</span><br>rd = [rs1]<br>reservation_set(cur_hart)<br><span class="hljs-comment">//sc指令</span><br><span class="hljs-keyword">if</span> (is_reserved(rs1)) &#123;<br>    *rs1 = rs2<br>    rd = <span class="hljs-number">0</span><br>&#125; <span class="hljs-keyword">else</span><br>    rd = <span class="hljs-number">1</span><br>clean_reservation_set(cur_hart)<br></code></pre></td></tr></table></figure></li>
-<li>根据上面的描述，我们发现sc指令并不是一定会执行成功，需要满足下面几个条件：
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//lr指令</span><br>rd = [rs1]<br>reservation_set(cur_hart)<br><span class="hljs-comment">//sc指令</span><br><span class="hljs-keyword">if</span> (is_reserved(rs1)) &#123;<br>    *rs1 = rs2<br>    rd = <span class="hljs-number">0</span><br>&#125; <span class="hljs-keyword">else</span><br>    rd = <span class="hljs-number">1</span><br>clean_reservation_set(cur_hart)<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>根据上面的描述，我们发现sc指令并不是一定会执行成功，需要满足下面几个条件：</p>
 <ul>
-<li>（1）lr/sc指令需要访问相同的地址。</li>
+<li>（1）lr&#x2F;sc指令需要访问相同的地址。</li>
 <li>（2）lr和sc指令之间没有其它的写操作访问同样的地址。</li>
 <li>（3）lr和sc指令之间没有任何的中断和异常发生。</li>
-<li>（4）lr和sc指令之间没有执行mret指令。
-<ul>
+<li>（4）lr和sc指令之间没有执行mret指令。<ul>
 <li>其中mret指令可用作机器模式转换为用户模式。更多信息可在网上检索。</li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><p>lr/sc 示例</p>
-<p><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">again:</span> <span class="hljs-built_in">lr</span>.d <span class="hljs-built_in">x10</span>,(<span class="hljs-built_in">x20</span>)  <span class="hljs-comment">//将x20寄存器指向内存地址的值load到x10寄存器中</span><br><span class="hljs-symbol">sc.d</span> <span class="hljs-built_in">x11</span>,<span class="hljs-built_in">x23</span>,(<span class="hljs-built_in">x20</span>)   <br><span class="hljs-comment">//首先检查x20寄存器指向内存地址的空间是否有保留标志，有，将x23寄存器的值store到x20指向的内存空间。并设置x11寄存器值为0.</span><br><span class="hljs-keyword">bne</span> <span class="hljs-built_in">x11</span>，<span class="hljs-built_in">x0</span>,again   <span class="hljs-comment">//如果x11寄存器中的值不为0，则跳回again</span><br><span class="hljs-symbol">addi</span> <span class="hljs-built_in">x23</span>,<span class="hljs-built_in">x10</span>,<span class="hljs-number">0</span>      <span class="hljs-comment">//完成x23寄存器的值和x20寄存器指向的内存地址的值的原子交换</span><br></code></pre></td></tr></table></figure></p></li>
 </ul>
-<h4 id="amoatomic-memory-operation">4.2.2 AMO（Atomic Memory
-Operation）</h4>
-<ul>
-<li>使用前面介绍的lr/sc指令可以进行加解锁，执行原子操作。但这种实现起来较为复杂，尤其对于单变量的原子操作，使用这种方式的代价很大。</li>
-<li>AMO即原子内存操作，AMO又分为几类，包括：<strong>原子交换指令、原子加法指令、原子逻辑指令和原子取大小值指令。</strong></li>
-<li>（1）原子交换指令
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>lr&#x2F;sc 示例</p>
+  <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">again:</span> <span class="hljs-built_in">lr</span>.d <span class="hljs-built_in">x10</span>,(<span class="hljs-built_in">x20</span>)  <span class="hljs-comment">//将x20寄存器指向内存地址的值load到x10寄存器中</span><br><span class="hljs-symbol">sc.d</span> <span class="hljs-built_in">x11</span>,<span class="hljs-built_in">x23</span>,(<span class="hljs-built_in">x20</span>)   <br><span class="hljs-comment">//首先检查x20寄存器指向内存地址的空间是否有保留标志，有，将x23寄存器的值store到x20指向的内存空间。并设置x11寄存器值为0.</span><br><span class="hljs-keyword">bne</span> <span class="hljs-built_in">x11</span>，<span class="hljs-built_in">x0</span>,again   <span class="hljs-comment">//如果x11寄存器中的值不为0，则跳回again</span><br><span class="hljs-symbol">addi</span> <span class="hljs-built_in">x23</span>,<span class="hljs-built_in">x10</span>,<span class="hljs-number">0</span>      <span class="hljs-comment">//完成x23寄存器的值和x20寄存器指向的内存地址的值的原子交换</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="4-2-2-AMO（Atomic-Memory-Operation）"><a href="#4-2-2-AMO（Atomic-Memory-Operation）" class="headerlink" title="4.2.2 AMO（Atomic Memory Operation）"></a>4.2.2 AMO（Atomic Memory Operation）</h4><ul>
+<li><p>使用前面介绍的lr&#x2F;sc指令可以进行加解锁，执行原子操作。但这种实现起来较为复杂，尤其对于单变量的原子操作，使用这种方式的代价很大。</p>
+</li>
+<li><p>AMO即原子内存操作，AMO又分为几类，包括：<strong>原子交换指令、原子加法指令、原子逻辑指令和原子取大小值指令。</strong></p>
+</li>
+<li><p>（1）原子交换指令</p>
 <ul>
 <li><p>amoswap 指令格式如下所示</p>
-<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">amoswap.</span><span class="hljs-template-variable">&#123;w/d&#125;</span><span class="language-xml">.</span><span class="hljs-template-variable">&#123;aqrl&#125;</span><span class="language-xml"> rd,rs2,(rs1)</span><br></code></pre></td></tr></table></figure></li>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">amoswap.</span><span class="hljs-template-variable">&#123;w/d&#125;</span><span class="language-xml">.</span><span class="hljs-template-variable">&#123;aqrl&#125;</span><span class="language-xml"> rd,rs2,(rs1)</span><br></code></pre></td></tr></table></figure>
+</li>
 <li><p>其伪代码如下所示。</p>
 <ul>
 <li>先将内存rs1地址处数据给到rd寄存器，之后再将rs2数据写入rs1地址处，实现rs2与内存中数据交换。</li>
 <li>伪代码中两步应是原子的、不可分割的。</li>
 </ul>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-attribute">rd</span>=*rs1<br>*<span class="hljs-attribute">rs1</span>=rs2<br></code></pre></td></tr></table></figure></li>
-</ul></li>
-<li>（2）原子加法指令
+</ul>
+</li>
+<li><p>（2）原子加法指令</p>
 <ul>
 <li><p>amoadd 指令格式如下所示</p>
-<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">amoadd.</span><span class="hljs-template-variable">&#123;w/d&#125;</span><span class="language-xml">.</span><span class="hljs-template-variable">&#123;aqrl&#125;</span><span class="language-xml"> rd,rs2,(rs1)</span><br></code></pre></td></tr></table></figure></li>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">amoadd.</span><span class="hljs-template-variable">&#123;w/d&#125;</span><span class="language-xml">.</span><span class="hljs-template-variable">&#123;aqrl&#125;</span><span class="language-xml"> rd,rs2,(rs1)</span><br></code></pre></td></tr></table></figure>
+</li>
 <li><p>其伪代码如下所示。</p>
 <ul>
 <li>该指令返回rs1地址处内存原先值给rd寄存器了；后将rs2和内存中地址为rs1处的数据进行相加，并将相加结果写回内存地址为rs1处。</li>
 <li>伪代码中两步应是原子的、不可分割的。</li>
 </ul>
 <figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc">rd = <span class="hljs-strong">*rs1</span><br><span class="hljs-strong">*rs1 = *</span>rs1 + rs2<br></code></pre></td></tr></table></figure></li>
-</ul></li>
-<li>（3）原子逻辑操作指令
+</ul>
+</li>
+<li><p>（3）原子逻辑操作指令</p>
 <ul>
 <li><p>一共有3条：原子与、原子或、原子异或。指令格式分别如下。</p>
-<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">amoand.</span><span class="hljs-template-variable">&#123;w/d&#125;</span><span class="language-xml">.</span><span class="hljs-template-variable">&#123;aqrl&#125;</span><span class="language-xml"> rd,rs2,(rs1)</span><br><span class="language-xml">amoor.</span><span class="hljs-template-variable">&#123;w/d&#125;</span><span class="language-xml">.</span><span class="hljs-template-variable">&#123;aqrl&#125;</span><span class="language-xml"> rd,rs2,(rs1)</span><br><span class="language-xml">amoxor.</span><span class="hljs-template-variable">&#123;w/d&#125;</span><span class="language-xml">.</span><span class="hljs-template-variable">&#123;aqrl&#125;</span><span class="language-xml"> rd,rs2,(rs1)</span><br></code></pre></td></tr></table></figure></li>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">amoand.</span><span class="hljs-template-variable">&#123;w/d&#125;</span><span class="language-xml">.</span><span class="hljs-template-variable">&#123;aqrl&#125;</span><span class="language-xml"> rd,rs2,(rs1)</span><br><span class="language-xml">amoor.</span><span class="hljs-template-variable">&#123;w/d&#125;</span><span class="language-xml">.</span><span class="hljs-template-variable">&#123;aqrl&#125;</span><span class="language-xml"> rd,rs2,(rs1)</span><br><span class="language-xml">amoxor.</span><span class="hljs-template-variable">&#123;w/d&#125;</span><span class="language-xml">.</span><span class="hljs-template-variable">&#123;aqrl&#125;</span><span class="language-xml"> rd,rs2,(rs1)</span><br></code></pre></td></tr></table></figure>
+</li>
 <li><p>其伪代码如下所示。</p>
 <ul>
 <li>三个逻辑运算都是将rs1作为内存地址，将地址原数据返回给rd寄存器。后从内存中取出数据与rs2做逻辑运算，并将运算结果写回内存中。</li>
 </ul>
 <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-comment">//amoand</span><br>rd = *rs1<br><span class="hljs-comment">*rs1 = *rs1 &amp; rs2</span><br><span class="hljs-comment">//amoor</span><br>rd = *rs1<br><span class="hljs-comment">*rs1 = *rs1 | rs2</span><br><span class="hljs-comment">//amoxor</span><br>rd = *rs1<br><span class="hljs-comment">*rs1 = *rs1 ^ rs2</span><br></code></pre></td></tr></table></figure></li>
-</ul></li>
-<li>（4）原子取大小值指令
+</ul>
+</li>
+<li><p>（4）原子取大小值指令</p>
 <ul>
 <li><p>其包括4条指令：原子有符号取大值指令、原子无符号取大值指令、原子有符号取小值指令、原子无符号取小值指令。指令格式如下。</p>
-<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml"># 其中带u的为无符号，没有u的为有符号</span><br><span class="language-xml">amomax.</span><span class="hljs-template-variable">&#123;w/d&#125;</span><span class="language-xml">.</span><span class="hljs-template-variable">&#123;aqrl&#125;</span><span class="language-xml"> rd,rs2,(rs1)</span><br><span class="language-xml">amomaxu.</span><span class="hljs-template-variable">&#123;w/d&#125;</span><span class="language-xml">.</span><span class="hljs-template-variable">&#123;aqrl&#125;</span><span class="language-xml"> rd,rs2,(rs1)</span><br><span class="language-xml">amomin.</span><span class="hljs-template-variable">&#123;w/d&#125;</span><span class="language-xml">.</span><span class="hljs-template-variable">&#123;aqrl&#125;</span><span class="language-xml"> rd,rs2,(rs1)</span><br><span class="language-xml">amominu.</span><span class="hljs-template-variable">&#123;w/d&#125;</span><span class="language-xml">.</span><span class="hljs-template-variable">&#123;aqrl&#125;</span><span class="language-xml"> rd,rs2,(rs1)</span><br></code></pre></td></tr></table></figure></li>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml"># 其中带u的为无符号，没有u的为有符号</span><br><span class="language-xml">amomax.</span><span class="hljs-template-variable">&#123;w/d&#125;</span><span class="language-xml">.</span><span class="hljs-template-variable">&#123;aqrl&#125;</span><span class="language-xml"> rd,rs2,(rs1)</span><br><span class="language-xml">amomaxu.</span><span class="hljs-template-variable">&#123;w/d&#125;</span><span class="language-xml">.</span><span class="hljs-template-variable">&#123;aqrl&#125;</span><span class="language-xml"> rd,rs2,(rs1)</span><br><span class="language-xml">amomin.</span><span class="hljs-template-variable">&#123;w/d&#125;</span><span class="language-xml">.</span><span class="hljs-template-variable">&#123;aqrl&#125;</span><span class="language-xml"> rd,rs2,(rs1)</span><br><span class="language-xml">amominu.</span><span class="hljs-template-variable">&#123;w/d&#125;</span><span class="language-xml">.</span><span class="hljs-template-variable">&#123;aqrl&#125;</span><span class="language-xml"> rd,rs2,(rs1)</span><br></code></pre></td></tr></table></figure>
+</li>
 <li><p>其伪代码如下所示。</p>
 <ul>
 <li>四条大小值比较指令都是将rs1作为内存地址，将地址原数据返回给rd寄存器；后从内存中取出数据与rs2的值做大小值判断（包括有符号和无符号），将比较后的值返回给内存单元。</li>
 </ul>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">exts</span><span class="hljs-params">(a)</span></span><br>&#123;<br>    return 扩展符号(a)<br>&#125;<br><span class="hljs-comment">//amomax</span><br>rd = *rs1<br>*rs1 = <span class="hljs-built_in">max</span>(<span class="hljs-built_in">exts</span>(*rs1),<span class="hljs-built_in">exts</span>(rs2))<br><span class="hljs-comment">//amomaxu</span><br>rd = *rs1<br>*rs1 = *rs1 = <span class="hljs-built_in">max</span>(*rs1,rs2)<br><span class="hljs-comment">//amomin</span><br>rd = *rs1<br>*rs1 = <span class="hljs-built_in">min</span>(<span class="hljs-built_in">exts</span>(*rs1),<span class="hljs-built_in">exts</span>(rs2))<br><span class="hljs-comment">//amominu</span><br>rd = *rs1<br>*rs1 = *rs1 = <span class="hljs-built_in">min</span>(*rs1,rs2)<br></code></pre></td></tr></table></figure></li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
                 
