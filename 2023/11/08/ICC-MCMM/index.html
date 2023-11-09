@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;mikiah&#x2F;article&#x2F;details&#x2F;7970235     1. 关于 MCMM ICC可以读入多Corner、多Mode组合的scenarios，并行优化。  可以由PVT Corner、RC Corner以及工作模式组合成多种scenario的组合。  PVT Corner：需要覆盖：WC&#x2F;WCL&#x2F;BC&amp;#x2F">
+    <meta name="description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;mikiah&#x2F;article&#x2F;details&#x2F;7970235    1. 关于 MCMM  ICC可以读入多Corner、多Mode组合的scenarios，并行优化。 可以由PVT Corner、RC Corner以及工作模式组合成多种scenario的组合。  PVT Corner：需要覆盖：WC&#x2F;WCL&#x2F;BC&#x2F;ML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ICC-MCMM">
 <meta property="og:url" content="http://binbinqian.cn/2023/11/08/ICC-MCMM/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;mikiah&#x2F;article&#x2F;details&#x2F;7970235     1. 关于 MCMM ICC可以读入多Corner、多Mode组合的scenarios，并行优化。  可以由PVT Corner、RC Corner以及工作模式组合成多种scenario的组合。  PVT Corner：需要覆盖：WC&#x2F;WCL&#x2F;BC&amp;#x2F">
+<meta property="og:description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;mikiah&#x2F;article&#x2F;details&#x2F;7970235    1. 关于 MCMM  ICC可以读入多Corner、多Mode组合的scenarios，并行优化。 可以由PVT Corner、RC Corner以及工作模式组合成多种scenario的组合。  PVT Corner：需要覆盖：WC&#x2F;WCL&#x2F;BC&#x2F;ML">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/08/ICC-MCMM/3201119-20230817150556420-1541946885.png">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/08/ICC-MCMM/3201119-20230818095155761-1983421665.png">
@@ -560,134 +560,121 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/mikiah/article/details/7970235">https://blog.csdn.net/mikiah/article/details/7970235</a></li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="1-关于-MCMM"><a href="#1-关于-MCMM" class="headerlink" title="1. 关于 MCMM"></a>1. 关于 MCMM</h2><ul>
-<li><p>ICC可以读入多Corner、多Mode组合的scenarios，并行优化。</p>
-</li>
-<li><p>可以由PVT Corner、RC Corner以及工作模式组合成多种scenario的组合。</p>
+<li>参考
 <ul>
-<li>PVT Corner：需要覆盖：WC&#x2F;WCL&#x2F;BC&#x2F;ML。</li>
-<li>RC Corner：需要覆盖：Cworst&#x2F;Cbest&#x2F;RCworst&#x2F;RCbest。 </li>
-<li>PVT和RC Corner相关内容可以看<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17603907.html">这篇博客</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/mikiah/article/details/7970235"
+class="uri">https://blog.csdn.net/mikiah/article/details/7970235</a></li>
+</ul></li>
 </ul>
-</li>
-<li><p>ICC流程 MCMM的设置。</p>
+<hr />
+<h2 id="关于-mcmm">1. 关于 MCMM</h2>
+<ul>
+<li>ICC可以读入多Corner、多Mode组合的scenarios，并行优化。</li>
+<li>可以由PVT Corner、RC Corner以及工作模式组合成多种scenario的组合。
+<ul>
+<li>PVT Corner：需要覆盖：WC/WCL/BC/ML。</li>
+<li>RC Corner：需要覆盖：Cworst/Cbest/RCworst/RCbest。</li>
+<li>PVT和RC Corner相关内容可以看<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17603907.html">这篇博客</a>。</li>
+</ul></li>
+<li>ICC流程 MCMM的设置。
 <ul>
 <li>表中setup和hold的corner可以去signoff中表格查找。如果使用innovus，可以将所有的Corner都添加进去，让工具去选择合适的Corner进行分析。</li>
-<li>注意，MCMM的分析是一个不断迭代的过程，最后得到的输出文件需要满足所有Corner。 <table>
-<thead>
-<tr>
-<th>流程</th>
-<th>MultiCorner</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>FloorPlan</td>
-<td>Setup</td>
-</tr>
-<tr>
-<td>Placement</td>
-<td>Setup</td>
-</tr>
-<tr>
-<td>pre-CTS</td>
-<td>Hold</td>
-</tr>
-<tr>
-<td>post-CTS</td>
-<td>Hold</td>
-</tr>
-<tr>
-<td>Route</td>
-<td>Hold</td>
-</tr>
-</tbody></table>
-</li>
-<li>在CTS之前，只需要对func mode进行优化即可，scan mode在CTS及CTS之后进行优化。<ul>
-<li>因为scan_mode的setup是很容易满足的，所以只需要在hold需要覆盖的corner打开即可。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>数字设计流程中的 timing correlation</p>
+<li>注意，MCMM的分析是一个不断迭代的过程，最后得到的输出文件需要满足所有Corner。
+|流程 |MultiCorner | | ---- | ---- | |FloorPlan |Setup | |Placement
+|Setup | |pre-CTS |Hold | |post-CTS |Hold | |Route |Hold |</li>
+<li>在CTS之前，只需要对func mode进行优化即可，scan
+mode在CTS及CTS之后进行优化。
 <ul>
-<li>相邻两个阶段，需要预留的margin差异越小，这两个阶段的correlation越好。<ul>
+<li>因为scan_mode的setup是很容易满足的，所以只需要在hold需要覆盖的corner打开即可。</li>
+</ul></li>
+</ul></li>
+<li>数字设计流程中的 timing correlation
+<ul>
+<li>相邻两个阶段，需要预留的margin差异越小，这两个阶段的correlation越好。
+<ul>
 <li>例如：如果逻辑综合使用的是DCT工具，那么DCT估算的连线延迟较placement之间的延迟差别不大。</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <table>
+
 <thead>
-<tr>
+<tr class="header">
 <th>flow</th>
 <th>timing correlation</th>
 </tr>
 </thead>
-<tbody><tr>
-<td>DC -&gt; FloorPlan&#x2F;Placement</td>
-<td>net延迟估计从WLM模型到virtual route（即使使用DCT，精度还是有差别）</td>
+<tbody>
+<tr class="odd">
+<td>DC -&gt; FloorPlan/Placement</td>
+<td>net延迟估计从WLM模型到virtual
+route（即使使用DCT，精度还是有差别）</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Placement -&gt; CTS</td>
 <td>Clock skew的差别以及需要加OCV的估计</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>CTS -&gt; Route</td>
 <td>Detail Route以及SI-delta delay</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Route -&gt; Signoff</td>
 <td>StarRC提取RC，还需考虑Foundry给的Signoff表格</td>
 </tr>
-</tbody></table>
-</li>
+</tbody>
+</table></li>
 </ul>
-<h2 id="2-MCMM-脚本设置"><a href="#2-MCMM-脚本设置" class="headerlink" title="2. MCMM 脚本设置"></a>2. MCMM 脚本设置</h2><ul>
-<li>scenario 声明<ul>
-<li>学习中首先考虑三个scenario，并指定了两种模式（func和scan）的时序约束sdc文件，以及包含PVT Corner的.db文件和包含RC Corner的TLUPLUS文件。<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">set</span> SCENARIO_1                <span class="hljs-string">&quot;func_wc_cworst&quot;</span><br><span class="hljs-built_in">set</span> ICC_IN_SDC_1_FILE         <span class="hljs-string">&quot;../input_data/oc8051_func.postCTS.sdc&quot;</span><br><span class="hljs-built_in">set</span> OPCOND_1                  <span class="hljs-string">&quot;WORST&quot;</span><br><span class="hljs-built_in">set</span> OPCOND_1_LIB              <span class="hljs-string">&quot;saed90nm_max_hth&quot;</span><br><span class="hljs-built_in">set</span> TLUPLUS_1_FILE            <span class="hljs-string">&quot;<span class="hljs-variable">$TLUPLUS_CWORST</span>&quot;</span> <br><br><span class="hljs-built_in">set</span> SCENARIO_2                <span class="hljs-string">&quot;func_ml_cbest&quot;</span><br><span class="hljs-built_in">set</span> ICC_IN_SDC_2_FILE         <span class="hljs-string">&quot;../input_data/oc8051_func.postCTS.sdc&quot;</span><br><span class="hljs-built_in">set</span> OPCOND_2                  <span class="hljs-string">&quot;BEST&quot;</span><br><span class="hljs-built_in">set</span> OPCOND_2_LIB              <span class="hljs-string">&quot;saed90nm_min_ht_lvt&quot;</span><br><span class="hljs-built_in">set</span> TLUPLUS_2_FILE            <span class="hljs-string">&quot;<span class="hljs-variable">$TLUPLUS_CBEST</span>&quot;</span> <br><br><span class="hljs-built_in">set</span> SCENARIO_3                <span class="hljs-string">&quot;scan_ml_cworst&quot;</span><br><span class="hljs-built_in">set</span> ICC_IN_SDC_3_FILE         <span class="hljs-string">&quot;../input_data/oc8051_scan.postCTS.sdc&quot;</span><br><span class="hljs-built_in">set</span> OPCOND_3                  <span class="hljs-string">&quot;BEST&quot;</span><br><span class="hljs-built_in">set</span> OPCOND_3_LIB              <span class="hljs-string">&quot;saed90nm_min_ht_lvt&quot;</span><br><span class="hljs-built_in">set</span> TLUPLUS_3_FILE            <span class="hljs-string">&quot;<span class="hljs-variable">$TLUPLUS_CWORST</span>&quot;</span> <br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>设置OCV timing derate<ul>
-<li>OCV相关内容可以看<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17604494.html">这篇博客</a>。<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs tcl"><span class="hljs-comment">#timing derate</span><br><span class="hljs-comment">## for setup</span><br><span class="hljs-keyword">proc</span><span class="hljs-title"> set_derate_worst_case</span> &#123;&#125; &#123;<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -early <span class="hljs-number">0.92</span> -cell_delay<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -early <span class="hljs-number">0.92</span> -net_delay<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -late  <span class="hljs-number">1.00</span> -cell_delay<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -late  <span class="hljs-number">1.00</span> -net_delay<br><br>&#125;<br><span class="hljs-comment">## for hold</span><br><span class="hljs-keyword">proc</span><span class="hljs-title"> set_derate_best_case</span> &#123;&#125; &#123;<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -early <span class="hljs-number">1.00</span> -cell_delay<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -early <span class="hljs-number">1.00</span> -net_delay<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -late  <span class="hljs-number">1.12</span> -cell_delay<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -late  <span class="hljs-number">1.12</span> -net_delay<br>&#125;<br><br><span class="hljs-keyword">proc</span><span class="hljs-title"> set_derate_typical_case</span> &#123;&#125; &#123;<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -early <span class="hljs-number">0.95</span> -cell_delay<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -early <span class="hljs-number">0.95</span> -net_delay<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -late  <span class="hljs-number">1.05</span> -cell_delay<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -late  <span class="hljs-number">1.05</span> -net_delay<br>&#125;<br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>每个scenario分析脚本<ul>
-<li><p>set_case_analysis </p>
+<h2 id="mcmm-脚本设置">2. MCMM 脚本设置</h2>
 <ul>
-<li>设置工作mode，Func&#x2F;Scan。每个mode下，时序都需要满足要求。设置mode之后，工具只能看见当前mode下的timing path，所以也只能优化当前mode的path。</li>
-</ul>
-</li>
+<li>scenario 声明
+<ul>
+<li>学习中首先考虑三个scenario，并指定了两种模式（func和scan）的时序约束sdc文件，以及包含PVT
+Corner的.db文件和包含RC Corner的TLUPLUS文件。 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">set</span> SCENARIO_1                <span class="hljs-string">&quot;func_wc_cworst&quot;</span><br><span class="hljs-built_in">set</span> ICC_IN_SDC_1_FILE         <span class="hljs-string">&quot;../input_data/oc8051_func.postCTS.sdc&quot;</span><br><span class="hljs-built_in">set</span> OPCOND_1                  <span class="hljs-string">&quot;WORST&quot;</span><br><span class="hljs-built_in">set</span> OPCOND_1_LIB              <span class="hljs-string">&quot;saed90nm_max_hth&quot;</span><br><span class="hljs-built_in">set</span> TLUPLUS_1_FILE            <span class="hljs-string">&quot;<span class="hljs-variable">$TLUPLUS_CWORST</span>&quot;</span> <br><br><span class="hljs-built_in">set</span> SCENARIO_2                <span class="hljs-string">&quot;func_ml_cbest&quot;</span><br><span class="hljs-built_in">set</span> ICC_IN_SDC_2_FILE         <span class="hljs-string">&quot;../input_data/oc8051_func.postCTS.sdc&quot;</span><br><span class="hljs-built_in">set</span> OPCOND_2                  <span class="hljs-string">&quot;BEST&quot;</span><br><span class="hljs-built_in">set</span> OPCOND_2_LIB              <span class="hljs-string">&quot;saed90nm_min_ht_lvt&quot;</span><br><span class="hljs-built_in">set</span> TLUPLUS_2_FILE            <span class="hljs-string">&quot;<span class="hljs-variable">$TLUPLUS_CBEST</span>&quot;</span> <br><br><span class="hljs-built_in">set</span> SCENARIO_3                <span class="hljs-string">&quot;scan_ml_cworst&quot;</span><br><span class="hljs-built_in">set</span> ICC_IN_SDC_3_FILE         <span class="hljs-string">&quot;../input_data/oc8051_scan.postCTS.sdc&quot;</span><br><span class="hljs-built_in">set</span> OPCOND_3                  <span class="hljs-string">&quot;BEST&quot;</span><br><span class="hljs-built_in">set</span> OPCOND_3_LIB              <span class="hljs-string">&quot;saed90nm_min_ht_lvt&quot;</span><br><span class="hljs-built_in">set</span> TLUPLUS_3_FILE            <span class="hljs-string">&quot;<span class="hljs-variable">$TLUPLUS_CWORST</span>&quot;</span> <br></code></pre></td></tr></table></figure></li>
+</ul></li>
+<li>设置OCV timing derate
+<ul>
+<li>OCV相关内容可以看<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17604494.html">这篇博客</a>。
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs tcl"><span class="hljs-comment">#timing derate</span><br><span class="hljs-comment">## for setup</span><br><span class="hljs-keyword">proc</span><span class="hljs-title"> set_derate_worst_case</span> &#123;&#125; &#123;<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -early <span class="hljs-number">0.92</span> -cell_delay<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -early <span class="hljs-number">0.92</span> -net_delay<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -late  <span class="hljs-number">1.00</span> -cell_delay<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -late  <span class="hljs-number">1.00</span> -net_delay<br><br>&#125;<br><span class="hljs-comment">## for hold</span><br><span class="hljs-keyword">proc</span><span class="hljs-title"> set_derate_best_case</span> &#123;&#125; &#123;<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -early <span class="hljs-number">1.00</span> -cell_delay<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -early <span class="hljs-number">1.00</span> -net_delay<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -late  <span class="hljs-number">1.12</span> -cell_delay<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -late  <span class="hljs-number">1.12</span> -net_delay<br>&#125;<br><br><span class="hljs-keyword">proc</span><span class="hljs-title"> set_derate_typical_case</span> &#123;&#125; &#123;<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -early <span class="hljs-number">0.95</span> -cell_delay<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -early <span class="hljs-number">0.95</span> -net_delay<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -late  <span class="hljs-number">1.05</span> -cell_delay<br>	set_timing_derate -<span class="hljs-keyword">clock</span> -late  <span class="hljs-number">1.05</span> -net_delay<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul></li>
+<li>每个scenario分析脚本
+<ul>
+<li><p>set_case_analysis</p>
+<ul>
+<li>设置工作mode，Func/Scan。每个mode下，时序都需要满足要求。设置mode之后，工具只能看见当前mode下的timing
+path，所以也只能优化当前mode的path。</li>
+</ul></li>
 <li><p>set_operating_conditions</p>
 <ul>
-<li><p>时序分析工具一般有3中分析模式，这里的-analysis_type可选bc-wc&#x2F;ocv分析模型。bc-wc模型较为悲观，一般选择ocv模型。</p>
-</li>
-<li><p>可以通过-max_library、-max以及-min_library、-min指定 库和operating conditions。其中operating conditions在前面的max&#x2F;min库中有指定。</p>
-<img src="3201119-20230817150556420-1541946885.png" width = 80%/></li>
-</ul>
-</li>
+<li><p>时序分析工具一般有3中分析模式，这里的-analysis_type可选bc-wc/ocv分析模型。bc-wc模型较为悲观，一般选择ocv模型。</p></li>
+<li><p>可以通过-max_library、-max以及-min_library、-min指定
+库和operating conditions。其中operating
+conditions在前面的max/min库中有指定。</p>
+<p><img src="3201119-20230817150556420-1541946885.png" width = 80%/></p></li>
+</ul></li>
 <li><p>set_tlu_plus_files</p>
 <ul>
-<li>可选 -max_tluplus 和 -min_tluplus，对应max condition和min condition相关的tluplus文件。因为考虑到一个scenario只有一个RC Corner，所以只需要指定一个就可以。</li>
-<li>如果有tluplus emulation相关的文件，可以添加选项：-max&#x2F;min_emulation_tluplus.</li>
-<li>tech2itf_map：itf和tf之间的映射关系，itf中包含了RC寄生参数信息，而tf则提供了technology-specific信息，例如：每层金属的名称、物理和电学特性。另外，ICC要求TF必须包含Design Rules。两者需要一个map表格将两个文件中相同的物理信息映射起来。</li>
+<li>可选 -max_tluplus 和 -min_tluplus，对应max condition和min
+condition相关的tluplus文件。因为考虑到一个scenario只有一个RC
+Corner，所以只需要指定一个就可以。</li>
+<li>如果有tluplus
+emulation相关的文件，可以添加选项：-max/min_emulation_tluplus.</li>
+<li>tech2itf_map：itf和tf之间的映射关系，itf中包含了RC寄生参数信息，而tf则提供了technology-specific信息，例如：每层金属的名称、物理和电学特性。另外，ICC要求TF必须包含Design
+Rules。两者需要一个map表格将两个文件中相同的物理信息映射起来。</li>
 </ul>
-<p><img src="/2023/11/08/ICC-MCMM/3201119-20230818095155761-1983421665.png"></p>
+<p><img src="3201119-20230818095155761-1983421665.png" /></p>
 <ul>
-<li>必须要指定的是：maximum tluplus文件和mapping file。如果还指定了minimum tluplus文件，还会进行min condition的RC提取.</li>
-</ul>
-</li>
+<li>必须要指定的是：maximum tluplus文件和mapping
+file。如果还指定了minimum tluplus文件，还会进行min
+condition的RC提取.</li>
+</ul></li>
 <li><p>set_scenario_options</p>
 <ul>
-<li>可以指定多个选项进行优化，如setup&#x2F;hold&#x2F;leakage_power&#x2F;dynamic_power。<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs tcl"><span class="hljs-keyword">if</span> &#123;<span class="hljs-variable">$SCENARIO_1</span> != <span class="hljs-string">&quot;&quot;</span> &amp;&amp; <span class="hljs-variable">$ICC_IN_SDC_1_FILE</span> != <span class="hljs-string">&quot;&quot;</span>&#125; &#123;<br>	create_scenario <span class="hljs-variable">$SCENARIO_1</span><br>	<br>	<span class="hljs-keyword">set</span> auto_link_disable true<br>	<span class="hljs-keyword">source</span> <span class="hljs-variable">$ICC_IN_SDC_1_FILE</span><br>	<span class="hljs-keyword">set</span> auto_link_disable false<br>	<br>	set_operating_conditions \<br>	      -analysis_type on_chip_variation -max_library <span class="hljs-variable">$OPCOND_1_LIB</span> -max <span class="hljs-variable">$OPCOND_1</span><br>	<br>	set_tlu_plus_files -max_tluplus <span class="hljs-variable">$TLUPLUS_1_FILE</span> -tech2itf_map <span class="hljs-variable">$TLUPLUS_MAP</span><br>	<br>	set_clock_uncertainty -setup <span class="hljs-number">0.30</span> [all_clocks]<br>	set_clock_uncertainty -hold  <span class="hljs-number">0.12</span> [all_clocks]<br>	set_max_transition <span class="hljs-number">0.6</span> [current_design]<br>	set_max_fanout <span class="hljs-number">64</span> [current_design]<br><br>	set_scenario_options -setup true -hold true -leakage_power true -dynamic_power true<br>	set_derate_worst_case<br><span class="hljs-comment">  # post cts 需要移除所有时钟的理想特性</span><br>	remove_input_delay clk<br>	set_propagated_clock [all_clocks]<br>	remove_ideal_network -all<br><span class="hljs-comment">  # 修hold violation</span><br>        set_fix_hold [all_clocks]<br>	<br>&#125;<br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-</li>
+<li>可以指定多个选项进行优化，如setup/hold/leakage_power/dynamic_power。
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs tcl"><span class="hljs-keyword">if</span> &#123;<span class="hljs-variable">$SCENARIO_1</span> != <span class="hljs-string">&quot;&quot;</span> &amp;&amp; <span class="hljs-variable">$ICC_IN_SDC_1_FILE</span> != <span class="hljs-string">&quot;&quot;</span>&#125; &#123;<br>	create_scenario <span class="hljs-variable">$SCENARIO_1</span><br>	<br>	<span class="hljs-keyword">set</span> auto_link_disable true<br>	<span class="hljs-keyword">source</span> <span class="hljs-variable">$ICC_IN_SDC_1_FILE</span><br>	<span class="hljs-keyword">set</span> auto_link_disable false<br>	<br>	set_operating_conditions \<br>	      -analysis_type on_chip_variation -max_library <span class="hljs-variable">$OPCOND_1_LIB</span> -max <span class="hljs-variable">$OPCOND_1</span><br>	<br>	set_tlu_plus_files -max_tluplus <span class="hljs-variable">$TLUPLUS_1_FILE</span> -tech2itf_map <span class="hljs-variable">$TLUPLUS_MAP</span><br>	<br>	set_clock_uncertainty -setup <span class="hljs-number">0.30</span> [all_clocks]<br>	set_clock_uncertainty -hold  <span class="hljs-number">0.12</span> [all_clocks]<br>	set_max_transition <span class="hljs-number">0.6</span> [current_design]<br>	set_max_fanout <span class="hljs-number">64</span> [current_design]<br><br>	set_scenario_options -setup true -hold true -leakage_power true -dynamic_power true<br>	set_derate_worst_case<br><span class="hljs-comment">  # post cts 需要移除所有时钟的理想特性</span><br>	remove_input_delay clk<br>	set_propagated_clock [all_clocks]<br>	remove_ideal_network -all<br><span class="hljs-comment">  # 修hold violation</span><br>        set_fix_hold [all_clocks]<br>	<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul></li>
+</ul></li>
 </ul>
 
                 
@@ -810,7 +797,7 @@
     Fluid.utils.loadComments('#valine', function() {
       Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
         var options = Object.assign(
-          {"appId":"he0NhIf0IUn5fiZgzHQvxTMv-gzGzoHsz","appKey":"YOBsdTwafnru1yx9sCrfNIbw","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":true,"serverURLs":"https://he0nhif0.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {"appId":"he0NhIf0IUn5fiZgzHQvxTMv-gzGzoHsz","appKey":"YOBsdTwafnru1yx9sCrfNIbw","path":"window.location.pathname","placeholder":"快来留言！","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":true,"serverURLs":"https://he0nhif0.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
           {
             el: "#valine",
             path: window.location.pathname

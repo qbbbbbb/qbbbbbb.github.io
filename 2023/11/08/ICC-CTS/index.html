@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;IClearner&#x2F;p&#x2F;6606360.html https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;36433282 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;37918846 https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_46752319&#x2F;article&#x2F;details&#x2F;107387584 https:&#x2F;">
+    <meta name="description" content="参考  https:&#x2F;&#x2F;www.cnblogs.com&#x2F;IClearner&#x2F;p&#x2F;6606360.html https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;36433282 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;37918846 https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_46752319&#x2F;article&#x2F;details&#x2F;107387584">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ICC-CTS">
 <meta property="og:url" content="http://binbinqian.cn/2023/11/08/ICC-CTS/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;IClearner&#x2F;p&#x2F;6606360.html https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;36433282 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;37918846 https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_46752319&#x2F;article&#x2F;details&#x2F;107387584 https:&#x2F;">
+<meta property="og:description" content="参考  https:&#x2F;&#x2F;www.cnblogs.com&#x2F;IClearner&#x2F;p&#x2F;6606360.html https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;36433282 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;37918846 https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_46752319&#x2F;article&#x2F;details&#x2F;107387584">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/08/ICC-CTS/3201119-20230716100843717-1161969140.png">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/08/ICC-CTS/3201119-20230716165154145-1129330924.png">
@@ -256,7 +256,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.8k 字
+          5.7k 字
         
       </span>
     
@@ -267,7 +267,7 @@
         
         
         
-          49 分钟
+          48 分钟
         
       </span>
     
@@ -564,225 +564,275 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考<ul>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/IClearner/p/6606360.html">https://www.cnblogs.com/IClearner/p/6606360.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/36433282">https://zhuanlan.zhihu.com/p/36433282</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37918846">https://zhuanlan.zhihu.com/p/37918846</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46752319/article/details/107387584">https://blog.csdn.net/weixin_46752319/article/details/107387584</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43249158/article/details/124837883">https://blog.csdn.net/weixin_43249158/article/details/124837883</a></li>
+<li>参考
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/IClearner/p/6606360.html"
+class="uri">https://www.cnblogs.com/IClearner/p/6606360.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/36433282"
+class="uri">https://zhuanlan.zhihu.com/p/36433282</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37918846"
+class="uri">https://zhuanlan.zhihu.com/p/37918846</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46752319/article/details/107387584"
+class="uri">https://blog.csdn.net/weixin_46752319/article/details/107387584</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43249158/article/details/124837883"
+class="uri">https://blog.csdn.net/weixin_43249158/article/details/124837883</a></li>
 <li>ICC userguide 2016.03</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<hr>
+<hr />
 <ul>
 <li>在做CTS之前，更重要的是要做好FloorPlan和Placement；或者说在前面应该思考时钟树如何综合。</li>
-<li>时钟树上插入的clock buffer和普通buffer有何区别？<ul>
-<li>clkbuf 的上升延迟时间和下降延迟时间较平衡，需要保证时钟上升和下降尽量对称，以此保证得到较为准确的占空比。</li>
+<li>时钟树上插入的clock buffer和普通buffer有何区别？
+<ul>
+<li>clkbuf
+的上升延迟时间和下降延迟时间较平衡，需要保证时钟上升和下降尽量对称，以此保证得到较为准确的占空比。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<hr>
-<h2 id="1-CTS的目标"><a href="#1-CTS的目标" class="headerlink" title="1. CTS的目标"></a>1. CTS的目标</h2><ul>
+<hr />
+<h2 id="cts的目标">1. CTS的目标</h2>
+<ul>
 <li>clock skew 尽量小。</li>
 <li>clock latency 尽量小。</li>
 <li>common path 尽量长。（目的是改善ocv效应）</li>
 </ul>
-<h2 id="2-CTS在做什么"><a href="#2-CTS在做什么" class="headerlink" title="2. CTS在做什么"></a>2. CTS在做什么</h2><ul>
-<li>读取clock的定义，以及在何种scenario下进行时钟树综合。<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc">read<span class="hljs-emphasis">_sdc</span><br><span class="hljs-emphasis">create_</span>scenario<br></code></pre></td></tr></table></figure></li>
-<li>工具首先会对clock line上的cell&#x2F;net进行DRV优化。<ul>
-<li>DRV：Design Rule Violation，包括max_transition, max_capacitance, max_fanout, max_net_length等。<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">compile_clock_tree</span><br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>对每个clock的latency和skew进行优化。尽量缩短每个clock的latency，并减小sink之间的skew。<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">optimize_clock_tree</span><br></code></pre></td></tr></table></figure></li>
-<li>balance已经定义的clock group，会尽量将不同clock的latency做的尽量接近。<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">balance_inter_clock_delay<br></code></pre></td></tr></table></figure></li>
-<li>Route Clock。<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">route_zrt_clock_tree</span><br></code></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="3-可控的CTS"><a href="#3-可控的CTS" class="headerlink" title="3. 可控的CTS"></a>3. 可控的CTS</h2><ul>
-<li>CTS更多可控可看<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37918846">这篇文章</a>以及ICC的Tool commands文档。下面仅列出部分内容。</li>
-<li>Target Skew：告诉工具，我们希望CTS之后能够得到的最大skew值。<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">set_clock_tree_options -target_skew <span class="hljs-number">100</span> -clock CLK<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure></li>
-<li>Target Insertion delay：指定工具最小的插入延迟(insertion delay).不指定默认为0.<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">set_clock_tree_options -target_early_delay <span class="hljs-number">100</span> -clock CLK<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure></li>
-<li>Max Transition：一般选择时钟周期的10%-20%。<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">set_max_transition <span class="hljs-number">200</span> -clock_path [get_clocks CLK]<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure></li>
-<li>CTS exceptions：<ul>
-<li><p>下面介绍的四个pins的设置都是该指令的配置选项。 </p>
- <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-keyword">set</span>_clock_tree_exceptions -stop_pins/exclude_pins.<span class="hljs-string">..</span> &#123; list of pins &#125;<br></code></pre></td></tr></table></figure></li>
-<li><p>Stop pins（Sink pins） </p>
+<h2 id="cts在做什么">2. CTS在做什么</h2>
 <ul>
-<li>让CTS在某处停止，时钟信号不再继续传播；告诉工具将某些pin&#x2F;port标记为sink。</li>
-<li>工具只对stop_pins的delay进行balance，如果其它pin也需要进行优化，需要对pin进行sdc约束，告诉工具。</li>
+<li>读取clock的定义，以及在何种scenario下进行时钟树综合。
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc">read<span class="hljs-emphasis">_sdc</span><br><span class="hljs-emphasis">create_</span>scenario<br></code></pre></td></tr></table></figure></li>
+<li>工具首先会对clock line上的cell/net进行DRV优化。
+<ul>
+<li>DRV：Design Rule Violation，包括max_transition, max_capacitance,
+max_fanout, max_net_length等。 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">compile_clock_tree</span><br></code></pre></td></tr></table></figure></li>
+</ul></li>
+<li>对每个clock的latency和skew进行优化。尽量缩短每个clock的latency，并减小sink之间的skew。
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">optimize_clock_tree</span><br></code></pre></td></tr></table></figure></li>
+<li>balance已经定义的clock
+group，会尽量将不同clock的latency做的尽量接近。 <figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">balance_inter_clock_delay<br></code></pre></td></tr></table></figure></li>
+<li>Route Clock。 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">route_zrt_clock_tree</span><br></code></pre></td></tr></table></figure></li>
 </ul>
-</li>
-<li><p>Exclude pins（Ignore pins）</p>
+<h2 id="可控的cts">3. 可控的CTS</h2>
+<ul>
+<li>CTS更多可控可看<a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37918846">这篇文章</a>以及ICC的Tool
+commands文档。下面仅列出部分内容。</li>
+<li>Target Skew：告诉工具，我们希望CTS之后能够得到的最大skew值。
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">set_clock_tree_options -target_skew <span class="hljs-number">100</span> -clock CLK<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure></li>
+<li>Target Insertion delay：指定工具最小的插入延迟(insertion
+delay).不指定默认为0. <figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">set_clock_tree_options -target_early_delay <span class="hljs-number">100</span> -clock CLK<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure></li>
+<li>Max Transition：一般选择时钟周期的10%-20%。 <figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">set_max_transition <span class="hljs-number">200</span> -clock_path [get_clocks CLK]<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure></li>
+<li>CTS exceptions：
+<ul>
+<li>下面介绍的四个pins的设置都是该指令的配置选项。 <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-keyword">set</span>_clock_tree_exceptions -stop_pins/exclude_pins.<span class="hljs-string">..</span> &#123; list of pins &#125;<br></code></pre></td></tr></table></figure></li>
+<li>Stop pins（Sink pins）
+<ul>
+<li>让CTS在某处停止，时钟信号不再继续传播；告诉工具将某些pin/port标记为sink。</li>
+<li>工具只对stop_pins的delay进行balance，如果其它pin也需要进行优化，需要对pin进行sdc约束，告诉工具。</li>
+</ul></li>
+<li>Exclude pins（Ignore pins）
 <ul>
 <li>工具通过插入guide buffer来从时钟树中隔离这些引脚。</li>
 <li>CTS不会对到达这些端点的时钟树进行时序计算和优化；只会进行设计规则修正。</li>
-<li>常见的exclude pin就是所有的非时钟引脚，以及定义不正确的时钟引脚等，CTS阶段不需要管这些端口。</li>
+<li>常见的exclude
+pin就是所有的非时钟引脚，以及定义不正确的时钟引脚等，CTS阶段不需要管这些端口。</li>
 <li>ICC会自己推断要排除的引脚，也可以自己使用脚本再额外设置。</li>
-</ul>
-</li>
-<li><p>Nonstop pins</p>
+</ul></li>
+<li>Nonstop pins
 <ul>
 <li>工具会穿过Nonstop pins，继续查找真正的sink点。</li>
-<li>驱动生成时钟的时序单元的时钟引脚一般是Nonstop pins。例如分频器等。</li>
-<li>ICC认为时钟门控单元的时钟输入引脚是Nonstop pins，因此不需要手动重复设置。</li>
-</ul>
-</li>
-<li><p>Float pins</p>
+<li>驱动生成时钟的时序单元的时钟引脚一般是Nonstop
+pins。例如分频器等。</li>
+<li>ICC认为时钟门控单元的时钟输入引脚是Nonstop
+pins，因此不需要手动重复设置。</li>
+</ul></li>
+<li>Float pins
 <ul>
-<li><p>与Stop pins相类似，但是在<strong>构建时钟树时会考虑该引脚内部的时钟延迟</strong>。</p>
+<li>与Stop
+pins相类似，但是在<strong>构建时钟树时会考虑该引脚内部的时钟延迟</strong>。
 <ul>
-<li>工具在计算到Float pins的Insertion delay时，会将Float pin内部的延迟（正&#x2F;负）添加到Insertion delay中。</li>
-</ul>
-</li>
-<li><p>常见使用在Hard Macro的时钟输入引脚。</p>
+<li>工具在计算到Float pins的Insertion delay时，会将Float
+pin内部的延迟（正/负）添加到Insertion delay中。</li>
+</ul></li>
+<li>常见使用在Hard Macro的时钟输入引脚。
 <ul>
-<li>考虑到Hard Macro的内部延迟信息会在lib文件的时序模型中表示，ICC会根据模型确定macro内部的延时。</li>
-<li>根据外部计算的insertion delay判断这个是positive&#x2F;negative pin。相当于在原有insertion_delay ± macro_delay.</li>
+<li>考虑到Hard
+Macro的内部延迟信息会在lib文件的时序模型中表示，ICC会根据模型确定macro内部的延时。</li>
+<li>根据外部计算的insertion delay判断这个是positive/negative
+pin。相当于在原有insertion_delay ± macro_delay.</li>
 </ul>
-<p><img src="/2023/11/08/ICC-CTS/3201119-20230716100843717-1161969140.png"></p>
-</li>
-</ul>
-</li>
-<li><p>除了上面介绍的4个pin的约束，exception的约束还包括dont_touch&#x2F;buffer&#x2F;size系列。这里简要介绍一下dont_touch。</p>
+<img src="3201119-20230716100843717-1161969140.png" /></li>
+</ul></li>
+<li>除了上面介绍的4个pin的约束，exception的约束还包括dont_touch/buffer/size系列。这里简要介绍一下dont_touch。
 <ul>
-<li>当设计中存在已经设计好的时钟树，可以使用指令set_clock_tree_exceptions -dont_touch_subtrees $name设置为dont touch属性，CTS会将其它待综合的时钟树和pre-exiting的时钟树进行balance。</li>
+<li>当设计中存在已经设计好的时钟树，可以使用指令set_clock_tree_exceptions
+-dont_touch_subtrees $name设置为dont
+touch属性，CTS会将其它待综合的时钟树和pre-exiting的时钟树进行balance。</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="4-CTS步骤"><a href="#4-CTS步骤" class="headerlink" title="4. CTS步骤"></a>4. CTS步骤</h2><ul>
+<h2 id="cts步骤">4. CTS步骤</h2>
+<ul>
 <li>CTS整体流程如下图所示，这里只介绍部分知识用作学习。</li>
 </ul>
-<p><img src="/2023/11/08/ICC-CTS/3201119-20230716165154145-1129330924.png"></p>
-<h3 id="4-1-分析clock结构，制定CTS策略"><a href="#4-1-分析clock结构，制定CTS策略" class="headerlink" title="4.1 分析clock结构，制定CTS策略"></a>4.1 分析clock结构，制定CTS策略</h3><ul>
-<li>策略主要需要尽可能的满足上面三个目标，如何让工具按照指定的策略进行时钟数综合呢？<ul>
-<li>可以通过preplace clk的MUX选择器或分频逻辑模块（我理解为generate clock模块）在想要布时钟线的路径上。</li>
-</ul>
-</li>
+<p><img src="3201119-20230716165154145-1129330924.png" /></p>
+<h3 id="分析clock结构制定cts策略">4.1 分析clock结构，制定CTS策略</h3>
+<ul>
+<li>策略主要需要尽可能的满足上面三个目标，如何让工具按照指定的策略进行时钟数综合呢？
+<ul>
+<li>可以通过preplace clk的MUX选择器或分频逻辑模块（我理解为generate
+clock模块）在想要布时钟线的路径上。</li>
+</ul></li>
 <li>因此指定CTS策略这步需要确定preplace的逻辑以及放置的区域。</li>
 </ul>
-<h3 id="4-2-CTS开始前的检查和设置"><a href="#4-2-CTS开始前的检查和设置" class="headerlink" title="4.2 CTS开始前的检查和设置"></a>4.2 CTS开始前的检查和设置</h3><ul>
+<h3 id="cts开始前的检查和设置">4.2 CTS开始前的检查和设置</h3>
+<ul>
 <li><p>（1）report_clock、report_clock_tree查看时钟和时钟树信息；以及report_constraints:查看设计是否有violation.</p>
 <ul>
 <li>此时可以有hold violation。</li>
-</ul>
-</li>
-<li><p>（2）设置目标skew和insertion delay。设置DRC规则：max_fanout , max_transition , max_capacitance；下面有关于clock root相关DRC设置要求。</p>
-</li>
+</ul></li>
+<li><p>（2）设置目标skew和insertion delay。设置DRC规则：max_fanout ,
+max_transition , max_capacitance；下面有关于clock
+root相关DRC设置要求。</p></li>
 <li><p>（3）设置时钟树的references</p>
 <ul>
-<li>指定clock buffer&#x2F;inverter list</li>
-<li>其中inverter对工艺要求较高，必须采用LVT或SVT，而且只允许有一种VT。更多内容可以看<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43249158/article/details/124837883">这篇文章</a>。</li>
-</ul>
-</li>
+<li>指定clock buffer/inverter list</li>
+<li>其中inverter对工艺要求较高，必须采用LVT或SVT，而且只允许有一种VT。更多内容可以看<a
+target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43249158/article/details/124837883">这篇文章</a>。</li>
+</ul></li>
 <li><p>（4）时钟树布线规则的定义(NDR)</p>
 <ul>
-<li>为了减少其它信号串扰和EM（电子迁移）的影响，一般会采用双倍线宽和双倍间距；并一般采用高层金属作为时钟信号的走线。  </li>
-<li>标准单元的pin脚一般为M1&#x2F;M2金属层，如果设置为NDR，会导致很多DRC问题，所以在sink端还是使用默认线宽和间距布线。</li>
-</ul>
-<p><img src="/2023/11/08/ICC-CTS/3201119-20230716174615995-192191548.png"></p>
+<li>为了减少其它信号串扰和EM（电子迁移）的影响，一般会采用双倍线宽和双倍间距；并一般采用高层金属作为时钟信号的走线。<br />
 </li>
-<li><p>（5）设置时钟树延迟计算模式：精确程度：arnoldi &gt; awe &gt; elmore。</p>
-  <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">set_delay_calculation_options -routed_clock arnoldi</span><br></code></pre></td></tr></table></figure></li>
+<li>标准单元的pin脚一般为M1/M2金属层，如果设置为NDR，会导致很多DRC问题，所以在sink端还是使用默认线宽和间距布线。</li>
 </ul>
-<h3 id="4-3-Clock-root-定义"><a href="#4-3-Clock-root-定义" class="headerlink" title="4.3 Clock root 定义"></a>4.3 Clock root 定义</h3><ul>
-<li>clock root如果是input port，那么分为是否有I&#x2F;O Pad。<ul>
-<li>如果没有I&#x2F;O Pad，那么需要准确的指定输入端口的驱动单元。<ul>
+<p><img src="3201119-20230716174615995-192191548.png" /></p></li>
+<li><p>（5）设置时钟树延迟计算模式：精确程度：arnoldi &gt; awe &gt;
+elmore。 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">set_delay_calculation_options -routed_clock arnoldi</span><br></code></pre></td></tr></table></figure></p></li>
+</ul>
+<h3 id="clock-root-定义">4.3 Clock root 定义</h3>
+<ul>
+<li>clock root如果是input port，那么分为是否有I/O Pad。
+<ul>
+<li>如果没有I/O Pad，那么需要准确的指定输入端口的驱动单元。
+<ul>
 <li>对于一个弱的驱动来说，CTS需要插入额外的buffer来保证DRC通过。</li>
 <li>如果不设置，那么工具会假设输入端口的驱动能力无穷大，内部不需要做额外的buffer处理。</li>
-</ul>
-</li>
-<li>如果有I&#x2F;O Pad，那么需要准确的指定input_transition的大小</li>
-</ul>
-</li>
-<li>定义时钟root点<ul>
-<li><p>使用create_clock定义时钟的root点。</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">create_clock</span> -period <span class="hljs-number">10</span> -name clk1<span class="hljs-meta"> [get_ports FCLK1]</span><br></code></pre></td></tr></table></figure></li>
+</ul></li>
+<li>如果有I/O Pad，那么需要准确的指定input_transition的大小</li>
+</ul></li>
+<li>定义时钟root点
+<ul>
+<li><p>使用create_clock定义时钟的root点。 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">create_clock</span> -period <span class="hljs-number">10</span> -name clk1<span class="hljs-meta"> [get_ports FCLK1]</span><br></code></pre></td></tr></table></figure></p></li>
 <li><p>如果是generate clock，可以使用create_generate_clock定义。</p>
 <ul>
-<li>要求master clock要定义清楚，并且generate clock和master clock要可以trace通。</li>
+<li>要求master clock要定义清楚，并且generate clock和master
+clock要可以trace通。</li>
 </ul>
-<p><img src="/2023/11/08/ICC-CTS/3201119-20230716143446863-32084362.png"></p>
+<p><img src="3201119-20230716143446863-32084362.png" /></p>
 <ul>
-<li>根据上图可以写出tcl：<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs objectivec">create_generated_clock  -name <span class="hljs-built_in">CLKPDIV2</span>  -source UPLL0/<span class="hljs-built_in">CLKOUT</span>   -add    -master_clock <span class="hljs-built_in">CLKP</span>  -divide_by <span class="hljs-number">2</span> [get_pins UFF0/Q]<br></code></pre></td></tr></table></figure></li>
-<li>generate clock和master clock之间的相位关系必须指定清楚，最简单的方式是直接指定相位边沿关系。<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">create_generated_clock</span> -name CLKdiv2  -edges &#123;<span class="hljs-number">2</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span>&#125; -source CLK<span class="hljs-meta"> [get_pins Udiv/Q]</span><br></code></pre></td></tr></table></figure></li>
+<li>根据上图可以写出tcl： <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs objectivec">create_generated_clock  -name <span class="hljs-built_in">CLKPDIV2</span>  -source UPLL0/<span class="hljs-built_in">CLKOUT</span>   -add    -master_clock <span class="hljs-built_in">CLKP</span>  -divide_by <span class="hljs-number">2</span> [get_pins UFF0/Q]<br></code></pre></td></tr></table></figure></li>
+<li>generate clock和master
+clock之间的相位关系必须指定清楚，最简单的方式是直接指定相位边沿关系。
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">create_generated_clock</span> -name CLKdiv2  -edges &#123;<span class="hljs-number">2</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span>&#125; -source CLK<span class="hljs-meta"> [get_pins Udiv/Q]</span><br></code></pre></td></tr></table></figure></li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
+<h3 id="找时序路径的端点">4.4 找时序路径的端点</h3>
+<ul>
+<li>clock sinks可以是stop pins，exclude pins以及float
+pins。根据第3节的介绍来判断CTS如何计算/优化。</li>
+<li>第3节介绍的时钟端点是在同一时钟下各个路径之间的balance，我们也需要关心多个create_clock定义的时钟root端。
+<ul>
+<li><p>虽不是同一时钟，但有reg进行talk。默认情况，CTS会分别build各自的clock
+tree，不会做inter-clock balance。如下所示。</p>
+<div data-align="center">
+<img src="3201119-20230716145656725-1255455270.png" width = 60%/>
+</div></li>
+<li><p>上图由于两个时钟skew的值相差太大，导致很严重的建立时间违例。可以通过tcl设置进行inter-clock
+的balance。 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">set_inter_clock_delay_options -<span class="hljs-keyword">balance_group </span><span class="hljs-string">&quot;Clk1 Clk2&quot;</span> -<span class="hljs-keyword">balance_group_name </span>group2 <span class="hljs-keyword">balance_inter_clock_delay </span>-<span class="hljs-keyword">clock_trees </span>&#123; <span class="hljs-keyword">clock_1 </span><span class="hljs-keyword">clock_2 </span>&#125;<br></code></pre></td></tr></table></figure></p>
+<div data-align="center">
+<img src="3201119-20230716150640982-1767152118.png" width = 60%/>
+</div></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="4-4-找时序路径的端点"><a href="#4-4-找时序路径的端点" class="headerlink" title="4.4 找时序路径的端点"></a>4.4 找时序路径的端点</h3><ul>
-<li>clock sinks可以是stop pins，exclude pins以及float pins。根据第3节的介绍来判断CTS如何计算&#x2F;优化。</li>
-<li>第3节介绍的时钟端点是在同一时钟下各个路径之间的balance，我们也需要关心多个create_clock定义的时钟root端。<ul>
-<li><p>虽不是同一时钟，但有reg进行talk。默认情况，CTS会分别build各自的clock tree，不会做inter-clock balance。如下所示。</p>
-<div align=center><img src="3201119-20230716145656725-1255455270.png" width = 60%/></div>
-</li>
-<li><p>上图由于两个时钟skew的值相差太大，导致很严重的建立时间违例。可以通过tcl设置进行inter-clock 的balance。</p>
-  <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">set_inter_clock_delay_options -<span class="hljs-keyword">balance_group </span><span class="hljs-string">&quot;Clk1 Clk2&quot;</span> -<span class="hljs-keyword">balance_group_name </span>group2 <span class="hljs-keyword">balance_inter_clock_delay </span>-<span class="hljs-keyword">clock_trees </span>&#123; <span class="hljs-keyword">clock_1 </span><span class="hljs-keyword">clock_2 </span>&#125;<br></code></pre></td></tr></table></figure>
-<div align=center><img src="3201119-20230716150640982-1767152118.png" width = 60%/></div></li>
-</ul>
-</li>
-</ul>
-<h3 id="4-5-Build-Clock-Tree"><a href="#4-5-Build-Clock-Tree" class="headerlink" title="4.5 Build Clock Tree"></a>4.5 Build Clock Tree</h3><ul>
-<li>主要有两种方法<ul>
+<h3 id="build-clock-tree">4.5 Build Clock Tree</h3>
+<ul>
+<li>主要有两种方法
+<ul>
 <li>clock_opt</li>
 <li>compile_clock_tree + optimize_clock_tree</li>
-</ul>
-</li>
+</ul></li>
 <li>相关指令选项可以看Tool Commands手册。</li>
-<li>完成之后可以report_timing&#x2F;report_clock_tree&#x2F;report_constraint</li>
+<li>完成之后可以report_timing/report_clock_tree/report_constraint</li>
 </ul>
-<h3 id="4-6-Post-CTS"><a href="#4-6-Post-CTS" class="headerlink" title="4.6 Post-CTS"></a>4.6 Post-CTS</h3><ul>
+<h3 id="post-cts">4.6 Post-CTS</h3>
+<ul>
 <li>前面完成的是Pre-CTS，下面将完成Post-CTS。</li>
-<li>ideal clock &amp; propagated clock<ul>
-<li>在Pre-CTS阶段之前，我们使用的是ideal clock，从clock source到寄存器的时钟端口的network latency的值为我们使用set_clock_latency约束的。</li>
-<li>在Pre-CTS之后，工具可以自动update IO latency 去反应实际时钟到达时间，并在原有的时钟树上插入计算的IO latency。具体内容可以在2016版ICC User Guide 5-104页找到。<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tcl">update_clock_latency<br><span class="hljs-comment"># 或在clock_opt加上 -update_clock_latency 选项</span><br></code></pre></td></tr></table></figure></li>
-<li>在Post-CTS阶段之后，我们使用的是propagated clock，此时使用的network latency是实际的时钟互连线网络的RC 提取参数计算出的延时。</li>
-</ul>
+<li>ideal clock &amp; propagated clock
+<ul>
+<li>在Pre-CTS阶段之前，我们使用的是ideal clock，从clock
+source到寄存器的时钟端口的network
+latency的值为我们使用set_clock_latency约束的。</li>
+<li>在Pre-CTS之后，工具可以自动update IO latency
+去反应实际时钟到达时间，并在原有的时钟树上插入计算的IO
+latency。具体内容可以在2016版ICC User Guide 5-104页找到。
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tcl">update_clock_latency<br><span class="hljs-comment"># 或在clock_opt加上 -update_clock_latency 选项</span><br></code></pre></td></tr></table></figure></li>
+<li>在Post-CTS阶段之后，我们使用的是propagated clock，此时使用的network
+latency是实际的时钟互连线网络的RC 提取参数计算出的延时。</li>
+</ul></li>
+<li>Post-CTS 时钟属性处理
+<ul>
+<li>移除所有时钟的理想属性 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">remove_ideal_network [ all_fanout -flat -clock_tree ]<br>remove_clock_latency <span class="hljs-variable">$clk</span><br><span class="hljs-comment"># 设置时钟为propagate属性</span><br>set_propagate_clock [ get_attr <span class="hljs-variable">$clock</span> <span class="hljs-built_in">source</span> ]<br></code></pre></td></tr></table></figure></li>
+<li>重新定义clock uncertainty
+<ul>
+<li>Pre-CTS
+<ul>
+<li>setup： uncertainty = PLL jitter + 预估的clock skew。</li>
+<li>hold：uncertainty = 预估的clock skew + hold margin。</li>
+<li>hold是同一个时钟边沿检测，可以去掉clk
+jitter的影响。setup是两个clk边沿计算，需要加上jitter的影响。<br />
 </li>
-<li>Post-CTS 时钟属性处理<ul>
-<li>移除所有时钟的理想属性<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">remove_ideal_network [ all_fanout -flat -clock_tree ]<br>remove_clock_latency <span class="hljs-variable">$clk</span><br><span class="hljs-comment"># 设置时钟为propagate属性</span><br>set_propagate_clock [ get_attr <span class="hljs-variable">$clock</span> <span class="hljs-built_in">source</span> ]<br></code></pre></td></tr></table></figure></li>
-<li>重新定义clock uncertainty<ul>
-<li>Pre-CTS<ul>
-<li>setup： uncertainty &#x3D; PLL jitter + 预估的clock skew。</li>
-<li>hold：uncertainty &#x3D; 预估的clock skew + hold margin。</li>
-<li>hold是同一个时钟边沿检测，可以去掉clk jitter的影响。setup是两个clk边沿计算，需要加上jitter的影响。</li>
-</ul>
-</li>
-<li>Post-CTS<ul>
-<li>在Post-CTS阶段，时钟树的propagate delay已经确定，skew是真实存在的，不用再计算在uncertainty中。</li>
-<li>setup：uncertainty &#x3D; PLL jitter。</li>
+</ul></li>
+<li>Post-CTS
+<ul>
+<li>在Post-CTS阶段，时钟树的propagate
+delay已经确定，skew是真实存在的，不用再计算在uncertainty中。</li>
+<li>setup：uncertainty = PLL jitter。</li>
 <li>hold：0 + hold_margin。</li>
-</ul>
-</li>
-<li>hold margin：考虑到OCV的影响，不同的Flipflop之间的hold time可能是不同的，需要加hold margin来保证。Foundry提供的Signoff表格会给出要求的hold margin。</li>
-</ul>
-</li>
+</ul></li>
+<li>hold margin：考虑到OCV的影响，不同的Flipflop之间的hold
+time可能是不同的，需要加hold
+margin来保证。Foundry提供的Signoff表格会给出要求的hold margin。</li>
+</ul></li>
 <li>在做完上面的处理之后，使用指令update_clock_latency再更新一下latency信息。</li>
-</ul>
-</li>
-<li>修hold violation<ul>
-<li>首先搬出一篇<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/114752119">文章</a>，讲的很清楚为什么在Post-CTS阶段才去管hold violation。<ul>
+</ul></li>
+<li>修hold violation
+<ul>
+<li>首先搬出一篇<a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/114752119">文章</a>，讲的很清楚为什么在Post-CTS阶段才去管hold
+violation。
+<ul>
 <li>总结来说，hold和skew的关系最为密切，只有在Post-CTS阶段，skew值是真实计算的值，这个时候去修hold才是有意义的。</li>
-<li>并不是说hold优先级没有setup高，反而hold才是最危险的，投片后如果出现hold violation无法通过降频去改善。</li>
-</ul>
-</li>
-<li>可以通过指令 set_fix_hold去修hold violation。<ul>
-<li>此时没有真实的布线，但是可以通过虚拟布线提取参数进行hold&#x2F;setup的计算，此步就可以去修setup&#x2F;hold的violation。</li>
-<li>Route是在解DRC的过程，而在Post Route时，需要考虑SI，setup&#x2F;hold等问题。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>面积优化<ul>
+<li>并不是说hold优先级没有setup高，反而hold才是最危险的，投片后如果出现hold
+violation无法通过降频去改善。</li>
+</ul></li>
+<li>可以通过指令 set_fix_hold去修hold violation。
+<ul>
+<li>此时没有真实的布线，但是可以通过虚拟布线提取参数进行hold/setup的计算，此步就可以去修setup/hold的violation。</li>
+<li>Route是在解DRC的过程，而在Post
+Route时，需要考虑SI，setup/hold等问题。</li>
+</ul></li>
+</ul></li>
+<li>面积优化
+<ul>
 <li>psynopt -area_recovery</li>
 <li>set_max_area 0</li>
-<li>set physopt_area_critical_range 0.2, 该指令是指在timing slack大于某个值的path上用时序换面积。</li>
-</ul>
-</li>
+<li>set physopt_area_critical_range 0.2, 该指令是指在timing
+slack大于某个值的path上用时序换面积。</li>
+</ul></li>
 <li>extract_rc 提取寄生参数</li>
-<li>时钟绕线<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">route_zrt_group</span> -all_clock_nets -reuse_existing_global_route <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure></li>
+<li>时钟绕线 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">route_zrt_group</span> -all_clock_nets -reuse_existing_global_route <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure></li>
 </ul>
 
                 
@@ -905,7 +955,7 @@
     Fluid.utils.loadComments('#valine', function() {
       Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
         var options = Object.assign(
-          {"appId":"he0NhIf0IUn5fiZgzHQvxTMv-gzGzoHsz","appKey":"YOBsdTwafnru1yx9sCrfNIbw","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":true,"serverURLs":"https://he0nhif0.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {"appId":"he0NhIf0IUn5fiZgzHQvxTMv-gzGzoHsz","appKey":"YOBsdTwafnru1yx9sCrfNIbw","path":"window.location.pathname","placeholder":"快来留言！","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":true,"serverURLs":"https://he0nhif0.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
           {
             el: "#valine",
             path: window.location.pathname

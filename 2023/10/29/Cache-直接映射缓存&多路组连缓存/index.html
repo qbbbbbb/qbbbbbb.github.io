@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;102293437 公众号：老秦谈芯 《计算机组成与设计 第五版》     1. Cache line cache size：这里只考虑cache可以缓存最大数据的大小。这里忽略了tag和valid bit的占用。 将cache均分相等的块，每一块称为cache line，现在的硬件设计中，一般cache line的大小为4-128">
+    <meta name="description" content="参考  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;102293437 公众号：老秦谈芯 《计算机组成与设计 第五版》 ***   1. Cache line  cache size：这里只考虑cache可以缓存最大数据的大小。这里忽略了tag和valid bit的占用。 将cache均分相等的块，每一块称为cache line，现在的硬件设计中，一般c">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cache-直接映射缓存&amp;多路组连缓存">
 <meta property="og:url" content="http://binbinqian.cn/2023/10/29/Cache-%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84%E7%BC%93%E5%AD%98&%E5%A4%9A%E8%B7%AF%E7%BB%84%E8%BF%9E%E7%BC%93%E5%AD%98/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;102293437 公众号：老秦谈芯 《计算机组成与设计 第五版》     1. Cache line cache size：这里只考虑cache可以缓存最大数据的大小。这里忽略了tag和valid bit的占用。 将cache均分相等的块，每一块称为cache line，现在的硬件设计中，一般cache line的大小为4-128">
+<meta property="og:description" content="参考  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;102293437 公众号：老秦谈芯 《计算机组成与设计 第五版》 ***   1. Cache line  cache size：这里只考虑cache可以缓存最大数据的大小。这里忽略了tag和valid bit的占用。 将cache均分相等的块，每一块称为cache line，现在的硬件设计中，一般c">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/10/29/Cache-%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84%E7%BC%93%E5%AD%98&%E5%A4%9A%E8%B7%AF%E7%BB%84%E8%BF%9E%E7%BC%93%E5%AD%98/3201119-20230609140440924-1848801620.png">
 <meta property="og:image" content="http://binbinqian.cn/2023/10/29/Cache-%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84%E7%BC%93%E5%AD%98&%E5%A4%9A%E8%B7%AF%E7%BB%84%E8%BF%9E%E7%BC%93%E5%AD%98/3201119-20230807213451864-968491639.png">
@@ -578,107 +578,131 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考<ul>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102293437">https://zhuanlan.zhihu.com/p/102293437</a></li>
+<li>参考
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102293437"
+class="uri">https://zhuanlan.zhihu.com/p/102293437</a></li>
 <li>公众号：老秦谈芯</li>
-<li>《计算机组成与设计 第五版》</li>
+<li>《计算机组成与设计 第五版》 ***</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<hr>
-<h2 id="1-Cache-line"><a href="#1-Cache-line" class="headerlink" title="1. Cache line"></a>1. Cache line</h2><ul>
-<li>cache size：这里只考虑cache可以缓存最大<strong>数据</strong>的大小。这里忽略了tag和valid bit的占用。</li>
-<li>将cache均分相等的块，每一块称为cache line，现在的硬件设计中，一般cache line的大小为4-128字节，cache line做的太小会导致tag资源占用过大。</li>
-<li><strong>cache line 是 cache 和主存之间数据传输的最小单位。</strong><ul>
-<li>考虑到程序的空间局部性：即一个数据被访问了，那么它周围的数据在之后也有可能被访问。所以cache会选择连续一段数据公用一个tag，一起被传输。 </li>
-<li>在cache缺失时，即使CPU只需要从主存中读1个字节的数据出来，但是还是会直接load出8（该值为设定的cache line大小）个字节填充整个cache line。</li>
-</ul>
-</li>
-<li>Cache line size 的选择<ul>
+<h2 id="cache-line">1. Cache line</h2>
+<ul>
+<li>cache
+size：这里只考虑cache可以缓存最大<strong>数据</strong>的大小。这里忽略了tag和valid
+bit的占用。</li>
+<li>将cache均分相等的块，每一块称为cache
+line，现在的硬件设计中，一般cache line的大小为4-128字节，cache
+line做的太小会导致tag资源占用过大。</li>
+<li><strong>cache line 是 cache 和主存之间数据传输的最小单位。</strong>
+<ul>
+<li>考虑到程序的空间局部性：即一个数据被访问了，那么它周围的数据在之后也有可能被访问。所以cache会选择连续一段数据公用一个tag，一起被传输。</li>
+<li>在cache缺失时，即使CPU只需要从主存中读1个字节的数据出来，但是还是会直接load出8（该值为设定的cache
+line大小）个字节填充整个cache line。</li>
+</ul></li>
+<li>Cache line size 的选择
+<ul>
 <li>size指的是offset的大小，也就是Cache line的容量。</li>
 <li>size增大，失效率一般会下降（更大程度的挖掘空间局部性）。</li>
-<li>但是当Cache line size占cache容量比例增加到一定程度，失效率会随之上升。原因如下： <ul>
-<li>上面所描述的情况会导致Cache中可存放的cache line数变少了，会导致数据经常被挤走。</li>
-<li>cache line的size不断增大，导致各字之间的空间局部性也会降低，失效率的收益不断减小。</li>
+<li>但是当Cache line
+size占cache容量比例增加到一定程度，失效率会随之上升。原因如下：
+<ul>
+<li>上面所描述的情况会导致Cache中可存放的cache
+line数变少了，会导致数据经常被挤走。</li>
+<li>cache
+line的size不断增大，导致各字之间的空间局部性也会降低，失效率的收益不断减小。</li>
 <li>失效损失增大，失效损失主要指从主存中读取数据并加载到cache的时间，size不断增大，导致传输时间也不断增大。</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="2-Cache控制器怎么确定是否命中"><a href="#2-Cache控制器怎么确定是否命中" class="headerlink" title="2. Cache控制器怎么确定是否命中"></a>2. Cache控制器怎么确定是否命中</h2><ul>
-<li>首先假设cache 大小为64Bytes，cache line大小为8Bytes。假设CPU想从地址为0x0654地址取一个字节数据。</li>
-<li>考虑cache line大小为8Bytes，使用地址低3bit来寻址其中的一个字节。(offset[2:0])</li>
-<li>计算可得有8个cache line，可以使用3bit地址来寻址是哪个cacheline。(index[5:3])</li>
-<li>对于一个地址，即使确定了[5：3]bit，也不能就确信找到了正确的地址，还有更高位数信息。<ul>
-<li>cache将高位信息用tag表示， tag、index、offset可以确定唯一的那个地址。</li>
-</ul>
-</li>
+<h2 id="cache控制器怎么确定是否命中">2. Cache控制器怎么确定是否命中</h2>
+<ul>
+<li>首先假设cache 大小为64Bytes，cache
+line大小为8Bytes。假设CPU想从地址为0x0654地址取一个字节数据。</li>
+<li>考虑cache
+line大小为8Bytes，使用地址低3bit来寻址其中的一个字节。(offset[2:0])</li>
+<li>计算可得有8个cache
+line，可以使用3bit地址来寻址是哪个cacheline。(index[5:3])</li>
+<li>对于一个地址，即使确定了[5：3]bit，也不能就确信找到了正确的地址，还有更高位数信息。
+<ul>
+<li>cache将高位信息用tag表示，
+tag、index、offset可以确定唯一的那个地址。</li>
+</ul></li>
 <li>检查是否命中：首先根据index找到cacheline，然后将cache的tag与地址的tag比对，如果相等，说明命中，如果不等，说明缺失。</li>
 </ul>
-<p><img src="/2023/10/29/Cache-%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84%E7%BC%93%E5%AD%98&%E5%A4%9A%E8%B7%AF%E7%BB%84%E8%BF%9E%E7%BC%93%E5%AD%98/3201119-20230609140440924-1848801620.png"></p>
+<p><img src="3201119-20230609140440924-1848801620.png" /></p>
 <ul>
-<li>valid bit<ul>
-<li>tag 前面还加了一位valid bit，首先判断该位，判断缓存中的数据是否有效，若无效不用判断是否命中，直接缺失。</li>
+<li>valid bit
+<ul>
+<li>tag 前面还加了一位valid
+bit，首先判断该位，判断缓存中的数据是否有效，若无效不用判断是否命中，直接缺失。</li>
 <li>目的：考虑一些情况如：处理器刚启动时，cache中没有有效数据，对比是无用的。以及运行过程中，cache的一些cacheline可能还是空的，对比也是无用的。</li>
-</ul>
-</li>
-<li>Cache 失效的处理<ul>
-<li>这里以指令Cache失效为例。<ul>
-<li>对于按序处理器，Cache失效，需要停顿流水线等待内存返回数据。<ul>
+</ul></li>
+<li>Cache 失效的处理
+<ul>
+<li>这里以指令Cache失效为例。
+<ul>
+<li>对于按序处理器，Cache失效，需要停顿流水线等待内存返回数据。
+<ul>
 <li>对于乱序处理器，Cache失效，在等待cache失效处理时允许继续执行指令，更为复杂，这里暂不讨论。</li>
-</ul>
-</li>
-<li>将PC值-4发送给内存。<ul>
+</ul></li>
+<li>将PC值-4发送给内存。
+<ul>
 <li>考虑到程序计数器是在执行的第一个时钟周期递增的，所以引发指令Cache失效的指令地址等于当前PC-4。</li>
-</ul>
-</li>
+</ul></li>
 <li>对主存进行读操作，等待主存完成本次访问。</li>
-<li>写Cache line，将内存获取的数据写入，将高位填充到tag字段，将有效位拉高。</li>
+<li>写Cache
+line，将内存获取的数据写入，将高位填充到tag字段，将有效位拉高。</li>
 <li>重启指令执行，重新取指，此次取指将会在指令cache中命中。</li>
-</ul>
-</li>
+</ul></li>
 <li>数据Cache控制本质和上面相同，失效也需要短暂的暂停处理器，直到内存返回数据给Cache。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="3-直接映射缓存的优缺点"><a href="#3-直接映射缓存的优缺点" class="headerlink" title="3. 直接映射缓存的优缺点"></a>3. 直接映射缓存的优缺点</h2><ul>
+<h2 id="直接映射缓存的优缺点">3. 直接映射缓存的优缺点</h2>
+<ul>
 <li>优点：硬件设计更简单、成本低。</li>
-<li>缺点：cache thrashing（cache 颠簸）<ul>
+<li>缺点：cache thrashing（cache 颠簸）
+<ul>
 <li>与上面假设相同，此时cpu想依次访问0x00，0x40，0x80地址的数据，这三个对应的index和offset都是一个，唯一区别是tag值。</li>
-<li>访问0x00时，cache缺失，cpu从主存中load出8个字节大小的数据填充cache line。</li>
+<li>访问0x00时，cache缺失，cpu从主存中load出8个字节大小的数据填充cache
+line。</li>
 <li>访问0x40时，索引到第0行cacheline，但这里存的是0x00对应的数据，仍缺失，再加载0x40地址的数据。</li>
 <li>依次类推，0x80也要经过刚才两步：缺失+从主存中load。</li>
 <li>这样cache对性能没什么提升。</li>
-</ul>
-</li>
+</ul></li>
 <li>为了解决这个问题，引入了多路组相连缓存。</li>
 </ul>
-<h2 id="4-两路组相连缓存"><a href="#4-两路组相连缓存" class="headerlink" title="4. 两路组相连缓存"></a>4. 两路组相连缓存</h2><ul>
-<li>假设cache 大小为64Bytes，cache line大小为8Bytes。假设CPU想从地址为0x0654地址取一个字节数据。<ul>
+<h2 id="两路组相连缓存">4. 两路组相连缓存</h2>
+<ul>
+<li>假设cache 大小为64Bytes，cache
+line大小为8Bytes。假设CPU想从地址为0x0654地址取一个字节数据。
+<ul>
 <li>一共有8个cache line，将一路改成两路4个cache line。</li>
 <li>offset依然是3bit，index只需要2bit即可。</li>
-<li>找到某行index，对应两个cache line。然后将两个cache line对应的tag与地址部分的tag进行对比。</li>
-</ul>
-</li>
-<li>下图中，Tag的比较和Data SRAM的数据读取是并行的，可以增加cache读取速度。<ul>
-<li>也可以串行，先比较Tag，再根据Tag比较结果去访问Data SRAM。</li>
-</ul>
-</li>
-</ul>
-<p><img src="/2023/10/29/Cache-%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84%E7%BC%93%E5%AD%98&%E5%A4%9A%E8%B7%AF%E7%BB%84%E8%BF%9E%E7%BC%93%E5%AD%98/3201119-20230807213451864-968491639.png"></p>
+<li>找到某行index，对应两个cache line。然后将两个cache
+line对应的tag与地址部分的tag进行对比。</li>
+</ul></li>
+<li>下图中，Tag的比较和Data
+SRAM的数据读取是并行的，可以增加cache读取速度。
 <ul>
-<li>缺点<ul>
+<li>也可以串行，先比较Tag，再根据Tag比较结果去访问Data SRAM。</li>
+</ul></li>
+</ul>
+<p><img src="3201119-20230807213451864-968491639.png" /></p>
+<ul>
+<li>缺点
+<ul>
 <li>硬件成本更高，每次比较tag要比较多个cacheline对应的tag。</li>
-</ul>
-</li>
-<li>优点<ul>
+</ul></li>
+<li>优点
+<ul>
 <li>可以降低cache颠簸可能性。前面提到的问题，0x00和0x40可以被加载到不同的路中。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="5-全相连缓存"><a href="#5-全相连缓存" class="headerlink" title="5. 全相连缓存"></a>5. 全相连缓存</h2><ul>
-<li>取消index信号，每个cache line占一个way。其实就相当于不考虑offset的3bit，其余地址一个一个放在表中的一条一条上，在这个表里挨个查，显而易见只适合小容量的cache。</li>
+<h2 id="全相连缓存">5. 全相连缓存</h2>
+<ul>
+<li>取消index信号，每个cache
+line占一个way。其实就相当于不考虑offset的3bit，其余地址一个一个放在表中的一条一条上，在这个表里挨个查，显而易见只适合小容量的cache。</li>
 <li>此时查找是否命中，需要将地址的tag与所有组的tag进行比较。</li>
 <li>因为不存在index，任意数据可以存在任意位置，可以最大程度降低cache的颠簸性。</li>
 <li>硬件成本最高。</li>
@@ -804,7 +828,7 @@
     Fluid.utils.loadComments('#valine', function() {
       Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
         var options = Object.assign(
-          {"appId":"he0NhIf0IUn5fiZgzHQvxTMv-gzGzoHsz","appKey":"YOBsdTwafnru1yx9sCrfNIbw","path":"window.location.pathname","placeholder":"留言仅限讨论，禁止广告等行为","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":true,"serverURLs":"https://he0nhif0.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {"appId":"he0NhIf0IUn5fiZgzHQvxTMv-gzGzoHsz","appKey":"YOBsdTwafnru1yx9sCrfNIbw","path":"window.location.pathname","placeholder":"快来留言！","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":true,"serverURLs":"https://he0nhif0.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
           {
             el: "#valine",
             path: window.location.pathname
