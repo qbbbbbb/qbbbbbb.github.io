@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考  NXP 《I2S bus specification》 NXP 《I2S在Kinetis上的应用 》 https:&#x2F;&#x2F;www.python100.com&#x2F;html&#x2F;R62183SDTAU0.html https:&#x2F;&#x2F;blog.51cto.com&#x2F;u_15459030&#x2F;5225825    1. I2S概述 1.1 为什么需要I2S  I2S是I2C的变种，全称：">
+    <meta name="description" content="参考 NXP 《I2S bus specification》 NXP 《I2S在Kinetis上的应用   》 https:&#x2F;&#x2F;www.python100.com&#x2F;html&#x2F;R62183SDTAU0.html https:&#x2F;&#x2F;blog.51cto.com&#x2F;u_15459030&#x2F;5225825     1. I2S概述1.1 为什么需要I2S I2S是I2C的变种，全称：InterIc-Sound">
 <meta property="og:type" content="article">
 <meta property="og:title" content="I2S协议">
 <meta property="og:url" content="http://binbinqian.cn/2023/10/28/I2S%E5%8D%8F%E8%AE%AE/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考  NXP 《I2S bus specification》 NXP 《I2S在Kinetis上的应用 》 https:&#x2F;&#x2F;www.python100.com&#x2F;html&#x2F;R62183SDTAU0.html https:&#x2F;&#x2F;blog.51cto.com&#x2F;u_15459030&#x2F;5225825    1. I2S概述 1.1 为什么需要I2S  I2S是I2C的变种，全称：">
+<meta property="og:description" content="参考 NXP 《I2S bus specification》 NXP 《I2S在Kinetis上的应用   》 https:&#x2F;&#x2F;www.python100.com&#x2F;html&#x2F;R62183SDTAU0.html https:&#x2F;&#x2F;blog.51cto.com&#x2F;u_15459030&#x2F;5225825     1. I2S概述1.1 为什么需要I2S I2S是I2C的变种，全称：InterIc-Sound">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/10/28/I2S%E5%8D%8F%E8%AE%AE/3201119-20230724112142940-41134477.png">
 <meta property="og:image" content="http://binbinqian.cn/2023/10/28/I2S%E5%8D%8F%E8%AE%AE/3201119-20230724144906940-1187645121.png">
@@ -79,7 +79,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"binbinqian.cn","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"binbinqian.cn","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -257,7 +257,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          2.3k 字
         
       </span>
     
@@ -406,143 +406,141 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考
-<ul>
+<li>参考<ul>
 <li>NXP 《I2S bus specification》</li>
-<li>NXP 《I2S在Kinetis上的应用 》</li>
-<li><a target="_blank" rel="noopener" href="https://www.python100.com/html/R62183SDTAU0.html"
-class="uri">https://www.python100.com/html/R62183SDTAU0.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.51cto.com/u_15459030/5225825"
-class="uri">https://blog.51cto.com/u_15459030/5225825</a></li>
-</ul></li>
+<li>NXP 《I2S在Kinetis上的应用   》</li>
+<li><a target="_blank" rel="noopener" href="https://www.python100.com/html/R62183SDTAU0.html">https://www.python100.com/html/R62183SDTAU0.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.51cto.com/u_15459030/5225825">https://blog.51cto.com/u_15459030/5225825</a></li>
 </ul>
-<hr />
-<h2 id="i2s概述">1. I2S概述</h2>
-<h3 id="为什么需要i2s">1.1 为什么需要I2S</h3>
-<ul>
-<li>I2S是I2C的变种，全称：InterIc-Sound.
-专门为传输音频数据而设计的。</li>
-<li>I2S 相较于I2C和SPI有以下优点
-<ul>
+</li>
+</ul>
+<hr>
+<h2 id="1-I2S概述"><a href="#1-I2S概述" class="headerlink" title="1. I2S概述"></a>1. I2S概述</h2><h3 id="1-1-为什么需要I2S"><a href="#1-1-为什么需要I2S" class="headerlink" title="1.1 为什么需要I2S"></a>1.1 为什么需要I2S</h3><ul>
+<li>I2S是I2C的变种，全称：InterIc-Sound. 专门为传输音频数据而设计的。</li>
+<li>I2S 相较于I2C和SPI有以下优点<ul>
 <li>更低的延迟：由于I2S数据传输是连续的，不需要等待ACK信号的回复，I2S只需要使用WS和SCK信号进行数据的同步；响应速度更快。</li>
-<li>更高的精度：I2C一次可以传输8位的数据，但是I2S可以传输16/24位的数据，对于高精度的音频设备，I2S能够满足要求。</li>
-</ul></li>
+<li>更高的精度：I2C一次可以传输8位的数据，但是I2S可以传输16&#x2F;24位的数据，对于高精度的音频设备，I2S能够满足要求。</li>
 </ul>
-<h3 id="i2s-三条总线">1.2 I2S 三条总线</h3>
+</li>
+</ul>
+<h3 id="1-2-I2S-三条总线"><a href="#1-2-I2S-三条总线" class="headerlink" title="1.2 I2S 三条总线"></a>1.2 I2S 三条总线</h3><ul>
+<li><p>之前介绍I2C有两条总线:SCL&#x2F;SDA。而I2S有三条总线如下。</p>
 <ul>
-<li><p>之前介绍I2C有两条总线:SCL/SDA。而I2S有三条总线如下。</p>
-<ul>
-<li>SCK(Continuous Serial Clock)：串行时钟，也称为位时钟BCLK。
-<ul>
-<li>SCK的时钟频率 = 声道数 * 采样频率 * 采样位数。</li>
-</ul></li>
-<li>WS(Word Select)：字段（声道）选择信号，也称为帧时钟LRCK。
-<ul>
+<li>SCK(Continuous Serial Clock)：串行时钟，也称为位时钟BCLK。<ul>
+<li>SCK的时钟频率 &#x3D; 声道数 * 采样频率 * 采样位数。</li>
+</ul>
+</li>
+<li>WS(Word Select)：字段（声道）选择信号，也称为帧时钟LRCK。<ul>
 <li>其频率等于采样频率。</li>
-<li>在<strong>I2S模式下</strong>：WS=1，表示传递的是右声道数据。WS=0，表示传递的是左声道数据。后面有介绍，其它模式不同。</li>
-</ul></li>
-<li>SD(Serial Data)：串行数据。</li>
-</ul></li>
-<li><p>控制器（Controller）产生SCK信号和WS信号，控制器可以是Transmitter也可以是Receiver，也可以是单独设计的控制模块。</p>
-<p><img src="3201119-20230724112142940-41134477.png" srcset="/img/loading.gif" lazyload /></p></li>
+<li>在<strong>I2S模式下</strong>：WS&#x3D;1，表示传递的是右声道数据。WS&#x3D;0，表示传递的是左声道数据。后面有介绍，其它模式不同。</li>
 </ul>
-<h3 id="i2s的三种操作模式">1.3 I2S的三种操作模式</h3>
-<ul>
-<li>图片来自TI的TLV320AIC3104的数据表，其中WCLK为LRCLK信号，BCLK为SCK信号。</li>
-<li>无论哪种模式，串行数据都是以二进制补码进行传输的，且先传输MSB，LSB的位置取决于I2S的位宽，长会被截断，短会被补零。</li>
-<li>根据下面的波形可以看到：I2S模式，WS=0-&gt;左，WS=1-&gt;右;而左对齐和右对齐和I2S模式规定相反。</li>
-<li>不同的模式决定了解码方式也不同。</li>
-<li>根据SD和WCLK情况可分为三种模式：
+</li>
+<li>SD(Serial Data)：串行数据。</li>
+</ul>
+</li>
+<li><p>控制器（Controller）产生SCK信号和WS信号，控制器可以是Transmitter也可以是Receiver，也可以是单独设计的控制模块。</p>
+<p><img src="/2023/10/28/I2S%E5%8D%8F%E8%AE%AE/3201119-20230724112142940-41134477.png"></p>
+</li>
+</ul>
+<h3 id="1-3-I2S的三种操作模式"><a href="#1-3-I2S的三种操作模式" class="headerlink" title="1.3 I2S的三种操作模式"></a>1.3 I2S的三种操作模式</h3><ul>
+<li><p>图片来自TI的TLV320AIC3104的数据表，其中WCLK为LRCLK信号，BCLK为SCK信号。</p>
+</li>
+<li><p>无论哪种模式，串行数据都是以二进制补码进行传输的，且先传输MSB，LSB的位置取决于I2S的位宽，长会被截断，短会被补零。</p>
+</li>
+<li><p>根据下面的波形可以看到：I2S模式，WS&#x3D;0-&gt;左，WS&#x3D;1-&gt;右;而左对齐和右对齐和I2S模式规定相反。</p>
+</li>
+<li><p>不同的模式决定了解码方式也不同。</p>
+</li>
+<li><p>根据SD和WCLK情况可分为三种模式：  </p>
 <ul>
 <li><p>I2S模式</p>
 <ul>
 <li>在WCLK下降沿之后的一个BCLK周期的上升沿采到的数据有效。</li>
 <li>WCLK在BCLK下降沿变化，发送方在BCLK下降沿改变数据，而接收方在BCLK上升沿采样数据。</li>
 </ul>
-<p><img src="3201119-20230724144906940-1187645121.png" srcset="/img/loading.gif" lazyload /></p></li>
+<p><img src="/2023/10/28/I2S%E5%8D%8F%E8%AE%AE/3201119-20230724144906940-1187645121.png"></p>
+</li>
 <li><p>左对齐模式</p>
 <ul>
 <li>相较于I2S模式，没有延迟一个BCLK周期。</li>
-<li>不需要关心数据的长度，只会对LSB进行处理，截取/补零；但是MSB不会有问题。</li>
+<li>不需要关心数据的长度，只会对LSB进行处理，截取&#x2F;补零；但是MSB不会有问题。</li>
 <li>发送方在BCLK下降沿改变数据，而接收方在BCLK上升沿采样数据。</li>
 </ul>
-<p><img src="3201119-20230724145852016-1096610293.png" srcset="/img/loading.gif" lazyload /></p></li>
+<p><img src="/2023/10/28/I2S%E5%8D%8F%E8%AE%AE/3201119-20230724145852016-1096610293.png"></p>
+</li>
 <li><p>右对齐模式</p>
 <ul>
 <li>不足：接收设备需要事先知道传输数据的长度，否则可能会导致MSB被截断</li>
 </ul>
-<p><img src="3201119-20230724162951792-210572944.png" srcset="/img/loading.gif" lazyload /></p></li>
-</ul></li>
-<li>对于I2S模式和左对齐模式，可以允许发送端和接收端数据长度不同，因为接收端和发送端可以进行相应的截断和补0.
+<p><img src="/2023/10/28/I2S%E5%8D%8F%E8%AE%AE/3201119-20230724162951792-210572944.png"></p>
+</li>
+</ul>
+</li>
+<li><p>对于I2S模式和左对齐模式，可以允许发送端和接收端数据长度不同，因为接收端和发送端可以进行相应的截断和补0.</p>
 <ul>
 <li>为了保证数据音频信号的正确传输，发送端和接收端最好使用相同的数据格式和长度。</li>
-</ul></li>
 </ul>
-<h2 id="i2s-应用">2. I2S 应用</h2>
-<ul>
-<li>注意：这里只讨论I2S模式，不讨论左对齐/右对齐模式。</li>
+</li>
+</ul>
+<h2 id="2-I2S-应用"><a href="#2-I2S-应用" class="headerlink" title="2. I2S 应用"></a>2. I2S 应用</h2><ul>
+<li>注意：这里只讨论I2S模式，不讨论左对齐&#x2F;右对齐模式。</li>
 <li>讨论基于DMA和中断的乒乓缓冲区方案，旨在降低用于处理音频数据流的CPU开销。</li>
-<li>为什么需要该方案
-<ul>
+<li>为什么需要该方案<ul>
 <li>采样率一般会在8KHz-48KHz之间，甚至可以更高。如果使用CPU去处理每个中断，那么系统效率会非常低。</li>
 <li>另外大部分的音频算法会累积音频流中的数据形成缓冲数据块，之后再对缓存数据块进行处理。</li>
-</ul></li>
 </ul>
-<h3 id="方案概述">2.1 方案概述</h3>
-<ul>
-<li>具体方案结构框图如下图所示。
-<ul>
-<li>其中R和L分别代表右通道/左通道。每个通道都有用于乒乓操作的两个缓冲区（红色和黑色）。
-<ul>
-<li>乒乓相关知识可以看<a
-target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17482594.html">这篇博客</a>。</li>
-</ul></li>
-<li>我对框图的工作模式理解是
-<ul>
-<li>前面介绍，缓冲区被划分为四块；我们这里看红色和黑色两部分。红色部分我们使用DMA将其传送到I2S
-TX模块。
-<ul>
+</li>
+</ul>
+<h3 id="2-1-方案概述"><a href="#2-1-方案概述" class="headerlink" title="2.1 方案概述"></a>2.1 方案概述</h3><ul>
+<li>具体方案结构框图如下图所示。<ul>
+<li>其中R和L分别代表右通道&#x2F;左通道。每个通道都有用于乒乓操作的两个缓冲区（红色和黑色）。<ul>
+<li>乒乓相关知识可以看<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17482594.html">这篇博客</a>。</li>
+</ul>
+</li>
+<li>我对框图的工作模式理解是<ul>
+<li>前面介绍，缓冲区被划分为四块；我们这里看红色和黑色两部分。红色部分我们使用DMA将其传送到I2S TX模块。<ul>
 <li>根据要求假设N为缓冲区中采样数据数量，DMA传送了N个采样数据之后，DMA会向CPU发起一个中断。</li>
-</ul></li>
+</ul>
+</li>
 <li>中断期间，CPU执行音频解码算法之后获得的输出数据，并将输出数据填充到缓冲区。</li>
-<li>可以看到存在一个乒乓的工作模式：
-<ul>
+<li>可以看到存在一个乒乓的工作模式：<ul>
 <li>T1：中断：CPU计算完成，将数据送到缓冲区R_TX0。与此同时DMA在搬移R_TX1的数据。</li>
 <li>T2：DMA搬移结束后再次触发中断，此时DMA继续搬移R_TX0中的数据。CPU完成计算，并将数据送到缓冲区R_TX1中。</li>
 <li>依次类推，形成乒乓的工作模式。</li>
-</ul></li>
-</ul></li>
-<li>注意：考虑到音频信号具有较强的实时性要求，因此，所有计算都必须在下个中断发生之前完成，否则会导致系统故障。</li>
-</ul></li>
 </ul>
-<p><img src="3201119-20230724200700025-1774790489.png" srcset="/img/loading.gif" lazyload /></p>
-<h3 id="i2s-的-fifo-特性">2.2 I2S 的 FIFO 特性</h3>
-<ul>
-<li>I2S 的 FIFO
-从DMA中读数据，FIFO中的数据会交替发送到左右通道；判断依据可选择FIFO中是否存在空数据。
+</li>
+</ul>
+</li>
+<li>注意：考虑到音频信号具有较强的实时性要求，因此，所有计算都必须在下个中断发生之前完成，否则会导致系统故障。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2023/10/28/I2S%E5%8D%8F%E8%AE%AE/3201119-20230724200700025-1774790489.png"></p>
+<h3 id="2-2-I2S-的-FIFO-特性"><a href="#2-2-I2S-的-FIFO-特性" class="headerlink" title="2.2 I2S 的 FIFO 特性"></a>2.2 I2S 的 FIFO 特性</h3><ul>
+<li><p>I2S 的 FIFO 从DMA中读数据，FIFO中的数据会交替发送到左右通道；判断依据可选择FIFO中是否存在空数据。</p>
 <ul>
 <li>如下图所示，当FIFO的空数据计数为2时，就会让DMA加载一条数据进入左通道，一条数据进入右通道。</li>
 </ul>
-<img src="3201119-20230724220704113-1334935146.png" srcset="/img/loading.gif" lazyload /></li>
+<p><img src="/2023/10/28/I2S%E5%8D%8F%E8%AE%AE/3201119-20230724220704113-1334935146.png"></p>
+</li>
 </ul>
-<h3 id="dma-和中断-配置">2.3 DMA 和中断 配置</h3>
-<ul>
+<h3 id="2-3-DMA-和中断-配置"><a href="#2-3-DMA-和中断-配置" class="headerlink" title="2.3 DMA 和中断 配置"></a>2.3 DMA 和中断 配置</h3><ul>
 <li>2.1节中有介绍到DMA和中断CPU处理之间的乒乓工作模式。下面会依据实例详细介绍。</li>
-<li>下图可以看到，共有四个数据块，每个数据块有四个采样，每个采样都有四个字节。
-<ul>
-<li>DMA的访问顺序是左右通道交叉，如：0x00,0x20,0x04,0x24...</li>
-</ul></li>
-<li>乒乓操作实现
-<ul>
-<li>当DMA读取地址经过0x00,0x20...到达0x2c时，TX0内的所有数据都已经发送完毕，发起一个中断。</li>
+<li>下图可以看到，共有四个数据块，每个数据块有四个采样，每个采样都有四个字节。<ul>
+<li>DMA的访问顺序是左右通道交叉，如：0x00,0x20,0x04,0x24…</li>
+</ul>
+</li>
+<li>乒乓操作实现<ul>
+<li>当DMA读取地址经过0x00,0x20…到达0x2c时，TX0内的所有数据都已经发送完毕，发起一个中断。</li>
 <li>随后，CPU进行算法计算，并将数据填充到BLOCK0和BLOCK2中；与此同时，DMA处理BLOCK1和BLOCK3。</li>
 <li>当DMA到达地址0x3c时，会发起另一个中断。</li>
 <li>随后，CPU进行算法计算，并将数据填充到BLOCK1和BLOCK3中；与此同时，DMA处理BLOCK0和BLOCK2。</li>
-</ul></li>
 </ul>
-<div data-align="center">
-<img src="3201119-20230724221806028-635573909.png" srcset="/img/loading.gif" lazyload width = 60%/>
-</div>
+</li>
+</ul>
+<div align=center><img src="3201119-20230724221806028-635573909.png" width = 60%/></div>
+
+  
 
                 
               </div>
@@ -650,7 +648,7 @@ TX模块。
             
   
   
-    <article id="comments" lazyload>
+    <article id="comments">
       
   <div id="valine"></div>
   <script type="text/javascript">
@@ -860,10 +858,6 @@ TX模块。
 
 
 
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
 
 
 
@@ -968,7 +962,7 @@ TX模块。
               inlineMath: { '[+]': [['$', '$']] }
             },
             loader : {
-              load: ['ui/lazy']
+              
             },
             options: {
               renderActions: {
