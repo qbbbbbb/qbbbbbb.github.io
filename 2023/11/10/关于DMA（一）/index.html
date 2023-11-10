@@ -17,30 +17,28 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考  https:&#x2F;&#x2F;www.icourse163.org&#x2F;learn&#x2F;NJU-1001625001   1. 计算机系统层次  软件程序的转换处理过程  以C-源程序为例，在GCC+Linux平台中的处理如下：  （1）首先输入源程序文件hello.c，经过预处理（使用cpp）得到hello.i文件，其仍为源程序。 （2）对hello.i文件进行编译，得到hello">
+    <meta name="description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhejfl&#x2F;article&#x2F;details&#x2F;82555634 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_25814297&#x2F;article&#x2F;details&#x2F;109256809    1. CPU与外设数据传送方式  主要有程序传送方式和中断传送方式。 程序传送方式  在程序控制下进行数据输入&#x2F;输出操作，分为无条">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算机系统层次">
-<meta property="og:url" content="http://binbinqian.cn/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1/index.html">
+<meta property="og:title" content="关于DMA（一）">
+<meta property="og:url" content="http://binbinqian.cn/2023/11/10/%E5%85%B3%E4%BA%8EDMA%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考  https:&#x2F;&#x2F;www.icourse163.org&#x2F;learn&#x2F;NJU-1001625001   1. 计算机系统层次  软件程序的转换处理过程  以C-源程序为例，在GCC+Linux平台中的处理如下：  （1）首先输入源程序文件hello.c，经过预处理（使用cpp）得到hello.i文件，其仍为源程序。 （2）对hello.i文件进行编译，得到hello">
+<meta property="og:description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhejfl&#x2F;article&#x2F;details&#x2F;82555634 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_25814297&#x2F;article&#x2F;details&#x2F;109256809    1. CPU与外设数据传送方式  主要有程序传送方式和中断传送方式。 程序传送方式  在程序控制下进行数据输入&#x2F;输出操作，分为无条">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1/image-20231030201350657.png">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1/2.png">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1/image-20231030215107334.png">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1/3.png">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1/4.png">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1/811006-20180503113716101-439702289.png">
-<meta property="article:published_time" content="2023-10-30T06:45:56.000Z">
-<meta property="article:modified_time" content="2023-10-31T09:13:18.236Z">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/10/%E5%85%B3%E4%BA%8EDMA%EF%BC%88%E4%B8%80%EF%BC%89/3201119-20230619103536811-196767221.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/10/%E5%85%B3%E4%BA%8EDMA%EF%BC%88%E4%B8%80%EF%BC%89/3201119-20230619142642039-262400331.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/10/%E5%85%B3%E4%BA%8EDMA%EF%BC%88%E4%B8%80%EF%BC%89/3201119-20230619142617331-2035675790.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/10/%E5%85%B3%E4%BA%8EDMA%EF%BC%88%E4%B8%80%EF%BC%89/3201119-20230619142711559-810710251.png">
+<meta property="article:published_time" content="2023-11-10T14:20:38.000Z">
+<meta property="article:modified_time" content="2023-11-10T14:31:25.400Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://binbinqian.cn/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1/image-20231030201350657.png">
+<meta name="twitter:image" content="http://binbinqian.cn/2023/11/10/%E5%85%B3%E4%BA%8EDMA%EF%BC%88%E4%B8%80%EF%BC%89/3201119-20230619103536811-196767221.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>计算机系统层次 - 可达达鸭</title>
+  <title>关于DMA（一） - 可达达鸭</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -233,7 +231,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="计算机系统层次"></span>
+            <span id="subtitle" data-typed-text="关于DMA（一）"></span>
           
         </div>
 
@@ -244,8 +242,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-30 14:45" pubdate>
-          2023年10月30日 下午
+        <time datetime="2023-11-10 22:20" pubdate>
+          2023年11月10日 晚上
         </time>
       </span>
     
@@ -256,7 +254,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.9k 字
+          1.7k 字
         
       </span>
     
@@ -267,7 +265,7 @@
         
         
         
-          25 分钟
+          15 分钟
         
       </span>
     
@@ -473,17 +471,17 @@
     
     
     <div class="category-sub row nomargin-x">
-      <a class="category-subitem collapsed
+      <a class="category-subitem 
           list-group-item category-item-action col-10 col-md-11 col-xm-11" title="DMA"
         id="heading-33fd5f6391f2f0cb4c91179d7f521949" role="tab" data-toggle="collapse" href="#collapse-33fd5f6391f2f0cb4c91179d7f521949"
-        aria-expanded="false"
+        aria-expanded="true"
       >
         DMA
         <span class="list-group-count">(1)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
-      <div class="category-collapse collapse " id="collapse-33fd5f6391f2f0cb4c91179d7f521949"
+      <div class="category-collapse collapse show" id="collapse-33fd5f6391f2f0cb4c91179d7f521949"
            role="tabpanel" aria-labelledby="heading-33fd5f6391f2f0cb4c91179d7f521949">
         
         
@@ -495,7 +493,7 @@
       
         <a href="/2023/11/10/%E5%85%B3%E4%BA%8EDMA%EF%BC%88%E4%B8%80%EF%BC%89/" title="关于DMA（一）"
            class="list-group-item list-group-item-action
-           ">
+           active">
           <span class="category-post">关于DMA（一）</span>
         </a>
       
@@ -556,17 +554,17 @@
     
     
     <div class="category-sub row nomargin-x">
-      <a class="category-subitem 
+      <a class="category-subitem collapsed
           list-group-item category-item-action col-10 col-md-11 col-xm-11" title="软件层"
         id="heading-1654183e6eb9c02fbd5236f3d230064a" role="tab" data-toggle="collapse" href="#collapse-1654183e6eb9c02fbd5236f3d230064a"
-        aria-expanded="true"
+        aria-expanded="false"
       >
         软件层
         <span class="list-group-count">(1)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
-      <div class="category-collapse collapse show" id="collapse-1654183e6eb9c02fbd5236f3d230064a"
+      <div class="category-collapse collapse " id="collapse-1654183e6eb9c02fbd5236f3d230064a"
            role="tabpanel" aria-labelledby="heading-1654183e6eb9c02fbd5236f3d230064a">
         
         
@@ -578,7 +576,7 @@
       
         <a href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1/" title="计算机系统层次"
            class="list-group-item list-group-item-action
-           active">
+           ">
           <span class="category-post">计算机系统层次</span>
         </a>
       
@@ -605,12 +603,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">计算机系统层次</h1>
+            <h1 id="seo-header">关于DMA（一）</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年10月31日 下午
+                    本文最后更新于：2023年11月10日 晚上
                   
                 
               </p>
@@ -621,184 +619,109 @@
                 <ul>
 <li>参考
 <ul>
-<li><a target="_blank" rel="noopener" href="https://www.icourse163.org/learn/NJU-1001625001"
-class="uri">https://www.icourse163.org/learn/NJU-1001625001</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhejfl/article/details/82555634"
+class="uri">https://blog.csdn.net/zhejfl/article/details/82555634</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/qq_25814297/article/details/109256809"
+class="uri">https://blog.csdn.net/qq_25814297/article/details/109256809</a></li>
 </ul></li>
 </ul>
-<h2 id="计算机系统层次">1. 计算机系统层次</h2>
+<hr />
+<h2 id="cpu与外设数据传送方式">1. CPU与外设数据传送方式</h2>
 <ul>
-<li><p>软件程序的转换处理过程</p>
+<li>主要有程序传送方式和中断传送方式。</li>
+<li>程序传送方式
 <ul>
-<li>以C-源程序为例，在GCC+Linux平台中的处理如下：
-<ul>
-<li>（1）首先输入源程序文件hello.c，经过<strong>预处理</strong>（使用cpp）得到hello.i文件，其仍为源程序。</li>
-<li>（2）对hello.i文件进行<strong>编译</strong>，得到hello.s文件，其为汇编语言程序。</li>
-<li>（3）将hello.s文件送入<strong>汇编器</strong>中，得到hello.o文件，其为可重定位目标程序（二进制，包括多条机器指令）。</li>
-<li>（4）在程序中可能还有其它源程序参与，所以需要拿到其它源程序的.o文件，并进行<strong>链接</strong>，得到可执行目标程序（二进制）。</li>
+<li>在程序控制下进行数据输入/输出操作，分为无条件（无需考虑外设状态，直接IN/OUT指令输出）和查询（在IN/OUT指令前，需要查询设备状态）两种。</li>
 </ul></li>
-<li>上面介绍为计算机软件层实现的，从<strong>高级语言源程序-汇编语言源程序-机器语言目标程序</strong>的过程。</li>
-<li>在计算机硬件层面，有<strong>指令译码器</strong>对机器语言的<strong>二进制指令进行译码</strong>，生成对应的控制信号来实现计算机的一些硬件操作。</li>
+<li>中断传送方式
+<ul>
+<li>外设向CPU发起请求，CPU暂停正在执行的程序，去传输数据给外设，传输结束后。CPU再继续被暂停的程序。</li>
 </ul></li>
-<li><p>现代计算机系统层次如下图所示。</p>
+<li>程序传送方式和中断传送方式的区别
 <ul>
-<li>其中语言处理系统包括：
-<ul>
-<li>各种语言处理程序（如编译、汇编、链接）。</li>
-<li>运行时的系统：如库函数，调试、优化等功能。</li>
+<li>前者为CPU主动发起，轮询外设，效率低。</li>
+<li>后者为外设主动发起，等待CPU处理，但是<strong>需要进行断点和现场的保护和恢复，浪费CPU时间，适合少量数据的传输。</strong></li>
 </ul></li>
-<li>其中操作系统包括人机交互界面、提供服务功能的内核例程。</li>
-<li>其中指令集体系结构（ISA）可以认为是对计算机硬件设计的抽象，而所有的软件功能也都是建立在ISA之上。
+<li>下图列出了CPU程序传送方式、中断传送方式以及DMA传送方式的CPU使用情况。（图源不知道是哪里，有点糊。）</li>
+</ul>
+<p><img src="3201119-20230619103536811-196767221.png" /></p>
+<h2 id="dma-批量数据传输">2. DMA 批量数据传输</h2>
+<h3 id="传输方向">2.1 传输方向</h3>
 <ul>
-<li>其中ISA相关的内容可以看<a
-target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17515912.html">这篇博客</a>。</li>
-<li>计算机硬件需要满足ISA规定的功能。</li>
+<li>存储器到外设</li>
+</ul>
+<p><img src="3201119-20230619142642039-262400331.png" /></p>
+<ul>
+<li>外设到存储器</li>
+</ul>
+<p><img src="3201119-20230619142617331-2035675790.png" /></p>
+<ul>
+<li>存储器到存储器</li>
+</ul>
+<p><img src="3201119-20230619142711559-810710251.png" /></p>
+<h3 id="传输过程">2.2 传输过程</h3>
+<ul>
+<li>（1）请求
+<ul>
+<li>CPU配置DMA相关寄存器：
+<ul>
+<li>控制命令寄存器，配置传输数据的发起方式、数据大小、通道。</li>
+<li>初始地址寄存器，DMAC根据该地址寄存器的值，进行寻址传输数据。</li>
+</ul></li>
+<li>之后向I/O接口发出操作命令；外设向DMA控制器发出请求，有单独请求信号线，而不是走AHB总线。</li>
+</ul></li>
+<li>（2）响应
+<ul>
+<li>DMA控制器对 多个DMA请求
+判断优先级以及是否屏蔽请求，之后向总线仲裁模块提出总线请求。</li>
+<li>当CPU执行完当前任务即可释放总线控制权。DMA控制器获得总线控制权后便开始传输。<br />
+</li>
+</ul></li>
+<li>（3）传输
+<ul>
+<li>DMA拿到总线控制权后，CPU无法使用总线，所以它挂起或只执行内部操作；DMA控制器直接控制内部存储器与外设之间的数据交互。</li>
+</ul></li>
+<li>（4）结束
+<ul>
+<li>完成数据传送后，DMA控制器释放总线控制权，并向外设发出结束信号，外设需要结束数据传输工作，并向CPU提出中断请求。</li>
+<li>CPU执行中断服务程序，检验DMA传输过程是否出错，以及是否要继续使用DMA传送其它数据块。</li>
+</ul></li>
+</ul>
+<h2 id="dma-cpu-内存分配">3. DMA &amp; CPU 内存分配</h2>
+<ul>
+<li>DMA传输需要对内存进行操作，而CPU在DMA传输过程中仍可以继续工作，可能也会对内存进行操作，这就涉及到DMA和CPU怎么分时使用内存。通常有3种传送方式：
+<ul>
+<li>（1）停止CPU访问内存
+<ul>
+<li>DMA控制器向仲裁器申请总线控制权时，CPU交出控制权，处于不工作状态或者保持状态。</li>
+<li>优点：控制简单；</li>
+<li>缺点：考虑到外设传送两个数据之间的间隔一般大于内存的存储周期，例如，外设读出两个数据之间的间隔大概32us，内存的存储周期大概为0.5us，那么内存就有31.5us（63个内存周期）的空闲。</li>
+</ul></li>
+<li>（2）周期挪用（较为常用）
+<ul>
+<li>DMA访问内存和CPU访问内存没有冲突。
+<ul>
+<li>例如，CPU正在执行乘法操作，从内存取出数据之后可能还要消耗一些周期，此时DMA挪用一两个内存周期也不会影响CPU的程序执行。</li>
+</ul></li>
+<li>DMA访问内存和CPU访问内存有冲突。
+<ul>
+<li>需要优先DMA（I/O）访内，因为I/O访问内存有时间要求，这个数据必须在下一个I/O访问请求之前存取/读出完毕。</li>
+<li>此时可以在CPU访问内存过程中插入DMA请求，挪用一两个CPU的内存周期，用于DMA的数据存取；延缓了CPU对内存空间的操作。</li>
+<li>但是DMA每次挪用需要有申请总线控制权、归还总线控制权的过程，所以每次读取一个字对于内存来说可能只要一个周期，但是对于DMA控制器却要2-5个内存周期。但是好在大部分的外设读写周期都要大于内存存储周期。</li>
+</ul></li>
+</ul></li>
+<li>（3）DMA和CPU交替访问内存
+<ul>
+<li>主要适用于CPU工作周期比内存存取周期长的多情况。
+<ul>
+<li>例如CPU周期为1.2us，内存存取小于0.6us，这样就可以将一个CPU周期分为C1和C2两个周期，其中C1为DMA访问内存，C2为CPU访问内存。</li>
+</ul></li>
+<li>这种方式不必像（2）中一样需要总线使用权的申请和归还过程，因为总线使用权是C1和C2分时制的。对于总线来说，输入的数据、地址、控制信号等是由C1,C2周期控制的多路选择器的输出。</li>
+<li>这种方式CPU不会停止主程序的运行，也不会进入等待状态，效率是三种方式中最高的，但是相应的硬件逻辑也更复杂。</li>
 </ul></li>
 </ul></li>
 </ul>
-<pre><code class=" mermaid">graph TB
-	A(应用程序) --&gt; B(语言处理系统) --&gt; C(操作系统) --&gt; D(指令集体系结构) --&gt; E(计算机硬件)
-</code></pre>
-<h2 id="可执行文件生成过程详解">2. 可执行文件生成过程详解</h2>
-<h3 id="预处理">2.1 预处理</h3>
-<ul>
-<li><p>仍以C-源程序、GCC+Linux平台为例；预处理命令格式如下：</p>
-<p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$</span><span class="language-bash">gcc -E a.c -o a.i</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">或直接使用预处理命令：cpp</span><br><span class="hljs-meta prompt_">$</span><span class="language-bash">cpp a.c &gt; a.i</span><br></code></pre></td></tr></table></figure></p></li>
-<li><p>预处理主要完成以下任务</p>
-<ul>
-<li><p>处理源文件中以 “#” 开头的预编译指令，包括：</p>
-<ul>
-<li>删除 “#define” 并展开所定义的宏。</li>
-<li>处理所有条件预编译指令，如 “ #if”，“#ifdef”，“#endif” 等。</li>
-<li>处理源文件中的“#include”，将头文件插入此处；如果头文件中也有#include，可以进行递归处理。</li>
-<li>添加代码行号和文件名标识，方便编译时编译器产生调试用的行号信息等。</li>
-<li>保留所有 “#pragma” 编译指令，在后面编译时，编译器需要使用。</li>
-</ul></li>
-<li><p>经过预处理后，得到的仍是源文件，只是不包含任何宏定义。</p></li>
-<li><p>举例如下</p>
-<p><img src="image-20231030201350657.png" style="zoom:50%;" /></p></li>
-</ul></li>
-</ul>
-<h3 id="编译">2.2 编译</h3>
-<ul>
-<li><p>对预处理后得到的文件进行词法分析、语法分析、语义分析并优化，生成汇编代码文件。</p></li>
-<li><p>编译命令格式如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$</span><span class="language-bash">gcc -S a.i -o a.s</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">或直接使用编译命令 cc1</span><br><span class="hljs-meta prompt_">$</span><span class="language-bash">/users/.../cc1 a.i</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">如果将预处理和编译放在一起进行</span><br><span class="hljs-meta prompt_">$</span><span class="language-bash">gcc -S a.c -o a.s</span><br></code></pre></td></tr></table></figure></li>
-<li><p>可以看到无论是预处理、编译还是后面的汇编，都可以使用gcc命令。</p>
-<ul>
-<li>gcc命令实际上是具体程序（如 ccp/cc1/as 等）的包装命令。</li>
-<li>用户可以使用gcc命令，并加上特定选项来使用特定的程序。</li>
-</ul></li>
-</ul>
-<h3 id="汇编">2.3 汇编</h3>
-<ul>
-<li><p>汇编指令和机器指令是一一对应的，前者是后者的符号表示，都是机器级指令。</p></li>
-<li><p>汇编指令格式如下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$</span><span class="language-bash">gcc -c a.s -o a.o</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">或直接使用汇编命令as</span><br><span class="hljs-meta prompt_">$</span><span class="language-bash">as a.s -o a.o</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">可以使用下面命令直接完成三步</span><br><span class="hljs-meta prompt_">$</span><span class="language-bash">gcc -c a.c -o a.o</span><br></code></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="链接">2.4 链接</h3>
-<ul>
-<li><p>链接指令格式如下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">其中myproc为链接后生成的可执行文件</span><br><span class="hljs-meta prompt_">$</span><span class="language-bash">gcc -static -o myproc main.o test.o</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">或直接采用链接命令ld</span><br><span class="hljs-meta prompt_">$</span><span class="language-bash">ld -static -o myproc main.o test.o</span><br></code></pre></td></tr></table></figure></li>
-<li><p>链接操作步骤</p>
-<ul>
-<li>（1）确定符号引用关系，代码段符号、数据段符号相互关联起来。</li>
-<li>（2）合并相关的.o文件，将相关的代码段和数据段分别合并在一起。</li>
-<li>（3）在合并后，就可以确定每个符号的地址，如下图的P0,P1,A,B,C等。</li>
-<li>（4）在指令中添入新的地址。</li>
-<li>第（1）步为符号解析，后面三步称为重定位。</li>
-</ul>
-<p><img src="2.png" style="zoom:50%;" /></p></li>
-<li><p>C语言程序举例</p>
-<ul>
-<li>下图为<strong>可重定位目标文件和可执行目标文件</strong>之间映射关系。
-<ul>
-<li>注意：swap()函数中的temp变量为局部变量，其被分配在栈中，不会在过程外被引用，因此不是符号定义。</li>
-<li>在链接过程中会将相同的节进行合并。并完成符号解析和重定位。</li>
-<li>图中text节为代码节，data节为已初始化后的数据节，bss为未初始化的全局变量和局部静态变量。还有许多其它未介绍的节，可以网上查阅。
-<ul>
-<li>注意：bss节中默认初始值为0，因此在磁盘并不需要占实际空间，只需要在节头表中声明此处需要多少长度的内存空间。</li>
-<li>在写入虚拟内存时，需要为4个节分配存储空间，分别为text，data，bss 和
-rodata。</li>
-<li>节头表包括了每个节的节名、偏移、大小、访问属性、对齐方式等信息。</li>
-</ul></li>
-</ul></li>
-</ul>
-<p><img src="image-20231030215107334.png" style="zoom:50%;" /></p>
-<p><img src="3.png" alt="3" style="zoom:50%;" /></p>
-<ul>
-<li><p>下图为磁盘中的<strong>可执行目标文件和虚拟内存</strong>之间的映射关系。</p>
-<ul>
-<li>其中<strong>ELF</strong>为Linux下的<strong>目标文件格式</strong>，后面会进行详细介绍。
-<ul>
-<li>ELF头
-包括了文件类型，大端/小端，机器类型，以及程序头表和节头表相关信息（偏移、大小、个数等）。
-<ul>
-<li>对于可执行目标文件，ELF头需要给字段 e_entry
-执行程序时第一条指令的地址。而在可重定位文件中因为并不需要进行执行，所以该字段为0.</li>
-</ul></li>
-</ul></li>
-<li>其中程序（段）头表中说明了每个段的属性，包括：可执行目标文件中的节与虚拟地址的映射关系、段的大小、在虚拟空间中的位置、对齐方式以及访问属性等。
-<ul>
-<li>程序头表中有<strong>两个表项为可装入段</strong>(即：Type=LOAD)，完成向虚拟空间装入<strong>只读代码段以及读写数据段。</strong></li>
-</ul></li>
-<li>像前面介绍，在写入虚拟内存时，只需要为4个节分配存储空间。因此下图中可执行目标文件灰色部分的节不需要装入到存储空间。</li>
-<li>另外，可执行目标文件比可重定位目标文件<strong>多了一个.init节</strong>，用于定义_init函数，该函数是用来进行执行目标文件时的初始化工作的。</li>
-</ul>
-<p><img src="4.png" alt="4" style="zoom:50%;" /></p></li>
-</ul></li>
-</ul>
-<h3 id="目标文件">2.5 目标文件</h3>
-<ul>
-<li>三类目标文件
-<ul>
-<li>可重定位目标文件 (.o)
-<ul>
-<li>为汇编之后得到的文件，其代码和数据可以和其它可重定位文件合并为可执行文件。</li>
-<li>每个.o文件的代码和数据地址都是从0开始。</li>
-</ul></li>
-<li>可执行目标文件（Linux默认为a.out，windows中为*.exe）
-<ul>
-<li>包含代码和数据可以被直接映射到虚拟内存中被执行。</li>
-<li>代码和数据的地址为虚拟内存空间中的地址。</li>
-</ul></li>
-<li>共享的目标文件（Linux中的*.so）
-<ul>
-<li>特殊的可重定位目标文件，能够在运行时自动被装入到内存中并自动链接到某个存在相关调用的可执行目标文件中。</li>
-<li>这种是<strong>动态的被链接</strong>，区别于前面添加多个相关的可重定位目标文件进行的<strong>静态链接</strong>。</li>
-<li>更详细的会在后续动态链接处进行介绍。</li>
-</ul></li>
-</ul></li>
-<li>目标文件格式
-<ul>
-<li>DOS 操作系统：COM格式。
-<ul>
-<li>仅包含代码和数据，且被加载到内存的固定位置，不采用虚拟地址。</li>
-</ul></li>
-<li>System V UNIX 早期版本：COFF格式。
-<ul>
-<li>不仅包含代码和数据，还包含<strong>重定位信息、调试信息、符号表等</strong>。</li>
-</ul></li>
-<li>Windows：PE格式，COFF的变种。</li>
-<li>Linux：ELF (Executable and Linkable Format) 格式，COFF的变种。</li>
-</ul></li>
-</ul>
-<h2 id="elf格式">3. ELF格式</h2>
-<ul>
-<li><p>存在两种视图，包括链接视图(Linkable)和执行视图(Executable)。</p>
-<ul>
-<li><p>链接视图</p>
-<ul>
-<li>主要展示被链接的情况，按照相同特征划分为不同节。</li>
-</ul></li>
-<li><p>执行视图</p>
-<ul>
-<li>主要展示被执行的情况，将具有相同访问属性的节合并成段。</li>
-<li>前面也有介绍，段的属性被包括在程序（段）头表中。</li>
-</ul>
-<p><img src="811006-20180503113716101-439702289.png" /></p></li>
-</ul></li>
-</ul>
-<p>​</p>
 
                 
               </div>
@@ -822,7 +745,7 @@ rodata。</li>
   
     <span>></span>
     
-  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E8%AE%BE%E8%AE%A1/%E8%BD%AF%E4%BB%B6%E5%B1%82/" class="category-chain-item">软件层</a>
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E8%AE%BE%E8%AE%A1/DMA/" class="category-chain-item">DMA</a>
   
   
 
@@ -844,8 +767,8 @@ rodata。</li>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>计算机系统层次</div>
-      <div>http://binbinqian.cn/2023/10/30/计算机系统层次/</div>
+      <div>关于DMA（一）</div>
+      <div>http://binbinqian.cn/2023/11/10/关于DMA（一）/</div>
     </div>
     <div class="license-meta">
       
@@ -857,7 +780,7 @@ rodata。</li>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年10月30日</div>
+          <div>2023年11月10日</div>
         </div>
       
       
@@ -889,9 +812,9 @@ rodata。</li>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/11/01/%E5%85%B3%E4%BA%8ECPU/" title="关于CPU">
+                      <a href="/2023/11/10/%E5%85%B3%E4%BA%8EDMA%EF%BC%88%E4%BA%8C%EF%BC%89/" title="关于DMA（二）">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">关于CPU</span>
+                        <span class="hidden-mobile">关于DMA（二）</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -899,8 +822,8 @@ rodata。</li>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/29/Cache%E4%B8%80%E8%87%B4%E6%80%A7/" title="Cache一致性">
-                        <span class="hidden-mobile">Cache一致性</span>
+                      <a href="/2023/11/08/ICC-Route/" title="ICC-Route">
+                        <span class="hidden-mobile">ICC-Route</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

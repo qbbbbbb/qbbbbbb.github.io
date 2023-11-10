@@ -17,15 +17,13 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;102293437 《计算机组成与设计 第五版》    1. 分配策略  分配策略是指什么情况需要为数据分配cache line。 读分配  当CPU读数据时，cache缺失，分配一个cache line来缓存从主存中取出的数据。  写分配  场景：CPU写数据时，cache缺失。 当不支持写">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Cache-分配策略&amp;更新策略">
-<meta property="og:url" content="http://binbinqian.cn/2023/10/29/Cache-%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5&%E6%9B%B4%E6%96%B0%E7%AD%96%E7%95%A5/index.html">
+    <meta property="og:type" content="article">
+<meta property="og:title" content="关于DMA（二）">
+<meta property="og:url" content="http://binbinqian.cn/2023/11/10/%E5%85%B3%E4%BA%8EDMA%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;102293437 《计算机组成与设计 第五版》    1. 分配策略  分配策略是指什么情况需要为数据分配cache line。 读分配  当CPU读数据时，cache缺失，分配一个cache line来缓存从主存中取出的数据。  写分配  场景：CPU写数据时，cache缺失。 当不支持写">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-10-29T12:35:38.000Z">
-<meta property="article:modified_time" content="2023-10-29T12:41:41.442Z">
+<meta property="article:published_time" content="2023-11-10T14:20:49.000Z">
+<meta property="article:modified_time" content="2023-11-10T14:20:49.744Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -33,7 +31,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Cache-分配策略&amp;更新策略 - 可达达鸭</title>
+  <title>关于DMA（二） - 可达达鸭</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -226,7 +224,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Cache-分配策略&amp;更新策略"></span>
+            <span id="subtitle" data-typed-text="关于DMA（二）"></span>
           
         </div>
 
@@ -237,8 +235,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-29 20:35" pubdate>
-          2023年10月29日 晚上
+        <time datetime="2023-11-10 22:20" pubdate>
+          2023年11月10日 晚上
         </time>
       </span>
     
@@ -249,7 +247,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          0 字
         
       </span>
     
@@ -260,7 +258,7 @@
         
         
         
-          18 分钟
+          1 分钟
         
       </span>
     
@@ -298,299 +296,6 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar category-bar" style="margin-right: -1rem">
-    
-
-
-
-
-
-<div class="category-list">
-  
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item 
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="计算机组成与设计"
-        id="heading-f11e5860098dfc9633bfc0eb2a18e35f" role="tab" data-toggle="collapse" href="#collapse-f11e5860098dfc9633bfc0eb2a18e35f"
-        aria-expanded="true"
-      >
-        计算机组成与设计
-        <span class="list-group-count">(15)</span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-      <div class="category-collapse collapse show" id="collapse-f11e5860098dfc9633bfc0eb2a18e35f"
-           role="tabpanel" aria-labelledby="heading-f11e5860098dfc9633bfc0eb2a18e35f">
-        
-        
-          
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2023/11/01/RISC-V%20%E6%8C%87%E4%BB%A4/" title="RISC-V 指令"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">RISC-V 指令</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/11/01/%E5%85%B3%E4%BA%8ECPU/" title="关于CPU"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">关于CPU</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/11/01/%E6%A0%88%20&amp;%20%E5%A0%86/" title="栈 &amp; 堆"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">栈 &amp; 堆</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/10/28/%E7%A1%AC%E4%BB%B6%E9%A2%84%E5%8F%96/" title="硬件预取"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">硬件预取</span>
-        </a>
-      
-    
-  </div>
-
-          
-  
-    
-    
-    
-    <div class="category-sub row nomargin-x">
-      <a class="category-subitem 
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Cache"
-        id="heading-ab0cf104f39708eabd07b8cb67e149ba" role="tab" data-toggle="collapse" href="#collapse-ab0cf104f39708eabd07b8cb67e149ba"
-        aria-expanded="true"
-      >
-        Cache
-        <span class="list-group-count">(7)</span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-      <div class="category-collapse collapse show" id="collapse-ab0cf104f39708eabd07b8cb67e149ba"
-           role="tabpanel" aria-labelledby="heading-ab0cf104f39708eabd07b8cb67e149ba">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2023/10/29/Cache-%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5&amp;%E6%9B%B4%E6%96%B0%E7%AD%96%E7%95%A5/" title="Cache-分配策略&amp;更新策略"
-           class="list-group-item list-group-item-action
-           active">
-          <span class="category-post">Cache-分配策略&amp;更新策略</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/10/29/Cache-%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84%E7%BC%93%E5%AD%98&amp;%E5%A4%9A%E8%B7%AF%E7%BB%84%E8%BF%9E%E7%BC%93%E5%AD%98/" title="Cache-直接映射缓存&amp;多路组连缓存"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Cache-直接映射缓存&amp;多路组连缓存</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/10/29/Cache-%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80&amp;%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80/" title="Cache-虚拟地址&amp;物理地址"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Cache-虚拟地址&amp;物理地址</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/10/29/Cache%E4%B8%80%E8%87%B4%E6%80%A7/" title="Cache一致性"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Cache一致性</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/11/01/MESI%E5%8D%8F%E8%AE%AE/" title="MESI协议"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">MESI协议</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/10/29/TLB/" title="TLB"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">TLB</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/10/29/%E5%85%B3%E4%BA%8ECache/" title="关于Cache"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">关于Cache</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category-sub row nomargin-x">
-      <a class="category-subitem collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="DMA"
-        id="heading-33fd5f6391f2f0cb4c91179d7f521949" role="tab" data-toggle="collapse" href="#collapse-33fd5f6391f2f0cb4c91179d7f521949"
-        aria-expanded="false"
-      >
-        DMA
-        <span class="list-group-count">(1)</span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-      <div class="category-collapse collapse " id="collapse-33fd5f6391f2f0cb4c91179d7f521949"
-           role="tabpanel" aria-labelledby="heading-33fd5f6391f2f0cb4c91179d7f521949">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2023/11/10/%E5%85%B3%E4%BA%8EDMA%EF%BC%88%E4%B8%80%EF%BC%89/" title="关于DMA（一）"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">关于DMA（一）</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category-sub row nomargin-x">
-      <a class="category-subitem collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="内存相关"
-        id="heading-b2d62e3ed1360e3ed98837094ea442c7" role="tab" data-toggle="collapse" href="#collapse-b2d62e3ed1360e3ed98837094ea442c7"
-        aria-expanded="false"
-      >
-        内存相关
-        <span class="list-group-count">(2)</span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-      <div class="category-collapse collapse " id="collapse-b2d62e3ed1360e3ed98837094ea442c7"
-           role="tabpanel" aria-labelledby="heading-b2d62e3ed1360e3ed98837094ea442c7">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2023/11/01/%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" title="内存模型"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">内存模型</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/11/01/%E5%86%85%E5%AD%98%E9%87%8D%E6%8E%92%E5%BA%8F/" title="内存重排序"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">内存重排序</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category-sub row nomargin-x">
-      <a class="category-subitem collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="软件层"
-        id="heading-1654183e6eb9c02fbd5236f3d230064a" role="tab" data-toggle="collapse" href="#collapse-1654183e6eb9c02fbd5236f3d230064a"
-        aria-expanded="false"
-      >
-        软件层
-        <span class="list-group-count">(1)</span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-      <div class="category-collapse collapse " id="collapse-1654183e6eb9c02fbd5236f3d230064a"
-           role="tabpanel" aria-labelledby="heading-1654183e6eb9c02fbd5236f3d230064a">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1/" title="计算机系统层次"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">计算机系统层次</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-        
-      </div>
-    </div>
-  
-</div>
-
-
-  </aside>
-
 
     </div>
 
@@ -598,12 +303,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Cache-分配策略&amp;更新策略</h1>
+            <h1 id="seo-header">关于DMA（二）</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年10月29日 晚上
+                    本文最后更新于：2023年11月10日 晚上
                   
                 
               </p>
@@ -611,138 +316,7 @@
             
               <div class="markdown-body">
                 
-                <ul>
-<li>参考
-<ul>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102293437"
-class="uri">https://zhuanlan.zhihu.com/p/102293437</a></li>
-<li>《计算机组成与设计 第五版》</li>
-</ul></li>
-</ul>
-<hr />
-<h2 id="分配策略">1. 分配策略</h2>
-<ul>
-<li>分配策略是指什么情况需要为数据分配cache line。</li>
-<li>读分配
-<ul>
-<li>当CPU读数据时，cache缺失，分配一个cache
-line来缓存从主存中取出的数据。</li>
-</ul></li>
-<li>写分配
-<ul>
-<li>场景：CPU写数据时，cache缺失。</li>
-<li>当不支持写分配时，写指令直接更新主存的数据。例如：对某一页内存进行初始化操作（全部写0），此时就没必要将对应数据写入cache中。</li>
-<li>支持写分配时，会首先将主存中的数据加载到cache
-line中，（变成命中），然后更新cache line的数据/主存的数据。</li>
-</ul></li>
-</ul>
-<h2 id="更新策略">2. 更新策略</h2>
-<ul>
-<li>更新策略是指当cache命中时，写操作如何更新数据。</li>
-<li>写直通（Write Through）
-<ul>
-<li>例如，CPU执行store指令，且cache命中，首先更新cache中的数据，并更新主存中的数据。cache
-和主存的数据保持一致。</li>
-<li>但是<strong>性能不佳</strong>，因为每次写操作都会引起写主存的操作，这个延时是比较大的，至少100个处理器时钟周期，大大降低处理器性能。</li>
-<li>上面描述情况的解决方案是：<strong>write buffer</strong>
-<ul>
-<li>数据写入cache的同时也写入写缓冲中，之后处理器继续执行。</li>
-<li>写缓冲不断向主存中写入数据，如果写缓冲满了，那么处理器必须停顿流水线直到写缓冲中出现空闲表项。
-<ul>
-<li>我认为有点类似乒乓操作。</li>
-</ul></li>
-<li>如果主存写操作的速率小于处理器产生写操作的速率，那么多大容量的缓冲都没用，都会很快就满了。</li>
-<li>即使处理器产生写操作的写速率小于主存写操作速率，也可能会产生停顿，例如出现写burst传输时，此时可以增加写缓冲容量解决。</li>
-</ul></li>
-</ul></li>
-<li>写回（Write Back）
-<ul>
-<li>仍是CPU执行store指令，且cache命中，我们只更新cache中的数据，而不立即写入主存，此时cache和主存的数据不一致。</li>
-<li><strong>cache line有1个bit（dirty
-bit）用于记录数据是否被修改过。</strong></li>
-<li>当cache中的数据要被替换（如：出现写失效），才会写回主存中。</li>
-<li>需要实现一个<strong>write-back buffer</strong>。
-<ul>
-<li>在出现写失效时，需要根据dirty bit判断是否要将cache
-line中的数据写回到主存中。</li>
-<li>在主存读取需要填充到cache中的数据时，将cache
-line中的数据写入write-back buffer中。</li>
-<li>之后再由buffer写入主存中。</li>
-</ul></li>
-</ul></li>
-<li>写回 &amp; 写直通
-<ul>
-<li>写直通的写操作可以在一个周期内完成，读取标签的同时将数据写入对应的数据块。
-<ul>
-<li>如果tag匹配，那么完成写操作，处理器继续执行。</li>
-<li>如果tag不匹配，那么产生写失效，将主存中对应地址的数据取出送到cache中。</li>
-</ul></li>
-<li>写回的写操作至少需要两个周期去处理：第一个周期用于判断tag是否命中，若命中则第二个周期进行cache写操作。
-<ul>
-<li>不能一个周期就完成的原因：如果在第一个周期就将数据写入，如果tag没有命中，会导致cacheline原有数据未来得及写回主存中，导致数据被破坏。</li>
-<li>也可以像写直通一样实现一个<strong>store buffer</strong>。
-<ul>
-<li>第一个周期，将数据写入store
-buffer中，同时查找cache，判断是否命中。</li>
-<li>如果命中，在下一个无用的cache访问周期将新数据从buffer中写入cache。</li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
-<h2 id="实例">3. 实例</h2>
-<ul>
-<li>具体内容可以看<a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102293437">这篇文章</a>中的实例。</li>
-<li>这里只列出我觉得需要特殊注意的地方
-<ul>
-<li>当发现cache缺失时，会出现CPU从主存中取数据给cache
-line的情况，此时需要注意dirty bit是否被拉高。
-<ul>
-<li>如果该bit被拉高，那么cache的数据不能直接覆盖，说明这个数据对应的地址之前发生过写回操作，并没有同步到主存中，如果直接覆盖则会丢失这部分的数据。</li>
-<li>将被替换这部分数据写回至主存中。</li>
-<li>将主存中0x28地址（cache
-line地址对齐，这里应该要被8整除）开始的8个数据写入cache
-line中，并清除掉dirty bit，将offset找到的数据返回给CPU。</li>
-</ul></li>
-</ul></li>
-</ul>
-<h2 id="cache-性能评估">4. Cache 性能评估</h2>
-<ul>
-<li>$ CPU时间 = (CPU执行的时钟周期数 + 等待存储访问的时钟周期数) *
-时钟周期 $</li>
-<li>假设等待存储访问的时钟周期数主要来自于cache引起的，下面根据读和写分开讨论。
-<ul>
-<li>读操作带来的停顿周期数 只由读失效带来。 <span
-class="math display">\[
-读操作带来的停顿周期数=\frac{读操作数目}{程序}*\frac{读失效次数}{指令数目}*读失效代价
-\]</span><br />
-</li>
-<li>写操作带来的停顿周期数
-<ul>
-<li>写直通策略
-<ul>
-<li>有两个停顿的来源，写失效和写缓冲停顿。后者为buffer满时仍进行写操作引发的停顿。
-<span class="math display">\[
-写操作带来的停顿周期数 =
-\frac{写操作数目}{程序}*\frac{写失效次数}{指令数目}*写失效代价+写缓冲满时的停顿周期
-\]</span></li>
-</ul></li>
-<li>写回策略
-<ul>
-<li>停顿主要来源于cache line要被替换，并需要将原数据写回主存中。</li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li>前面介绍是未命中时对性能的影响，但是除了失效率，还有命中时间也会对性能有很大的影响。
-<ul>
-<li>举例：增大Cache的容量（主要是Cache
-line的个数），更大的Cache需要更久的命中时间。这个命中时间可以算在CPU执行的时钟周期数上。</li>
-<li>定义 平均存储访问时间(AMAT) 将Cache的命中时间也考虑在内，公式如下。
-<span class="math display">\[
-AMAT = 命中时间+失效率*失效代价
-\]</span></li>
-</ul></li>
-</ul>
+                
 
                 
               </div>
@@ -750,34 +324,6 @@ AMAT = 命中时间+失效率*失效代价
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E8%AE%BE%E8%AE%A1/" class="category-chain-item">计算机组成与设计</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E8%AE%BE%E8%AE%A1/Cache/" class="category-chain-item">Cache</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
 </div>
@@ -788,8 +334,8 @@ AMAT = 命中时间+失效率*失效代价
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Cache-分配策略&amp;更新策略</div>
-      <div>http://binbinqian.cn/2023/10/29/Cache-分配策略&amp;更新策略/</div>
+      <div>关于DMA（二）</div>
+      <div>http://binbinqian.cn/2023/11/10/关于DMA（二）/</div>
     </div>
     <div class="license-meta">
       
@@ -801,7 +347,7 @@ AMAT = 命中时间+失效率*失效代价
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年10月29日</div>
+          <div>2023年11月10日</div>
         </div>
       
       
@@ -833,9 +379,9 @@ AMAT = 命中时间+失效率*失效代价
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/29/Cache-%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80&amp;%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80/" title="Cache-虚拟地址&amp;物理地址">
+                      <a href="/2023/11/10/%E5%85%B3%E4%BA%8EDMA%EF%BC%88%E4%B8%89%EF%BC%89/" title="关于DMA（三）">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Cache-虚拟地址&amp;物理地址</span>
+                        <span class="hidden-mobile">关于DMA（三）</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -843,8 +389,8 @@ AMAT = 命中时间+失效率*失效代价
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/29/Cache-%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84%E7%BC%93%E5%AD%98&amp;%E5%A4%9A%E8%B7%AF%E7%BB%84%E8%BF%9E%E7%BC%93%E5%AD%98/" title="Cache-直接映射缓存&amp;多路组连缓存">
-                        <span class="hidden-mobile">Cache-直接映射缓存&amp;多路组连缓存</span>
+                      <a href="/2023/11/10/%E5%85%B3%E4%BA%8EDMA%EF%BC%88%E4%B8%80%EF%BC%89/" title="关于DMA（一）">
+                        <span class="hidden-mobile">关于DMA（一）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
