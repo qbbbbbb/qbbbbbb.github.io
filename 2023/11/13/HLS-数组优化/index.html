@@ -17,29 +17,27 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_52505851&#x2F;category_12399093.html https:&#x2F;&#x2F;blog.csdn.net&#x2F;hanlin1985&#x2F;article&#x2F;details&#x2F;3132210 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;wahahahehehe&#x2F;p&#x2F;15164437.html https:&#x2F;&#x2F;www.cnblogs.co">
+    <meta name="description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhangningning1996&#x2F;article&#x2F;details&#x2F;107444387 https:&#x2F;&#x2F;blog.csdn.net&#x2F;pc153262603&#x2F;article&#x2F;details&#x2F;106385483 https:&#x2F;&#x2F;www.xilinx.com&#x2F;htmldocs&#x2F;xilinx2017_4&#x2F;sdaccel_doc&#x2F;eil1504">
 <meta property="og:type" content="article">
-<meta property="og:title" content="栈 &amp; 堆">
-<meta property="og:url" content="http://binbinqian.cn/2023/11/01/%E6%A0%88%20&%20%E5%A0%86/index.html">
+<meta property="og:title" content="HLS-数组优化">
+<meta property="og:url" content="http://binbinqian.cn/2023/11/13/HLS-%E6%95%B0%E7%BB%84%E4%BC%98%E5%8C%96/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_52505851&#x2F;category_12399093.html https:&#x2F;&#x2F;blog.csdn.net&#x2F;hanlin1985&#x2F;article&#x2F;details&#x2F;3132210 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;wahahahehehe&#x2F;p&#x2F;15164437.html https:&#x2F;&#x2F;www.cnblogs.co">
+<meta property="og:description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhangningning1996&#x2F;article&#x2F;details&#x2F;107444387 https:&#x2F;&#x2F;blog.csdn.net&#x2F;pc153262603&#x2F;article&#x2F;details&#x2F;106385483 https:&#x2F;&#x2F;www.xilinx.com&#x2F;htmldocs&#x2F;xilinx2017_4&#x2F;sdaccel_doc&#x2F;eil1504">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://binbinqian.cn/2023/11/01/%E6%A0%88%20&%20%E5%A0%86/3201119-20230906220555789-544830672.png">
-<meta property="og:image" content="http://binbinqian.cn/2023/11/01/%E6%A0%88%20&%20%E5%A0%86/3201119-20230906222236489-589165970.png">
-<meta property="og:image" content="http://binbinqian.cn/2023/11/01/%E6%A0%88%20&%20%E5%A0%86/3201119-20230906232325563-433575287.png">
-<meta property="og:image" content="http://binbinqian.cn/2023/11/01/%E6%A0%88%20&%20%E5%A0%86/3201119-20230907111834366-1859723362.png">
-<meta property="og:image" content="http://binbinqian.cn/2023/11/01/%E6%A0%88%20&%20%E5%A0%86/3201119-20230918160341670-703117698.png">
-<meta property="article:published_time" content="2023-11-01T05:26:45.000Z">
-<meta property="article:modified_time" content="2023-11-01T07:44:50.231Z">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/13/HLS-%E6%95%B0%E7%BB%84%E4%BC%98%E5%8C%96/3201119-20230614163220222-364963959.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/13/HLS-%E6%95%B0%E7%BB%84%E4%BC%98%E5%8C%96/3201119-20230614163729467-1143607101.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/13/HLS-%E6%95%B0%E7%BB%84%E4%BC%98%E5%8C%96/3201119-20230614215724114-908302541.png">
+<meta property="article:published_time" content="2023-11-13T03:06:09.000Z">
+<meta property="article:modified_time" content="2023-11-13T03:19:47.199Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://binbinqian.cn/2023/11/01/%E6%A0%88%20&%20%E5%A0%86/3201119-20230906220555789-544830672.png">
+<meta name="twitter:image" content="http://binbinqian.cn/2023/11/13/HLS-%E6%95%B0%E7%BB%84%E4%BC%98%E5%8C%96/3201119-20230614163220222-364963959.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>栈 &amp; 堆 - 可达达鸭</title>
+  <title>HLS-数组优化 - 可达达鸭</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -232,7 +230,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="栈 &amp; 堆"></span>
+            <span id="subtitle" data-typed-text="HLS-数组优化"></span>
           
         </div>
 
@@ -243,8 +241,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-01 13:26" pubdate>
-          2023年11月1日 下午
+        <time datetime="2023-11-13 11:06" pubdate>
+          2023年11月13日 上午
         </time>
       </span>
     
@@ -255,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k 字
+          2.4k 字
         
       </span>
     
@@ -266,7 +264,7 @@
         
         
         
-          15 分钟
+          20 分钟
         
       </span>
     
@@ -319,226 +317,44 @@
     
     <div class="category row nomargin-x">
       <a class="category-item 
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="计算机组成与设计"
-        id="heading-f11e5860098dfc9633bfc0eb2a18e35f" role="tab" data-toggle="collapse" href="#collapse-f11e5860098dfc9633bfc0eb2a18e35f"
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="FPGA"
+        id="heading-a1b5c56eac8d96bc8d1c7e941a18dbf7" role="tab" data-toggle="collapse" href="#collapse-a1b5c56eac8d96bc8d1c7e941a18dbf7"
         aria-expanded="true"
       >
-        计算机组成与设计
-        <span class="list-group-count">(17)</span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-      <div class="category-collapse collapse show" id="collapse-f11e5860098dfc9633bfc0eb2a18e35f"
-           role="tabpanel" aria-labelledby="heading-f11e5860098dfc9633bfc0eb2a18e35f">
-        
-        
-          
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2023/11/01/RISC-V%20%E6%8C%87%E4%BB%A4/" title="RISC-V 指令"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">RISC-V 指令</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/11/01/%E5%85%B3%E4%BA%8ECPU/" title="关于CPU"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">关于CPU</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/11/01/%E6%A0%88%20&amp;%20%E5%A0%86/" title="栈 &amp; 堆"
-           class="list-group-item list-group-item-action
-           active">
-          <span class="category-post">栈 &amp; 堆</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/10/28/%E7%A1%AC%E4%BB%B6%E9%A2%84%E5%8F%96/" title="硬件预取"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">硬件预取</span>
-        </a>
-      
-    
-  </div>
-
-          
-  
-    
-    
-    
-    <div class="category-sub row nomargin-x">
-      <a class="category-subitem collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Cache"
-        id="heading-ab0cf104f39708eabd07b8cb67e149ba" role="tab" data-toggle="collapse" href="#collapse-ab0cf104f39708eabd07b8cb67e149ba"
-        aria-expanded="false"
-      >
-        Cache
-        <span class="list-group-count">(7)</span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-      <div class="category-collapse collapse " id="collapse-ab0cf104f39708eabd07b8cb67e149ba"
-           role="tabpanel" aria-labelledby="heading-ab0cf104f39708eabd07b8cb67e149ba">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2023/10/29/Cache-%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5&amp;%E6%9B%B4%E6%96%B0%E7%AD%96%E7%95%A5/" title="Cache-分配策略&amp;更新策略"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Cache-分配策略&amp;更新策略</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/10/29/Cache-%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84%E7%BC%93%E5%AD%98&amp;%E5%A4%9A%E8%B7%AF%E7%BB%84%E8%BF%9E%E7%BC%93%E5%AD%98/" title="Cache-直接映射缓存&amp;多路组连缓存"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Cache-直接映射缓存&amp;多路组连缓存</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/10/29/Cache-%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80&amp;%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80/" title="Cache-虚拟地址&amp;物理地址"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Cache-虚拟地址&amp;物理地址</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/10/29/Cache%E4%B8%80%E8%87%B4%E6%80%A7/" title="Cache一致性"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Cache一致性</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/11/01/MESI%E5%8D%8F%E8%AE%AE/" title="MESI协议"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">MESI协议</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/10/29/TLB/" title="TLB"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">TLB</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/10/29/%E5%85%B3%E4%BA%8ECache/" title="关于Cache"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">关于Cache</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category-sub row nomargin-x">
-      <a class="category-subitem collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="DMA"
-        id="heading-33fd5f6391f2f0cb4c91179d7f521949" role="tab" data-toggle="collapse" href="#collapse-33fd5f6391f2f0cb4c91179d7f521949"
-        aria-expanded="false"
-      >
-        DMA
+        FPGA
         <span class="list-group-count">(3)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
-      <div class="category-collapse collapse " id="collapse-33fd5f6391f2f0cb4c91179d7f521949"
-           role="tabpanel" aria-labelledby="heading-33fd5f6391f2f0cb4c91179d7f521949">
+      <div class="category-collapse collapse show" id="collapse-a1b5c56eac8d96bc8d1c7e941a18dbf7"
+           role="tabpanel" aria-labelledby="heading-a1b5c56eac8d96bc8d1c7e941a18dbf7">
         
         
+          
           
   <div class="category-post-list">
     
     
-      
-      
-        <a href="/2023/11/10/%E5%85%B3%E4%BA%8EDMA%EF%BC%88%E4%B8%80%EF%BC%89/" title="关于DMA（一）"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">关于DMA（一）</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/11/10/%E5%85%B3%E4%BA%8EDMA%EF%BC%88%E4%B8%89%EF%BC%89/" title="关于DMA（三）"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">关于DMA（三）</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2023/11/10/%E5%85%B3%E4%BA%8EDMA%EF%BC%88%E4%BA%8C%EF%BC%89/" title="关于DMA（二）"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">关于DMA（二）</span>
-        </a>
-      
-    
   </div>
 
-        
-      </div>
-    </div>
+          
   
     
     
     
     <div class="category-sub row nomargin-x">
-      <a class="category-subitem collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="内存相关"
-        id="heading-b2d62e3ed1360e3ed98837094ea442c7" role="tab" data-toggle="collapse" href="#collapse-b2d62e3ed1360e3ed98837094ea442c7"
-        aria-expanded="false"
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="HLS"
+        id="heading-03688639065c4aa962556d653afbc965" role="tab" data-toggle="collapse" href="#collapse-03688639065c4aa962556d653afbc965"
+        aria-expanded="true"
       >
-        内存相关
-        <span class="list-group-count">(2)</span>
+        HLS
+        <span class="list-group-count">(3)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
-      <div class="category-collapse collapse " id="collapse-b2d62e3ed1360e3ed98837094ea442c7"
-           role="tabpanel" aria-labelledby="heading-b2d62e3ed1360e3ed98837094ea442c7">
+      <div class="category-collapse collapse show" id="collapse-03688639065c4aa962556d653afbc965"
+           role="tabpanel" aria-labelledby="heading-03688639065c4aa962556d653afbc965">
         
         
           
@@ -547,56 +363,28 @@
     
       
       
-        <a href="/2023/11/01/%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" title="内存模型"
+        <a href="/2023/11/13/HLS-%E5%BE%AA%E7%8E%AF%E4%BC%98%E5%8C%96/" title="HLS-循环优化"
            class="list-group-item list-group-item-action
            ">
-          <span class="category-post">内存模型</span>
+          <span class="category-post">HLS-循环优化</span>
         </a>
       
     
       
       
-        <a href="/2023/11/01/%E5%86%85%E5%AD%98%E9%87%8D%E6%8E%92%E5%BA%8F/" title="内存重排序"
+        <a href="/2023/11/13/HLS-%E6%95%B0%E7%BB%84%E4%BC%98%E5%8C%96/" title="HLS-数组优化"
            class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">内存重排序</span>
+           active">
+          <span class="category-post">HLS-数组优化</span>
         </a>
       
     
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category-sub row nomargin-x">
-      <a class="category-subitem collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="软件层"
-        id="heading-1654183e6eb9c02fbd5236f3d230064a" role="tab" data-toggle="collapse" href="#collapse-1654183e6eb9c02fbd5236f3d230064a"
-        aria-expanded="false"
-      >
-        软件层
-        <span class="list-group-count">(1)</span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-      <div class="category-collapse collapse " id="collapse-1654183e6eb9c02fbd5236f3d230064a"
-           role="tabpanel" aria-labelledby="heading-1654183e6eb9c02fbd5236f3d230064a">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
       
       
-        <a href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1/" title="计算机系统层次"
+        <a href="/2023/11/13/%E5%85%B3%E4%BA%8EVivado-HLS/" title="关于Vivado-HLS"
            class="list-group-item list-group-item-action
            ">
-          <span class="category-post">计算机系统层次</span>
+          <span class="category-post">关于Vivado-HLS</span>
         </a>
       
     
@@ -622,12 +410,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">栈 &amp; 堆</h1>
+            <h1 id="seo-header">HLS-数组优化</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年11月1日 下午
+                    本文最后更新于：2023年11月13日 上午
                   
                 
               </p>
@@ -638,105 +426,98 @@
                 <ul>
 <li>参考
 <ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_52505851/category_12399093.html"
-class="uri">https://blog.csdn.net/qq_52505851/category_12399093.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/hanlin1985/article/details/3132210"
-class="uri">https://blog.csdn.net/hanlin1985/article/details/3132210</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wahahahehehe/p/15164437.html"
-class="uri">https://www.cnblogs.com/wahahahehehe/p/15164437.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lesroad/p/10389971.html"
-class="uri">https://www.cnblogs.com/lesroad/p/10389971.html</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/zhangningning1996/article/details/107444387"
+class="uri">https://blog.csdn.net/zhangningning1996/article/details/107444387</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/pc153262603/article/details/106385483"
+class="uri">https://blog.csdn.net/pc153262603/article/details/106385483</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://www.xilinx.com/htmldocs/xilinx2017_4/sdaccel_doc/eil1504034361560.html"
+class="uri">https://www.xilinx.com/htmldocs/xilinx2017_4/sdaccel_doc/eil1504034361560.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/50479555"
+class="uri">https://zhuanlan.zhihu.com/p/50479555</a></li>
 </ul></li>
 </ul>
 <hr />
-<h2 id="栈-寄存器">1. 栈 &amp; 寄存器</h2>
+<h2 id="复杂度">1. 复杂度</h2>
 <ul>
-<li><p>栈的用处</p>
+<li>程序的两个衡量指标：时间复杂度和空间复杂度。
 <ul>
-<li>（1）RISC-V
-划分了x10-x17八个寄存器为参数寄存器，用于传递参数或返回值。考虑到如果参数/局部变量很多，8个寄存器放不下，那么需要开辟栈空间存储。</li>
-<li>（2）用于保护和恢复函数调用过程中的相关信息，如返回地址、上下文寄存器信息等。这些信息可以帮助函数（中断）在执行完毕后返回到正确的位置。</li>
+<li>衡量一个算法的时间复杂度和空间复杂度可以使用大O标识法。<br />
+</li>
+<li>时间复杂度
+<ul>
+<li>对于没有循环等复杂结构，时间复杂度为O(1)；</li>
+<li>主要计算何时才可以跳出循环，所以循环结构越复杂的，时间复杂度越大。<br />
+</li>
 </ul></li>
-<li><p>栈：后进先出（LIFO），栈指针指向栈的顶部，从高地址向低地址，为压栈过程，存入数据；从低地址向高地址，为弹栈过程，取出数据。</p>
+<li>空间复杂度
 <ul>
-<li>下面代码中，由于diffofsums()函数，出现无条件跳转指令。当参数寄存器足以使用，那么不需要开辟栈空间。</li>
-</ul>
-<p><img src="3201119-20230906220555789-544830672.png" /></p>
-<ul>
-<li>如果参数寄存器不足以使用，可以将参数先压入栈中，需要使用时再从栈中取出。临时寄存器在<strong>使用之后</strong>不需要弹栈恢复。</li>
-<li>如果为了避免函数调用修改掉主寄存器中的内容，可以通过下面步骤实现。
-<ul>
-<li>在栈上分配空间存储对应数目的寄存器值。</li>
-<li>将寄存器s3,t0,t1的值存到栈上，等待函数运算结束之后，再从栈中取出恢复寄存器旧值。</li>
-<li>使用寄存器进行相对应的运算。</li>
-<li>将运算后的结果给到调用者层的寄存器a0。</li>
-<li>将栈中的其它值弹出，恢复寄存器s3,t0,t1的旧值。</li>
-<li>释放栈空间。</li>
+<li>是对一个算法在运行过程中临时占用存储空间大小的一个量度。</li>
+<li>对于所需要的临时空间都不随算法处理数据量变化，空间复杂度为1.</li>
+<li>观察算法在运行过程中是否申请了新的空间，空间的大小为空间复杂度，很多情况下与数组的大小相关。</li>
+</ul></li>
+<li>时间和空间复杂度是相互影响的，想要较好的时间复杂度，可能会牺牲空间复杂度，反之一样。</li>
 </ul></li>
 </ul>
-<p><img src="3201119-20230906222236489-589165970.png" /></p>
+<h2 id="partition展开操作">2. Partition展开操作</h2>
 <ul>
-<li>每个函数有自己的栈空间，也只能访问自己的栈。</li>
-</ul></li>
-<li><p>为了减少压栈和栈弹出的次数，RISC-V将19个寄存器分为了两组：</p>
+<li>为什么Partition可以提升性能
 <ul>
-<li>临时寄存器：调用者不会再使用他们，所以不需要被保存和恢复（压栈/弹栈）。如上面代码中的t0，t1.（x5-x7,x28-x31）</li>
-<li>保存寄存器：希望在调用前后需要保持相同值的寄存器，需要压栈/弹栈。如上面代码中的s3，在调用函数之后需要其仍未调用前的旧值.（x8-x9,x18-x27）</li>
+<li>HLS将数组映射到Memory中。如果数组是作为顶层函数的形参，那么就会被综合成memory的接口；如果数组在设计内部，会根据数组大小及优化方式被综合成移位寄存器（大小&lt;1024）/BRAM,LUTRAM,UltraRAM（大小&gt;1024）。</li>
+<li>存在的问题
+<ul>
+<li>当数组作为存储器来实现时，存储器端口的数量会限制对数据的访问，可能导致流水线失败。</li>
+<li>假设一数组用单端口RAM实现，功能：扫描数组，依次访问连续三个地址的数据求和；此时每个周期只能进行一次读/写，无法实现流水线。
+<ul>
+<li>若想实现吞吐量为1，需要预读取数据，并手动对数据访问流水打拍。</li>
 </ul>
-<p><img src="3201119-20230906232325563-433575287.png" /></p></li>
-<li><p>嵌套过程</p>
-<ul>
-<li>非叶函数：是指调用了其它函数或者改变非易失性寄存器的函数。
-<ul>
-<li>非易失性寄存器：在断电后仍能保持内容不变的寄存器，常用于保存一些重要的数据或状态，如程序计数器、栈指针、返回地址等。</li>
-<li>易失性寄存器：在断电后，会丢失其内容的寄存器，常用于保存一些临时的数据或操作数，例如通用寄存器、浮点寄存器、向量寄存器等。</li>
-<li>一般来说，被调用函数需要保护（压栈/弹栈）非易失性寄存器的值。而被调函数可以自由的使用易失性寄存器的值，不需要保存/恢复它们的值。</li>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs smali"> dout_t array_mem_perform(din_t mem[N]) &#123; <br> <br> din_t tmp0, tmp1, tmp2;<br> dout_t sum=0;<br><span class="hljs-built_in"> int </span>i;<br> <br> tmp0 = mem[0];<br> tmp1 = mem[1];<br> SUM_LOOP:for (i = 2; i &lt; N; i++) &#123;<br> tmp2 = mem[i];<br> sum += tmp2 + tmp1 + tmp0;<br> tmp0 = tmp1;<br> tmp1 = tmp2;<br> &#125;<br>     <br><span class="hljs-built_in"> return </span>sum;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>即使使用双端口的RAM，每个时钟周期可进行两次访问，计算一个和，打一拍可以与第三次访问的值再次求和，组成一流水。（我的理解是这样，不太清楚是不是正确的。）</li>
 </ul></li>
-<li>在非叶函数调用时，遵循下面两条规则：
-<ul>
-<li>调用者保存规则：调用者需要将所有调用后还需要的参数存储器或临时存储器压栈保存。</li>
-<li>被调用者保存规则：被调用者将返回地址寄存器x1和被调用者使用的保存寄存器压栈。</li>
+<li>可以不用更改设计，HLS可以使用优化指令：<strong>Array
+Partition、Array Reshape.</strong></li>
 </ul></li>
-<li>代码示例如下所示。</li>
-</ul>
-<p><img src="3201119-20230907111834366-1859723362.png" /></p></li>
-</ul>
-<h2 id="堆">2. 堆</h2>
+<li>Array Partition
 <ul>
-<li>堆和栈的区别
+<li>将原先一个大的memory拆分成多个小的memory/registers，增加了存储器的读写端口。提高了设计的吞吐量，但是需要更多的内存/寄存器资源。</li>
+<li>有3个type可选：block、cyclic和complete
 <ul>
-<li>栈：后进先出（LIFO），由编译器自动分配和释放。使用一级缓存，调用完立即释放。</li>
-<li>堆：可对任意位置进行操作，通常由程序员手动分配，使用完需及时释放(free)，不然容易造成内存泄漏。</li>
-<li>更为详细的介绍可以看<a
-target="_blank" rel="noopener" href="https://blog.csdn.net/hanlin1985/article/details/3132210">这篇博客</a>。</li>
+<li><p>factor为n，将原数组等分成n个小的数组，每个数组的长度 =
+原长度/n。</p></li>
+<li><p>以一维数组为例，如下图 <figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs lasso">#param HLS ARRAY_PARTITION <span class="hljs-built_in">variable</span>=weight_group block factor = <span class="hljs-number">4</span> dim = <span class="hljs-number">1</span><br>#param HLS ARRAY_PARTITION <span class="hljs-built_in">variable</span>=weight_group cyclic factor = <span class="hljs-number">4</span> dim = <span class="hljs-number">1</span><br>#param HLS ARRAY_PARTITION <span class="hljs-built_in">variable</span>=weight_group complete dim = <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure></p>
+<p><img src="3201119-20230614163220222-364963959.png" width = 50%/></p></li>
 </ul></li>
-<li>下图为Linux操作系统下RISC-V分配内存的规定。
-<ul>
-<li>栈从用户地址空间的<strong>高端向下生长</strong>。
-<ul>
-<li>函数内局部变量的存储单元都可以在栈上创建，并在函数执行结束时这些存储单元自动被释放。</li>
-<li>栈内存分配运算<strong>内置于处理器的指令集</strong>中，效率很高，但是分配的内存容量有限。</li>
-</ul></li>
-<li>内存的低端是保留的，再往上是RISC-V的机器代码，称为代码段。</li>
-<li>再往上是静态数据段，用于存放静态数据、全局数据和常量。</li>
-<li>再往上就是堆
-<ul>
-<li>对于链表这类数据结构，往往随着生命周期增长或缩短，存放在堆内。</li>
-<li>关于数组是存放在栈/堆/静态数据段，主要看是如何声明的。
-<ul>
-<li>如果是程序员 new malloc， 则是存放在堆中的。</li>
-</ul></li>
-</ul></li>
-<li>堆和栈是相向生长，随着两个段的此消彼长达到内存的高效使用。</li>
+<li>对多维数组采用Partition展开。当dim=0时，数组所有维度都被拆开。</li>
 </ul></li>
 </ul>
-<p><img src="3201119-20230918160341670-703117698.png" style="zoom:33%;" /></p>
+<p><img src="3201119-20230614163729467-1143607101.png" width = 50%/></p>
+<h2 id="数组的映射和重组">3. 数组的映射和重组</h2>
+<h3 id="array_map">3.1 ARRAY_MAP</h3>
 <ul>
-<li>程序员可以通过显示函数调用来分配(malloc)和释放(free)堆上的空间。
+<li>将多个较小的数组映射成一个数组，以减少RAM资源。FPGA中提供的最小RAM单元大小为18KB，如果很多小数组没有很好的使用完整的18K，可以使用MAP指令，将许多小数组映射到一个更大的数组中。</li>
+<li>Horizontal：直接将多个数组拼接在一起，数组的长度等于N+M，数组的宽度为N和M的最大数组宽度。</li>
+</ul>
+<p><img src= "3201119-20230614164743438-1243927523.png" width = 50%/></p>
 <ul>
-<li>如果忘记释放空间，可能会导致内存泄漏，最终耗尽大量内存。</li>
-<li>如果过早释放空间，可能会导致悬空指针，导致指针指向错误的位置。</li>
+<li>Vertical：对于数组的每一个元素进行拼接，数组的长度等于N/M中最大的长度。</li>
+</ul>
+<p><img src= "3201119-20230614165614445-1380595643.png" width = 40%/></p>
+<ul>
+<li>命令介绍：其中variable是被map的数组；instance是map后的数组；mode可选horizontal/vertical；offset仅horizontal可选，int为合并的数组相较于0的偏移量。
+<ul>
+<li>注：命令相关例子和用法可以查看<a
+target="_blank" rel="noopener" href="https://www.xilinx.com/htmldocs/xilinx2017_4/sdaccel_doc/eil1504034361560.html">Xilinx官网</a>，有较为全面的解释。
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> HLS array_map variable=<span class="hljs-string">&lt;name&gt;</span> instance=<span class="hljs-string">&lt;instance&gt;</span> <span class="hljs-string">&lt;mode&gt;</span> offset=<span class="hljs-string">&lt;int&gt;</span></span><br><span class="hljs-comment">//example 将C和D合并成CD</span><br><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> HLS array_map variable=C instance=CD vertical</span><br><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> HLS array_map variable=D instance=CD vertical</span><br></code></pre></td></tr></table></figure></li>
 </ul></li>
+</ul>
+<h3 id="array_reshape">3.2 ARRAY_RESHAPE</h3>
+<ul>
+<li><p>两步：将数组进行Partition + vertical MAP。</p></li>
+<li><p>减少了RAM的数量，组成新的数组，元素更少，但位宽更大，允许在单个时钟周期内访问更多的数据。
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> HLS ARRAY_RESHAPE variable=array1 block factor=2 dim=1</span><br><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> HLS ARRAY_RESHAPE variable=array2 cycle factor=2 dim=1</span><br><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> HLS ARRAY_RESHAPE variable=array3 complete dim=1</span><br></code></pre></td></tr></table></figure></p>
+<p><img src="3201119-20230614215724114-908302541.png" /></p></li>
 </ul>
 
                 
@@ -756,8 +537,15 @@ target="_blank" rel="noopener" href="https://blog.csdn.net/hanlin1985/article/de
     
       <span class="category-chain">
         
-  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E8%AE%BE%E8%AE%A1/" class="category-chain-item">计算机组成与设计</a>
+  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/FPGA/HLS/" class="category-chain-item">HLS</a>
+  
+  
+
   
 
       </span>
@@ -776,8 +564,8 @@ target="_blank" rel="noopener" href="https://blog.csdn.net/hanlin1985/article/de
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>栈 &amp; 堆</div>
-      <div>http://binbinqian.cn/2023/11/01/栈 &amp; 堆/</div>
+      <div>HLS-数组优化</div>
+      <div>http://binbinqian.cn/2023/11/13/HLS-数组优化/</div>
     </div>
     <div class="license-meta">
       
@@ -789,7 +577,7 @@ target="_blank" rel="noopener" href="https://blog.csdn.net/hanlin1985/article/de
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年11月1日</div>
+          <div>2023年11月13日</div>
         </div>
       
       
@@ -821,9 +609,9 @@ target="_blank" rel="noopener" href="https://blog.csdn.net/hanlin1985/article/de
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/11/01/%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" title="内存模型">
+                      <a href="/2023/11/13/HLS-%E5%BE%AA%E7%8E%AF%E4%BC%98%E5%8C%96/" title="HLS-循环优化">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">内存模型</span>
+                        <span class="hidden-mobile">HLS-循环优化</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -831,8 +619,8 @@ target="_blank" rel="noopener" href="https://blog.csdn.net/hanlin1985/article/de
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/11/01/RISC-V%20%E6%8C%87%E4%BB%A4/" title="RISC-V 指令">
-                        <span class="hidden-mobile">RISC-V 指令</span>
+                      <a href="/2023/11/13/%E5%85%B3%E4%BA%8EVivado-HLS/" title="关于Vivado-HLS">
+                        <span class="hidden-mobile">关于Vivado-HLS</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
