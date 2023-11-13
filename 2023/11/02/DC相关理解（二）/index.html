@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考  http:&#x2F;&#x2F;www.cnblogs.com&#x2F;IClearner https:&#x2F;&#x2F;blog.csdn.net&#x2F;u010827375&#x2F;article&#x2F;details&#x2F;91398103 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;425524095    1. 线负载模型  根据模型中提供的扇出-线网长度对应表，可以根据线网扇出负载估计线网长度。  根">
+    <meta name="description" content="参考 http:&#x2F;&#x2F;www.cnblogs.com&#x2F;IClearner https:&#x2F;&#x2F;blog.csdn.net&#x2F;u010827375&#x2F;article&#x2F;details&#x2F;91398103 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;425524095     1. 线负载模型 根据模型中提供的扇出-线网长度对应表，可以根据线网扇出负载估计线网长度。 根据线网长度和阻抗、容抗、面积对">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DC相关理解（二）">
 <meta property="og:url" content="http://binbinqian.cn/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考  http:&#x2F;&#x2F;www.cnblogs.com&#x2F;IClearner https:&#x2F;&#x2F;blog.csdn.net&#x2F;u010827375&#x2F;article&#x2F;details&#x2F;91398103 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;425524095    1. 线负载模型  根据模型中提供的扇出-线网长度对应表，可以根据线网扇出负载估计线网长度。  根">
+<meta property="og:description" content="参考 http:&#x2F;&#x2F;www.cnblogs.com&#x2F;IClearner https:&#x2F;&#x2F;blog.csdn.net&#x2F;u010827375&#x2F;article&#x2F;details&#x2F;91398103 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;425524095     1. 线负载模型 根据模型中提供的扇出-线网长度对应表，可以根据线网扇出负载估计线网长度。 根据线网长度和阻抗、容抗、面积对">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230626213836361-578049867.png">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230626132859580-2132739508.png">
@@ -257,7 +257,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k 字
+          3k 字
         
       </span>
     
@@ -602,186 +602,151 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考
-<ul>
-<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/IClearner"
-class="uri">http://www.cnblogs.com/IClearner</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010827375/article/details/91398103"
-class="uri">https://blog.csdn.net/u010827375/article/details/91398103</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/425524095"
-class="uri">https://zhuanlan.zhihu.com/p/425524095</a></li>
-</ul></li>
+<li>参考<ul>
+<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/IClearner">http://www.cnblogs.com/IClearner</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010827375/article/details/91398103">https://blog.csdn.net/u010827375/article/details/91398103</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/425524095">https://zhuanlan.zhihu.com/p/425524095</a></li>
 </ul>
-<hr />
-<h2 id="线负载模型">1. 线负载模型</h2>
-<ul>
-<li>根据模型中提供的扇出-线网长度对应表，可以根据线网扇出负载估计线网长度。
-<ul>
+</li>
+</ul>
+<hr>
+<h2 id="1-线负载模型"><a href="#1-线负载模型" class="headerlink" title="1. 线负载模型"></a>1. 线负载模型</h2><ul>
+<li>根据模型中提供的扇出-线网长度对应表，可以根据线网扇出负载估计线网长度。<ul>
 <li>根据线网长度和阻抗、容抗、面积对应表格计算线上参数和延时信息。</li>
-</ul></li>
-<li>根据延时计算方式，电容和电阻有不同的组合方式，主要有三种模型：
-<ul>
+</ul>
+</li>
+<li>根据延时计算方式，电容和电阻有不同的组合方式，主要有三种模型：<ul>
 <li>worst_case_tree</li>
 <li>best_case_tree</li>
 <li>balanced_tree</li>
-</ul></li>
-<li>指令如下，-name为指定线负载模型名字，来源于工艺库，-library指定工艺库。
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">set_wire_load_model</span> -name <span class="hljs-variable">$WIRE_LOAD_MODEL</span> -library <span class="hljs-variable">$LIB_NAME</span> <br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>指令如下，-name为指定线负载模型名字，来源于工艺库，-library指定工艺库。<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">set_wire_load_model</span> -name <span class="hljs-variable">$WIRE_LOAD_MODEL</span> -library <span class="hljs-variable">$LIB_NAME</span> <br></code></pre></td></tr></table></figure></li>
 <li>按照模块内部子系统net所采用模型分类</li>
 </ul>
-<p><img src="3201119-20230626213836361-578049867.png" /></p>
+<p><img src="/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230626213836361-578049867.png">  </p>
 <ul>
-<li>TOP
-<ul>
+<li>TOP<ul>
 <li>该模式下，内部所有的子模块或者子系统都将会使用TOP层所设置的线负载模型，因此会覆盖所有的子模块的设置值。</li>
 <li>由于top层电路规模最大，如果子模块也使用其线负载模型计算，那么最悲观。</li>
-</ul></li>
-<li>ENCLOSED
-<ul>
+</ul>
+</li>
+<li>ENCLOSED<ul>
 <li>该模式下，会默认选择能够cover整个net路径层次的线负载模型，并不一定是TOP层；</li>
 <li>相较于TOP模式下，延时要短一些。</li>
-</ul></li>
-<li>SEGMENTED
-<ul>
-<li>该模式下，则严格根据所设置对象的范围分别使用对应的线负载模型；
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">set_wire_load_mode enclosed</span><br></code></pre></td></tr></table></figure></li>
-</ul></li>
-<li>也可以使用默认的线负载模型，指令如下；DC工具在默认情况下会根据设计的cell面积自动选择合适的线负载模型。
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">set</span> auto_wire_load_selection <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure></li>
-<li>线负载模型的设置在综合阶段可以初步的衡量net的延迟，但是在Routing之后，可以使用寄生参数提取工具，如STARRC抽取的SPEF文件，往往用于STA，根据其寄生参数计算net
-delay，此时的值会更加具备参考性。</li>
 </ul>
-<h2 id="时钟属性">2. 时钟属性</h2>
-<ul>
+</li>
+<li>SEGMENTED <ul>
+<li>该模式下，则严格根据所设置对象的范围分别使用对应的线负载模型；<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">set_wire_load_mode enclosed</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>也可以使用默认的线负载模型，指令如下；DC工具在默认情况下会根据设计的cell面积自动选择合适的线负载模型。  <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">set</span> auto_wire_load_selection <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure></li>
+<li>线负载模型的设置在综合阶段可以初步的衡量net的延迟，但是在Routing之后，可以使用寄生参数提取工具，如STARRC抽取的SPEF文件，往往用于STA，根据其寄生参数计算net delay，此时的值会更加具备参考性。</li>
+</ul>
+<h2 id="2-时钟属性"><a href="#2-时钟属性" class="headerlink" title="2. 时钟属性"></a>2. 时钟属性</h2><ul>
 <li>时钟不确定性（uncertainty）包括skew和jitter。</li>
-<li>对于建立时间，考虑的时钟不确定需要包括受前级和本级skew值的影响、本级jitter值以及建立时间裕量。
-<ul>
+<li>对于建立时间，考虑的时钟不确定需要包括受前级和本级skew值的影响、本级jitter值以及建立时间裕量。<ul>
 <li>由于是建立时间，需要考虑前级寄存器时钟skew往后移Aps，本级寄存器时钟往前移Bps，那么skew所导致的不确定时间为(A+B)ps。</li>
-</ul></li>
 </ul>
-<h3 id="时钟偏移skew">2.1 时钟偏移（skew）</h3>
-<ul>
+</li>
+</ul>
+<h3 id="2-1-时钟偏移（skew）"><a href="#2-1-时钟偏移（skew）" class="headerlink" title="2.1 时钟偏移（skew）"></a>2.1 时钟偏移（skew）</h3><ul>
 <li>由于线网等延时，导致时钟信号到达寄存器口存在相位差。</li>
 <li>其与时钟频率没有直接关系，与时钟线的长度及时钟线驱动的时序单元负载电容、个数有关。</li>
-<li>skew 可以分为四类。
-<ul>
-<li>Interclock skew
-<ul>
+<li>skew 可以分为四类。<ul>
+<li>Interclock skew<ul>
 <li>不同时钟域之间两条路径的最大skew。</li>
-</ul></li>
-<li>Global skew
-<ul>
+</ul>
+</li>
+<li>Global skew<ul>
 <li>同一个时钟域下，任意两条路径的最大skew。</li>
-</ul></li>
-<li>Local skew
-<ul>
+</ul>
+</li>
+<li>Local skew<ul>
 <li>同一个时钟域下，任意两条有时序关系的路径的最大skew。</li>
-</ul></li>
-<li>Useful skew
-<ul>
-<li>可以在ICC，设置指令skew_opt。向前或者向后
-slack较为充裕的路径借时间来修正violation。具体指令使用可见ICC userguide
-5-159页。</li>
-</ul></li>
-</ul></li>
-<li>更多关于skew对建立、保持时间影响的可以看<a
-target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzU5NzQ1NDI5Nw==&amp;mid=2247483957&amp;idx=1&amp;sn=279c4f86dd2ace14cb2c036f9cdf9f73&amp;chksm=fe527e83c925f79534b3366d788c6ccbb2445ed4efde89b5d5fda4cfb5574cdc6ce3b4b1db89&amp;scene=21#wechat_redirect">这篇博客</a>。
-<ul>
-<li>总结来说，Positive skew，setup检查宽松，hold检查更严格。Negative
-skew，setup检查严格，hold检查更宽松。
-<ul>
+</ul>
+</li>
+<li>Useful skew  <ul>
+<li>可以在ICC，设置指令skew_opt。向前或者向后 slack较为充裕的路径借时间来修正violation。具体指令使用可见ICC userguide 5-159页。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>更多关于skew对建立、保持时间影响的可以看<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzU5NzQ1NDI5Nw==&mid=2247483957&idx=1&sn=279c4f86dd2ace14cb2c036f9cdf9f73&chksm=fe527e83c925f79534b3366d788c6ccbb2445ed4efde89b5d5fda4cfb5574cdc6ce3b4b1db89&scene=21#wechat_redirect">这篇博客</a>。 <ul>
+<li>总结来说，Positive skew，setup检查宽松，hold检查更严格。Negative skew，setup检查严格，hold检查更宽松。<ul>
 <li>Postive和Negative的划分是根据时钟分支点到launch寄存器和capture寄存器skew大小的比较；前者&lt;后者，则为Positive；后者&lt;前者，则为Negative。</li>
-</ul></li>
-</ul></li>
 </ul>
-<h3 id="时钟抖动jitter">2.2 时钟抖动（jitter）</h3>
-<ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-时钟抖动（jitter）"><a href="#2-2-时钟抖动（jitter）" class="headerlink" title="2.2 时钟抖动（jitter）"></a>2.2 时钟抖动（jitter）</h3><ul>
 <li>不随时间积累，时而超前、时而滞后的偏移。与时钟频率也无直接关系。</li>
-<li>包括随机抖动和固定抖动
-<ul>
-<li>随机抖动来源于：热噪声、Flicker
-Noise等，与电子器件和半导体器件的电子和空穴特性有关。选择合适的工艺可以得到更小的随机抖动。</li>
+<li>包括随机抖动和固定抖动<ul>
+<li>随机抖动来源于：热噪声、Flicker Noise等，与电子器件和半导体器件的电子和空穴特性有关。选择合适的工艺可以得到更小的随机抖动。</li>
 <li>固定抖动来源于：开关电源噪声、串扰、电磁干扰等。可以通过优化设计改善固定抖动；如选择合适的电源滤波方案、合理的PCB布局布线。</li>
-</ul></li>
 </ul>
-<h3 id="时钟延迟latency">2.3 时钟延迟（latency）</h3>
-<ul>
-<li>时钟信号从时钟源（例如：晶振）触发到达触发器时钟端口的延时，为时钟延迟。
-<ul>
-<li><p>主要包括时钟源延迟（source latency）和 时钟网络延迟（network
-latency）。</p>
-<p><img src="3201119-20230626132859580-2132739508.png" /></p></li>
-</ul></li>
+</li>
 </ul>
-<h3 id="cts之前-模拟时钟树的建模">2.4 CTS之前 模拟时钟树的建模</h3>
-<ul>
+<h3 id="2-3-时钟延迟（latency）"><a href="#2-3-时钟延迟（latency）" class="headerlink" title="2.3 时钟延迟（latency）"></a>2.3 时钟延迟（latency）</h3><ul>
+<li>时钟信号从时钟源（例如：晶振）触发到达触发器时钟端口的延时，为时钟延迟。<ul>
+<li><p>主要包括时钟源延迟（source latency）和 时钟网络延迟（network latency）。  </p>
+<p><img src="/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230626132859580-2132739508.png"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-4-CTS之前-模拟时钟树的建模"><a href="#2-4-CTS之前-模拟时钟树的建模" class="headerlink" title="2.4 CTS之前 模拟时钟树的建模"></a>2.4 CTS之前 模拟时钟树的建模</h3><ul>
 <li>（1）clk transition，模拟时钟树的驱动能力和负载。</li>
 <li>（2）clk uncertainty，主要是模拟skew。</li>
 <li>（3）clk latency，模拟时钟树线网延时。</li>
 </ul>
-<h2 id="时序约束实例">3. 时序约束实例</h2>
-<p><img src="3201119-20230626135608485-1889722607.png" /></p>
-<h3 id="路径2的约束">3.1 路径2的约束</h3>
-<ul>
-<li>为了满足FF2的建立时间要求，触发器翻转时间 $ T_{clk2q}$
-+寄存器和寄存器之前的组合逻辑延时 $ T_{logic}+t_{setup-FF2}$ ＜
-时钟周期。</li>
-<li>保持时间一般是满足的，因为传输的延时(<span
-class="math inline">\(T_{clk2q}+T_{logic}\)</span>)一般都会大于触发器的保持时间。</li>
+<h2 id="3-时序约束实例"><a href="#3-时序约束实例" class="headerlink" title="3. 时序约束实例"></a>3. 时序约束实例</h2><p><img src="/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230626135608485-1889722607.png"></p>
+<h3 id="3-1-路径2的约束"><a href="#3-1-路径2的约束" class="headerlink" title="3.1 路径2的约束"></a>3.1 路径2的约束</h3><ul>
+<li>为了满足FF2的建立时间要求，触发器翻转时间 $ T_{clk2q}$ +寄存器和寄存器之前的组合逻辑延时 $ T_{logic}+t_{setup-FF2}$ ＜ 时钟周期。</li>
+<li>保持时间一般是满足的，因为传输的延时($T_{clk2q}+T_{logic}$)一般都会大于触发器的保持时间。</li>
 </ul>
-<h3 id="路径1的约束">3.2 路径1的约束</h3>
-<p><img src="1.png" /></p>
+<h3 id="3-2-路径1的约束"><a href="#3-2-路径1的约束" class="headerlink" title="3.2 路径1的约束"></a>3.2 路径1的约束</h3><p><img src="/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E4%BA%8C%EF%BC%89/1.png"></p>
 <ul>
-<li>首先需要告诉DC被综合模块外的延时为 <span
-class="math inline">\(T_{clk2q}+T_M\)</span>，留下的时间为 <span
-class="math inline">\(T_{clk}-T_{clk2q}-T_M\)</span>，将其与 <span
-class="math inline">\(T_n+T_{setup}\)</span> 时间相比较，如果 <span
-class="math inline">\(T_n\)</span>
-太大，那么DC会对其进行优化，如果最优解也大于留下的时间，那么就会报错。
-<ul>
-<li>假设我们已知输入端口外部电路的延迟为4ns，那么可以使用DC的约束指令
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">set_input_delay</span>  -max <span class="hljs-number">4</span> -clock  CLK <span class="hljs-meta"> [get_ports   A]</span><br><span class="hljs-attribute">set_input_delay</span> <span class="hljs-number">3</span>.<span class="hljs-number">5</span> -max -clock clk1<span class="hljs-meta"> [remove_from_collection [all_inputs][get_ports clk1]]</span><br><span class="hljs-comment"># 命令表示从所有的输入端口中除掉时钟clk  </span><br></code></pre></td></tr></table></figure></li>
-</ul></li>
-<li>前面介绍的是不考虑不确定因素的情况，当考虑时钟不确定性，有以下分析
-<ul>
-<li>假设时钟不确定时间为U，假设触发器的建立时间为1ns，外部输入延时为D，那么内部N逻辑所允许的最大延迟S为：
-<ul>
-<li><span class="math inline">\(S = T_{clk}-D-U-1\)</span></li>
-</ul></li>
-</ul></li>
+<li>首先需要告诉DC被综合模块外的延时为 $T_{clk2q}+T_M$，留下的时间为 $T_{clk}-T_{clk2q}-T_M$，将其与 $T_n+T_{setup}$ 时间相比较，如果 $T_n$ 太大，那么DC会对其进行优化，如果最优解也大于留下的时间，那么就会报错。<ul>
+<li>假设我们已知输入端口外部电路的延迟为4ns，那么可以使用DC的约束指令<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">set_input_delay</span>  -max <span class="hljs-number">4</span> -clock  CLK <span class="hljs-meta"> [get_ports   A]</span><br><span class="hljs-attribute">set_input_delay</span> <span class="hljs-number">3</span>.<span class="hljs-number">5</span> -max -clock clk1<span class="hljs-meta"> [remove_from_collection [all_inputs][get_ports clk1]]</span><br><span class="hljs-comment"># 命令表示从所有的输入端口中除掉时钟clk  </span><br></code></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="路径3的约束">3.3 路径3的约束</h3>
-<p><img src="3201119-20230626150744715-795186339.png" /></p>
-<ul>
-<li><p>告诉DC要综合的模块外部电路延时为 <span
-class="math inline">\(T_t+T_{FF3setup}\)</span> 留下的时间为 <span
-class="math inline">\(T_{clk}-T_t-T_{FF3setup}\)</span>
-时间，将这个值与<span class="math inline">\(T_{clk2q}+T_s\)</span>
-相比较，如果 $ T_s$
-太大，那么DC会对其进行优化，如果最优解也大于留下的时间，那么就会报错。</p>
-<ul>
-<li>假设DC约束指令如下 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">create_clock</span>  -period <span class="hljs-number">20</span> <span class="hljs-meta"> [get_ports Clk]</span><br><span class="hljs-attribute">set_output_delay</span>  -max  <span class="hljs-number">7</span>.<span class="hljs-number">0</span>  -clock   Clk <span class="hljs-meta"> [get_ports  B]</span><br></code></pre></td></tr></table></figure></li>
+</li>
+<li>前面介绍的是不考虑不确定因素的情况，当考虑时钟不确定性，有以下分析<ul>
+<li>假设时钟不确定时间为U，假设触发器的建立时间为1ns，外部输入延时为D，那么内部N逻辑所允许的最大延迟S为：<ul>
+<li>$S &#x3D; T_{clk}-D-U-1$</li>
 </ul>
-<p><img src="3201119-20230626151654320-255737286.png" /></p></li>
-<li><p>上面是没有考虑时钟不确定的，假设综合模块内部延时为S（包含 <span
-class="math inline">\(T_{clk2q}\)</span>
-和组合逻辑延时），外部输出延时为X（包括外部组合逻辑和后级寄存器的建立时间），时间不确定度为Y，时钟周期为T。</p>
-<ul>
-<li>满足 <span class="math inline">\(T-S-Y=X\)</span>。</li>
-</ul></li>
+</li>
 </ul>
-<h3 id="路径4的约束">3.4 路径4的约束</h3>
+</li>
+</ul>
+<h3 id="3-3-路径3的约束"><a href="#3-3-路径3的约束" class="headerlink" title="3.3 路径3的约束"></a>3.3 路径3的约束</h3><p><img src="/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230626150744715-795186339.png"></p>
 <ul>
-<li>分为两种情况
+<li><p>告诉DC要综合的模块外部电路延时为 $T_t+T_{FF3setup}$ 留下的时间为 $T_{clk}-T_t-T_{FF3setup}$ 时间，将这个值与$T_{clk2q}+T_s$ 相比较，如果 $ T_s$ 太大，那么DC会对其进行优化，如果最优解也大于留下的时间，那么就会报错。</p>
 <ul>
+<li>假设DC约束指令如下<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">create_clock</span>  -period <span class="hljs-number">20</span> <span class="hljs-meta"> [get_ports Clk]</span><br><span class="hljs-attribute">set_output_delay</span>  -max  <span class="hljs-number">7</span>.<span class="hljs-number">0</span>  -clock   Clk <span class="hljs-meta"> [get_ports  B]</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<p><img src="/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230626151654320-255737286.png"></p>
+</li>
+<li><p>上面是没有考虑时钟不确定的，假设综合模块内部延时为S（包含 $T_{clk2q}$ 和组合逻辑延时），外部输出延时为X（包括外部组合逻辑和后级寄存器的建立时间），时间不确定度为Y，时钟周期为T。</p>
+<ul>
+<li>满足 $T-S-Y&#x3D;X$。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-4-路径4的约束"><a href="#3-4-路径4的约束" class="headerlink" title="3.4 路径4的约束"></a>3.4 路径4的约束</h3><ul>
+<li>分为两种情况<ul>
 <li><p>模块内部除了从输入到输出的组合逻辑外还有时序逻辑。</p>
-<p><img src="3201119-20230626153544543-2038590331.png" /></p>
+<p><img src="/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230626153544543-2038590331.png"></p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">set_input_delay</span>  <span class="hljs-number">0</span>.<span class="hljs-number">4</span>  -clock  CLK  -add_delay<span class="hljs-meta"> [get_ports B]</span><br><span class="hljs-attribute">set_output_delay</span>    <span class="hljs-number">0</span>.<span class="hljs-number">2</span>  -clock  CLK  -add_delay<span class="hljs-meta"> [get_ports D]</span><br><span class="hljs-attribute">set_max_delay</span>   $CLK_PERIOD  -from<span class="hljs-meta"> [get_ports B]  -to  [get_ports D] </span><br></code></pre></td></tr></table></figure>
 <ul>
 <li>DC计算 $ T&gt;E+F+U+G $（其中U为不确定时间）。</li>
-</ul></li>
-<li><p>模块内部都是组合逻辑，没有时序逻辑，这种需要使用虚拟时钟的概念。</p></li>
-</ul></li>
+</ul>
+</li>
+<li><p>模块内部都是组合逻辑，没有时序逻辑，这种需要使用虚拟时钟的概念。</p>
+</li>
+</ul>
+</li>
 </ul>
 
                 
