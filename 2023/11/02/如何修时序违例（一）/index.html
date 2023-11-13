@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;kobayashiyou&#x2F;article&#x2F;details&#x2F;118900663 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;425524095 《专用集成电路设计实用教程》    1. 修 Setup Violation  setup 应该满足下面公式。 \[ T_{launch}+T_{ck2q}+T_{d">
+    <meta name="description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;kobayashiyou&#x2F;article&#x2F;details&#x2F;118900663 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;425524095 《专用集成电路设计实用教程》     1. 修 Setup Violation setup 应该满足下面公式。$$T_{launch}+T_{ck2q}+T_{dp}+T_{margin}+T">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何修时序违例（一）">
 <meta property="og:url" content="http://binbinqian.cn/2023/11/02/%E5%A6%82%E4%BD%95%E4%BF%AE%E6%97%B6%E5%BA%8F%E8%BF%9D%E4%BE%8B%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;kobayashiyou&#x2F;article&#x2F;details&#x2F;118900663 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;425524095 《专用集成电路设计实用教程》    1. 修 Setup Violation  setup 应该满足下面公式。 \[ T_{launch}+T_{ck2q}+T_{d">
+<meta property="og:description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;kobayashiyou&#x2F;article&#x2F;details&#x2F;118900663 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;425524095 《专用集成电路设计实用教程》     1. 修 Setup Violation setup 应该满足下面公式。$$T_{launch}+T_{ck2q}+T_{dp}+T_{margin}+T">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-11-02T02:58:34.000Z">
 <meta property="article:modified_time" content="2023-11-03T10:54:01.945Z">
@@ -557,117 +557,81 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考
-<ul>
-<li><a
-target="_blank" rel="noopener" href="https://blog.csdn.net/kobayashiyou/article/details/118900663"
-class="uri">https://blog.csdn.net/kobayashiyou/article/details/118900663</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/425524095"
-class="uri">https://zhuanlan.zhihu.com/p/425524095</a></li>
+<li>参考<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/kobayashiyou/article/details/118900663">https://blog.csdn.net/kobayashiyou/article/details/118900663</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/425524095">https://zhuanlan.zhihu.com/p/425524095</a></li>
 <li>《专用集成电路设计实用教程》</li>
-</ul></li>
 </ul>
-<hr />
-<h2 id="修-setup-violation">1. 修 Setup Violation</h2>
-<ul>
-<li>setup 应该满足下面公式。 <span class="math display">\[
-T_{launch}+T_{ck2q}+T_{dp}+T_{margin}+T_{setup}=T_{capture}+T_{clk}
-\]</span></li>
+</li>
 </ul>
-<h3 id="pipeline-retiming">1.1 Pipeline &amp; Retiming</h3>
-<ul>
+<hr>
+<h2 id="1-修-Setup-Violation"><a href="#1-修-Setup-Violation" class="headerlink" title="1. 修 Setup Violation"></a>1. 修 Setup Violation</h2><ul>
+<li>setup 应该满足下面公式。<br>$$<br>T_{launch}+T_{ck2q}+T_{dp}+T_{margin}+T_{setup}&#x3D;T_{capture}+T_{clk}<br>$$</li>
+</ul>
+<h3 id="1-1-Pipeline-Retiming"><a href="#1-1-Pipeline-Retiming" class="headerlink" title="1.1 Pipeline &amp; Retiming"></a>1.1 Pipeline &amp; Retiming</h3><ul>
 <li>对于组合逻辑延迟过大的电路可以采用pipeline和retiming。</li>
-<li>Pipeline
-<ul>
-<li>插入寄存器，将长组合逻辑链分割，流水线处理。流水线相关内容见<a
-target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17580195.html">这篇博客</a>。</li>
-</ul></li>
-<li>Retiming
-<ul>
-<li>在综合过程中，发现设计的流水线划分不平衡，可以使用Retiming技术，<strong>在时序路径上移动寄存器，平衡分段组合逻辑延迟。</strong></li>
-<li>DC 2019 UserGuide中在 Page16-2 有介绍两种retiming：Adaptive
-Retiming以及Pipelined-Logic Retiming。
-<ul>
-<li>两者区别具体解释可以看手册。</li>
-<li>前者会在DC_Ultra工具下局部调整寄存器位置，后者是只适用于Pipeline
-Datapath Blocks。</li>
-<li>两者指令 <figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tcl"><span class="hljs-comment"># Adaptive:</span><br>compile_ultra - retime<br><span class="hljs-comment"># Pipeline：</span><br>set_optimize_registers<br></code></pre></td></tr></table></figure></li>
-</ul></li>
-</ul></li>
+<li>Pipeline<ul>
+<li>插入寄存器，将长组合逻辑链分割，流水线处理。流水线相关内容见<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17580195.html">这篇博客</a>。</li>
 </ul>
-<h3 id="减小data-path的delay">1.2 减小data path的delay</h3>
-<h4 id="更换不同vt-cell">1.2.1 更换不同VT cell</h4>
-<ul>
+</li>
+<li>Retiming<ul>
+<li>在综合过程中，发现设计的流水线划分不平衡，可以使用Retiming技术，<strong>在时序路径上移动寄存器，平衡分段组合逻辑延迟。</strong></li>
+<li>DC 2019 UserGuide中在 Page16-2 有介绍两种retiming：Adaptive Retiming以及Pipelined-Logic Retiming。<ul>
+<li>两者区别具体解释可以看手册。</li>
+<li>前者会在DC_Ultra工具下局部调整寄存器位置，后者是只适用于Pipeline Datapath Blocks。 </li>
+<li>两者指令<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tcl"><span class="hljs-comment"># Adaptive:</span><br>compile_ultra - retime<br><span class="hljs-comment"># Pipeline：</span><br>set_optimize_registers<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-2-减小data-path的delay"><a href="#1-2-减小data-path的delay" class="headerlink" title="1.2 减小data path的delay"></a>1.2 减小data path的delay</h3><h4 id="1-2-1-更换不同VT-cell"><a href="#1-2-1-更换不同VT-cell" class="headerlink" title="1.2.1 更换不同VT cell"></a>1.2.1 更换不同VT cell</h4><ul>
 <li>阈值电压越低，门延迟越短。阈值电压越高，门延迟越长。</li>
 <li>但是功耗和上面关系相反的。</li>
 </ul>
-<h4 id="插入buffer">1.2.2 插入Buffer</h4>
-<ul>
-<li><a
-target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17459189.html">这篇文章</a>有介绍器件延迟的计算是根据input
-transition，output load索引查找表得到的。</li>
-<li>因此，优化驱动减小input transition或优化扇出减小output
-load也有助于减小器件延时，改善setup违例。
-<ul>
+<h4 id="1-2-2-插入Buffer"><a href="#1-2-2-插入Buffer" class="headerlink" title="1.2.2 插入Buffer"></a>1.2.2 插入Buffer</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17459189.html">这篇文章</a>有介绍器件延迟的计算是根据input transition，output load索引查找表得到的。</li>
+<li>因此，优化驱动减小input transition或优化扇出减小output load也有助于减小器件延时，改善setup违例。<ul>
 <li>举例：net太长导致驱动变弱，可以插入buf打断net，提高驱动；fanout太大，通过插入buf来减少fanout等。</li>
-</ul></li>
 </ul>
-<h4 id="sizeup-cell">1.2.3 SizeUp Cell</h4>
-<ul>
-<li>对于一些cell的驱动能力太弱，导致output
-transition较大，产生较大的delay。此时可以更换大Size的cell提高驱动能力。</li>
-<li>但是太大的cell，对于前级电路来说也是一个大的output
-load，可能导致前级电路难以驱动它；所以一味增加cell的size并不会确定减小delay。</li>
-<li>对于cell，如果output transition比intput
-transition大的多，那么说明这个cell可以适当增大改善一下。</li>
-<li>可以使用下面的指令debug 一个cell 或一段net 的delay
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">report_delay_calculation</span> <br></code></pre></td></tr></table></figure></li>
+</li>
 </ul>
-<h4 id="layer-assignment">1.2.4 Layer Assignment</h4>
-<ul>
+<h4 id="1-2-3-SizeUp-Cell"><a href="#1-2-3-SizeUp-Cell" class="headerlink" title="1.2.3 SizeUp Cell"></a>1.2.3 SizeUp Cell</h4><ul>
+<li>对于一些cell的驱动能力太弱，导致output transition较大，产生较大的delay。此时可以更换大Size的cell提高驱动能力。</li>
+<li>但是太大的cell，对于前级电路来说也是一个大的output load，可能导致前级电路难以驱动它；所以一味增加cell的size并不会确定减小delay。</li>
+<li>对于cell，如果output transition比intput transition大的多，那么说明这个cell可以适当增大改善一下。</li>
+<li>可以使用下面的指令debug 一个cell 或一段net 的delay <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">report_delay_calculation</span> <br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="1-2-4-Layer-Assignment"><a href="#1-2-4-Layer-Assignment" class="headerlink" title="1.2.4 Layer Assignment"></a>1.2.4 Layer Assignment</h4><ul>
 <li>高层金属有电阻小，延迟低的特点。所以可以通过更换布线层次来实现setup的修复。</li>
 </ul>
-<h3 id="useful-skew">1.3 Useful skew</h3>
-<ul>
+<h3 id="1-3-Useful-skew"><a href="#1-3-Useful-skew" class="headerlink" title="1.3 Useful skew"></a>1.3 Useful skew</h3><ul>
 <li>向前或者向后 slack较为充裕的路径借时间来修正setup violation。</li>
-<li>不建议使用，可能会导致时钟树不平衡等问题，而且会掩盖模块内部时序问题，应该去检查模块内部时序是否需要修。除非对于SRAM这种固定的Macro，难以修改内部的延时，可以使用Useful
-skew。</li>
+<li>不建议使用，可能会导致时钟树不平衡等问题，而且会掩盖模块内部时序问题，应该去检查模块内部时序是否需要修。除非对于SRAM这种固定的Macro，难以修改内部的延时，可以使用Useful skew。</li>
 </ul>
-<h3 id="减小t_launch-增加t_capture">1.4 减小T_launch &amp;
-增加T_capture</h3>
-<ul>
+<h3 id="1-4-减小T-launch-增加T-capture"><a href="#1-4-减小T-launch-增加T-capture" class="headerlink" title="1.4 减小T_launch &amp; 增加T_capture"></a>1.4 减小T_launch &amp; 增加T_capture</h3><ul>
 <li>一般不会使用该方法修改clock line，风险和限制较多。</li>
 </ul>
-<h3 id="group_path-设置权重优化">1.5 group_path 设置权重优化</h3>
-<ul>
-<li>根据需要设置不同group的权重，也可以设置target
-slack，使工具更强的优化对应的Timing。</li>
-<li>举例如下 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">setPathGroupOptions</span> in2reg -effortLevel low -weight <span class="hljs-number">1</span> -slackAdjustment <span class="hljs-number">0</span> -targetSlack <span class="hljs-number">10</span><br></code></pre></td></tr></table></figure></li>
+<h3 id="1-5-group-path-设置权重优化"><a href="#1-5-group-path-设置权重优化" class="headerlink" title="1.5 group_path 设置权重优化"></a>1.5 group_path 设置权重优化</h3><ul>
+<li>根据需要设置不同group的权重，也可以设置target slack，使工具更强的优化对应的Timing。</li>
+<li>举例如下<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">setPathGroupOptions</span> in2reg -effortLevel low -weight <span class="hljs-number">1</span> -slackAdjustment <span class="hljs-number">0</span> -targetSlack <span class="hljs-number">10</span><br></code></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="修-hold-violation">2. 修 Hold Violation</h2>
-<ul>
-<li>hold 应该满足下面公式。 <span class="math display">\[
-T_{launch}+T_{ck2q}+T_{dp}=T_{margin}+T_{hold}+T_{capture}
-\]</span></li>
+<h2 id="2-修-Hold-Violation"><a href="#2-修-Hold-Violation" class="headerlink" title="2. 修 Hold Violation"></a>2. 修 Hold Violation</h2><ul>
+<li>hold 应该满足下面公式。<br>$$<br>T_{launch}+T_{ck2q}+T_{dp}&#x3D;T_{margin}+T_{hold}+T_{capture}<br>$$</li>
 </ul>
-<h3 id="增加data-path的delay">2.1 增加data path的delay</h3>
-<ul>
-<li>插入Buffer，增加data path的延时。
-<ul>
+<h3 id="2-1-增加data-path的delay"><a href="#2-1-增加data-path的delay" class="headerlink" title="2.1 增加data path的delay"></a>2.1 增加data path的delay</h3><ul>
+<li>插入Buffer，增加data path的延时。<ul>
 <li>前面修setup时，也有插入buffer这个方法，那是为了增加驱动能力，减小延时。buffer数量增加到一定程度，所引入的延时大于强驱动减小的延时。</li>
-</ul></li>
+</ul>
+</li>
 <li>插入delay cell。</li>
-<li>注意：插入buffer/delay cell的位置需要靠近path
-的endpoint附近，因为防止寄存器输出可能会经过多条组合逻辑通路，影响其它通路的setup。</li>
+<li>注意：插入buffer&#x2F;delay cell的位置需要靠近path 的endpoint附近，因为防止寄存器输出可能会经过多条组合逻辑通路，影响其它通路的setup。</li>
 <li>更换不同VT cell，替换LVT为RVT或HVT cell。</li>
 </ul>
-<h3 id="增加t_launch">2.2 增加T_launch</h3>
-<ul>
-<li>理论上是可行的，但是动clock
-line不仅需要确认前后级path是否有足够的margin，有时候还会遇到影响范围不可控或者实现不方便等诸多限制。</li>
+<h3 id="2-2-增加T-launch"><a href="#2-2-增加T-launch" class="headerlink" title="2.2 增加T_launch"></a>2.2 增加T_launch</h3><ul>
+<li>理论上是可行的，但是动clock line不仅需要确认前后级path是否有足够的margin，有时候还会遇到影响范围不可控或者实现不方便等诸多限制。</li>
 </ul>
-<h3 id="减小t_capture">2.3 减小T_capture</h3>
-<ul>
+<h3 id="2-3-减小T-capture"><a href="#2-3-减小T-capture" class="headerlink" title="2.3 减小T_capture"></a>2.3 减小T_capture</h3><ul>
 <li>与2.2 有一样的限制，一般不会使用。</li>
 </ul>
 
