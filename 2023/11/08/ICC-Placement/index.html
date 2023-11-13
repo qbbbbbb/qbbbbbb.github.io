@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. Placement 准备 Placement 目标 满足sdc约束。 满足物理约束（例如blockage&#x2F;move bound）。 考虑使用尽量少的绕线资源，优化避免congestion。 面积和功耗尽量小。   文件准备 准备好milkway库。1open_mw_lib ..&#x2F;mw&#x2F;... 打开Floorplan design的mw_cel。 在Milkway library下做">
+    <meta name="description" content="1. Placement 准备  Placement 目标  满足sdc约束。 满足物理约束（例如blockage&#x2F;move bound）。 考虑使用尽量少的绕线资源，优化避免congestion。 面积和功耗尽量小。  文件准备  准备好milkway库。 1open_mw_lib ..&#x2F;mw&#x2F;... 打开Floorplan design的mw_cel。  在Milk">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ICC-Placement">
 <meta property="og:url" content="http://binbinqian.cn/2023/11/08/ICC-Placement/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="1. Placement 准备 Placement 目标 满足sdc约束。 满足物理约束（例如blockage&#x2F;move bound）。 考虑使用尽量少的绕线资源，优化避免congestion。 面积和功耗尽量小。   文件准备 准备好milkway库。1open_mw_lib ..&#x2F;mw&#x2F;... 打开Floorplan design的mw_cel。 在Milkway library下做">
+<meta property="og:description" content="1. Placement 准备  Placement 目标  满足sdc约束。 满足物理约束（例如blockage&#x2F;move bound）。 考虑使用尽量少的绕线资源，优化避免congestion。 面积和功耗尽量小。  文件准备  准备好milkway库。 1open_mw_lib ..&#x2F;mw&#x2F;... 打开Floorplan design的mw_cel。  在Milk">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/08/ICC-Placement/3201119-20230822101313413-1295167431.png">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/08/ICC-Placement/3201119-20230822105422033-386758641.png">
@@ -257,7 +257,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5k 字
+          4.9k 字
         
       </span>
     
@@ -268,7 +268,7 @@
         
         
         
-          42 分钟
+          41 分钟
         
       </span>
     
@@ -601,264 +601,299 @@
             
               <div class="markdown-body">
                 
-                <h2 id="1-Placement-准备"><a href="#1-Placement-准备" class="headerlink" title="1. Placement 准备"></a>1. Placement 准备</h2><ul>
-<li>Placement 目标<ul>
+                <h2 id="placement-准备">1. Placement 准备</h2>
+<ul>
+<li>Placement 目标
+<ul>
 <li>满足sdc约束。</li>
-<li>满足物理约束（例如blockage&#x2F;move bound）。</li>
+<li>满足物理约束（例如blockage/move bound）。</li>
 <li>考虑使用尽量少的绕线资源，优化避免congestion。</li>
 <li>面积和功耗尽量小。</li>
-</ul>
-</li>
-<li>文件准备<ul>
-<li>准备好milkway库。<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-function"><span class="hljs-title">open_mw_lib</span></span> ../mw/...<br></code></pre></td></tr></table></figure></li>
-<li>打开Floorplan design的mw_cel。<ul>
-<li>在Milkway library下做的设计，都以milkway cel的形式存在。可以使用下面指令查看存在设计对应的mw_cel。<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">list_mw_cels<br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>将Floorplan做的StdCell、Blockage、Bounds 的Placement remove掉，在Placement阶段使用工具进行重新放置。</li>
-</ul>
-<h2 id="2-时序约束（SDC）"><a href="#2-时序约束（SDC）" class="headerlink" title="2. 时序约束（SDC）"></a>2. 时序约束（SDC）</h2><ul>
-<li>相关时序约束需要按照MCMM添加，可以看<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17638107.html">这篇博客</a>。</li>
-<li>在DC&#x2F;DCT阶段，一些High fanout net被设置为dont touch，在Placement阶段，dont touch属性需要remove掉。例如复位信号等，时钟信号仍先不动。</li>
-</ul>
-<h2 id="3-物理约束"><a href="#3-物理约束" class="headerlink" title="3. 物理约束"></a>3. 物理约束</h2><ul>
-<li><p>（1）fix 住Floorplan做的所有的macro cell，防止在Placement时Macro被移动。</p>
-</li>
-<li><p>（2） placement blockage </p>
+</ul></li>
+<li>文件准备
 <ul>
-<li>主要有以下三种<ul>
+<li>准备好milkway库。 <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-function"><span class="hljs-title">open_mw_lib</span></span> ../mw/...<br></code></pre></td></tr></table></figure></li>
+<li>打开Floorplan design的mw_cel。
+<ul>
+<li>在Milkway library下做的设计，都以milkway
+cel的形式存在。可以使用下面指令查看存在设计对应的mw_cel。
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">list_mw_cels<br></code></pre></td></tr></table></figure></li>
+</ul></li>
+</ul></li>
+<li>将Floorplan做的StdCell、Blockage、Bounds 的Placement
+remove掉，在Placement阶段使用工具进行重新放置。</li>
+</ul>
+<h2 id="时序约束sdc">2. 时序约束（SDC）</h2>
+<ul>
+<li>相关时序约束需要按照MCMM添加，可以看<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17638107.html">这篇博客</a>。</li>
+<li>在DC/DCT阶段，一些High fanout net被设置为dont
+touch，在Placement阶段，dont
+touch属性需要remove掉。例如复位信号等，时钟信号仍先不动。</li>
+</ul>
+<h2 id="物理约束">3. 物理约束</h2>
+<ul>
+<li><p>（1）fix 住Floorplan做的所有的macro
+cell，防止在Placement时Macro被移动。</p></li>
+<li><p>（2） placement blockage</p>
+<ul>
+<li>主要有以下三种
+<ul>
 <li>Hard blockage：严格规定不可以在指定区域添加stdcell。</li>
-<li>Soft blockage：在Coarse Placement不会摆stdcell，但是在Detail Placement时，基于Coarse Placement进行微调，可能会进入Soft blockage。</li>
-<li>Partial blockage：可以指定cell类别添加&#x2F;不添加，以及添加百分比。</li>
-</ul>
-</li>
-<li>可以使用下面指令为指定宽度的channel添加blockages。<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">derive_placement_blockages -<span class="hljs-keyword">apply</span> -thin_channel_width <span class="hljs-number">60</span><br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
+<li>Soft blockage：在Coarse Placement不会摆stdcell，但是在Detail
+Placement时，基于Coarse Placement进行微调，可能会进入Soft
+blockage。</li>
+<li>Partial blockage：可以指定cell类别添加/不添加，以及添加百分比。</li>
+</ul></li>
+<li>可以使用下面指令为指定宽度的channel添加blockages。
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">derive_placement_blockages -<span class="hljs-keyword">apply</span> -thin_channel_width <span class="hljs-number">60</span><br></code></pre></td></tr></table></figure></li>
+</ul></li>
 <li><p>（3）create_bounds</p>
 <ul>
 <li>选择指定的cell都放在一个固定的区域。</li>
-</ul>
-</li>
+</ul></li>
 <li><p>（4）keepout margin</p>
 <ul>
-<li>为macro设置一个keepout范围不放置stdcell。也可以指定hard&#x2F;soft。和在macro附近设置blockage是做一件事。 </li>
+<li>为macro设置一个keepout范围不放置stdcell。也可以指定hard/soft。和在macro附近设置blockage是做一件事。</li>
 <li>在Floorplan阶段就需要去做，因为Floorplan阶段需要设置keepout，来确定endcap摆放在keepout外。</li>
 </ul>
-<img src="3201119-20230822101313413-1295167431.png" width = 50%/>
-</li>
+<p><img src="3201119-20230822101313413-1295167431.png" width = 50%/></p></li>
 <li><p>（5）set_pnet_options</p>
 <ul>
 <li>主要是考虑到电源线下需要打通孔到底层金属，如果在pnet下放置stdcell，那么可能会出现congestion的问题。所以可以使用指令设置在pnet下stdcell的摆放。</li>
-<li>可选选项：在特定金属层下 -partial、-complete、-none：部分摆，完全不摆，随意摆。<ul>
+<li>可选选项：在特定金属层下
+-partial、-complete、-none：部分摆，完全不摆，随意摆。
+<ul>
 <li><p>其中部分摆：可以留出pin用于连接的space，就可以摆。</p>
-<img src="3201119-20230822105422033-386758641.png" width = 25%/></li>
-</ul>
-</li>
-</ul>
-</li>
+<p><img src="3201119-20230822105422033-386758641.png" width = 25%/></p></li>
+</ul></li>
+</ul></li>
 <li><p>（6）set_ignored_layers</p>
 <ul>
 <li>设置route使用的layer范围。</li>
-</ul>
-</li>
+</ul></li>
 <li><p>（7）Non_Default Clock Routing</p>
 <ul>
 <li>考虑到时钟的特殊性，其需要NDR来约束，常见的：double-spacing，double-width以及shielding。这些会影响congestion的评估，所以应该在placement阶段就设置好。</li>
-</ul>
-</li>
+</ul></li>
 <li><p>（8）Define libcell spacing</p>
 <ul>
-<li>使用下面指令指定限制多个cell之间的spacing。<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">set_spcacing_label_rule</span> <br></code></pre></td></tr></table></figure></li>
+<li>使用下面指令指定限制多个cell之间的spacing。 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">set_spcacing_label_rule</span> <br></code></pre></td></tr></table></figure></li>
+</ul></li>
+<li><p>（9）一些Placement/Optimization
+Attributes的设置如下表所示，对应place_opt的三个步骤。</p></li>
 </ul>
-</li>
-<li><p>（9）一些Placement&#x2F;Optimization Attributes的设置如下表所示，对应place_opt的三个步骤。</p>
-</li>
-</ul>
-<img src="3201119-20230822210035407-2091729725.png" width = 50%/>
-
-<h2 id="4-Timing-Driven-placement-optimization"><a href="#4-Timing-Driven-placement-optimization" class="headerlink" title="4. Timing Driven placement &amp; optimization"></a>4. Timing Driven placement &amp; optimization</h2><ul>
-<li><p>默认Placement是基于timing drivern的。</p>
-</li>
-<li><p>优化方法</p>
+<p><img src="3201119-20230822210035407-2091729725.png" width = 50%/></p>
+<h2 id="timing-driven-placement-optimization">4. Timing Driven placement
+&amp; optimization</h2>
+<ul>
+<li>默认Placement是基于timing drivern的。</li>
+<li>优化方法
 <ul>
 <li>Placement会将关键路径上的模块放的靠近一些，连线就减短了，自然RC就小了。</li>
-<li>使用Size cell来获得更小的延时，但是代价是面积和功耗。 </li>
+<li>使用Size cell来获得更小的延时，但是代价是面积和功耗。</li>
 <li>Simple logic mapping：对逻辑进行优化，remap。</li>
-<li>Layer optimization：对于关键路径，采用高层金属布线，因为高层金属的厚度更大，电阻更小。</li>
-</ul>
+<li>Layer
+optimization：对于关键路径，采用高层金属布线，因为高层金属的厚度更大，电阻更小。<br />
 </li>
-<li><p>优化思想</p>
+</ul></li>
+<li>优化思想
 <ul>
-<li>无论是DC&#x2F;ICC，timing的优化都是基于path group进行优化的。默认的group是按照不同clk进行分组。</li>
+<li>无论是DC/ICC，timing的优化都是基于path
+group进行优化的。默认的group是按照不同clk进行分组。</li>
 <li>可以设置path group优先级。</li>
-<li>DC会优先优化每个path group中最差的timing path（critical path）。<ul>
-<li>可以通过指令 set_critical_range 设置优化critical path的范围；DC和ICC都可以使用这个指令。具体内容可以看<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17507344.html">这篇内容</a>。<ul>
-<li><p>也可以使用group_path进行分组时，添加-critical range选项设置range value。</p>
-<img src="3201119-20230822230621586-1533856688.png" width = 50%/></li>
+<li>DC会优先优化每个path group中最差的timing path（critical path）。
+<ul>
+<li>可以通过指令 set_critical_range 设置优化critical
+path的范围；DC和ICC都可以使用这个指令。具体内容可以看<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17507344.html">这篇内容</a>。
+<ul>
+<li><p>也可以使用group_path进行分组时，添加-critical range选项设置range
+value。</p>
+<p><img src="3201119-20230822230621586-1533856688.png" width = 50%/></p></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>可以使用ICC的timing path
+highlight工具进行分析，更直观的在版图上看到timing
+path的走向，再进一步添加约束。</li>
+<li>对于小的timing violation，可以使用psynopt进行增量优化。</li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>可以使用ICC的timing path highlight工具进行分析，更直观的在版图上看到timing path的走向，再进一步添加约束。</p>
-</li>
-<li><p>对于小的timing violation，可以使用psynopt进行增量优化。</p>
-</li>
-</ul>
-<h2 id="5-Congestion-Driven-placement-optimization"><a href="#5-Congestion-Driven-placement-optimization" class="headerlink" title="5. Congestion Driven placement &amp; optimization"></a>5. Congestion Driven placement &amp; optimization</h2><ul>
+<h2 id="congestion-driven-placement-optimization">5. Congestion Driven
+placement &amp; optimization</h2>
+<ul>
 <li><p>Congestion 导致的问题</p>
 <ul>
-<li>由于出现congestion，那么detail route和virtual route可能相差很大，导致virtual route估计的RC不准。Placement可能时序满足了，但是Route之后并不满足。 </li>
+<li>由于出现congestion，那么detail route和virtual
+route可能相差很大，导致virtual
+route估计的RC不准。Placement可能时序满足了，但是Route之后并不满足。</li>
 <li>detail route绕不通，可能会出现很多short。</li>
-</ul>
-</li>
+</ul></li>
 <li><p>工具计算Congestion的方法</p>
 <ul>
 <li>计算穿过的routing和available的routing数量，如果前者大于后者，那么出现congestion。</li>
 </ul>
-<img src="3201119-20230823094226903-687717728.png" width = 50%/>
-</li>
+<p><img src="3201119-20230823094226903-687717728.png" width = 50%/></p></li>
 <li><p>congestion driven 优化</p>
 <ul>
-<li>解决congestion driven可以将那些非critical path的cell往稍远些摆放，但可能会导致RC变大，时序变差。</li>
+<li>解决congestion driven可以将那些非critical
+path的cell往稍远些摆放，但可能会导致RC变大，时序变差。</li>
 <li>初步place_opt先不加-congestion选项，检查是否出现严重的congestion，如果没出现，不需要加该选项，因为可能导致时序和面积都变差。</li>
-<li>为了获得placement之后和post_route更好的correlation。可以使用下面指令。<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl"><span class="hljs-keyword">set</span> placer_enable_enhanced_router TRUE<br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
+<li>为了获得placement之后和post_route更好的correlation。可以使用下面指令。
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl"><span class="hljs-keyword">set</span> placer_enable_enhanced_router TRUE<br></code></pre></td></tr></table></figure></li>
+</ul></li>
 <li><p>解决congestion的策略</p>
 <ul>
 <li>rerun placement with congestion option.</li>
 <li>scan_reorder 可以缓解congestion。可以看下面第7节内容。</li>
-<li>refine_placement<ul>
+<li>refine_placement
+<ul>
 <li>适合在place_opt之后，添加指令refine_placement对阻塞进行优化.</li>
-<li>一些选项可选，如 -congestion_effort 和 -perturbation_level（对其他部分设计的影响程度，可选min&#x2F;medium&#x2F;high&#x2F;max）。</li>
-</ul>
-</li>
-<li>更改物理约束<ul>
-<li>调整cell density&#x2F;pin density<ul>
+<li>一些选项可选，如 -congestion_effort 和
+-perturbation_level（对其他部分设计的影响程度，可选min/medium/high/max）。</li>
+</ul></li>
+<li>更改物理约束
+<ul>
+<li>调整cell density/pin density
+<ul>
 <li>可以在place之前，将pin脚很多的cell使用dont_use指令屏蔽掉。</li>
-<li>在一些特殊区域（如：macro的拐角，macro之间的channel等）使用partial blockage进行设置<ul>
-<li>使用placement blockage -partial 选项，设置摆放的stdcell百分比是多少。或者使用下面指令，一样的效果。<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">set_congestion_options -max_util <span class="hljs-number">0.4</span> -coordinate &#123;x1 y1 x2 y2&#125;<br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>检查congestion是否和pg strap有关，检查是否设置了pnet options，或者strap太宽。</li>
-</ul>
-</li>
-<li>添加&#x2F;更改 blockages</li>
-</ul>
-</li>
-<li>更改Floorplan <ul>
-<li>macro形状&#x2F;大小不合理，导致输入&#x2F;输出pin都挤到一起，引起阻塞。</li>
+<li>在一些特殊区域（如：macro的拐角，macro之间的channel等）使用partial
+blockage进行设置
+<ul>
+<li>使用placement blockage -partial
+选项，设置摆放的stdcell百分比是多少。或者使用下面指令，一样的效果。
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">set_congestion_options -max_util <span class="hljs-number">0.4</span> -coordinate &#123;x1 y1 x2 y2&#125;<br></code></pre></td></tr></table></figure></li>
+</ul></li>
+<li>检查congestion是否和pg strap有关，检查是否设置了pnet
+options，或者strap太宽。</li>
+</ul></li>
+<li>添加/更改 blockages</li>
+</ul></li>
+<li>更改Floorplan
+<ul>
+<li>macro形状/大小不合理，导致输入/输出pin都挤到一起，引起阻塞。</li>
 <li>移动macro位置。</li>
-<li>移动pin&#x2F;pad的位置。</li>
+<li>移动pin/pad的位置。</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="6-Area-Power-optimization"><a href="#6-Area-Power-optimization" class="headerlink" title="6. Area &amp; Power optimization"></a>6. Area &amp; Power optimization</h2><ul>
-<li>面积优化<ul>
-<li>设置指令指定slack大于某一界限值时，可以进行面积优化操作，如size down。<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">physopt_area_critical_range = <span class="hljs-string">&quot;0.1&quot;</span><br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>功耗优化<ul>
-<li>Leakage Power Optimization<ul>
-<li>替换不同VT的cell，在功耗和时序之间balance。</li>
-<li>也是可以使用下面的指令设置slack大于某一界限值时，进行功耗优化。 <pre><code class="hljs">set physopt_power_critical_range
-</code></pre>
-</li>
-</ul>
-</li>
-<li>Dynamic Power Optimization<ul>
-<li>Low Power Placement：减小高翻转率信号的线长，目的减小C。翻转率可以通过读入SAIF文件得到。更多关于功耗优化的可以看<a target="_blank" rel="noopener" href="https://www.cnblogs.com/IClearner/p/6898463.html">这篇文章</a>。</li>
+<h2 id="area-power-optimization">6. Area &amp; Power optimization</h2>
+<ul>
+<li>面积优化
+<ul>
+<li>设置指令指定slack大于某一界限值时，可以进行面积优化操作，如size
+down。 <figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">physopt_area_critical_range = <span class="hljs-string">&quot;0.1&quot;</span><br></code></pre></td></tr></table></figure></li>
+</ul></li>
+<li>功耗优化
+<ul>
+<li>Leakage Power Optimization
+<ul>
+<li><p>替换不同VT的cell，在功耗和时序之间balance。</p></li>
+<li><p>也是可以使用下面的指令设置slack大于某一界限值时，进行功耗优化。</p>
+<pre><code class="hljs">set physopt_power_critical_range</code></pre></li>
+</ul></li>
+<li>Dynamic Power Optimization
+<ul>
+<li>Low Power
+Placement：减小高翻转率信号的线长，目的减小C。翻转率可以通过读入SAIF文件得到。更多关于功耗优化的可以看<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/IClearner/p/6898463.html">这篇文章</a>。</li>
 <li>使用place_opt 添加-power选项。</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="7-Scan-chain-reorder"><a href="#7-Scan-chain-reorder" class="headerlink" title="7. Scan chain reorder"></a>7. Scan chain reorder</h2><ul>
+<h2 id="scan-chain-reorder">7. Scan chain reorder</h2>
+<ul>
 <li>将寄存器首尾相连，做测试链。</li>
-<li>出现的问题<ul>
-<li>由于DFT在DC阶段插入scan chain是随意的，那么其导出的ddc和Scan_def.def给到ICC时，进行route，可能会导致连线乱飞，占大量的绕线资源，出现congestion的问题。 </li>
-<li>解决方法：使用Placement工具提供的scan chain reorder工具，重新连接scan chain中reg的顺序。<ul>
+<li>出现的问题
+<ul>
+<li>由于DFT在DC阶段插入scan
+chain是随意的，那么其导出的ddc和Scan_def.def给到ICC时，进行route，可能会导致连线乱飞，占大量的绕线资源，出现congestion的问题。</li>
+<li>解决方法：使用Placement工具提供的scan chain
+reorder工具，重新连接scan chain中reg的顺序。
+<ul>
 <li><p>但是reorder存在一个作用范围，如下图所示，被分为了三部分，每个bucket内可以随意reorder。</p>
-<img src="3201119-20230823132733499-1850647320.png" width = 70%/>
-</li>
+<p><img src="3201119-20230823132733499-1850647320.png" width = 70%/></p></li>
 <li><p>在后端设计流程中，可以做scan reorder如下。</p>
-<img src="3201119-20230823134507188-1632830487.png" width = 50%/></li>
+<p><img src="3201119-20230823134507188-1632830487.png" width = 50%/></p></li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="8-Place阶段一些常用opt指令"><a href="#8-Place阶段一些常用opt指令" class="headerlink" title="8. Place阶段一些常用opt指令"></a>8. Place阶段一些常用opt指令</h2><ul>
-<li>place_opt<ul>
-<li>选项<ul>
+<h2 id="place阶段一些常用opt指令">8. Place阶段一些常用opt指令</h2>
+<ul>
+<li>place_opt
+<ul>
+<li>选项
+<ul>
 <li>-spg：DCT中会做一个粗略的Placement工作，并可以通过ddc传给ICC。</li>
-</ul>
-</li>
-<li>place_opt 包括下面几步优化<ul>
-<li>Coarse Placement<ul>
+</ul></li>
+<li>place_opt 包括下面几步优化
+<ul>
+<li>Coarse Placement
+<ul>
 <li>考虑Power，Area，Congestion，将stdcell放一个大概的位置；不做逻辑优化。</li>
-<li>Cells overlap and not on-site.已经确定好大致位置，后面只需微调。</li>
-<li>此步也需要指定好Routing相关的设置，如Routing Blockages，因为此步的Placement需要考虑Congestion进行优化。</li>
-</ul>
-</li>
-<li>Detail Placement<ul>
-<li>Legalized stdcell，将Stdcell放置在合适的位置。具体内容可以看<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/508482624">这篇文章</a>。</li>
-</ul>
-</li>
-<li>Placement optimization  <ul>
+<li>Cells overlap and not
+on-site.已经确定好大致位置，后面只需微调。</li>
+<li>此步也需要指定好Routing相关的设置，如Routing
+Blockages，因为此步的Placement需要考虑Congestion进行优化。</li>
+</ul></li>
+<li>Detail Placement
+<ul>
+<li>Legalized stdcell，将Stdcell放置在合适的位置。具体内容可以看<a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/508482624">这篇文章</a>。</li>
+</ul></li>
+<li>Placement optimization
+<ul>
 <li>和上一步不断迭代优化。</li>
-<li>主要优化方向：Timing&#x2F;Area&#x2F;Power&#x2F;Congestion.</li>
+<li>主要优化方向：Timing/Area/Power/Congestion.</li>
 <li>会做逻辑优化，例如size cell 或者合并部分cell等。</li>
-<li>在这步还会做AHFS（Auto High Fanout Synthesis），主要解high fanout net的DRC。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>pysnopt  <ul>
+<li>在这步还会做AHFS（Auto High Fanout Synthesis），主要解high fanout
+net的DRC。</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>pysnopt
+<ul>
 <li>本文章前面也提到，在某些较小violation需要修时，可以使用增量优化，节省时间。</li>
-</ul>
-</li>
-<li>refine_placement<ul>
+</ul></li>
+<li>refine_placement
+<ul>
 <li>在本文章前面介绍解决congestion的策略中也有介绍该指令。主要用于在place_opt之后做的处理阻塞的增量优化。</li>
+</ul></li>
 </ul>
+<h2 id="tie-cell-spare-cell-insertion">9.Tie-Cell &amp; Spare-Cell
+insertion</h2>
+<ul>
+<li>Tie-Cell
+<ul>
+<li>为什么需要Tie-Cell
+<ul>
+<li>在一些Design中，有些input pin被直接连到0/1上，但是如果直接将input
+pin连接到0/1上，ESD可能会损坏这个pin的gate/poly。</li>
+<li>即使有ESD保护，但是为了更稳妥，还是需要将input pin连接到Tie
+cell，而不是PG Strap。<br />
 </li>
-</ul>
-<h2 id="9-Tie-Cell-Spare-Cell-insertion"><a href="#9-Tie-Cell-Spare-Cell-insertion" class="headerlink" title="9.Tie-Cell &amp; Spare-Cell insertion"></a>9.Tie-Cell &amp; Spare-Cell insertion</h2><ul>
-<li>Tie-Cell<ul>
-<li>为什么需要Tie-Cell<ul>
-<li>在一些Design中，有些input pin被直接连到0&#x2F;1上，但是如果直接将input pin连接到0&#x2F;1上，ESD可能会损坏这个pin的gate&#x2F;poly。</li>
-<li>即使有ESD保护，但是为了更稳妥，还是需要将input pin连接到Tie cell，而不是PG Strap。</li>
-</ul>
-</li>
-<li>Tie-Cell的种类<ul>
-<li>Tie-HI Cell 和 Tie-LO Cell </li>
+</ul></li>
+<li>Tie-Cell的种类
+<ul>
+<li>Tie-HI Cell 和 Tie-LO Cell</li>
 <li>可以使用指令让工具自动插入Tie Cell，也可以使用独立的插入命令。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Spare-Cell<ul>
-<li>是一种冗余逻辑单元，主要用于以下情况。<ul>
-<li>在制造PostMask之后，想要修改电路，添加逻辑，可以使用在Placement洒下的sparecell。这样不用动base layer的mask，只需要修改那一层metal layer的连接关系，实现逻辑修改；可以节省baselayer mask的成本（mask是较贵的程序）。</li>
-</ul>
-</li>
-<li>如何添加<ul>
+</ul></li>
+</ul></li>
+<li>Spare-Cell
+<ul>
+<li>是一种冗余逻辑单元，主要用于以下情况。
+<ul>
+<li>在制造PostMask之后，想要修改电路，添加逻辑，可以使用在Placement洒下的sparecell。这样不用动base
+layer的mask，只需要修改那一层metal
+layer的连接关系，实现逻辑修改；可以节省baselayer
+mask的成本（mask是较贵的程序）。</li>
+</ul></li>
+<li>如何添加
+<ul>
 <li>设置一个spare_list，将常见逻辑的cell都添加一定数量进去。</li>
 <li>根据设计的规模，添加多组spare_list。</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 </ul>
 
                 

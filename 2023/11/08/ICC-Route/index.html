@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;Tao_ZT&#x2F;article&#x2F;details&#x2F;102456916     1. 关于 Route Route的主要目标 满足timing的要求，如setup&#x2F;hold&#x2F;removal&#x2F;recovery等。 满足DRC的要求，例如：transition&#x2F;capacitance，以及不能有short&#x2F;">
+    <meta name="description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;Tao_ZT&#x2F;article&#x2F;details&#x2F;102456916    1. 关于 Route  Route的主要目标  满足timing的要求，如setup&#x2F;hold&#x2F;removal&#x2F;recovery等。 满足DRC的要求，例如：transition&#x2F;capacitance，以及不能有short&#x2F;open。  Ro">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ICC-Route">
 <meta property="og:url" content="http://binbinqian.cn/2023/11/08/ICC-Route/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;Tao_ZT&#x2F;article&#x2F;details&#x2F;102456916     1. 关于 Route Route的主要目标 满足timing的要求，如setup&#x2F;hold&#x2F;removal&#x2F;recovery等。 满足DRC的要求，例如：transition&#x2F;capacitance，以及不能有short&#x2F;">
+<meta property="og:description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;Tao_ZT&#x2F;article&#x2F;details&#x2F;102456916    1. 关于 Route  Route的主要目标  满足timing的要求，如setup&#x2F;hold&#x2F;removal&#x2F;recovery等。 满足DRC的要求，例如：transition&#x2F;capacitance，以及不能有short&#x2F;open。  Ro">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/08/ICC-Route/3201119-20230824144922635-1368228758.png">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/08/ICC-Route/3201119-20230824231159590-1603438839.png">
@@ -255,7 +255,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.7k 字
+          3.5k 字
         
       </span>
     
@@ -266,7 +266,7 @@
         
         
         
-          31 分钟
+          30 分钟
         
       </span>
     
@@ -600,184 +600,202 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/Tao_ZT/article/details/102456916">https://blog.csdn.net/Tao_ZT/article/details/102456916</a></li>
+<li>参考
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/Tao_ZT/article/details/102456916"
+class="uri">https://blog.csdn.net/Tao_ZT/article/details/102456916</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<hr>
-<h2 id="1-关于-Route"><a href="#1-关于-Route" class="headerlink" title="1. 关于 Route"></a>1. 关于 Route</h2><ul>
-<li>Route的主要目标<ul>
-<li>满足timing的要求，如setup&#x2F;hold&#x2F;removal&#x2F;recovery等。</li>
-<li>满足DRC的要求，例如：transition&#x2F;capacitance，以及不能有short&#x2F;open。</li>
-</ul>
-</li>
-<li>Route 绕线规则<ul>
-<li><p>standard cell 的 pg rail可以采用M1,M2，M3。standard cell 的pin脚一般采用M1.  </p>
-</li>
+<hr />
+<h2 id="关于-route">1. 关于 Route</h2>
+<ul>
+<li>Route的主要目标
+<ul>
+<li>满足timing的要求，如setup/hold/removal/recovery等。</li>
+<li>满足DRC的要求，例如：transition/capacitance，以及不能有short/open。</li>
+</ul></li>
+<li>Route 绕线规则
+<ul>
+<li><p>standard cell 的 pg rail可以采用M1,M2，M3。standard cell
+的pin脚一般采用M1.<br />
+</p></li>
 <li><p>Width and Spacing Rule</p>
 <ul>
-<li>原有一个最小宽度和间距对应的规则要求，如下图蓝色模块所示。<ul>
-<li>但是若两侧金属宽度增加，那么间距也需要相对应的增加。即Width-Based Spacing。</li>
+<li>原有一个最小宽度和间距对应的规则要求，如下图蓝色模块所示。
+<ul>
+<li>但是若两侧金属宽度增加，那么间距也需要相对应的增加。即Width-Based
+Spacing。</li>
+</ul></li>
 </ul>
-</li>
+<p><img src="3201119-20230824144922635-1368228758.png" width = 50%/></p></li>
+<li><p>需要满足DRC。</p></li>
+</ul></li>
 </ul>
-<img src="3201119-20230824144922635-1368228758.png" width = 50%/>
-</li>
-<li><p>需要满足DRC。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="2-Crosstalk"><a href="#2-Crosstalk" class="headerlink" title="2. Crosstalk"></a>2. Crosstalk</h2><ul>
-<li>Crosstalk的危害<ul>
-<li>delta delay  <ul>
-<li><p>如下图所示，串扰可能会影响受害者信号，导致增加&#x2F;减小延时。</p>
-<img src="3201119-20230824231159590-1603438839.png" width = 50%/>
-
-<img src="3201119-20230824231359249-463379969.png" width = 50%/>
-</li>
-<li><p>延时的改变可能会导致setup&#x2F;hold出现违例，使电路无法正常工作。所以无论是ICC&#x2F;PT，都需要将delta delay的延时考虑在内。</p>
-</li>
-<li><p>可以使用下面指令查看delta_delay值的大小。</p>
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-function"><span class="hljs-title">report_timing</span></span> -crosstalk_delta ...<br></code></pre></td></tr></table></figure></li>
-<li><p>可能Launch路和Capture路都有delta delay的影响，工具会根据是setup&#x2F;hold分析，决定一个最保守的加&#x2F;减法运算于原先时序路径上。</p>
-</li>
-</ul>
-</li>
-<li>glitch&#x2F;bump<ul>
-<li>Crosstalk导致的glich&#x2F;bump可能会出现Logic Failure，可能会进一步导致芯片功能的错误。</li>
-<li>所以在PT的时候，需要去考虑signal integrity。在后面的文章有详细介绍。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>如何避免&#x2F;修复Crosstalk<ul>
-<li>Crosstalk 影响相关因素<ul>
-<li>与Aggressor和Victim驱动单元的驱动能力有关，Aggressor的驱动能力越大，Victim的驱动能力越小，那么对Victim的影响就越大，反之亦然。<ul>
-<li>所以可以将Aggressor的驱动size down，而Victim的驱动size up。但是size down可能会出现时序 violation。</li>
-</ul>
-</li>
-<li>与两根金属线之间的耦合电容相关，而这个电容值的大小与两条金属线长和间隔距离相关。   <ul>
+<h2 id="crosstalk">2. Crosstalk</h2>
+<ul>
+<li>Crosstalk的危害
+<ul>
+<li>delta delay
+<ul>
+<li><p>如下图所示，串扰可能会影响受害者信号，导致增加/减小延时。</p>
+<p><img src="3201119-20230824231159590-1603438839.png" width = 50%/></p>
+<p><img src="3201119-20230824231359249-463379969.png" width = 50%/></p></li>
+<li><p>延时的改变可能会导致setup/hold出现违例，使电路无法正常工作。所以无论是ICC/PT，都需要将delta
+delay的延时考虑在内。</p></li>
+<li><p>可以使用下面指令查看delta_delay值的大小。 <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-function"><span class="hljs-title">report_timing</span></span> -crosstalk_delta ...<br></code></pre></td></tr></table></figure></p></li>
+<li><p>可能Launch路和Capture路都有delta
+delay的影响，工具会根据是setup/hold分析，决定一个最保守的加/减法运算于原先时序路径上。</p></li>
+</ul></li>
+<li>glitch/bump
+<ul>
+<li>Crosstalk导致的glich/bump可能会出现Logic
+Failure，可能会进一步导致芯片功能的错误。</li>
+<li>所以在PT的时候，需要去考虑signal
+integrity。在后面的文章有详细介绍。</li>
+</ul></li>
+</ul></li>
+<li>如何避免/修复Crosstalk
+<ul>
+<li>Crosstalk 影响相关因素
+<ul>
+<li>与Aggressor和Victim驱动单元的驱动能力有关，Aggressor的驱动能力越大，Victim的驱动能力越小，那么对Victim的影响就越大，反之亦然。
+<ul>
+<li>所以可以将Aggressor的驱动size down，而Victim的驱动size up。但是size
+down可能会出现时序 violation。</li>
+</ul></li>
+<li>与两根金属线之间的耦合电容相关，而这个电容值的大小与两条金属线长和间隔距离相关。
+<ul>
 <li>所以可以将长长的金属线打断，中间插入buffer。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>对一些关键的信号加shielding&#x2F;NDR。<ul>
-<li>shielding可以加在较强&#x2F;关键信号线的两侧，接上电源线&#x2F;地线（一般为地线），此时信号线之间的耦合电容变成信号线和地线之间的电容。</li>
-<li>缺点如下 <ul>
+</ul></li>
+</ul></li>
+<li>对一些关键的信号加shielding/NDR。
+<ul>
+<li>shielding可以加在较强/关键信号线的两侧，接上电源线/地线（一般为地线），此时信号线之间的耦合电容变成信号线和地线之间的电容。</li>
+<li>缺点如下
+<ul>
 <li>shielding导致一个特定区域走线变少，导致成本提高很多。</li>
 <li>上面也有提到，信号线之间的电容变成了信号线和地之间的电容，而这个接地电容会增加信号线的负载，可能会对时序有负面影响。</li>
-</ul>
+</ul></li>
+<li>NDR，一般采用增大线宽和间距，并使用高层金属走线，也会导致成本的增加。<br />
 </li>
-<li>NDR，一般采用增大线宽和间距，并使用高层金属走线，也会导致成本的增加。</li>
+</ul></li>
+<li>在route_opt之前设置下面指令 <figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs livescript">set_si_options -static_noise <span class="hljs-literal">true</span> <span class="hljs-string">\</span><br>               -static_noise_threshold_above_low <span class="hljs-number">0.35</span> <span class="hljs-string">\</span><br>               -static_noise_threshold_below_high <span class="hljs-number">0.35</span><br>set_si_options -delta_delay <span class="hljs-literal">true</span> <span class="hljs-string">\</span><br>               -route_xtalk_prevention_true <span class="hljs-string">\</span><br>               -route_xtalk_prevention_threshold <span class="hljs-number">0.25</span> <span class="hljs-string">\</span><br>               -analysis_effort medium <br></code></pre></td></tr></table></figure></li>
+</ul></li>
 </ul>
-</li>
-<li>在route_opt之前设置下面指令<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs livescript">set_si_options -static_noise <span class="hljs-literal">true</span> <span class="hljs-string">\</span><br>               -static_noise_threshold_above_low <span class="hljs-number">0.35</span> <span class="hljs-string">\</span><br>               -static_noise_threshold_below_high <span class="hljs-number">0.35</span><br>set_si_options -delta_delay <span class="hljs-literal">true</span> <span class="hljs-string">\</span><br>               -route_xtalk_prevention_true <span class="hljs-string">\</span><br>               -route_xtalk_prevention_threshold <span class="hljs-number">0.25</span> <span class="hljs-string">\</span><br>               -analysis_effort medium <br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<h2 id="3-Route-流程"><a href="#3-Route-流程" class="headerlink" title="3. Route 流程"></a>3. Route 流程</h2><h3 id="3-1-Initial-Route"><a href="#3-1-Initial-Route" class="headerlink" title="3.1 Initial Route"></a>3.1 Initial Route</h3><ul>
-<li><p>Pre - Route 基本过程</p>
+<h2 id="route-流程">3. Route 流程</h2>
+<h3 id="initial-route">3.1 Initial Route</h3>
 <ul>
-<li><p>（1）Global Route</p>
+<li>Pre - Route 基本过程
 <ul>
-<li><p>Router会将整个区域划分为若干个大小相等的小格子GRC(Global Routing Cell)，每个小格子能通过的绕线资源是有限的。 如果超过这个能承受的值，就认为是发生阻塞。</p>
-</li>
-<li><p>GR阶段，router会绕开congested区域，而且也会绕开P&#x2F;G-Shape(Rings&#x2F;Straps&#x2F;Rails)和Routing Blockages。</p>
-<img src="3201119-20230824151559561-1851610570.png" width = 40%/></li>
-</ul>
-</li>
-<li><p>（2）Track Assign</p>
+<li>（1）Global Route
+<ul>
+<li><p>Router会将整个区域划分为若干个大小相等的小格子GRC(Global Routing
+Cell)，每个小格子能通过的绕线资源是有限的。
+如果超过这个能承受的值，就认为是发生阻塞。</p></li>
+<li><p>GR阶段，router会绕开congested区域，而且也会绕开P/G-Shape(Rings/Straps/Rails)和Routing
+Blockages。</p>
+<p><img src="3201119-20230824151559561-1851610570.png" width = 40%/></p></li>
+</ul></li>
+<li>（2）Track Assign
 <ul>
 <li>分配track，并尽量走较长的直线，避免多处拐弯。尽量减少通孔数量。</li>
 <li>TA这步并不做DRC检查或修正。</li>
-</ul>
-</li>
-<li><p>（3）Detail Route</p>
+</ul></li>
+<li>（3）Detail Route
 <ul>
-<li>主要修复TA阶段产生的physical drc violation。<ul>
+<li>主要修复TA阶段产生的physical drc violation。
+<ul>
 <li>route通过遍历一个个特定大小的区域(SBox)去修复drc。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>（4）Search &amp; Repair </p>
+</ul></li>
+</ul></li>
+<li>（4）Search &amp; Repair
 <ul>
-<li>主要用于修剩下的drc Violation。算法是不断的增加SBox的Size，去遍历修。</li>
-<li>即使Route的DRC Violation都清掉了，之后还是需要做Signoff的DRC。原因有下面三点：<ul>
+<li>主要用于修剩下的drc
+Violation。算法是不断的增加SBox的Size，去遍历修。</li>
+<li>即使Route的DRC
+Violation都清掉了，之后还是需要做Signoff的DRC。原因有下面三点：
+<ul>
 <li>Routing DRC是complete technology DRC的子集。</li>
-<li>我们需要统一Routing DRC和complete technology DRC的版本，可能存在两个版本不一致的情况。</li>
-<li>ICC中placement和routing使用的都是一个FRAM view，而不是CEL view；可能有些细节并没有被检查到，所以之后还需要CEL View进行signoff DRC检查。<ul>
-<li>没必要去读入CEL view的原因是：这两步没必要去读入太多细节信息，消耗run time。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>上面介绍Pre-Route的四步，可以使用下面命令实现。</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">route_opt -initial_route_only</span><br></code></pre></td></tr></table></figure>
+<li>我们需要统一Routing DRC和complete technology
+DRC的版本，可能存在两个版本不一致的情况。</li>
+<li>ICC中placement和routing使用的都是一个FRAM view，而不是CEL
+view；可能有些细节并没有被检查到，所以之后还需要CEL View进行signoff
+DRC检查。
+<ul>
+<li>没必要去读入CEL
+view的原因是：这两步没必要去读入太多细节信息，消耗run time。</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>上面介绍Pre-Route的四步，可以使用下面命令实现。 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">route_opt -initial_route_only</span><br></code></pre></td></tr></table></figure>
 <ul>
 <li>这一阶段不需要考虑timing相关，需要考虑是否存在congestion。</li>
 <li>在该指令运行之前还需要指令进行下面的一些设置。</li>
-</ul>
-</li>
-<li><p>route_opt -initial..前的设置</p>
+</ul></li>
+<li>route_opt -initial..前的设置
 <ul>
-<li>（1）Antenna rule的设置<ul>
-<li>Antenna rule.tcl来源于stdcel厂商；因为天线效应和stdcell的设计相关。</li>
-<li>使用下面指令在ICC阶段就设置，在Signoff的physical verification阶段也需要去检查一下天线效应。<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">set_route_zrt_detail_options -antenna <span class="hljs-literal">true</span><br>source antenn<span class="hljs-built_in">a_rules</span>.tcl<br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>（2）Zrt Router 设置<ul>
-<li>大部分使用Synopsys RM Flow的设置。<ul>
-<li>其中RM(Reference Methodology)是说Synopsys创建的一个包含整个ICC流程的参考脚本。</li>
-</ul>
-</li>
+<li>（1）Antenna rule的设置
+<ul>
+<li>Antenna
+rule.tcl来源于stdcel厂商；因为天线效应和stdcell的设计相关。</li>
+<li>使用下面指令在ICC阶段就设置，在Signoff的physical
+verification阶段也需要去检查一下天线效应。 <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">set_route_zrt_detail_options -antenna <span class="hljs-literal">true</span><br>source antenn<span class="hljs-built_in">a_rules</span>.tcl<br></code></pre></td></tr></table></figure></li>
+</ul></li>
+<li>（2）Zrt Router 设置
+<ul>
+<li>大部分使用Synopsys RM Flow的设置。
+<ul>
+<li>其中RM(Reference
+Methodology)是说Synopsys创建的一个包含整个ICC流程的参考脚本。</li>
+</ul></li>
 <li>需要将之前设置好的一些物理约束source进来，例如：layer的设置等。</li>
-</ul>
-</li>
-<li>（3）Routing Blockage<ul>
+</ul></li>
+<li>（3）Routing Blockage
+<ul>
 <li>使用gui界面指定哪个金属层的什么区域不让绕线，可以导出脚本，之后修改脚本坐标即可。</li>
-</ul>
-</li>
-<li>（4）Routing Guide<ul>
-<li><p>可以指定特定金属层不route和preroute；设置特定金属层走preferred direction，或者switch preferred direction；设置route track utilization；以及其它一些更为详细的走线约束。</p>
+</ul></li>
+<li>（4）Routing Guide
 <ul>
-<li>preroute为route之前先布好pg rail&#x2F;strap&#x2F;ring的线。</li>
-<li>每层金属的方向是可以指定的，都是vertical,horizon间隔。preferred direction是指该层金属的方向。而Switch则是改变部分区域的金属走线方向，与设前面指定的不一致。<ul>
+<li>可以指定特定金属层不route和preroute；设置特定金属层走preferred
+direction，或者switch preferred direction；设置route track
+utilization；以及其它一些更为详细的走线约束。
+<ul>
+<li>preroute为route之前先布好pg rail/strap/ring的线。</li>
+<li>每层金属的方向是可以指定的，都是vertical,horizon间隔。preferred
+direction是指该层金属的方向。而Switch则是改变部分区域的金属走线方向，与设前面指定的不一致。
+<ul>
 <li><p>举例如下图，macro之间的channel只能横向走线，只能走M4，但是M4是纵向的，所以可以使用switch，更改这部分区域M4的走线方向。</p>
-  <img src="3201119-20230825233148646-823833872.png" width = 40%/></li>
-</ul>
+<p><img src="3201119-20230825233148646-823833872.png" width = 40%/></p></li>
+</ul></li>
+</ul></li>
+<li>针对出现的congestion，制定合理的routing
+guide指定部分区域走线方向，以及区域走线利用率，来将绕线阻塞的地方分配一些绕线资源到较为“空闲”的地方。<br />
 </li>
-</ul>
-</li>
-<li><p>针对出现的congestion，制定合理的routing guide指定部分区域走线方向，以及区域走线利用率，来将绕线阻塞的地方分配一些绕线资源到较为“空闲”的地方。</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>route_opt -initial..后的操作</p>
+</ul></li>
+</ul></li>
+<li>route_opt -initial..后的操作
 <ul>
-<li>查看 DRC violation&#x2F;antenna violation等。</li>
-<li>修出现的physical violation    <ul>
-<li>可以首先检查short区域，short很大可能是因为congestion导致的，该区域可能会出现很多其它非short的drc violation。  </li>
-<li>可以使用Global Route Congestion工具快速看修完之后congestion的结果。</li>
-</ul>
+<li>查看 DRC violation/antenna violation等。</li>
+<li>修出现的physical violation
+<ul>
+<li>可以首先检查short区域，short很大可能是因为congestion导致的，该区域可能会出现很多其它非short的drc
+violation。<br />
 </li>
+<li>可以使用Global Route
+Congestion工具快速看修完之后congestion的结果。</li>
+</ul></li>
+</ul></li>
 </ul>
+<h3 id="postroute-opt">3.2 PostRoute Opt</h3>
+<ul>
+<li>进入此步的前提是DRC
+violation，congestion等问题都大致解决了，才可以进行后面的操作。</li>
+<li>该步骤使用的scenario的数目和PostCTS的数目是差不多的。margin可以根据实际情况进行调整或保持不变，主要看这步和前一步的correlation。<br />
 </li>
-</ul>
-<h3 id="3-2-PostRoute-Opt"><a href="#3-2-PostRoute-Opt" class="headerlink" title="3.2 PostRoute Opt"></a>3.2 PostRoute Opt</h3><ul>
-<li>进入此步的前提是DRC violation，congestion等问题都大致解决了，才可以进行后面的操作。</li>
-<li>该步骤使用的scenario的数目和PostCTS的数目是差不多的。margin可以根据实际情况进行调整或保持不变，主要看这步和前一步的correlation。  </li>
-<li>该步骤主要使用route_opt指令，用于修复timing&#x2F;drc&#x2F;area&#x2F;power&#x2F;xtalk.</li>
-<li>出现violation时，可以添加下面两个命令，进行增量优化。当数目较小时，可以手修。<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">route_opt -incremental</span><br><span class="hljs-attribute">psynopt</span><br></code></pre></td></tr></table></figure></li>
+<li>该步骤主要使用route_opt指令，用于修复timing/drc/area/power/xtalk.</li>
+<li>出现violation时，可以添加下面两个命令，进行增量优化。当数目较小时，可以手修。
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">route_opt -incremental</span><br><span class="hljs-attribute">psynopt</span><br></code></pre></td></tr></table></figure></li>
 </ul>
 
                 
