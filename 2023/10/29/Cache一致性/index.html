@@ -26,7 +26,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/10/29/Cache%E4%B8%80%E8%87%B4%E6%80%A7/3201119-20230811122740521-659669830.png">
 <meta property="article:published_time" content="2023-10-29T12:45:44.000Z">
-<meta property="article:modified_time" content="2023-10-29T13:02:48.924Z">
+<meta property="article:modified_time" content="2023-11-13T04:40:55.291Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://binbinqian.cn/2023/10/29/Cache%E4%B8%80%E8%87%B4%E6%80%A7/3201119-20230811122740521-659669830.png">
@@ -623,7 +623,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年10月29日 晚上
+                    本文最后更新于：2023年11月13日 下午
                   
                 
               </p>
@@ -713,15 +713,15 @@ Buffer。因为可能CPU读走的数据并不是最终完成DMA传输的数据�
 target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/109919756">这篇文章</a>。</li>
 <li>简要概述一下文章中描述的情况，如下：
 <ul>
-<li>若未对齐，那么变量temp和buffer在cacheline中的存放如下图所示。</li>
-<li>现DMA进行外设-&gt;内存传输数据到buffer变量中。</li>
-<li>但在传输过程中，DMA传输到buff[3]时，CPU对temp的进行改动；之后DMA传输到buff[50]时，由于其它操作可能需要替换掉temp所在cacheline，发现dirty
-bit被拉高，便需要将该行cacheline写回。这个过程都发生在DMA传输过程中。</li>
-<li>从图中可以看到写回的时buffer[0]-buffer[59],直接覆盖掉DMA从外设传输过来的buffer值。</li>
-<li>可以通过对齐DMA
-buffer来解决这个问题，即让buffer变量不和其它数据公用一个cacheline。</li>
-</ul>
-<img src="3201119-20230811122740521-659669830.png" /></li>
+<li><p>若未对齐，那么变量temp和buffer在cacheline中的存放如下图所示。</p></li>
+<li><p>现DMA进行外设-&gt;内存传输数据到buffer变量中。</p></li>
+<li><p>但在传输过程中，DMA传输到buff[3]时，CPU对temp的进行改动；之后DMA传输到buff[50]时，由于其它操作可能需要替换掉temp所在cacheline，发现dirty
+bit被拉高，便需要将该行cacheline写回。这个过程都发生在DMA传输过程中。</p></li>
+<li><p>从图中可以看到写回的时buffer[0]-buffer[59],直接覆盖掉DMA从外设传输过来的buffer值。</p></li>
+<li><p>可以通过对齐DMA
+buffer来解决这个问题，即让buffer变量不和其它数据公用一个cacheline。</p>
+<p><img src="3201119-20230811122740521-659669830.png" /></p></li>
+</ul></li>
 </ul></li>
 </ul>
 <h2 id="icache-和-dcache-一致性">3. ICache 和 DCache 一致性</h2>

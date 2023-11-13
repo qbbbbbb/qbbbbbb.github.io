@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://binbinqian.cn/2023/11/01/RISC-V%20%E6%8C%87%E4%BB%A4/3201119-20230702233922982-373352789.png">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/01/RISC-V%20%E6%8C%87%E4%BB%A4/3201119-20230921162921388-1215879610.png">
 <meta property="article:published_time" content="2023-11-01T05:26:23.000Z">
-<meta property="article:modified_time" content="2023-11-01T07:34:24.994Z">
+<meta property="article:modified_time" content="2023-11-13T04:45:10.047Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://binbinqian.cn/2023/11/01/RISC-V%20%E6%8C%87%E4%BB%A4/3201119-20230702170812050-2086168818.png">
@@ -626,7 +626,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年11月1日 下午
+                    本文最后更新于：2023年11月13日 下午
                   
                 
               </p>
@@ -682,10 +682,10 @@ class="uri">https://blog.csdn.net/sucaiwa/article/details/129328891</a></li>
 </ul>
 <h2 id="rv32i-指令格式">2. RV32I 指令格式</h2>
 <ul>
-<li>下图介绍了六种基本指令格式
-<div data-align="center">
-<img src="3201119-20230702170812050-2086168818.png" width = 60%/>
-</div></li>
+<li>下图介绍了六种基本指令格式</li>
+</ul>
+<p><img src="3201119-20230702170812050-2086168818.png" width = 60%/></p>
+<ul>
 <li>R-type
 <ul>
 <li>实现rs1，rs2两个寄存器的值运算，并将运算后的结果存在rd中。opcode 和
@@ -741,11 +741,9 @@ target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/374235855">这
 <li>比较两个源寄存器rs1和rs2，并进行跳转。</li>
 <li>例子如下：
 <ul>
-<li>指令格式上可以看到imm[0]被舍弃掉了，因为该bit被设置为0；汇编器根据label的地址计算出相对当前PC值的偏移量为16bytes
-= 'b1_0000，映射如下图。 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-keyword">beq</span> <span class="hljs-built_in">x19</span>, <span class="hljs-built_in">x10</span>, label<br></code></pre></td></tr></table></figure>
-<div data-align="center">
-<img src="3201119-20230702221434146-1599458281.png" width = 60%/>
-</div></li>
+<li><p>指令格式上可以看到imm[0]被舍弃掉了，因为该bit被设置为0；汇编器根据label的地址计算出相对当前PC值的偏移量为16bytes
+= 'b1_0000，映射如下图。 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-keyword">beq</span> <span class="hljs-built_in">x19</span>, <span class="hljs-built_in">x10</span>, label<br></code></pre></td></tr></table></figure></p>
+<p><img src="3201119-20230702221434146-1599458281.png" width = 60%/></p></li>
 </ul></li>
 <li>看到这里，其实就会有一个疑问，为什么B型和J型立即数在inst中分散的奇奇怪怪，但是寄存器却是固定位置的，知乎上搜到了这个问题的一些<a
 target="_blank" rel="noopener" href="https://www.zhihu.com/question/405003253">回答</a>。我认为其中有一个解释的很有道理，为了平衡（寄存器索引到读出寄存器值的时间）和（通过inst生成参与操作的立即数选择逻辑的时间），提高整体的运算速度。</li>
@@ -765,12 +763,10 @@ target="_blank" rel="noopener" href="https://www.zhihu.com/question/405003253">�
 </ul></li>
 <li>jalr
 <ul>
-<li>！！<strong>注意，jalr不是J型指令格式而是I型指令格式。</strong></li>
-<li>imm的12bit立即数为偏移量，基地址保存在rs1中，两者相加为最终跳转的目标地址。只能跳转±2KB（2^11=2KB，去掉符号位）。</li>
-<li>jalr也需要将下一条指令的PC值写入rd寄存器中。
-<div data-align="center">
-<img src="3201119-20230702233922982-373352789.png" width = 60%/>
-</div></li>
+<li><p>！！<strong>注意，jalr不是J型指令格式而是I型指令格式。</strong></p></li>
+<li><p>imm的12bit立即数为偏移量，基地址保存在rs1中，两者相加为最终跳转的目标地址。只能跳转±2KB（2^11=2KB，去掉符号位）。</p></li>
+<li><p>jalr也需要将下一条指令的PC值写入rd寄存器中。</p>
+<p><img src="3201119-20230702233922982-373352789.png" width = 60%/></p></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -791,12 +787,10 @@ target="_blank" rel="noopener" href="https://www.zhihu.com/question/405003253">�
 </ul></li>
 <li>立即数寻址
 <ul>
-<li>如I型指令。
-<div data-align="center">
-<img src="3201119-20230921162921388-1215879610.png" width = 60%/>
-</div></li>
+<li>如I型指令。</li>
 </ul></li>
 </ul>
+<p><img src="3201119-20230921162921388-1215879610.png" width = 60%/></p>
 <h2 id="risc-v-原子指令">4. RISC-V 原子指令</h2>
 <ul>
 <li>对于单处理器，任务之间的同步机制可以通过<strong>加锁和解锁</strong>实现。</li>

@@ -26,7 +26,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/08/ICC-FloorPlan/3201119-20230818170236147-393202007.png">
 <meta property="article:published_time" content="2023-11-08T08:44:48.000Z">
-<meta property="article:modified_time" content="2023-11-08T09:11:02.970Z">
+<meta property="article:modified_time" content="2023-11-13T04:51:11.603Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://binbinqian.cn/2023/11/08/ICC-FloorPlan/3201119-20230818170236147-393202007.png">
@@ -550,7 +550,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年11月8日 下午
+                    本文最后更新于：2023年11月13日 下午
                   
                 
               </p>
@@ -573,12 +573,12 @@ class="uri">https://blog.csdn.net/qq_34110120/article/details/83007656</a></li>
 </ul>
 <h2 id="实现流程">1. 实现流程</h2>
 <ul>
-<li>（1）定义大小和形状
+<li><p>（1）定义大小和形状</p>
 <ul>
 <li>可以在手册中查找create_floorplan指令的相关选项配置。
 <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-function"><span class="hljs-title">create_floorplan</span></span> -left_io2core <span class="hljs-number">10.</span>..<br></code></pre></td></tr></table></figure></li>
 </ul></li>
-<li>（2）Macro Cell 摆放
+<li><p>（2）Macro Cell 摆放</p>
 <ul>
 <li>注意事项
 <ul>
@@ -597,22 +597,22 @@ class="uri">https://blog.csdn.net/qq_34110120/article/details/83007656</a></li>
 <li>一般都是手动摆放macro，摆放好了之后可以导出脚本，方便下一次直接使用。</li>
 <li>摆放完之后要固定住，防止后面操作更改。</li>
 </ul></li>
-<li>（3）Ports/Terminals的摆放
+<li><p>（3）Ports/Terminals的摆放</p>
 <ul>
-<li>port是逻辑存在的端口，而terminal是port的物理层实现。
-<div data-align="center">
-<img src="3201119-20230818170236147-393202007.png" width = 50%/>
-</div></li>
+<li>port是逻辑存在的端口，而terminal是port的物理层实现。</li>
+</ul>
+<p><img src="3201119-20230818170236147-393202007.png" width = 50%/></p>
+<ul>
 <li>注意port的金属层选择，不同金属层有不同的方向，选择合适的金属层让port接口“顺着放”。</li>
 <li>也可以使用脚本让工具自动摆放，人为可以添加约束。 <figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">place_fp_pins -block_level<br></code></pre></td></tr></table></figure></li>
 </ul></li>
-<li>（4）EndCap Cell(Boundary Cell)
+<li><p>（4）EndCap Cell(Boundary Cell)</p>
 <ul>
 <li>放在Row的边界，主要为了满足DRC，保护处于边界位置的stdcell；以及match
 stdcell environment。<br />
 </li>
 </ul></li>
-<li>（5）Tap Cell
+<li><p>（5）Tap Cell</p>
 <ul>
 <li>N 阱和P 衬底形成了一个PN结，为了避免这个PN结被正向偏置(Forwad
 Bias)，形成Latch-Up效应，从而损坏整个芯片。最容易的办法是把N-Well连接到最高电压上，同时把P-Substrate连接到最低电压上。</li>
@@ -622,7 +622,7 @@ cell的作用范围有限，所以需要间隔一定距离就放置一个，具�
 cell了。</li>
 <li>可以使用下面语句添加tap cell。 <figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">add_tap_cell_array<br></code></pre></td></tr></table></figure></li>
 </ul></li>
-<li>（6）PG Network
+<li><p>（6）PG Network</p>
 <ul>
 <li>目的：给所有的Macro和StdCell供上电。</li>
 <li>评估标准：IR Drop。</li>
@@ -667,7 +667,7 @@ remove掉；重新布置。 <figure class="highlight tcl"><table><tr><td class="
 <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-keyword">set</span>_preroute_drc_strategy -max_layer M4 -min_layer M1<br></code></pre></td></tr></table></figure></li>
 </ul></li>
 </ul></li>
-<li>（7）额外的物理约束
+<li><p>（7）额外的物理约束</p>
 <ul>
 <li>stdcell的摆放区域设定：例如靠近Core的边缘没必要摆放（硬性要求），部分区域指定部分stdcell可以摆（软性，自己定义的要求）。
 <ul>
@@ -679,7 +679,7 @@ remove掉；重新布置。 <figure class="highlight tcl"><table><tr><td class="
 </ul></li>
 </ul></li>
 </ul></li>
-<li>（8）Write Floorplan
+<li><p>（8）Write Floorplan</p>
 <ul>
 <li>目的是将Floorplan信息指定部分写出DEF等文件，可以给DCT使用，做连线延时估计。</li>
 </ul></li>
