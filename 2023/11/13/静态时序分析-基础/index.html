@@ -1,0 +1,1355 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#011E34">
+  <meta name="author" content="qianbinbin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="参考  《集成电路静态时序分析与建模》 公众号：陌上风骑驴看IC 公众号：全栈芯片工程师 https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_37584728&#x2F;article&#x2F;details&#x2F;116974681    1. STA 相关基础知识  DC 和 ICC工具中也嵌入了STA分析工具，timing engine类似于STA，但是为了run time，精度降">
+<meta property="og:type" content="article">
+<meta property="og:title" content="静态时序分析-基础">
+<meta property="og:url" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="可达达鸭">
+<meta property="og:description" content="参考  《集成电路静态时序分析与建模》 公众号：陌上风骑驴看IC 公众号：全栈芯片工程师 https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_37584728&#x2F;article&#x2F;details&#x2F;116974681    1. STA 相关基础知识  DC 和 ICC工具中也嵌入了STA分析工具，timing engine类似于STA，但是为了run time，精度降">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-%E5%9F%BA%E7%A1%80/3201119-20230803132859974-1629355947.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-%E5%9F%BA%E7%A1%80/3201119-20230803134043009-702555882.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-%E5%9F%BA%E7%A1%80/3201119-20230803143433098-462607844.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-%E5%9F%BA%E7%A1%80/3201119-20230803162739913-1519710470.jpg">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-%E5%9F%BA%E7%A1%80/3201119-20230803153453247-516127716.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-%E5%9F%BA%E7%A1%80/3201119-20230804172606732-306455573.jpg">
+<meta property="article:published_time" content="2023-11-13T07:14:19.000Z">
+<meta property="article:modified_time" content="2023-11-13T08:01:40.134Z">
+<meta property="article:author" content="qianbinbin">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-%E5%9F%BA%E7%A1%80/3201119-20230803132859974-1629355947.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>静态时序分析-基础 - 可达达鸭</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"binbinqian.cn","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>可达达鸭</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="静态时序分析-基础"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-11-13 15:14" pubdate>
+          2023年11月13日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          32 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="数字中后端"
+        id="heading-e064260eea1d040e4f8886feeacc7f1f" role="tab" data-toggle="collapse" href="#collapse-e064260eea1d040e4f8886feeacc7f1f"
+        aria-expanded="true"
+      >
+        数字中后端
+        <span class="list-group-count">(13)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-e064260eea1d040e4f8886feeacc7f1f"
+           role="tabpanel" aria-labelledby="heading-e064260eea1d040e4f8886feeacc7f1f">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="DC"
+        id="heading-cf75e54791dd1f49f918345fdfe2430b" role="tab" data-toggle="collapse" href="#collapse-cf75e54791dd1f49f918345fdfe2430b"
+        aria-expanded="false"
+      >
+        DC
+        <span class="list-group-count">(5)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-cf75e54791dd1f49f918345fdfe2430b"
+           role="tabpanel" aria-labelledby="heading-cf75e54791dd1f49f918345fdfe2430b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/11/02/DC%20&amp;%20DCT%20&amp;%20DCG/" title="DC &amp; DCT &amp; DCG"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">DC &amp; DCT &amp; DCG</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E4%B8%80%EF%BC%89/" title="DC相关理解（一）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">DC相关理解（一）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E4%B8%89%EF%BC%89/" title="DC相关理解（三）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">DC相关理解（三）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E4%BA%8C%EF%BC%89/" title="DC相关理解（二）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">DC相关理解（二）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E5%9B%9B%EF%BC%89/" title="DC相关理解（四）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">DC相关理解（四）</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="ICC"
+        id="heading-b6b8d73d401b7611fac37ab11898f598" role="tab" data-toggle="collapse" href="#collapse-b6b8d73d401b7611fac37ab11898f598"
+        aria-expanded="false"
+      >
+        ICC
+        <span class="list-group-count">(6)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-b6b8d73d401b7611fac37ab11898f598"
+           role="tabpanel" aria-labelledby="heading-b6b8d73d401b7611fac37ab11898f598">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/11/08/ICC-CTS/" title="ICC-CTS"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ICC-CTS</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/08/ICC-FloorPlan/" title="ICC-FloorPlan"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ICC-FloorPlan</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/08/ICC-MCMM/" title="ICC-MCMM"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ICC-MCMM</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/08/ICC-Placement/" title="ICC-Placement"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ICC-Placement</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/08/ICC-Route/" title="ICC-Route"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ICC-Route</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/08/ICC-%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87/" title="ICC-数据准备"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ICC-数据准备</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="STA"
+        id="heading-971ab16c6e59a04d070cb8d8da13418e" role="tab" data-toggle="collapse" href="#collapse-971ab16c6e59a04d070cb8d8da13418e"
+        aria-expanded="true"
+      >
+        STA
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-971ab16c6e59a04d070cb8d8da13418e"
+           role="tabpanel" aria-labelledby="heading-971ab16c6e59a04d070cb8d8da13418e">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-%E5%9F%BA%E7%A1%80/" title="静态时序分析-基础"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">静态时序分析-基础</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Violation 修复"
+        id="heading-ced9761b762afac82eefb11eaf534e9b" role="tab" data-toggle="collapse" href="#collapse-ced9761b762afac82eefb11eaf534e9b"
+        aria-expanded="false"
+      >
+        Violation 修复
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-ced9761b762afac82eefb11eaf534e9b"
+           role="tabpanel" aria-labelledby="heading-ced9761b762afac82eefb11eaf534e9b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/11/02/%E5%A6%82%E4%BD%95%E4%BF%AE%E6%97%B6%E5%BA%8F%E8%BF%9D%E4%BE%8B%EF%BC%88%E4%B8%80%EF%BC%89/" title="如何修时序违例（一）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">如何修时序违例（一）</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">静态时序分析-基础</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2023年11月13日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <ul>
+<li>参考
+<ul>
+<li>《集成电路静态时序分析与建模》</li>
+<li>公众号：陌上风骑驴看IC</li>
+<li>公众号：全栈芯片工程师</li>
+<li><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_37584728/article/details/116974681"
+class="uri">https://blog.csdn.net/weixin_37584728/article/details/116974681</a></li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="sta-相关基础知识">1. STA 相关基础知识</h2>
+<ul>
+<li>DC 和 ICC工具中也嵌入了STA分析工具，timing
+engine类似于STA，但是为了run time，精度降低了。
+<ul>
+<li>像后面介绍的STA的两种分析模式：GBA和PBA，DC和ICC中只支持GBA的分析。</li>
+</ul></li>
+<li>时序分析
+<ul>
+<li>可分为静态时序分析和动态时序分析。</li>
+<li>动态时序分析
+<ul>
+<li>通过网表和sdf文件，sdf将单元延迟和连线延迟反标到网表上；并给入大量的测试激励来验证电路的功能。</li>
+<li>需要特殊注意几个验证点
+<ul>
+<li>典型应用场景的功能验证</li>
+<li>频率的动态切换</li>
+<li>跨时钟域信号是否正确同步</li>
+<li>PMU上电以及断电的顺序是否正确以及是否满足相应的时序要求</li>
+<li>Multi-Cycle等特别逻辑的功能是否正确</li>
+</ul></li>
+</ul></li>
+<li>静态时序分析
+<ul>
+<li>将电路分割成大量的时序弧，根据CCS/NLDM模型计算器件延时，以及根据StarRC提取出的SPEF等将R/C反标到net上，并根据net
+delay计算连线延时。</li>
+<li>获得timing_path的delay之后，与用户定义的sdc比较，给出是否满足需求。</li>
+</ul></li>
+</ul></li>
+<li>Signoff 阶段 STA需要做的分析
+<ul>
+<li>时序单元的相关约束：建立时间、保持时间、恢复时间、移除时间以及时钟信号最小脉冲宽度。
+<ul>
+<li>其中时钟信号脉宽必须要大于最小脉冲宽度，否则无法保证时序单元实现正常的逻辑功能。</li>
+<li>恢复、移除时间的分析可以看<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17559415.html">这篇博客</a>。</li>
+</ul></li>
+<li>DRC相关检查
+<ul>
+<li>max/min transition</li>
+<li>max/min capacitance</li>
+<li>max_fanout</li>
+</ul></li>
+<li>SI（信号完整性）分析
+<ul>
+<li>Bump/Glitch/Noise分析。</li>
+</ul></li>
+</ul></li>
+<li>时序弧
+<ul>
+<li>静态时序分析是基于时序弧进行时序分析的，用来描述两个节点之间延时信息的数据。</li>
+<li>一般分为连线延时和单元延时。器件延迟和连线延迟模型可见<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17459189.html">这篇博客</a>。</li>
+<li>更为详细的单元延迟时序弧分析可见《集成电路静态时序分析与建模》P21。</li>
+</ul></li>
+<li>MCMM &amp; DMSA
+<ul>
+<li>Signoff阶段STA也需要MCMM分析，MCMM相关知识可见<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17638107.html">这篇博客</a>。</li>
+<li>依次跑完每个scenario，这种方法的不便之处在于：
+<ul>
+<li>scenario之间可能会有violation重合的部分，也有不重合的部分。需要比较violation在哪个scenario下最严重。</li>
+<li>在某个scenario下clean
+timing时，其它scenario可能没有clean掉，甚至可能在其它scenario下产生新的violation的点。</li>
+</ul></li>
+<li>可以使用<strong>DMSA</strong>机制管理不同scenario。根据所有scenario的信息进行timing
+eco。DMSA相关内容可以看<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17662024.html">这篇博客</a>。</li>
+</ul></li>
+</ul>
+<h2 id="rc网络">2. RC网络</h2>
+<ul>
+<li>一个cell可以被模拟成<strong>输入电容、输出电容、上拉电阻和下拉电阻。</strong>
+<ul>
+<li>输入电容为前一级驱动的负载，输出电容为本级自身的负载。</li>
+<li>上拉电阻/下拉电阻的大小决定了cell对负载电容充放电电流的大小，即驱动能力。</li>
+</ul></li>
+<li><a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17459189.html">这篇博客</a>中有介绍NLDM/CCS模型都是通过input
+transition和output load可以在查找表中找到cell delay以及output
+transition。
+<ul>
+<li><p>对于cell
+delay的计算，除了查找表之外，还有表头定义的四个attribute；这四个attribute决定了cell
+delay的定义方式。更为详细的介绍可见《集成电路静态时序分析与建模》P11。
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tcl">input_threshold_pct_fall :<span class="hljs-number">60</span>;<br>output_threshold_pct_fall :<span class="hljs-number">50</span>;<br></code></pre></td></tr></table></figure></p>
+<p><img src="3201119-20230803132859974-1629355947.png" width = 40%/></p></li>
+<li><p>transition的计算是逐级递进的，output
+transition是根据input_transition和output_load查找得到的。与cell_delay一样，也需要定义四个attribute，决定了rise/fall
+transition time的定义方式。 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">slew_lower_threshold_pct_fall</span> :<span class="hljs-number">20</span>.<span class="hljs-number">0</span>;<br><span class="hljs-attribute">slew_upper_threshold_pct_fall</span> :<span class="hljs-number">80</span>.<span class="hljs-number">0</span>;<br><span class="hljs-attribute">slew_lower_threshold_pct_rise</span> :<span class="hljs-number">10</span>.<span class="hljs-number">0</span>;<br><span class="hljs-attribute">slew_upper_threshold_pct_rise</span> :<span class="hljs-number">90</span>.<span class="hljs-number">0</span>;<br></code></pre></td></tr></table></figure></p>
+<p><img src="3201119-20230803134043009-702555882.png" width = 60%/></p></li>
+</ul></li>
+</ul>
+<h2 id="pvt">3. PVT</h2>
+<ul>
+<li><p>芯片的健壮性要求我们需要在物理实现过程中额外考虑温度、电压以及工艺偏差的影响。</p></li>
+<li><p>可以使用PVT、RC
+Corner以及OCV来模拟这些不可控的随机因素。</p></li>
+<li><p>根据不同的工艺，foundary会提供一张SignOff的表格。这里首先介绍PVT。</p>
+<p><img src="3201119-20230803143433098-462607844.png" width = 60%/></p>
+<ul>
+<li>下图中ss和ff分别为slow nmos,slow pmos 以及fast nmos,fast
+pmos。为五种不同工艺角中的两种极限。
+<ul>
+<li>其中有一些温度为-40°，因为需要考虑温度翻转效应，也需要signoff。</li>
+</ul></li>
+</ul>
+<p><img src="3201119-20230803162739913-1519710470.jpg" width = 60%/></p></li>
+<li><p>PVT的不理想性</p>
+<ul>
+<li>P：在制造过程中可能会出现偏差，导致管子的电阻和阈值电压以及宽长比可能会出现偏差。</li>
+<li>V：cell的延迟和电压有很大的关系，以单电压芯片为例，电池的供电电压本就在一个范围内变化，而且考虑片外/片上的voltage
+regulator的误差，以及IR的影响，导致芯片上的每个管子都可能工作在不同的电压下。
+<ul>
+<li>必须保证IR
+Drop不能过大，否则芯片可能会因为得不到所需的电压而发生逻辑错误或停止工作。</li>
+</ul></li>
+<li>T：温度升高，一方面降低了Vt，使延迟更小；另一方面，降低了空穴和电子的迁移率，使延迟更大；而后者的影响比前者更大，所以温度升高会导致管子的延时增加。
+<ul>
+<li><p>但是一味的降低温度，并不能一直减小延时；因为晶体管存在温度翻转效应，当温度低到一个阈值之后，温度的降低会导致延时的增加。</p>
+<p><img src="3201119-20230803153453247-516127716.png" width = 60%/></p></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="rc-corner">4. RC Corner</h2>
+<ul>
+<li>STA中主要包括五个RC Corner：Cbest、Cworst、RCbest、RCworst 和
+RCtypical。
+<ul>
+<li>Cbest：电容最小，电阻最大；Cworst：电容最大，电阻最小。</li>
+<li>RCbest：耦合电容最大，(对地电容*电阻)最小；RCworst：耦合电容最小，(对地电容*电阻)最大。</li>
+</ul></li>
+<li>Setup sign-off 的RC corner是: Cworst / RCworst
+<ul>
+<li>RC
+corner的产生是考虑到对于90nm往下的工艺，network的电容占比越来越大。90nm往上的工艺，cell电容占主导。</li>
+<li>对于短线，电容占主导，C
+corner就可以cover；但是对于长导线，电阻占主导地位，需要RC
+corner来cover。</li>
+</ul></li>
+<li>Hold time sign-off 的RC corner是: Cbest / RCbest / Cworst /
+RCworst。
+<ul>
+<li>为什么对于hold，需要best和worst都考虑？
+<ul>
+<li>个人理解：不同RC corner以及PVT的组合，对于Hold path
+delay值较小的部分，四个角都存在，所以signoff需要覆盖所有的corner。</li>
+</ul></li>
+</ul></li>
+<li>如果引入DPT(Double Patterning
+Technology)，即在同一层layer要做两次mask，两次mask之间可能存在偏差，导致线间距发生变化，从而影响耦合电容值。
+<ul>
+<li>需要将这一因素考虑到RC
+Corner中，用于signoff需要额外加corner：Cworst_CCworst, RCworst_CCworst,
+Cbest_CCbest, RCbest_CCbest.</li>
+</ul></li>
+</ul>
+<h2 id="gba-pba">5. GBA &amp; PBA</h2>
+<ul>
+<li>这两种是STA的两种timing分析模式。以下图为例。</li>
+</ul>
+<p><img src="3201119-20230804172606732-306455573.jpg" width = 60%/></p>
+<ul>
+<li>GBA (Graph Base Analysis)
+<ul>
+<li><p>下表为在setup/hold分析时，input transition的端口选择。</p>
+<table>
+<thead>
+<tr class="header">
+<th>Gate</th>
+<th>setup 分析</th>
+<th>hold 分析</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>OR</td>
+<td>B</td>
+<td>A</td>
+</tr>
+<tr class="even">
+<td>NAND</td>
+<td>A</td>
+<td>B</td>
+</tr>
+<tr class="odd">
+<td>XOR</td>
+<td>A/B</td>
+<td>A/B</td>
+</tr>
+<tr class="even">
+<td>NAN</td>
+<td>B</td>
+<td>A</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>从上表可以看到，对于setup/hold的分析都是选择的最悲观的input
+transition端口情况进行分析。</p></li>
+</ul></li>
+<li>PBA (Path Base Analysis)
+<ul>
+<li><p>与GBA分析相同的电路，其端口选择如下表。</p>
+<table>
+<thead>
+<tr class="header">
+<th>Gate</th>
+<th>setup 分析</th>
+<th>hold 分析</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>OR</td>
+<td>A</td>
+<td>A</td>
+</tr>
+<tr class="even">
+<td>NAND</td>
+<td>B</td>
+<td>B</td>
+</tr>
+<tr class="odd">
+<td>XOR</td>
+<td>B</td>
+<td>B</td>
+</tr>
+<tr class="even">
+<td>NAN</td>
+<td>A</td>
+<td>A</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>从上表可以看到，分析端口的选择是基于实际的时序路径。</p></li>
+</ul></li>
+<li>PBA &amp; GBA
+<ul>
+<li>优缺点分析
+<ul>
+<li>GBA计算比较悲观，而PBA计算更为真实。</li>
+<li>但是考虑到PBA的计算方式相对复杂，所以 runtime 会比较久。</li>
+</ul></li>
+<li>何时用PBA
+<ul>
+<li>默认情况下，PT都是使用GBA去进行分析的，如果在signoff时发现有较小（如&lt;5ps）的violation，且已经优化到极致，可以用PBA模式分析，是否可以meet。</li>
+<li>PBA 模式还分为两种计算模式：Path和Exhaustive
+<ul>
+<li>Path：基于GBA分析的结果，选择最差的路径重新用PBA计算同样的path.</li>
+<li>Exhaustive：基于每个endpoint，会重新计算这个终点上所有的timing
+path（最多25000条），然后选择其中最差的path再重新用PBA计算slack。</li>
+<li>可以看到path计算方式并不能保证得到的时真正最差slack的path。但是通常这种方式速度较快，适用于我们想看下pba能带来多少timing的improvement。</li>
+<li>而exhaustive是最真实的pba计算方式，但是它的runtime非常慢，适合于接近signoff最后阶段，violation的timing
+path较少时的情况。</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E5%AD%97%E4%B8%AD%E5%90%8E%E7%AB%AF/" class="category-chain-item">数字中后端</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%95%B0%E5%AD%97%E4%B8%AD%E5%90%8E%E7%AB%AF/STA/" class="category-chain-item">STA</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>静态时序分析-基础</div>
+      <div>http://binbinqian.cn/2023/11/13/静态时序分析-基础/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>qianbinbin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年11月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-OCV/" title="静态时序分析-OCV">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">静态时序分析-OCV</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/11/13/HLS-%E5%BE%AA%E7%8E%AF%E4%BC%98%E5%8C%96/" title="HLS-循环优化">
+                        <span class="hidden-mobile">HLS-循环优化</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"he0NhIf0IUn5fiZgzHQvxTMv-gzGzoHsz","appKey":"YOBsdTwafnru1yx9sCrfNIbw","path":"window.location.pathname","placeholder":"快来留言！","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":true,"serverURLs":"https://he0nhif0.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

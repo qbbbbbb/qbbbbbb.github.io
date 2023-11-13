@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;375706879 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;112605471 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;125549632     1. MESI 四种状态 在这篇博客中有介绍MESI协议的四种状态分别为：Modified、Exclusive、Shared、Invalid. 由于下">
+    <meta name="description" content="参考  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;375706879 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;112605471 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;125549632    1. MESI 四种状态  在这篇博客中有介绍MESI协议的四种状态分别为：Modified、Exclusive、Shared、">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MESI协议">
 <meta property="og:url" content="http://binbinqian.cn/2023/11/01/MESI%E5%8D%8F%E8%AE%AE/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;375706879 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;112605471 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;125549632     1. MESI 四种状态 在这篇博客中有介绍MESI协议的四种状态分别为：Modified、Exclusive、Shared、Invalid. 由于下">
+<meta property="og:description" content="参考  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;375706879 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;112605471 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;125549632    1. MESI 四种状态  在这篇博客中有介绍MESI协议的四种状态分别为：Modified、Exclusive、Shared、">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/01/MESI%E5%8D%8F%E8%AE%AE/3201119-20230926232206330-164782807.png">
 <meta property="article:published_time" content="2023-11-01T05:27:52.000Z">
@@ -632,153 +632,180 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考<ul>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/375706879">https://zhuanlan.zhihu.com/p/375706879</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/112605471">https://zhuanlan.zhihu.com/p/112605471</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/125549632">https://zhuanlan.zhihu.com/p/125549632</a></li>
+<li>参考
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/375706879"
+class="uri">https://zhuanlan.zhihu.com/p/375706879</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/112605471"
+class="uri">https://zhuanlan.zhihu.com/p/112605471</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/125549632"
+class="uri">https://zhuanlan.zhihu.com/p/125549632</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<hr>
-<h2 id="1-MESI-四种状态"><a href="#1-MESI-四种状态" class="headerlink" title="1. MESI 四种状态"></a>1. MESI 四种状态</h2><ul>
-<li>在<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17617970.html">这篇博客</a>中有介绍MESI协议的四种状态分别为：Modified、Exclusive、Shared、Invalid.</li>
-<li>由于下面四种操作，Cache的状态会在MESI间跳转。<ul>
+<hr />
+<h2 id="mesi-四种状态">1. MESI 四种状态</h2>
+<ul>
+<li>在<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17617970.html">这篇博客</a>中有介绍MESI协议的四种状态分别为：Modified、Exclusive、Shared、Invalid.</li>
+<li>由于下面四种操作，Cache的状态会在MESI间跳转。
+<ul>
 <li>LR: Local Read，当前CPU读操作</li>
 <li>LW: Local Write，当前CPU写操作</li>
 <li>RR：Remote Read，其它CPU读操作</li>
 <li>RW: Remote Write，其它CPU写操作</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<img src="3201119-20230926232206330-164782807.png" style="zoom:50%;" />
-
+<p><img src="3201119-20230926232206330-164782807.png" style="zoom:50%;" /></p>
 <ul>
-<li>针对上面的状态转移图，进行下面四种状态的详细分析。<ul>
-<li><p>Modified</p>
+<li>针对上面的状态转移图，进行下面四种状态的详细分析。
+<ul>
+<li>Modified
 <ul>
 <li>LR：当前CPU读操作，缓存中拥有最新数据，直接从缓存中读取就可以。仍为<strong>Modified</strong>。</li>
 <li>LW：当前CPU写操作，直接修改当前CPU缓存数据，修改后仍拥有最新数据，仍为<strong>Modified</strong>。</li>
-<li>RR：其它CPU读操作，为了保证一致性，需要当前CPU将数据写回内存，并从当前CPU中获取cacheline给到其它CPU，并更改所有CPU 状态为<strong>Shared</strong>。      </li>
-<li>RW：其它CPU写操作，需要当前CPU将数据写回内存，并完成其它CPU的写操作，以及更改除 完成写的CPU 的其它CPU状态为<strong>Invalid</strong>。</li>
-</ul>
+<li>RR：其它CPU读操作，为了保证一致性，需要当前CPU将数据写回内存，并从当前CPU中获取cacheline给到其它CPU，并更改所有CPU
+状态为<strong>Shared</strong>。<br />
 </li>
-<li><p>Exclusive</p>
+<li>RW：其它CPU写操作，需要当前CPU将数据写回内存，并完成其它CPU的写操作，以及更改除
+完成写的CPU 的其它CPU状态为<strong>Invalid</strong>。</li>
+</ul></li>
+<li>Exclusive
 <ul>
 <li>LR：当前CPU读操作，可以直接读出，仍为<strong>Exclusive</strong>。</li>
 <li>LW：当前CPU写操作，修改当前缓存内的数据，并更改状态为<strong>Modified</strong>。</li>
-<li>RR：其它CPU读操作，将当前CPU cache中的数据分享给其它CPU，并更改状态为<strong>Shared</strong>。</li>
-<li>RW：其它CPU写操作，当前CPU 的Cacheline不可用，更改当前状态为<strong>Invalid</strong>。</li>
-</ul>
-</li>
-<li><p>Shared</p>
+<li>RR：其它CPU读操作，将当前CPU
+cache中的数据分享给其它CPU，并更改状态为<strong>Shared</strong>。</li>
+<li>RW：其它CPU写操作，当前CPU
+的Cacheline不可用，更改当前状态为<strong>Invalid</strong>。</li>
+</ul></li>
+<li>Shared
 <ul>
 <li>LR：当前CPU读操作，可以直接读出，仍为<strong>shared</strong>。</li>
 <li>LW：当前CPU写操作，更改状态为<strong>Modified</strong>。</li>
 <li>RR：其它CPU读操作，多个CPU的数据都与内存中一致，所以状态仍为<strong>Shared</strong>。</li>
 <li>RW：其它CPU写操作，其它CPU数据为最新，当前CPU数据失效，更改当前CPU状态为<strong>Invalid</strong>。</li>
-</ul>
-</li>
-<li><p>Invalid</p>
+</ul></li>
+<li>Invalid
 <ul>
-<li>LR：当前CPU读操作，CPU缓存不可用，需要重新从内存中加载cacheline。<ul>
+<li>LR：当前CPU读操作，CPU缓存不可用，需要重新从内存中加载cacheline。
+<ul>
 <li>其它CPU无数据，当前CPU加载新的数据后，更改状态为<strong>Exclusive</strong>。</li>
-<li>其它CPU有数据，且状态为S&#x2F;E，即从内存中取出数据与其它CPU数据一致，那么状态修改为<strong>Shared</strong>。</li>
+<li>其它CPU有数据，且状态为S/E，即从内存中取出数据与其它CPU数据一致，那么状态修改为<strong>Shared</strong>。</li>
 <li>其它CPU有数据，且状态为M，即其cache中数据和内存中数据不一致，那么会先让其它CPU将数据写回内存中，随后当前CPU再读出内存中数据，此时当前CPU的数据和其它CPU以及内存中数据均一致，状态修改为<strong>Shared</strong>。</li>
-</ul>
-</li>
-<li>LW：当前CPU写操作，当前CPU缓存不可用，首先需要从内存中取出数据到cacheline。<ul>
+</ul></li>
+<li>LW：当前CPU写操作，当前CPU缓存不可用，首先需要从内存中取出数据到cacheline。
+<ul>
 <li>其它CPU无数据，且当前CPU写入数据和内存数据不一致时，更改状态为<strong>Modified</strong>。</li>
-<li>其它CPU有数据，且它们状态为S&#x2F;E，那么当前CPU写入数据，并更新当前CPU状态为<strong>Modified</strong>。</li>
-<li>其它CPU有数据，且它们状态为M，那么需要先将其它CPU的cache数据写回主存，随后再写入当前CPU的cache中，并更新状态为<strong>Modified</strong>。并发送给其它CPU invalid信号。</li>
-</ul>
-</li>
+<li>其它CPU有数据，且它们状态为S/E，那么当前CPU写入数据，并更新当前CPU状态为<strong>Modified</strong>。</li>
+<li>其它CPU有数据，且它们状态为M，那么需要先将其它CPU的cache数据写回主存，随后再写入当前CPU的cache中，并更新状态为<strong>Modified</strong>。并发送给其它CPU
+invalid信号。</li>
+</ul></li>
 <li>RR：其它CPU读操作，因为当前CPU处于Invalid状态，所以其它CPU读操作与当前CPU无关，状态保持<strong>Invalid</strong>。</li>
 <li>RW：其它CPU写操作，因为当前CPU处于Invalid状态，所以其它CPU写操作与当前CPU无关，状态保持<strong>Invalid</strong>。</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="2-MESI-协议的问题及优化"><a href="#2-MESI-协议的问题及优化" class="headerlink" title="2. MESI 协议的问题及优化"></a>2. MESI 协议的问题及优化</h2><ul>
-<li>问题<ul>
-<li>考虑到在MESI中，需要依赖总线嗅探机制，整个过程是串行的，因此可能会发生阻塞。举例如下。<ul>
-<li>假设CPU0 特定地址的cacheline 为shared状态，那么CPU0会发送invalid信号给其它CPU。</li>
+<h2 id="mesi-协议的问题及优化">2. MESI 协议的问题及优化</h2>
+<ul>
+<li>问题
+<ul>
+<li>考虑到在MESI中，需要依赖总线嗅探机制，整个过程是串行的，因此可能会发生阻塞。举例如下。
+<ul>
+<li>假设CPU0 特定地址的cacheline
+为shared状态，那么CPU0会发送invalid信号给其它CPU。</li>
 <li>而其它CPU接收到invalid信号后，将对应cacheline的valid bit拉低。</li>
-<li>CPU0 会在收到CPU1更改invalid信息后，再修改对应cache line的数据，并将对应的状态更改为Modified。所以存在一段阻塞时间。</li>
+<li>CPU0 会在收到CPU1更改invalid信息后，再修改对应cache
+line的数据，并将对应的状态更改为Modified。所以存在一段阻塞时间。</li>
 <li>另外当高速缓存压力很大时，可能实时处理invalid事件也需要一定阻塞时间。两种阻塞情况都会导致性能降低。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>优化<ul>
-<li>Store Buffer<ul>
-<li>可为每个CPU添加一个Store Buffer。<ul>
-<li>当发生LW时，CPU可以不用等待其它CPU回复的信息，直接将更新的值写入Store Buffer中，继续执行后续操作，不必插入阻塞等待时间。<ul>
-<li>在其它CPU回复后，再将数据从Store Buffer中写入cache line，并更改状态为Modified。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>当发生LR时，CPU可以先在Store Buffer中查找，如果存在直接从Store Buffer中获取，若没有再查找Cache Line。</li>
-</ul>
-</li>
-<li>Invalid Queue<ul>
-<li>为什么需要invalid queue<ul>
-<li>假设所有的store操作都需要CPU发出invalid信号给其它CPU，store buffer可能会被填满，那么CPU只能进入等待状态。性能并没有得到很大提升。</li>
-<li>引入invalid queue可以加快收到invalid回执的速度，减少每个数据在store buffer停留时间段。</li>
-</ul>
-</li>
-<li>可为每个CPU添加一个Invalid Queue。<ul>
+</ul></li>
+</ul></li>
+<li>优化
+<ul>
+<li>Store Buffer
+<ul>
+<li>可为每个CPU添加一个Store Buffer。
+<ul>
+<li>当发生LW时，CPU可以不用等待其它CPU回复的信息，直接将更新的值写入Store
+Buffer中，继续执行后续操作，不必插入阻塞等待时间。
+<ul>
+<li>在其它CPU回复后，再将数据从Store Buffer中写入cache
+line，并更改状态为Modified。</li>
+</ul></li>
+</ul></li>
+<li>当发生LR时，CPU可以先在Store Buffer中查找，如果存在直接从Store
+Buffer中获取，若没有再查找Cache Line。</li>
+</ul></li>
+<li>Invalid Queue
+<ul>
+<li>为什么需要invalid queue
+<ul>
+<li>假设所有的store操作都需要CPU发出invalid信号给其它CPU，store
+buffer可能会被填满，那么CPU只能进入等待状态。性能并没有得到很大提升。</li>
+<li>引入invalid queue可以加快收到invalid回执的速度，减少每个数据在store
+buffer停留时间段。</li>
+</ul></li>
+<li>可为每个CPU添加一个Invalid Queue。
+<ul>
 <li>当发生RW操作时，当前CPU都需要进行Invalid操作，并返回给那个正在完成LW操作的CPU信息。</li>
-<li>使用失效队列后，当前CPU会首先将接收到的Invalid信息放到Invalid Queue中，并立即返回已经invalid的信息。在后续CPU空闲下来时再处理Invalid Queue中的信息，将对应地址的cache line置为无效。</li>
-</ul>
+<li>使用失效队列后，当前CPU会首先将接收到的Invalid信息放到Invalid
+Queue中，并立即返回已经invalid的信息。在后续CPU空闲下来时再处理Invalid
+Queue中的信息，将对应地址的cache line置为无效。</li>
+</ul></li>
+<li>如果当前CPU想要发送MESI信息给其它CPU，会先检查invalid
+queue中是否有相关的cacheline，如果有的话，那么不可以立刻发送，需要等待invalid
+queue中的cacheline被处理之后再发送。</li>
+</ul></li>
+</ul></li>
+<li>优化后的问题
+<ul>
+<li>插入 Store Buffer之后，可能会出现
+即使指令本身是按照顺序执行的，但最终仍然会<strong>乱序执行</strong>。
+<ul>
+<li>举例1：按照顺序依次执行A,B两个写指令，A写指令对应地址缓存处于S状态，B写指令对应地址缓存处于E状态，那么B会比A先完成写入操作。
+<ul>
+<li>因为A写入之后，需要发送给其它CPU invalid信息，A写入的数据会进入Store
+Buffer中；而B写入之后，由于cacheline是独占的，所以不需要通知其它CPU，直接更改cacheline中的数据就可以，并更新状态为Modified。<br />
 </li>
-<li>如果当前CPU想要发送MESI信息给其它CPU，会先检查invalid queue中是否有相关的cacheline，如果有的话，那么不可以立刻发送，需要等待invalid queue中的cacheline被处理之后再发送。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>优化后的问题<ul>
-<li>插入 Store Buffer之后，可能会出现 即使指令本身是按照顺序执行的，但最终仍然会<strong>乱序执行</strong>。<ul>
-<li>举例1：按照顺序依次执行A,B两个写指令，A写指令对应地址缓存处于S状态，B写指令对应地址缓存处于E状态，那么B会比A先完成写入操作。<ul>
-<li>因为A写入之后，需要发送给其它CPU invalid信息，A写入的数据会进入Store Buffer中；而B写入之后，由于cacheline是独占的，所以不需要通知其它CPU，直接更改cacheline中的数据就可以，并更新状态为Modified。</li>
-</ul>
-</li>
-<li>举例2：按照顺序依次执行C,D两个读指令，C读指令对应地址缓存处于I状态，D读指令对应地址缓存处于S状态，那么D会比C先完成读操作。<ul>
+</ul></li>
+<li>举例2：按照顺序依次执行C,D两个读指令，C读指令对应地址缓存处于I状态，D读指令对应地址缓存处于S状态，那么D会比C先完成读操作。
+<ul>
 <li>因为C读取前，需要先从内存中加载cacheline，并需要与其它CPU进行比较，参考上面Invalid的介绍。而D读取可以直接读出，并不需要更改状态。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>插入 Invalid Queue 之后，可能会导致读取到过时的数据。<ul>
-<li>举例：CPU0执行LW操作，对应cacheline为S状态，那么他会发送invalid信息给其它CPU，CPU1会将invalid信息写入他的invalid queue，并立即回复CPU0表示已经执行invalid操作（后面都会称这个过程为 返回回执）。<ul>
+</ul></li>
+</ul></li>
+<li>插入 Invalid Queue 之后，可能会导致读取到过时的数据。
+<ul>
+<li>举例：CPU0执行LW操作，对应cacheline为S状态，那么他会发送invalid信息给其它CPU，CPU1会将invalid信息写入他的invalid
+queue，并立即回复CPU0表示已经执行invalid操作（后面都会称这个过程为
+返回回执）。
+<ul>
 <li>CPU0接收到回执后，更新缓存行，但是CPU1可能还没来得及做invalid操作，此时CPU1如果发生读操作，会导致读到过时数据。</li>
+</ul></li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="3-重排序"><a href="#3-重排序" class="headerlink" title="3. 重排序"></a>3. 重排序</h2><ul>
+<h2 id="重排序">3. 重排序</h2>
+<ul>
 <li>前面有介绍优化MESI后可能会出现的一致性问题。MESI协议原是强一致性，为了优化其性能，最终弱化成了最终一致性。可能会出现重排序的情况。</li>
-<li>重排序一般包括下面三种<ul>
-<li>编译器优化的重排序<ul>
+<li>重排序一般包括下面三种
+<ul>
+<li>编译器优化的重排序
+<ul>
 <li>编译器在不改变单线程语义的前提下，可以重新安排语句的执行顺序。</li>
-</ul>
-</li>
-<li>指令级并行的重排序<ul>
-<li>处理器采用指令级并行技术（Instruction-Level Parallesim，ILP），如果指令之间不存在数据依赖性，处理器可以改变语句对应的机器指令的执行顺序。</li>
-<li>ILP相关内容可以看<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17735751.html">这篇博客</a>。</li>
-</ul>
-</li>
-<li>内存系统的重排序  <ul>
-<li>由于处理器使用缓存和读&#x2F;写缓冲区，使得load和store看上去是乱序执行的。</li>
-<li>内存重排序相关内容可以看<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17738130.html">这篇博客</a>。</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+<li>指令级并行的重排序
+<ul>
+<li>处理器采用指令级并行技术（Instruction-Level
+Parallesim，ILP），如果指令之间不存在数据依赖性，处理器可以改变语句对应的机器指令的执行顺序。</li>
+<li>ILP相关内容可以看<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17735751.html">这篇博客</a>。</li>
+</ul></li>
+<li>内存系统的重排序
+<ul>
+<li>由于处理器使用缓存和读/写缓冲区，使得load和store看上去是乱序执行的。</li>
+<li>内存重排序相关内容可以看<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17738130.html">这篇博客</a>。</li>
+</ul></li>
+</ul></li>
 </ul>
 
                 
