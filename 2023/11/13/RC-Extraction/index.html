@@ -17,15 +17,19 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
+    <meta name="description" content="1. Flow 中的 RC计算  逻辑综合  使用的是WLM模型，或者使用DCT进行估计。  PreRoute之前  使用的是virtual route，并使用tlu+进行估计。  在Route 阶段  使用真实的走线形状和tlu+进行估计。  在Signoff阶段  在这篇博客中也有介绍，在Signoff时，可以使用STARRC抽取的nxtgrd文件（该文件比tl">
+<meta property="og:type" content="article">
 <meta property="og:title" content="RC_Extraction">
 <meta property="og:url" content="http://binbinqian.cn/2023/11/13/RC-Extraction/index.html">
 <meta property="og:site_name" content="可达达鸭">
+<meta property="og:description" content="1. Flow 中的 RC计算  逻辑综合  使用的是WLM模型，或者使用DCT进行估计。  PreRoute之前  使用的是virtual route，并使用tlu+进行估计。  在Route 阶段  使用真实的走线形状和tlu+进行估计。  在Signoff阶段  在这篇博客中也有介绍，在Signoff时，可以使用STARRC抽取的nxtgrd文件（该文件比tl">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/13/RC-Extraction/3201119-20230827202136812-1425830345.png">
 <meta property="article:published_time" content="2023-11-13T07:15:56.000Z">
-<meta property="article:modified_time" content="2023-11-13T07:15:56.747Z">
+<meta property="article:modified_time" content="2023-11-28T03:57:39.184Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://binbinqian.cn/2023/11/13/RC-Extraction/3201119-20230827202136812-1425830345.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -247,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          900 字
         
       </span>
     
@@ -258,7 +262,7 @@
         
         
         
-          1 分钟
+          8 分钟
         
       </span>
     
@@ -296,6 +300,354 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="数字中后端"
+        id="heading-e064260eea1d040e4f8886feeacc7f1f" role="tab" data-toggle="collapse" href="#collapse-e064260eea1d040e4f8886feeacc7f1f"
+        aria-expanded="true"
+      >
+        数字中后端
+        <span class="list-group-count">(18)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-e064260eea1d040e4f8886feeacc7f1f"
+           role="tabpanel" aria-labelledby="heading-e064260eea1d040e4f8886feeacc7f1f">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="DC"
+        id="heading-cf75e54791dd1f49f918345fdfe2430b" role="tab" data-toggle="collapse" href="#collapse-cf75e54791dd1f49f918345fdfe2430b"
+        aria-expanded="false"
+      >
+        DC
+        <span class="list-group-count">(5)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-cf75e54791dd1f49f918345fdfe2430b"
+           role="tabpanel" aria-labelledby="heading-cf75e54791dd1f49f918345fdfe2430b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/11/02/DC%20&amp;%20DCT%20&amp;%20DCG/" title="DC &amp; DCT &amp; DCG"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">DC &amp; DCT &amp; DCG</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E4%B8%80%EF%BC%89/" title="DC相关理解（一）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">DC相关理解（一）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E4%B8%89%EF%BC%89/" title="DC相关理解（三）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">DC相关理解（三）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E4%BA%8C%EF%BC%89/" title="DC相关理解（二）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">DC相关理解（二）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E5%9B%9B%EF%BC%89/" title="DC相关理解（四）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">DC相关理解（四）</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="ICC"
+        id="heading-b6b8d73d401b7611fac37ab11898f598" role="tab" data-toggle="collapse" href="#collapse-b6b8d73d401b7611fac37ab11898f598"
+        aria-expanded="false"
+      >
+        ICC
+        <span class="list-group-count">(6)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-b6b8d73d401b7611fac37ab11898f598"
+           role="tabpanel" aria-labelledby="heading-b6b8d73d401b7611fac37ab11898f598">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/11/08/ICC-CTS/" title="ICC-CTS"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ICC-CTS</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/08/ICC-FloorPlan/" title="ICC-FloorPlan"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ICC-FloorPlan</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/08/ICC-MCMM/" title="ICC-MCMM"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ICC-MCMM</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/08/ICC-Placement/" title="ICC-Placement"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ICC-Placement</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/08/ICC-Route/" title="ICC-Route"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ICC-Route</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/08/ICC-%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87/" title="ICC-数据准备"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ICC-数据准备</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="STA"
+        id="heading-971ab16c6e59a04d070cb8d8da13418e" role="tab" data-toggle="collapse" href="#collapse-971ab16c6e59a04d070cb8d8da13418e"
+        aria-expanded="true"
+      >
+        STA
+        <span class="list-group-count">(5)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-971ab16c6e59a04d070cb8d8da13418e"
+           role="tabpanel" aria-labelledby="heading-971ab16c6e59a04d070cb8d8da13418e">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/11/13/RC-Extraction/" title="RC_Extraction"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">RC_Extraction</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-DMSA/" title="静态时序分析-DMSA"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">静态时序分析-DMSA</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-IR-Drop/" title="静态时序分析-IR_Drop"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">静态时序分析-IR_Drop</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-OCV/" title="静态时序分析-OCV"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">静态时序分析-OCV</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-%E5%9F%BA%E7%A1%80/" title="静态时序分析-基础"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">静态时序分析-基础</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Violation 修复"
+        id="heading-ced9761b762afac82eefb11eaf534e9b" role="tab" data-toggle="collapse" href="#collapse-ced9761b762afac82eefb11eaf534e9b"
+        aria-expanded="false"
+      >
+        Violation 修复
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-ced9761b762afac82eefb11eaf534e9b"
+           role="tabpanel" aria-labelledby="heading-ced9761b762afac82eefb11eaf534e9b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/11/02/%E5%A6%82%E4%BD%95%E4%BF%AE%E6%97%B6%E5%BA%8F%E8%BF%9D%E4%BE%8B%EF%BC%88%E4%B8%80%EF%BC%89/" title="如何修时序违例（一）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">如何修时序违例（一）</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="形式验证"
+        id="heading-778604adab0dd87128cad9cae8229d2a" role="tab" data-toggle="collapse" href="#collapse-778604adab0dd87128cad9cae8229d2a"
+        aria-expanded="false"
+      >
+        形式验证
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-778604adab0dd87128cad9cae8229d2a"
+           role="tabpanel" aria-labelledby="heading-778604adab0dd87128cad9cae8229d2a">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/11/13/%E5%BD%A2%E5%BC%8F%E9%AA%8C%E8%AF%81/" title="形式验证-概述"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">形式验证-概述</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
 
     </div>
 
@@ -308,7 +660,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年11月13日 下午
+                    本文最后更新于：2023年11月28日 中午
                   
                 
               </p>
@@ -316,7 +668,61 @@
             
               <div class="markdown-body">
                 
-                
+                <h2 id="flow-中的-rc计算">1. Flow 中的 RC计算</h2>
+<ul>
+<li>逻辑综合
+<ul>
+<li>使用的是WLM模型，或者使用DCT进行估计。</li>
+</ul></li>
+<li>PreRoute之前
+<ul>
+<li>使用的是virtual route，并使用tlu+进行估计。</li>
+</ul></li>
+<li>在Route 阶段
+<ul>
+<li>使用真实的走线形状和tlu+进行估计。</li>
+</ul></li>
+<li>在Signoff阶段
+<ul>
+<li>在<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17477246.html">这篇博客</a>中也有介绍，在Signoff时，可以使用STARRC抽取的nxtgrd文件（该文件比tluplus有更详细的信息），导入pt中。<br />
+</li>
+<li>这阶段提取的RC是最为准确的，不仅nxtgrd文件较tluplus文件更准确，这阶段使用工具的rc
+extract engine也较ICC中的更精准。</li>
+</ul></li>
+</ul>
+<h2 id="signoff-阶段-rc的提取">2. Signoff 阶段 RC的提取</h2>
+<ul>
+<li>使用PR结束后的database（Milkyway）。
+<ul>
+<li>database导出阶段可以是Route/DFM/做完PV（Physical
+Verification），他们之间存在一个不断迭代的过程。
+<ul>
+<li>因为考虑到route之后的一些过程可能还会影响时序，例如metal
+filler等，可能会出现金属线之间的couple，影响时序。</li>
+<li>但是route之后的一些操作，可能导致在做Timing
+ECO的时候不方便，所以可以在route之后先提取一下，查看一下时序，进行Timing
+ECO的操作。都修完了之后再进行后续的操作，并继续需要提取寄生参数，查看Timing；不断迭代。</li>
+</ul></li>
+</ul></li>
+<li>使用StarRC提取流程如下
+<ul>
+<li>StarRC工具除了Milkyway，还需要nxtgrd、mapfile以及command
+file文件。提取结果以网表形式呈现，常见的网表有spef、spbf。</li>
+<li>其中mapfile是nxtgrd和.tf映射关系的文件，与<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17638107.html">这篇博客</a>中tluplus的map文件一样。<br />
+</li>
+<li>其中nxtgrd文件也是分为多个RC
+Corner。编写的脚本需要根据signoff标准组合PVT Corner和RC
+Corner，抽取得到多个spef文件。</li>
+<li>command file
+中大部分参数设置建议使用EDA厂商给的参考脚本，后缀为.cmd而不是.tcl。
+<ul>
+<li>这里介绍一条指令：skip_cells；可以指定忽略哪些cell内部的net，不提取rc。例如可以指定不提取std、Mem、Sub-Block内部net的RC。</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><img src="3201119-20230827202136812-1425830345.png" width = 40%/></p>
 
                 
               </div>
@@ -324,6 +730,34 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E5%AD%97%E4%B8%AD%E5%90%8E%E7%AB%AF/" class="category-chain-item">数字中后端</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%95%B0%E5%AD%97%E4%B8%AD%E5%90%8E%E7%AB%AF/STA/" class="category-chain-item">STA</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
 </div>
@@ -379,9 +813,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/11/13/%E5%BD%A2%E5%BC%8F%E9%AA%8C%E8%AF%81/" title="形式验证">
+                      <a href="/2023/11/13/%E5%BD%A2%E5%BC%8F%E9%AA%8C%E8%AF%81/" title="形式验证-概述">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">形式验证</span>
+                        <span class="hidden-mobile">形式验证-概述</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

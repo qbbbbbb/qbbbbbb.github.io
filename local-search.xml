@@ -4,12 +4,20 @@
   
   
   <entry>
-    <title>形式验证</title>
+    <title>形式验证-概述</title>
     <link href="/2023/11/13/%E5%BD%A2%E5%BC%8F%E9%AA%8C%E8%AF%81/"/>
     <url>/2023/11/13/%E5%BD%A2%E5%BC%8F%E9%AA%8C%E8%AF%81/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<ul><li>参考<ul><li>https://www.cnblogs.com/IClearner/</li><li>https://blog.csdn.net/qq_36480087/article/details/112891856</li></ul></li></ul><hr /><h2 id="关于形式验证">1. 关于形式验证</h2><ul><li>形式验证在流程中的位置<ul><li>在DC综合后，将综合后的网表和RTL进行对比，验证综合过程是否出错，保证逻辑正确。</li><li>在自动布局布线之后，将综合网表和布局布线得到的网表进行比较，验证是否出错。</li></ul></li><li>常用工具<ul><li>Synopsys: Formality</li><li>Candence: LEC（推荐使用）</li></ul></li></ul><h2 id="形式验证流程">2. 形式验证流程</h2><ul><li>这里以Synopsys的Formality为例。</li><li>文件准备<ul><li>准备RTL代码，以及DC给出的svf文件，ddc门级网表文件，库文件等。<ul><li>svf(Setup Verification forFormality)文件，记录优化过程中的各项逻辑操作，比如replace, merge,uniquify, retime, reg_constant等等，用于辅助formalityverification的。<br /></li></ul></li></ul></li><li>编写相应的流程fm.tcl脚本如下。</li></ul><p><img src="3201119-20230802173725308-2069923994.png" /></p><ul><li>启动Formality，并将终端的信息输出到fm_run.log上。 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">fm_shell -f ./scripts/fm.tcl |<span class="hljs-built_in">tee</span> -i fm_run.log<br></code></pre></td></tr></table></figure></li></ul>]]></content>
     
+    
+    <categories>
+      
+      <category>数字中后端</category>
+      
+      <category>形式验证</category>
+      
+    </categories>
     
     
   </entry>
@@ -21,8 +29,16 @@
     <link href="/2023/11/13/RC-Extraction/"/>
     <url>/2023/11/13/RC-Extraction/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h2 id="flow-中的-rc计算">1. Flow 中的 RC计算</h2><ul><li>逻辑综合<ul><li>使用的是WLM模型，或者使用DCT进行估计。</li></ul></li><li>PreRoute之前<ul><li>使用的是virtual route，并使用tlu+进行估计。</li></ul></li><li>在Route 阶段<ul><li>使用真实的走线形状和tlu+进行估计。</li></ul></li><li>在Signoff阶段<ul><li>在<ahref="https://www.cnblogs.com/qianbinbin/p/17477246.html">这篇博客</a>中也有介绍，在Signoff时，可以使用STARRC抽取的nxtgrd文件（该文件比tluplus有更详细的信息），导入pt中。<br /></li><li>这阶段提取的RC是最为准确的，不仅nxtgrd文件较tluplus文件更准确，这阶段使用工具的rcextract engine也较ICC中的更精准。</li></ul></li></ul><h2 id="signoff-阶段-rc的提取">2. Signoff 阶段 RC的提取</h2><ul><li>使用PR结束后的database（Milkyway）。<ul><li>database导出阶段可以是Route/DFM/做完PV（PhysicalVerification），他们之间存在一个不断迭代的过程。<ul><li>因为考虑到route之后的一些过程可能还会影响时序，例如metalfiller等，可能会出现金属线之间的couple，影响时序。</li><li>但是route之后的一些操作，可能导致在做TimingECO的时候不方便，所以可以在route之后先提取一下，查看一下时序，进行TimingECO的操作。都修完了之后再进行后续的操作，并继续需要提取寄生参数，查看Timing；不断迭代。</li></ul></li></ul></li><li>使用StarRC提取流程如下<ul><li>StarRC工具除了Milkyway，还需要nxtgrd、mapfile以及commandfile文件。提取结果以网表形式呈现，常见的网表有spef、spbf。</li><li>其中mapfile是nxtgrd和.tf映射关系的文件，与<ahref="https://www.cnblogs.com/qianbinbin/p/17638107.html">这篇博客</a>中tluplus的map文件一样。<br /></li><li>其中nxtgrd文件也是分为多个RCCorner。编写的脚本需要根据signoff标准组合PVT Corner和RCCorner，抽取得到多个spef文件。</li><li>command file中大部分参数设置建议使用EDA厂商给的参考脚本，后缀为.cmd而不是.tcl。<ul><li>这里介绍一条指令：skip_cells；可以指定忽略哪些cell内部的net，不提取rc。例如可以指定不提取std、Mem、Sub-Block内部net的RC。</li></ul></li></ul></li></ul><p><img src="3201119-20230827202136812-1425830345.png" width = 40%/></p>]]></content>
     
+    
+    <categories>
+      
+      <category>数字中后端</category>
+      
+      <category>STA</category>
+      
+    </categories>
     
     
   </entry>
@@ -34,8 +50,16 @@
     <link href="/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-DMSA/"/>
     <url>/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-DMSA/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h2 id="dmsa-概述">1. DMSA 概述</h2><ul><li>为什么需要DMSA，在<ahref="https://www.cnblogs.com/qianbinbin/p/17603907.html">这篇博客</a>中有详细介绍。</li><li>DMSA(Distributed Multi-Scenario Analysis)Master根据多少个scenario分配多少个线程，每个线程有一个PTslave做一个scenario的分析。<ul><li><p>DMSA Master可以对这些进行统一管理。并向每个slavept分配任务/指令。</p><p><img src="3201119-20230828135724894-1670397998.png" width = 70%/></p></li></ul></li></ul><h2 id="使用dmsa-进行管理">2. 使用DMSA 进行管理</h2><ul><li>启动指令如下 <figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">pt_shell -multi_scenario -f run_dmsa.pt<br></code></pre></td></tr></table></figure></li><li>在DMSA Master中定义scenario的两种方法<ul><li>（1）加载已经写好的每个scenario的脚本。</li><li>（2）加载之前已经保存好的session，使用-image选项。</li></ul></li></ul>]]></content>
     
+    
+    <categories>
+      
+      <category>数字中后端</category>
+      
+      <category>STA</category>
+      
+    </categories>
     
     
   </entry>
@@ -47,8 +71,16 @@
     <link href="/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-IR-Drop/"/>
     <url>/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-IR-Drop/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<ul><li>参考<ul><li>微信公众号：老秦谈芯</li></ul></li></ul><hr /><h2 id="ir-drop-概述">1. IR-Drop 概述</h2><ul><li>什么是IR-Drop<ul><li>考虑当芯片各种功能的电路同时工作，稳压电源模块无法实时响应demandcurrent的快速增大（I*R,I增大，分压大，VDD会减小），导致芯片的电源电压发生跌落，从而产生<strong>电源噪声</strong>。</li><li>另外，考虑到电源和地之间存在一定的耦合效应，相应的VSS也会太高一些。</li><li>随着制程工艺不断进步，金属连线的宽度越来越窄，导致电阻值越来越高，<strong>如果一个器件离供电点很远（电阻长度大），其等效电阻值必然也会很大</strong>。那么电阻上消耗掉的压降也很大，导致VDD会有偏差，出现电源噪声。</li></ul></li><li>IR-Drop 引起的问题<ul><li>考虑芯片上的时钟之间存在skew，导致晶体管的转换过程并不是严格同步的。那么会出现，一些晶体管完成了电压状态转换，而一些晶体管还在电压转换的不确定态区域的情况，那么电源噪声可能会被放大，引起电路的逻辑错误。</li><li>如果电压降太大，会导致gate延时增大：gate的电压减小，电流减小，电容充放电速度变慢，延时增加。如果IR-Drop发生在时序紧张的路径，会导致其出现时序违例。</li></ul></li></ul><h2 id="ir-drop-分类">2. IR-Drop 分类</h2><ul><li><p>主要分为两种：静态IR-Drop，动态IR-Drop。</p></li><li><p>静态IR-Drop</p><ul><li>产生的主要原因是电源网络的金属连线自身电阻的分压，所以静态IR-Drop和电源网络的结构以及连线细节有关。</li></ul><p><img src="3201119-20230807105300118-790769418.png" width = 60%/></p></li><li><p>动态IR-Drop</p><ul><li>在电路开关切换时，由于电流波动引起的电压压降。</li><li>同时开关的晶体管数量越多，越容易出现动态IR-Drop现象。因此这种现象常见于时钟的触发沿。<ul><li>时钟触发沿不仅有时序电路还有组合电路出现大量的晶体管开关切换，会导致短时间在芯片上产生很大电流，引起了IR-Drop现象。</li></ul></li></ul></li></ul>]]></content>
     
+    
+    <categories>
+      
+      <category>数字中后端</category>
+      
+      <category>STA</category>
+      
+    </categories>
     
     
   </entry>
@@ -60,8 +92,16 @@
     <link href="/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-OCV/"/>
     <url>/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-OCV/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<ul><li>参考<ul><li><a href="https://mp.weixin.qq.com/s/o0ijKcl07LbPjdF6uRrAXw"class="uri">https://mp.weixin.qq.com/s/o0ijKcl07LbPjdF6uRrAXw</a>（公众号：全栈芯片工程师）</li><li><a href="https://cloud.tencent.com/developer/article/1500279"class="uri">https://cloud.tencent.com/developer/article/1500279</a></li><li><a href="https://cloud.tencent.com/developer/article/1611170"class="uri">https://cloud.tencent.com/developer/article/1611170</a></li><li><a href="https://www.cnblogs.com/lelin/p/11397497.html"class="uri">https://www.cnblogs.com/lelin/p/11397497.html</a></li><li><a href="https://aijishu.com/a/1060000000194153"class="uri">https://aijishu.com/a/1060000000194153</a></li></ul></li></ul><hr /><h2 id="ocv">1. OCV</h2><ul><li><p>OCV的全称是On ChipVariation，用于描述在一块芯片上不同管子间由于工艺偏差、电压降以及温度变化等引起的delay变化。</p></li><li><p>可以通过derate 特定单元/走线的延迟来对OCV的影响进行建模。</p><ul><li>使用指令如下，对延迟进行derate处理。下面的指令是指定所有的网络延迟和单元延迟，也可以使用tcl脚本单独指定celldelay 或 net delay。 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment"># 降低延迟20%</span><br><span class="hljs-attribute">set_timing_derate</span> -early <span class="hljs-number">0</span>.<span class="hljs-number">8</span><br><span class="hljs-comment"># 增加延迟10%</span><br><span class="hljs-attribute">set_timing_derate</span> -late <span class="hljs-number">1</span>.<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure></li></ul></li><li><p>拒绝过于悲观</p><p><img src="3201119-20230803191724445-1155297483.png" width = 60%/></p><ul><li><p>注意对于上图这种 Launch clock 和 Capture clock存在一段公共的时钟路径，这部分不应该对其进行derate处理，因为这部分物理实现上为处在同一个PVT条件下。Synopsys称为CRPR = Clock Reconvergence Pessimism Removal。</p><ul><li>CRPR 是基于时序弧分析的，而不是gate分析的。<ul><li>如下图所示，Innovus的分析行为是：如果Launch clock 和 Captureclock在时钟源的边沿相同，且到达commonpoint时边沿时亦相同，那么CRPR的值就是从时钟源到commonpoint的延时。如果不满足前面两个情况，那么CRPR的值就为两个时序弧延时的最小值。</li></ul></li></ul><p><img src="3201119-20230820121229237-1301147191.png" width = 40%/></p></li><li><p>考虑timederate需要在某个单一条件下，比如说BC或者WC条件下，但是不要把多个Corner(例如：BC和WC)混在一起，再OCV，那样太过于悲观。<br /></p></li></ul></li><li><p>OCV 的分析与计算</p><ul><li>以上面的电路为例，不考虑OCV影响，计算最小周期T需要满足 <spanclass="math display">\[1.2+0.8+5.2+0.35 &lt;= T+1.2+0.86\]</span></li><li>考虑OCV影响，使用tcl指令针对setup检查和hold检查分别加以约束。<ul><li>setup检查<ul><li>对于Launch clock path 和 data path 使用 -late 选项；对Capture clockpath 使用 -early 选项。</li><li>但是考虑到setup check 一般在WC PVT下，因此不需要在Launch clock path和 data path上加timederate了，因为在WC下，其delay已经是所有corner中最大的了；但是在WC下，Captureclock path上的delay一定不是最小的，所以可以加derate指令。<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">set_timing_derate</span> -early <span class="hljs-number">0</span>.<span class="hljs-number">9</span><br><span class="hljs-attribute">set_timing_derate</span> -late <span class="hljs-number">1</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure></li><li>此时最小周期T计算满足（进行共同路径悲观去除，CPPR） <spanclass="math display">\[0.8 + 5.2 + 0.35 &lt;= 0.86*0.9 + T\]</span></li></ul></li><li>hold检查<ul><li>对于Launch clock path 和 data path 使用 -early 选项；对Capture clockpath 使用 -late 选项。</li><li>但是考虑到hold check 一般在BC PVT下，因此不需要在Launch clock path和 data path上加timederate了，因为在BC下，其delay已经是所有corner中最小的了；但是在BC下，Captureclock path上的delay一定不是最大的，所以可以加derate指令。<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">set_timing_derate</span> -early <span class="hljs-number">1</span>.<span class="hljs-number">0</span><br><span class="hljs-attribute">set_timing_derate</span> -late <span class="hljs-number">1</span>.<span class="hljs-number">2</span><br></code></pre></td></tr></table></figure></li></ul></li></ul></li></ul></li><li><p>OCV &amp; BC-WC</p><ul><li><p>静态时序分析工具给出了3种分析模式</p><ul><li>Single mode</li><li>BC-WC</li><li>OCV mode（AOCV,POCV）</li></ul></li><li><p>OCV的原始定义如下，可以看到与BC-WC混合模式十分相似。只是在计算setup和hold中都混用了max库和min库。</p><ul><li>但是前面也有介绍，为了不要太悲观，我们一般不会采用这种BC,WC混用。</li></ul><p><img src="3201119-20230803195057197-90816743.png" width = 60%/></p></li><li><p>BC-WC模式如下。</p><p><img src="3201119-20230803195404688-289302780.png" width = 60%/></p></li></ul></li></ul><h2 id="aocv">2. AOCV</h2><ul><li><p>为什么需要AOCV</p><ul><li>在40nm之前，简单的OCVderate模型基本可以覆盖大部分情况，且不会悲观到不能接收。</li><li>如下图所示，OCV模式设置的derate值与pathdepth无关，导致其既不能cover最悲观的部分，但又对另一部分过于悲观。在40nm之后，随着设计的频率不断提升，OCV所引入的不准确性已经无法承受。</li></ul><p><img src="3201119-20230804155310498-1374743247.png" width = 60%/></p></li><li><p>Distance based AOCV</p><ul><li>距离越远的cell之间的variation越大，所以AOCV的分析策略可以是DistanceBased，距离越大，derate越大。<br /></li><li>这个距离是指timing path所在物理范围矩形对角线的长度。<strong>timingpath的位置信息可以由SPEF提供，</strong>要求抽SPEF时需要将坐标信息也抽出，而在STA读SPEF时，将坐标信息读入。</li></ul><p><img src="3201119-20230804161057166-1944056894.png" width = 60%/></p></li><li><p>Depth based AOCV</p><ul><li>考虑到不可能一条path上的所有cell的variation都是悲观的，会存在一些cell的variation是相互抵消的，所以在Depthbased AOCV模型中，depth越大，derate值越小。</li></ul><p><img src="3201119-20230804163036323-1431424864.png" width = 60%/></p></li><li><p>AOCV Table</p><ul><li>有一维和二维两种。<ul><li>一维：坐标为 depth。</li><li>二维：坐标为 distance 和depth。虽然较一维更为准确，但是runtime也更大。</li></ul></li></ul></li></ul><h2 id="pocv">3. POCV</h2><ul><li>为什么需要POCV<ul><li><p>AOCV如果是基于GBA进行分析，那么精度不够，过于悲观；如果基于PBA进行分析，runtime又无法接受。</p><ul><li>GBA和PBA的相关解释可见<ahref="https://www.cnblogs.com/qianbinbin/p/17603907.html">这篇博客</a>。</li></ul></li><li><p>AOCV没有考虑input transition和outputload对variation的影响，以及variation对input transition的影响。</p></li><li><p>使用一种新的计算模型：Synopsys 叫 POCV(Parametric OCV)，Cadence叫 SOCV(Statistical OCV)。</p></li><li><p>POCV将delay模拟成一个正态分布进行计算。如下图可知，POCV(SOCV)计算的值更精准。</p><p><img src="3201119-20230804225141761-1300833462.png" width = 60%/></p></li></ul></li><li>POCV derate计算<ul><li><p>对每个cell分别建模，cell 的 derate是一个基于μ和σ的高斯随机变量函数，如下所示。</p><p><img src="3201119-20230805095523646-525721250.png" width = 60%/></p></li><li><p>根据读入的LVF文件（LVF一般由foundry提供），可以根据inputtransition 和 output load查找到平均延时和Sigma值。根据下表完成计算。其中n一般为3.</p><table><thead><tr class="header"><th></th><th>setup check</th><th>hold check</th></tr></thead><tbody><tr class="odd"><td>Capture clock path</td><td>M-n*S</td><td>M+n*S</td></tr><tr class="even"><td>Launch clock path</td><td>M+n*S</td><td>M-n*S</td></tr></tbody></table></li><li><p>以计算delay variation为例，cellrise中的值为M，而ocv_sigma_cell_rise中的值为S。</p><p><img src="3201119-20230805100647964-1480707496.png" width = 60%/></p></li></ul></li><li>LVF (Liberty Variation Format)<ul><li><p>传统的LVF文件中有输出为cell delay、output transition 以及timingcheck的LUT，LUT的index与NLDM/CCS一样都为 input transition 和 outputload。</p></li><li><p><strong>从文件中可以根据高斯分布delay的计算公式以及分析场景分别计算出正确的delay和transition。</strong></p><ul><li>这里可以看到LVF查找表中考虑到了variation对transition的影响，并将该transition的值一级一级通过查找表传递。</li></ul><p><img src="3201119-20230805101530725-2068503571.png" width = 60%/></p></li><li><p>考虑进入16nm，先进工艺结点和超低电压都会导致cell的delay为一个<strong>强非高斯分布</strong>，会出现均值偏移(mean-shift)以及偏斜效应(skewnesseffects)。</p><ul><li>为了解决，引入3个moment-based模型。详细解释见<ahref="https://www.cnblogs.com/lelin/p/11397497.html">这篇文章</a>。</li></ul></li></ul></li></ul>]]></content>
     
+    
+    <categories>
+      
+      <category>数字中后端</category>
+      
+      <category>STA</category>
+      
+    </categories>
     
     
   </entry>

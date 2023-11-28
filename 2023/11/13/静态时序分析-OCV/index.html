@@ -17,15 +17,29 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
+    <meta name="description" content="参考  https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;o0ijKcl07LbPjdF6uRrAXw（公众号：全栈芯片工程师） https:&#x2F;&#x2F;cloud.tencent.com&#x2F;developer&#x2F;article&#x2F;1500279 https:&#x2F;&#x2F;cloud.tencent.com&#x2F;developer&#x2F;article&#x2F;1611170 https:&#x2F;&#x2F;www.cnblogs.co">
+<meta property="og:type" content="article">
 <meta property="og:title" content="静态时序分析-OCV">
 <meta property="og:url" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-OCV/index.html">
 <meta property="og:site_name" content="可达达鸭">
+<meta property="og:description" content="参考  https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;o0ijKcl07LbPjdF6uRrAXw（公众号：全栈芯片工程师） https:&#x2F;&#x2F;cloud.tencent.com&#x2F;developer&#x2F;article&#x2F;1500279 https:&#x2F;&#x2F;cloud.tencent.com&#x2F;developer&#x2F;article&#x2F;1611170 https:&#x2F;&#x2F;www.cnblogs.co">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-OCV/3201119-20230803191724445-1155297483.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-OCV/3201119-20230820121229237-1301147191.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-OCV/3201119-20230803195057197-90816743.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-OCV/3201119-20230803195404688-289302780.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-OCV/3201119-20230804155310498-1374743247.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-OCV/3201119-20230804161057166-1944056894.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-OCV/3201119-20230804163036323-1431424864.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-OCV/3201119-20230804225141761-1300833462.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-OCV/3201119-20230805095523646-525721250.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-OCV/3201119-20230805100647964-1480707496.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-OCV/3201119-20230805101530725-2068503571.png">
 <meta property="article:published_time" content="2023-11-13T07:14:31.000Z">
-<meta property="article:modified_time" content="2023-11-13T07:14:31.797Z">
+<meta property="article:modified_time" content="2023-11-28T03:47:04.147Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-OCV/3201119-20230803191724445-1155297483.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -247,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          3.2k 字
         
       </span>
     
@@ -258,7 +272,7 @@
         
         
         
-          1 分钟
+          27 分钟
         
       </span>
     
@@ -296,6 +310,354 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="数字中后端"
+        id="heading-e064260eea1d040e4f8886feeacc7f1f" role="tab" data-toggle="collapse" href="#collapse-e064260eea1d040e4f8886feeacc7f1f"
+        aria-expanded="true"
+      >
+        数字中后端
+        <span class="list-group-count">(18)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-e064260eea1d040e4f8886feeacc7f1f"
+           role="tabpanel" aria-labelledby="heading-e064260eea1d040e4f8886feeacc7f1f">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="DC"
+        id="heading-cf75e54791dd1f49f918345fdfe2430b" role="tab" data-toggle="collapse" href="#collapse-cf75e54791dd1f49f918345fdfe2430b"
+        aria-expanded="false"
+      >
+        DC
+        <span class="list-group-count">(5)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-cf75e54791dd1f49f918345fdfe2430b"
+           role="tabpanel" aria-labelledby="heading-cf75e54791dd1f49f918345fdfe2430b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/11/02/DC%20&amp;%20DCT%20&amp;%20DCG/" title="DC &amp; DCT &amp; DCG"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">DC &amp; DCT &amp; DCG</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E4%B8%80%EF%BC%89/" title="DC相关理解（一）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">DC相关理解（一）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E4%B8%89%EF%BC%89/" title="DC相关理解（三）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">DC相关理解（三）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E4%BA%8C%EF%BC%89/" title="DC相关理解（二）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">DC相关理解（二）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E5%9B%9B%EF%BC%89/" title="DC相关理解（四）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">DC相关理解（四）</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="ICC"
+        id="heading-b6b8d73d401b7611fac37ab11898f598" role="tab" data-toggle="collapse" href="#collapse-b6b8d73d401b7611fac37ab11898f598"
+        aria-expanded="false"
+      >
+        ICC
+        <span class="list-group-count">(6)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-b6b8d73d401b7611fac37ab11898f598"
+           role="tabpanel" aria-labelledby="heading-b6b8d73d401b7611fac37ab11898f598">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/11/08/ICC-CTS/" title="ICC-CTS"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ICC-CTS</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/08/ICC-FloorPlan/" title="ICC-FloorPlan"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ICC-FloorPlan</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/08/ICC-MCMM/" title="ICC-MCMM"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ICC-MCMM</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/08/ICC-Placement/" title="ICC-Placement"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ICC-Placement</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/08/ICC-Route/" title="ICC-Route"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ICC-Route</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/08/ICC-%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87/" title="ICC-数据准备"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ICC-数据准备</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="STA"
+        id="heading-971ab16c6e59a04d070cb8d8da13418e" role="tab" data-toggle="collapse" href="#collapse-971ab16c6e59a04d070cb8d8da13418e"
+        aria-expanded="true"
+      >
+        STA
+        <span class="list-group-count">(5)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-971ab16c6e59a04d070cb8d8da13418e"
+           role="tabpanel" aria-labelledby="heading-971ab16c6e59a04d070cb8d8da13418e">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/11/13/RC-Extraction/" title="RC_Extraction"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">RC_Extraction</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-DMSA/" title="静态时序分析-DMSA"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">静态时序分析-DMSA</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-IR-Drop/" title="静态时序分析-IR_Drop"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">静态时序分析-IR_Drop</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-OCV/" title="静态时序分析-OCV"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">静态时序分析-OCV</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-%E5%9F%BA%E7%A1%80/" title="静态时序分析-基础"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">静态时序分析-基础</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Violation 修复"
+        id="heading-ced9761b762afac82eefb11eaf534e9b" role="tab" data-toggle="collapse" href="#collapse-ced9761b762afac82eefb11eaf534e9b"
+        aria-expanded="false"
+      >
+        Violation 修复
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-ced9761b762afac82eefb11eaf534e9b"
+           role="tabpanel" aria-labelledby="heading-ced9761b762afac82eefb11eaf534e9b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/11/02/%E5%A6%82%E4%BD%95%E4%BF%AE%E6%97%B6%E5%BA%8F%E8%BF%9D%E4%BE%8B%EF%BC%88%E4%B8%80%EF%BC%89/" title="如何修时序违例（一）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">如何修时序违例（一）</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="形式验证"
+        id="heading-778604adab0dd87128cad9cae8229d2a" role="tab" data-toggle="collapse" href="#collapse-778604adab0dd87128cad9cae8229d2a"
+        aria-expanded="false"
+      >
+        形式验证
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-778604adab0dd87128cad9cae8229d2a"
+           role="tabpanel" aria-labelledby="heading-778604adab0dd87128cad9cae8229d2a">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/11/13/%E5%BD%A2%E5%BC%8F%E9%AA%8C%E8%AF%81/" title="形式验证-概述"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">形式验证-概述</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
 
     </div>
 
@@ -308,7 +670,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年11月13日 下午
+                    本文最后更新于：2023年11月28日 中午
                   
                 
               </p>
@@ -316,7 +678,207 @@
             
               <div class="markdown-body">
                 
-                
+                <ul>
+<li>参考
+<ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/o0ijKcl07LbPjdF6uRrAXw"
+class="uri">https://mp.weixin.qq.com/s/o0ijKcl07LbPjdF6uRrAXw</a>（公众号：全栈芯片工程师）</li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1500279"
+class="uri">https://cloud.tencent.com/developer/article/1500279</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1611170"
+class="uri">https://cloud.tencent.com/developer/article/1611170</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lelin/p/11397497.html"
+class="uri">https://www.cnblogs.com/lelin/p/11397497.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://aijishu.com/a/1060000000194153"
+class="uri">https://aijishu.com/a/1060000000194153</a></li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="ocv">1. OCV</h2>
+<ul>
+<li><p>OCV的全称是On Chip
+Variation，用于描述在一块芯片上不同管子间由于工艺偏差、电压降以及温度变化等引起的delay变化。</p></li>
+<li><p>可以通过derate 特定单元/走线的延迟来对OCV的影响进行建模。</p>
+<ul>
+<li>使用指令如下，对延迟进行derate处理。下面的指令是指定所有的网络延迟和单元延迟，也可以使用tcl脚本单独指定cell
+delay 或 net delay。 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment"># 降低延迟20%</span><br><span class="hljs-attribute">set_timing_derate</span> -early <span class="hljs-number">0</span>.<span class="hljs-number">8</span><br><span class="hljs-comment"># 增加延迟10%</span><br><span class="hljs-attribute">set_timing_derate</span> -late <span class="hljs-number">1</span>.<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure></li>
+</ul></li>
+<li><p>拒绝过于悲观</p>
+<p><img src="3201119-20230803191724445-1155297483.png" width = 60%/></p>
+<ul>
+<li><p>注意对于上图这种 Launch clock 和 Capture clock
+存在一段公共的时钟路径，这部分不应该对其进行derate处理，因为这部分物理实现上为处在同一个PVT条件下。Synopsys
+称为CRPR = Clock Reconvergence Pessimism Removal。</p>
+<ul>
+<li>CRPR 是基于时序弧分析的，而不是gate分析的。
+<ul>
+<li>如下图所示，Innovus的分析行为是：如果Launch clock 和 Capture
+clock在时钟源的边沿相同，且到达common
+point时边沿时亦相同，那么CRPR的值就是从时钟源到common
+point的延时。如果不满足前面两个情况，那么CRPR的值就为两个时序弧延时的最小值。</li>
+</ul></li>
+</ul>
+<p><img src="3201119-20230820121229237-1301147191.png" width = 40%/></p></li>
+<li><p>考虑time
+derate需要在某个单一条件下，比如说BC或者WC条件下，但是不要把多个Corner(例如：BC和WC)混在一起，再OCV，那样太过于悲观。<br />
+</p></li>
+</ul></li>
+<li><p>OCV 的分析与计算</p>
+<ul>
+<li>以上面的电路为例，不考虑OCV影响，计算最小周期T需要满足 <span
+class="math display">\[
+1.2+0.8+5.2+0.35 &lt;= T+1.2+0.86
+\]</span></li>
+<li>考虑OCV影响，使用tcl指令针对setup检查和hold检查分别加以约束。
+<ul>
+<li>setup检查
+<ul>
+<li>对于Launch clock path 和 data path 使用 -late 选项；对Capture clock
+path 使用 -early 选项。</li>
+<li>但是考虑到setup check 一般在WC PVT下，因此不需要在Launch clock path
+和 data path上加time
+derate了，因为在WC下，其delay已经是所有corner中最大的了；但是在WC下，Capture
+clock path上的delay一定不是最小的，所以可以加derate指令。
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">set_timing_derate</span> -early <span class="hljs-number">0</span>.<span class="hljs-number">9</span><br><span class="hljs-attribute">set_timing_derate</span> -late <span class="hljs-number">1</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure></li>
+<li>此时最小周期T计算满足（进行共同路径悲观去除，CPPR） <span
+class="math display">\[
+0.8 + 5.2 + 0.35 &lt;= 0.86*0.9 + T
+\]</span></li>
+</ul></li>
+<li>hold检查
+<ul>
+<li>对于Launch clock path 和 data path 使用 -early 选项；对Capture clock
+path 使用 -late 选项。</li>
+<li>但是考虑到hold check 一般在BC PVT下，因此不需要在Launch clock path
+和 data path上加time
+derate了，因为在BC下，其delay已经是所有corner中最小的了；但是在BC下，Capture
+clock path上的delay一定不是最大的，所以可以加derate指令。
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">set_timing_derate</span> -early <span class="hljs-number">1</span>.<span class="hljs-number">0</span><br><span class="hljs-attribute">set_timing_derate</span> -late <span class="hljs-number">1</span>.<span class="hljs-number">2</span><br></code></pre></td></tr></table></figure></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>OCV &amp; BC-WC</p>
+<ul>
+<li><p>静态时序分析工具给出了3种分析模式</p>
+<ul>
+<li>Single mode</li>
+<li>BC-WC</li>
+<li>OCV mode（AOCV,POCV）</li>
+</ul></li>
+<li><p>OCV的原始定义如下，可以看到与BC-WC混合模式十分相似。只是在计算setup和hold中都混用了max库和min库。</p>
+<ul>
+<li>但是前面也有介绍，为了不要太悲观，我们一般不会采用这种BC,WC混用。</li>
+</ul>
+<p><img src="3201119-20230803195057197-90816743.png" width = 60%/></p></li>
+<li><p>BC-WC模式如下。</p>
+<p><img src="3201119-20230803195404688-289302780.png" width = 60%/></p></li>
+</ul></li>
+</ul>
+<h2 id="aocv">2. AOCV</h2>
+<ul>
+<li><p>为什么需要AOCV</p>
+<ul>
+<li>在40nm之前，简单的OCV
+derate模型基本可以覆盖大部分情况，且不会悲观到不能接收。</li>
+<li>如下图所示，OCV模式设置的derate值与path
+depth无关，导致其既不能cover最悲观的部分，但又对另一部分过于悲观。在40nm之后，随着设计的频率不断提升，OCV所引入的不准确性已经无法承受。</li>
+</ul>
+<p><img src="3201119-20230804155310498-1374743247.png" width = 60%/></p></li>
+<li><p>Distance based AOCV</p>
+<ul>
+<li>距离越远的cell之间的variation越大，所以AOCV的分析策略可以是Distance
+Based，距离越大，derate越大。<br />
+</li>
+<li>这个距离是指timing path所在物理范围矩形对角线的长度。<strong>timing
+path的位置信息可以由SPEF提供，</strong>要求抽SPEF时需要将坐标信息也抽出，而在STA读SPEF时，将坐标信息读入。</li>
+</ul>
+<p><img src="3201119-20230804161057166-1944056894.png" width = 60%/></p></li>
+<li><p>Depth based AOCV</p>
+<ul>
+<li>考虑到不可能一条path上的所有cell的variation都是悲观的，会存在一些cell的variation是相互抵消的，所以在Depth
+based AOCV模型中，depth越大，derate值越小。</li>
+</ul>
+<p><img src="3201119-20230804163036323-1431424864.png" width = 60%/></p></li>
+<li><p>AOCV Table</p>
+<ul>
+<li>有一维和二维两种。
+<ul>
+<li>一维：坐标为 depth。</li>
+<li>二维：坐标为 distance 和
+depth。虽然较一维更为准确，但是runtime也更大。</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="pocv">3. POCV</h2>
+<ul>
+<li>为什么需要POCV
+<ul>
+<li><p>AOCV
+如果是基于GBA进行分析，那么精度不够，过于悲观；如果基于PBA进行分析，runtime又无法接受。</p>
+<ul>
+<li>GBA和PBA的相关解释可见<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17603907.html">这篇博客</a>。</li>
+</ul></li>
+<li><p>AOCV没有考虑input transition和output
+load对variation的影响，以及variation对input transition的影响。</p></li>
+<li><p>使用一种新的计算模型：Synopsys 叫 POCV(Parametric OCV)，Cadence
+叫 SOCV(Statistical OCV)。</p></li>
+<li><p>POCV
+将delay模拟成一个正态分布进行计算。如下图可知，POCV(SOCV)计算的值更精准。</p>
+<p><img src="3201119-20230804225141761-1300833462.png" width = 60%/></p></li>
+</ul></li>
+<li>POCV derate计算
+<ul>
+<li><p>对每个cell分别建模，cell 的 derate
+是一个基于μ和σ的高斯随机变量函数，如下所示。</p>
+<p><img src="3201119-20230805095523646-525721250.png" width = 60%/></p></li>
+<li><p>根据读入的LVF文件（LVF一般由foundry提供），可以根据input
+transition 和 output load
+查找到平均延时和Sigma值。根据下表完成计算。其中n一般为3.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>setup check</th>
+<th>hold check</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Capture clock path</td>
+<td>M-n*S</td>
+<td>M+n*S</td>
+</tr>
+<tr class="even">
+<td>Launch clock path</td>
+<td>M+n*S</td>
+<td>M-n*S</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>以计算delay variation为例，cell
+rise中的值为M，而ocv_sigma_cell_rise中的值为S。</p>
+<p><img src="3201119-20230805100647964-1480707496.png" width = 60%/></p></li>
+</ul></li>
+<li>LVF (Liberty Variation Format)
+<ul>
+<li><p>传统的LVF文件中有输出为cell delay、output transition 以及timing
+check的LUT，LUT的index与NLDM/CCS一样都为 input transition 和 output
+load。</p></li>
+<li><p><strong>从文件中可以根据高斯分布delay的计算公式以及分析场景分别计算出正确的delay和transition。</strong></p>
+<ul>
+<li>这里可以看到LVF
+查找表中考虑到了variation对transition的影响，并将该transition的值一级一级通过查找表传递。</li>
+</ul>
+<p><img src="3201119-20230805101530725-2068503571.png" width = 60%/></p></li>
+<li><p>考虑进入16nm，先进工艺结点和超低电压都会导致cell的delay为一个<strong>强非高斯分布</strong>，会出现均值偏移(mean-shift)以及偏斜效应(skewness
+effects)。</p>
+<ul>
+<li>为了解决，引入3个moment-based模型。详细解释见<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/lelin/p/11397497.html">这篇文章</a>。</li>
+</ul></li>
+</ul></li>
+</ul>
 
                 
               </div>
@@ -324,6 +886,34 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E5%AD%97%E4%B8%AD%E5%90%8E%E7%AB%AF/" class="category-chain-item">数字中后端</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%95%B0%E5%AD%97%E4%B8%AD%E5%90%8E%E7%AB%AF/STA/" class="category-chain-item">STA</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
 </div>
