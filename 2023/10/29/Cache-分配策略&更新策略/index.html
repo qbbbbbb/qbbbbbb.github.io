@@ -13,16 +13,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="#011E34">
+  <meta name="theme-color" content="#37625B">
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;102293437 《计算机组成与设计 第五版》    1. 分配策略  分配策略是指什么情况需要为数据分配cache line。 读分配  当CPU读数据时，cache缺失，分配一个cache line来缓存从主存中取出的数据。  写分配  场景：CPU写数据时，cache缺失。 当不支持写">
+    <meta name="description" content="参考 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;102293437 《计算机组成与设计 第五版》     1. 分配策略 分配策略是指什么情况需要为数据分配cache line。 读分配 当CPU读数据时，cache缺失，分配一个cache line来缓存从主存中取出的数据。   写分配 场景：CPU写数据时，cache缺失。 当不支持写分配时，写指令直接更新主存的数据。例如：对">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cache-分配策略&amp;更新策略">
 <meta property="og:url" content="http://binbinqian.cn/2023/10/29/Cache-%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5&%E6%9B%B4%E6%96%B0%E7%AD%96%E7%95%A5/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;102293437 《计算机组成与设计 第五版》    1. 分配策略  分配策略是指什么情况需要为数据分配cache line。 读分配  当CPU读数据时，cache缺失，分配一个cache line来缓存从主存中取出的数据。  写分配  场景：CPU写数据时，cache缺失。 当不支持写">
+<meta property="og:description" content="参考 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;102293437 《计算机组成与设计 第五版》     1. 分配策略 分配策略是指什么情况需要为数据分配cache line。 读分配 当CPU读数据时，cache缺失，分配一个cache line来缓存从主存中取出的数据。   写分配 场景：CPU写数据时，cache缺失。 当不支持写分配时，写指令直接更新主存的数据。例如：对">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-10-29T12:35:38.000Z">
 <meta property="article:modified_time" content="2023-10-29T12:41:41.442Z">
@@ -630,136 +630,107 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考
-<ul>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102293437"
-class="uri">https://zhuanlan.zhihu.com/p/102293437</a></li>
+<li>参考<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102293437">https://zhuanlan.zhihu.com/p/102293437</a></li>
 <li>《计算机组成与设计 第五版》</li>
-</ul></li>
 </ul>
-<hr />
-<h2 id="分配策略">1. 分配策略</h2>
-<ul>
+</li>
+</ul>
+<hr>
+<h2 id="1-分配策略"><a href="#1-分配策略" class="headerlink" title="1. 分配策略"></a>1. 分配策略</h2><ul>
 <li>分配策略是指什么情况需要为数据分配cache line。</li>
-<li>读分配
-<ul>
-<li>当CPU读数据时，cache缺失，分配一个cache
-line来缓存从主存中取出的数据。</li>
-</ul></li>
-<li>写分配
-<ul>
+<li>读分配<ul>
+<li>当CPU读数据时，cache缺失，分配一个cache line来缓存从主存中取出的数据。</li>
+</ul>
+</li>
+<li>写分配<ul>
 <li>场景：CPU写数据时，cache缺失。</li>
 <li>当不支持写分配时，写指令直接更新主存的数据。例如：对某一页内存进行初始化操作（全部写0），此时就没必要将对应数据写入cache中。</li>
-<li>支持写分配时，会首先将主存中的数据加载到cache
-line中，（变成命中），然后更新cache line的数据/主存的数据。</li>
-</ul></li>
+<li>支持写分配时，会首先将主存中的数据加载到cache line中，（变成命中），然后更新cache line的数据&#x2F;主存的数据。</li>
 </ul>
-<h2 id="更新策略">2. 更新策略</h2>
-<ul>
+</li>
+</ul>
+<h2 id="2-更新策略"><a href="#2-更新策略" class="headerlink" title="2. 更新策略"></a>2. 更新策略</h2><ul>
 <li>更新策略是指当cache命中时，写操作如何更新数据。</li>
-<li>写直通（Write Through）
-<ul>
-<li>例如，CPU执行store指令，且cache命中，首先更新cache中的数据，并更新主存中的数据。cache
-和主存的数据保持一致。</li>
+<li>写直通（Write Through）<ul>
+<li>例如，CPU执行store指令，且cache命中，首先更新cache中的数据，并更新主存中的数据。cache 和主存的数据保持一致。</li>
 <li>但是<strong>性能不佳</strong>，因为每次写操作都会引起写主存的操作，这个延时是比较大的，至少100个处理器时钟周期，大大降低处理器性能。</li>
-<li>上面描述情况的解决方案是：<strong>write buffer</strong>
-<ul>
+<li>上面描述情况的解决方案是：<strong>write buffer</strong><ul>
 <li>数据写入cache的同时也写入写缓冲中，之后处理器继续执行。</li>
-<li>写缓冲不断向主存中写入数据，如果写缓冲满了，那么处理器必须停顿流水线直到写缓冲中出现空闲表项。
-<ul>
+<li>写缓冲不断向主存中写入数据，如果写缓冲满了，那么处理器必须停顿流水线直到写缓冲中出现空闲表项。<ul>
 <li>我认为有点类似乒乓操作。</li>
-</ul></li>
+</ul>
+</li>
 <li>如果主存写操作的速率小于处理器产生写操作的速率，那么多大容量的缓冲都没用，都会很快就满了。</li>
 <li>即使处理器产生写操作的写速率小于主存写操作速率，也可能会产生停顿，例如出现写burst传输时，此时可以增加写缓冲容量解决。</li>
-</ul></li>
-</ul></li>
-<li>写回（Write Back）
-<ul>
+</ul>
+</li>
+</ul>
+</li>
+<li>写回（Write Back）<ul>
 <li>仍是CPU执行store指令，且cache命中，我们只更新cache中的数据，而不立即写入主存，此时cache和主存的数据不一致。</li>
-<li><strong>cache line有1个bit（dirty
-bit）用于记录数据是否被修改过。</strong></li>
+<li><strong>cache line有1个bit（dirty bit）用于记录数据是否被修改过。</strong> </li>
 <li>当cache中的数据要被替换（如：出现写失效），才会写回主存中。</li>
-<li>需要实现一个<strong>write-back buffer</strong>。
-<ul>
-<li>在出现写失效时，需要根据dirty bit判断是否要将cache
-line中的数据写回到主存中。</li>
-<li>在主存读取需要填充到cache中的数据时，将cache
-line中的数据写入write-back buffer中。</li>
+<li>需要实现一个<strong>write-back buffer</strong>。<ul>
+<li>在出现写失效时，需要根据dirty bit判断是否要将cache line中的数据写回到主存中。</li>
+<li>在主存读取需要填充到cache中的数据时，将cache line中的数据写入write-back buffer中。</li>
 <li>之后再由buffer写入主存中。</li>
-</ul></li>
-</ul></li>
-<li>写回 &amp; 写直通
-<ul>
-<li>写直通的写操作可以在一个周期内完成，读取标签的同时将数据写入对应的数据块。
-<ul>
+</ul>
+</li>
+</ul>
+</li>
+<li>写回 &amp; 写直通<ul>
+<li>写直通的写操作可以在一个周期内完成，读取标签的同时将数据写入对应的数据块。<ul>
 <li>如果tag匹配，那么完成写操作，处理器继续执行。</li>
 <li>如果tag不匹配，那么产生写失效，将主存中对应地址的数据取出送到cache中。</li>
-</ul></li>
-<li>写回的写操作至少需要两个周期去处理：第一个周期用于判断tag是否命中，若命中则第二个周期进行cache写操作。
-<ul>
-<li>不能一个周期就完成的原因：如果在第一个周期就将数据写入，如果tag没有命中，会导致cacheline原有数据未来得及写回主存中，导致数据被破坏。</li>
-<li>也可以像写直通一样实现一个<strong>store buffer</strong>。
-<ul>
-<li>第一个周期，将数据写入store
-buffer中，同时查找cache，判断是否命中。</li>
-<li>如果命中，在下一个无用的cache访问周期将新数据从buffer中写入cache。</li>
-</ul></li>
-</ul></li>
-</ul></li>
 </ul>
-<h2 id="实例">3. 实例</h2>
-<ul>
-<li>具体内容可以看<a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102293437">这篇文章</a>中的实例。</li>
-<li>这里只列出我觉得需要特殊注意的地方
-<ul>
-<li>当发现cache缺失时，会出现CPU从主存中取数据给cache
-line的情况，此时需要注意dirty bit是否被拉高。
-<ul>
+</li>
+<li>写回的写操作至少需要两个周期去处理：第一个周期用于判断tag是否命中，若命中则第二个周期进行cache写操作。<ul>
+<li>不能一个周期就完成的原因：如果在第一个周期就将数据写入，如果tag没有命中，会导致cacheline原有数据未来得及写回主存中，导致数据被破坏。 </li>
+<li>也可以像写直通一样实现一个<strong>store buffer</strong>。<ul>
+<li>第一个周期，将数据写入store buffer中，同时查找cache，判断是否命中。</li>
+<li>如果命中，在下一个无用的cache访问周期将新数据从buffer中写入cache。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-实例"><a href="#3-实例" class="headerlink" title="3. 实例"></a>3. 实例</h2><ul>
+<li>具体内容可以看<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102293437">这篇文章</a>中的实例。</li>
+<li>这里只列出我觉得需要特殊注意的地方<ul>
+<li>当发现cache缺失时，会出现CPU从主存中取数据给cache line的情况，此时需要注意dirty bit是否被拉高。<ul>
 <li>如果该bit被拉高，那么cache的数据不能直接覆盖，说明这个数据对应的地址之前发生过写回操作，并没有同步到主存中，如果直接覆盖则会丢失这部分的数据。</li>
 <li>将被替换这部分数据写回至主存中。</li>
-<li>将主存中0x28地址（cache
-line地址对齐，这里应该要被8整除）开始的8个数据写入cache
-line中，并清除掉dirty bit，将offset找到的数据返回给CPU。</li>
-</ul></li>
-</ul></li>
+<li>将主存中0x28地址（cache line地址对齐，这里应该要被8整除）开始的8个数据写入cache line中，并清除掉dirty bit，将offset找到的数据返回给CPU。</li>
 </ul>
-<h2 id="cache-性能评估">4. Cache 性能评估</h2>
-<ul>
-<li>$ CPU时间 = (CPU执行的时钟周期数 + 等待存储访问的时钟周期数) *
-时钟周期 $</li>
-<li>假设等待存储访问的时钟周期数主要来自于cache引起的，下面根据读和写分开讨论。
-<ul>
-<li>读操作带来的停顿周期数 只由读失效带来。 <span
-class="math display">\[
-读操作带来的停顿周期数=\frac{读操作数目}{程序}*\frac{读失效次数}{指令数目}*读失效代价
-\]</span><br />
 </li>
-<li>写操作带来的停顿周期数
-<ul>
-<li>写直通策略
-<ul>
-<li>有两个停顿的来源，写失效和写缓冲停顿。后者为buffer满时仍进行写操作引发的停顿。
-<span class="math display">\[
-写操作带来的停顿周期数 =
-\frac{写操作数目}{程序}*\frac{写失效次数}{指令数目}*写失效代价+写缓冲满时的停顿周期
-\]</span></li>
-</ul></li>
-<li>写回策略
-<ul>
+</ul>
+</li>
+</ul>
+<h2 id="4-Cache-性能评估"><a href="#4-Cache-性能评估" class="headerlink" title="4. Cache 性能评估"></a>4. Cache 性能评估</h2><ul>
+<li>$ CPU时间 &#x3D; (CPU执行的时钟周期数 + 等待存储访问的时钟周期数) * 时钟周期 $ </li>
+<li>假设等待存储访问的时钟周期数主要来自于cache引起的，下面根据读和写分开讨论。<ul>
+<li>读操作带来的停顿周期数 只由读失效带来。<br>$$<br>读操作带来的停顿周期数&#x3D;\frac{读操作数目}{程序}*\frac{读失效次数}{指令数目}*读失效代价<br>$$  </li>
+<li>写操作带来的停顿周期数 <ul>
+<li>写直通策略<ul>
+<li>有两个停顿的来源，写失效和写缓冲停顿。后者为buffer满时仍进行写操作引发的停顿。<br>$$<br>写操作带来的停顿周期数 &#x3D; \frac{写操作数目}{程序}*\frac{写失效次数}{指令数目}*写失效代价+写缓冲满时的停顿周期<br>$$</li>
+</ul>
+</li>
+<li>写回策略<ul>
 <li>停顿主要来源于cache line要被替换，并需要将原数据写回主存中。</li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li>前面介绍是未命中时对性能的影响，但是除了失效率，还有命中时间也会对性能有很大的影响。
-<ul>
-<li>举例：增大Cache的容量（主要是Cache
-line的个数），更大的Cache需要更久的命中时间。这个命中时间可以算在CPU执行的时钟周期数上。</li>
-<li>定义 平均存储访问时间(AMAT) 将Cache的命中时间也考虑在内，公式如下。
-<span class="math display">\[
-AMAT = 命中时间+失效率*失效代价
-\]</span></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>前面介绍是未命中时对性能的影响，但是除了失效率，还有命中时间也会对性能有很大的影响。<ul>
+<li>举例：增大Cache的容量（主要是Cache line的个数），更大的Cache需要更久的命中时间。这个命中时间可以算在CPU执行的时钟周期数上。</li>
+<li>定义 平均存储访问时间(AMAT) 将Cache的命中时间也考虑在内，公式如下。<br>$$<br>AMAT &#x3D; 命中时间+失效率*失效代价<br>$$</li>
+</ul>
+</li>
 </ul>
 
                 

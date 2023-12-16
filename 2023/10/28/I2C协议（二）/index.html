@@ -13,16 +13,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="#011E34">
+  <meta name="theme-color" content="#37625B">
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhangduang_KHKW&#x2F;article&#x2F;details&#x2F;121953275 https:&#x2F;&#x2F;blog.csdn.net&#x2F;u010027547&#x2F;article&#x2F;details&#x2F;47779975 https:&#x2F;&#x2F;blog.csdn.net&#x2F;NeoZng&#x2F;article&#x2F;details&#x2F;128486366 https:&#x2F;&#x2F;www.">
+    <meta name="description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhangduang_KHKW&#x2F;article&#x2F;details&#x2F;121953275 https:&#x2F;&#x2F;blog.csdn.net&#x2F;u010027547&#x2F;article&#x2F;details&#x2F;47779975 https:&#x2F;&#x2F;blog.csdn.net&#x2F;NeoZng&#x2F;article&#x2F;details&#x2F;128486366 https:&#x2F;&#x2F;www.cnblogs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="I2C协议（二）">
 <meta property="og:url" content="http://binbinqian.cn/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhangduang_KHKW&#x2F;article&#x2F;details&#x2F;121953275 https:&#x2F;&#x2F;blog.csdn.net&#x2F;u010027547&#x2F;article&#x2F;details&#x2F;47779975 https:&#x2F;&#x2F;blog.csdn.net&#x2F;NeoZng&#x2F;article&#x2F;details&#x2F;128486366 https:&#x2F;&#x2F;www.">
+<meta property="og:description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhangduang_KHKW&#x2F;article&#x2F;details&#x2F;121953275 https:&#x2F;&#x2F;blog.csdn.net&#x2F;u010027547&#x2F;article&#x2F;details&#x2F;47779975 https:&#x2F;&#x2F;blog.csdn.net&#x2F;NeoZng&#x2F;article&#x2F;details&#x2F;128486366 https:&#x2F;&#x2F;www.cnblogs">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230618163225074-2122545585.png">
 <meta property="og:image" content="http://binbinqian.cn/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230618163641198-821963823.png">
@@ -406,94 +406,80 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考
-<ul>
-<li><a
-target="_blank" rel="noopener" href="https://blog.csdn.net/zhangduang_KHKW/article/details/121953275"
-class="uri">https://blog.csdn.net/zhangduang_KHKW/article/details/121953275</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010027547/article/details/47779975"
-class="uri">https://blog.csdn.net/u010027547/article/details/47779975</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/NeoZng/article/details/128486366"
-class="uri">https://blog.csdn.net/NeoZng/article/details/128486366</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/DoreenLiu/p/14297191.html"
-class="uri">https://www.cnblogs.com/DoreenLiu/p/14297191.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/388835566?utm_id=0"
-class="uri">https://zhuanlan.zhihu.com/p/388835566?utm_id=0</a></li>
-</ul></li>
+<li>参考<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangduang_KHKW/article/details/121953275">https://blog.csdn.net/zhangduang_KHKW/article/details/121953275</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010027547/article/details/47779975">https://blog.csdn.net/u010027547/article/details/47779975</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/NeoZng/article/details/128486366">https://blog.csdn.net/NeoZng/article/details/128486366</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/DoreenLiu/p/14297191.html">https://www.cnblogs.com/DoreenLiu/p/14297191.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/388835566?utm_id=0">https://zhuanlan.zhihu.com/p/388835566?utm_id=0</a></li>
 </ul>
-<hr />
-<h2 id="仲裁机制">1. 仲裁机制</h2>
-<ul>
-<li>I2C是一个多主机的通信协议，那么就会出现
-多个主机都申请SDA总线权限发送开始信号和从机地址
-的情况，这就需要仲裁机制。</li>
+</li>
 </ul>
-<h3 id="scl的同步">1.1 SCL的同步</h3>
-<ul>
+<hr>
+<h2 id="1-仲裁机制"><a href="#1-仲裁机制" class="headerlink" title="1. 仲裁机制"></a>1. 仲裁机制</h2><ul>
+<li>I2C是一个多主机的通信协议，那么就会出现 多个主机都申请SDA总线权限发送开始信号和从机地址 的情况，这就需要仲裁机制。</li>
+</ul>
+<h3 id="1-1-SCL的同步"><a href="#1-1-SCL的同步" class="headerlink" title="1.1 SCL的同步"></a>1.1 SCL的同步</h3><ul>
 <li>这里以两个主机为例，可以拓展到多个主机上。目的：多个主机产生一个可公用的时钟。</li>
-<li>两个主机的时钟频率不同，相位不同，使用时钟同步机制如下图所示：
-<ul>
+<li>两个主机的时钟频率不同，相位不同，使用时钟同步机制如下图所示：<ul>
 <li>总线空闲时，SCL被上拉电阻拉高，当开始通信时，CLK1首先变成低电平，SCL也变成低电平，CLK2看到SCL拉低，便自己也拉低，并开始<strong>计数</strong>到CLK2虚线（原本应该拉低的位置）。</li>
-<li>CLK2的低电平时间比CLK1要长，所以CLK1从拉高开始<strong>计数</strong>到CLK2和CLK1同时拉高（此时SCL也被拉高）的位置。</li>
+<li>CLK2的低电平时间比CLK1要长，所以CLK1从拉高开始<strong>计数</strong>到CLK2和CLK1同时拉高（此时SCL也被拉高）的位置。 </li>
 <li>至此，CLK1获得了需要延长的低电平时间，CLK2获得了需要减短的高电平时间，都是通过前面计数得到的。CLK1和CLK2可以根据计数值进行调整，完成时钟的同步。</li>
-</ul></li>
 </ul>
-<p><img src="3201119-20230618163225074-2122545585.png" /></p>
-<h3 id="时钟扩展">1.2 时钟扩展</h3>
-<ul>
+</li>
+</ul>
+<p><img src="/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230618163225074-2122545585.png"></p>
+<h3 id="1-2-时钟扩展"><a href="#1-2-时钟扩展" class="headerlink" title="1.2 时钟扩展"></a>1.2 时钟扩展</h3><ul>
 <li>目的：I2C可以动态的调整总线的通信速率。</li>
-<li>时钟扩展是从机发起的。
-<ul>
-<li><a
-target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17488308.html">这篇博客</a>介绍了非应答信号，即从机正忙，没办法通信。SCL是正常由主机控制，在SCL为高电平时，主机采到第9个SCL周期，SDA为高，此时为非应答；主机就会发起停止信号，结束通信。</li>
+<li>时钟扩展是从机发起的。<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17488308.html">这篇博客</a>介绍了非应答信号，即从机正忙，没办法通信。SCL是正常由主机控制，在SCL为高电平时，主机采到第9个SCL周期，SDA为高，此时为非应答；主机就会发起停止信号，结束通信。</li>
 <li>现在想要即使出现非应答也可以等待从机忙完之后可以继续传输的情况，可以对SCL信号做处理，如下。</li>
-</ul></li>
+</ul>
+</li>
 <li>时钟扩展在基于上面描述，增加了从机可以控制SCL信号的硬件电路，从机在第9个SCL周期将SCL拉低，由于正忙，没办法接收处理传输的数据；主机检测到SCL被拉低，便会进入等待状态。等待从机忙完可以处理时，将SCL释放（I2C两条总线都接了上拉电阻，默认是高电平）并返回主机ACK信号，主机可以进行下一步的操作。</li>
 </ul>
-<h3 id="sda仲裁">1.3 SDA仲裁</h3>
-<ul>
-<li><strong>"线与逻辑"</strong>，在SCL为高电平时，SDA的数据等于各个主机的数据相与；每个主机将自己的数据和SDA上的数据进行比对，如果不一致，便知道失去了仲裁，就不再向SDA写数据。</li>
+<h3 id="1-3-SDA仲裁"><a href="#1-3-SDA仲裁" class="headerlink" title="1.3 SDA仲裁"></a>1.3 SDA仲裁</h3><ul>
+<li>**”线与逻辑”**，在SCL为高电平时，SDA的数据等于各个主机的数据相与；每个主机将自己的数据和SDA上的数据进行比对，如果不一致，便知道失去了仲裁，就不再向SDA写数据。</li>
 <li>如果两个主机都是向相同地址从机发起通信，那么仲裁继续，直到后续的数据位决定总线的归属权。</li>
 <li>这种仲裁方式并不会破坏数据的有效性，因为总是有主机可以进行通信，且数据不会被改变。但这种仲裁方式无法提前设定主机的优先级。</li>
 </ul>
-<p><img src="3201119-20230618163641198-821963823.png" /></p>
-<h2 id="读写时序">2. 读写时序</h2>
-<ul>
+<p><img src="/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230618163641198-821963823.png"></p>
+<h2 id="2-读写时序"><a href="#2-读写时序" class="headerlink" title="2. 读写时序"></a>2. 读写时序</h2><ul>
 <li>相同传送方向，不需要每次传输主机都发送开始信号。</li>
 </ul>
-<p><img src="3201119-20230618183803454-485534870.png" /></p>
+<p><img src="/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230618183803454-485534870.png"></p>
 <ul>
 <li><p>主机写给从机</p>
 <ul>
-<li>其中器件地址为slave地址信息，而字地址为读/写从机内部存储单元的地址信息。</li>
+<li>其中器件地址为slave地址信息，而字地址为读&#x2F;写从机内部存储单元的地址信息。</li>
 </ul>
-<p><img src="3201119-20230903220933713-114181872.png" /></p></li>
+<p><img src="/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230903220933713-114181872.png"></p>
+</li>
 <li><p>主机读从机数据</p>
 <ul>
-<li><p>当前地址读</p>
+<li><p>当前地址读 </p>
 <ul>
 <li>I2C在读写操作之后，内部的地址指针自动加1，因此当前地址读不需要再次发送从机内部存储单元地址信息了。</li>
 </ul>
-<p><img src="3201119-20230903221220802-876809426.png" /></p></li>
+<p><img src="/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230903221220802-876809426.png"></p>
+</li>
 <li><p>随机地址读</p>
 <ul>
-<li>如下图所示，需要先Start
-Bit、发送slave地址，并设置传输为写方向；之后发送内部寄存器地址。这个过程称为Dummy
-Write.</li>
-<li>之后再次重新发送Start
-Bit、slave地址，并设置传输为读方向。从机应答，从机发送8bit数据。</li>
-<li>为什么需要<strong>Dummy
-Write</strong>？因为是随机读，我们需要让从机存储单元的地址指针指向随机读取的地址，所以可以先进行Dummy
-Write，让存储单元的地址指针指向随机读的地址，等待从机应答后，就可以读取数据了。</li>
-</ul></li>
+<li>如下图所示，需要先Start Bit、发送slave地址，并设置传输为写方向；之后发送内部寄存器地址。这个过程称为Dummy Write.</li>
+<li>之后再次重新发送Start Bit、slave地址，并设置传输为读方向。从机应答，从机发送8bit数据。</li>
+<li>为什么需要<strong>Dummy Write</strong>？因为是随机读，我们需要让从机存储单元的地址指针指向随机读取的地址，所以可以先进行Dummy Write，让存储单元的地址指针指向随机读的地址，等待从机应答后，就可以读取数据了。</li>
 </ul>
-<p><img src="3201119-20230903213717676-1981068318.png" /></p></li>
-<li><p>主机读后写/写后读</p>
+</li>
+</ul>
+<p><img src="/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230903213717676-1981068318.png"></p>
+</li>
+<li><p>主机读后写&#x2F;写后读</p>
 <ul>
 <li>传输过程中，改变传送方向，不需要主机发送停止信号释放总线，只需要重新发送开始信号就可以。</li>
-</ul></li>
 </ul>
-<p><img src="3201119-20230618184525407-257373124.png" /></p>
+</li>
+</ul>
+<p><img src="/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/3201119-20230618184525407-257373124.png"></p>
 
                 
               </div>

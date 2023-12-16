@@ -13,16 +13,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="#011E34">
+  <meta name="theme-color" content="#37625B">
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考  微信公众号：老秦谈芯    1. IR-Drop 概述  什么是IR-Drop  考虑当芯片各种功能的电路同时工作，稳压电源模块无法实时响应demand current的快速增大（I*R,I增大，分压大，VDD会减小），导致芯片的电源电压发生跌落，从而产生电源噪声。 另外，考虑到电源和地之间存在一定的耦合效应，相应的VSS也会太高一些。 随着制程工艺不断进步，">
+    <meta name="description" content="参考 微信公众号：老秦谈芯     1. IR-Drop 概述 什么是IR-Drop 考虑当芯片各种功能的电路同时工作，稳压电源模块无法实时响应demand current的快速增大（I*R,I增大，分压大，VDD会减小），导致芯片的电源电压发生跌落，从而产生电源噪声。 另外，考虑到电源和地之间存在一定的耦合效应，相应的VSS也会太高一些。 随着制程工艺不断进步，金属连线的宽度越来越窄，导致电阻">
 <meta property="og:type" content="article">
 <meta property="og:title" content="静态时序分析-IR_Drop">
 <meta property="og:url" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-IR-Drop/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考  微信公众号：老秦谈芯    1. IR-Drop 概述  什么是IR-Drop  考虑当芯片各种功能的电路同时工作，稳压电源模块无法实时响应demand current的快速增大（I*R,I增大，分压大，VDD会减小），导致芯片的电源电压发生跌落，从而产生电源噪声。 另外，考虑到电源和地之间存在一定的耦合效应，相应的VSS也会太高一些。 随着制程工艺不断进步，">
+<meta property="og:description" content="参考 微信公众号：老秦谈芯     1. IR-Drop 概述 什么是IR-Drop 考虑当芯片各种功能的电路同时工作，稳压电源模块无法实时响应demand current的快速增大（I*R,I增大，分压大，VDD会减小），导致芯片的电源电压发生跌落，从而产生电源噪声。 另外，考虑到电源和地之间存在一定的耦合效应，相应的VSS也会太高一些。 随着制程工艺不断进步，金属连线的宽度越来越窄，导致电阻">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-IR-Drop/3201119-20230807105300118-790769418.png">
 <meta property="article:published_time" content="2023-11-13T07:14:50.000Z">
@@ -669,43 +669,43 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考
-<ul>
+<li>参考<ul>
 <li>微信公众号：老秦谈芯</li>
-</ul></li>
 </ul>
-<hr />
-<h2 id="ir-drop-概述">1. IR-Drop 概述</h2>
-<ul>
-<li>什么是IR-Drop
-<ul>
-<li>考虑当芯片各种功能的电路同时工作，稳压电源模块无法实时响应demand
-current的快速增大（I*R,I增大，分压大，VDD会减小），导致芯片的电源电压发生跌落，从而产生<strong>电源噪声</strong>。</li>
+</li>
+</ul>
+<hr>
+<h2 id="1-IR-Drop-概述"><a href="#1-IR-Drop-概述" class="headerlink" title="1. IR-Drop 概述"></a>1. IR-Drop 概述</h2><ul>
+<li>什么是IR-Drop<ul>
+<li>考虑当芯片各种功能的电路同时工作，稳压电源模块无法实时响应demand current的快速增大（I*R,I增大，分压大，VDD会减小），导致芯片的电源电压发生跌落，从而产生<strong>电源噪声</strong>。</li>
 <li>另外，考虑到电源和地之间存在一定的耦合效应，相应的VSS也会太高一些。</li>
 <li>随着制程工艺不断进步，金属连线的宽度越来越窄，导致电阻值越来越高，<strong>如果一个器件离供电点很远（电阻长度大），其等效电阻值必然也会很大</strong>。那么电阻上消耗掉的压降也很大，导致VDD会有偏差，出现电源噪声。</li>
-</ul></li>
-<li>IR-Drop 引起的问题
-<ul>
+</ul>
+</li>
+<li>IR-Drop 引起的问题<ul>
 <li>考虑芯片上的时钟之间存在skew，导致晶体管的转换过程并不是严格同步的。那么会出现，一些晶体管完成了电压状态转换，而一些晶体管还在电压转换的不确定态区域的情况，那么电源噪声可能会被放大，引起电路的逻辑错误。</li>
 <li>如果电压降太大，会导致gate延时增大：gate的电压减小，电流减小，电容充放电速度变慢，延时增加。如果IR-Drop发生在时序紧张的路径，会导致其出现时序违例。</li>
-</ul></li>
 </ul>
-<h2 id="ir-drop-分类">2. IR-Drop 分类</h2>
-<ul>
-<li><p>主要分为两种：静态IR-Drop，动态IR-Drop。</p></li>
+</li>
+</ul>
+<h2 id="2-IR-Drop-分类"><a href="#2-IR-Drop-分类" class="headerlink" title="2. IR-Drop 分类"></a>2. IR-Drop 分类</h2><ul>
+<li><p>主要分为两种：静态IR-Drop，动态IR-Drop。</p>
+</li>
 <li><p>静态IR-Drop</p>
 <ul>
 <li>产生的主要原因是电源网络的金属连线自身电阻的分压，所以静态IR-Drop和电源网络的结构以及连线细节有关。</li>
 </ul>
-<p><img src="3201119-20230807105300118-790769418.png" width = 60%/></p></li>
+<img src="3201119-20230807105300118-790769418.png" width = 60%/>
+</li>
 <li><p>动态IR-Drop</p>
 <ul>
 <li>在电路开关切换时，由于电流波动引起的电压压降。</li>
-<li>同时开关的晶体管数量越多，越容易出现动态IR-Drop现象。因此这种现象常见于时钟的触发沿。
-<ul>
+<li>同时开关的晶体管数量越多，越容易出现动态IR-Drop现象。因此这种现象常见于时钟的触发沿。<ul>
 <li>时钟触发沿不仅有时序电路还有组合电路出现大量的晶体管开关切换，会导致短时间在芯片上产生很大电流，引起了IR-Drop现象。</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
                 
