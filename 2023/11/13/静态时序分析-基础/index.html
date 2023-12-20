@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考 《集成电路静态时序分析与建模》  公众号：陌上风骑驴看IC 公众号：全栈芯片工程师 https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_37584728&#x2F;article&#x2F;details&#x2F;116974681     1. STA 相关基础知识 DC 和 ICC工具中也嵌入了STA分析工具，timing engine类似于STA，但是为了run time，精度降低了。 像后面介绍的STA">
+    <meta name="description" content="参考  《集成电路静态时序分析与建模》 公众号：陌上风骑驴看IC 公众号：全栈芯片工程师 https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_37584728&#x2F;article&#x2F;details&#x2F;116974681    1. STA 相关基础知识  DC 和 ICC工具中也嵌入了STA分析工具，timing engine类似于STA，但是为了run time，精度降">
 <meta property="og:type" content="article">
 <meta property="og:title" content="静态时序分析-基础">
 <meta property="og:url" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考 《集成电路静态时序分析与建模》  公众号：陌上风骑驴看IC 公众号：全栈芯片工程师 https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_37584728&#x2F;article&#x2F;details&#x2F;116974681     1. STA 相关基础知识 DC 和 ICC工具中也嵌入了STA分析工具，timing engine类似于STA，但是为了run time，精度降低了。 像后面介绍的STA">
+<meta property="og:description" content="参考  《集成电路静态时序分析与建模》 公众号：陌上风骑驴看IC 公众号：全栈芯片工程师 https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_37584728&#x2F;article&#x2F;details&#x2F;116974681    1. STA 相关基础知识  DC 和 ICC工具中也嵌入了STA分析工具，timing engine类似于STA，但是为了run time，精度降">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-%E5%9F%BA%E7%A1%80/3201119-20230803132859974-1629355947.png">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/13/%E9%9D%99%E6%80%81%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90-%E5%9F%BA%E7%A1%80/3201119-20230803134043009-702555882.png">
@@ -256,7 +256,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.8k 字
+          3.7k 字
         
       </span>
     
@@ -674,246 +674,274 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考<ul>
-<li>《集成电路静态时序分析与建模》 </li>
+<li>参考
+<ul>
+<li>《集成电路静态时序分析与建模》</li>
 <li>公众号：陌上风骑驴看IC</li>
 <li>公众号：全栈芯片工程师</li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_37584728/article/details/116974681">https://blog.csdn.net/weixin_37584728/article/details/116974681</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_37584728/article/details/116974681"
+class="uri">https://blog.csdn.net/weixin_37584728/article/details/116974681</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<hr>
-<h2 id="1-STA-相关基础知识"><a href="#1-STA-相关基础知识" class="headerlink" title="1. STA 相关基础知识"></a>1. STA 相关基础知识</h2><ul>
-<li>DC 和 ICC工具中也嵌入了STA分析工具，timing engine类似于STA，但是为了run time，精度降低了。<ul>
+<hr />
+<h2 id="sta-相关基础知识">1. STA 相关基础知识</h2>
+<ul>
+<li>DC 和 ICC工具中也嵌入了STA分析工具，timing
+engine类似于STA，但是为了run time，精度降低了。
+<ul>
 <li>像后面介绍的STA的两种分析模式：GBA和PBA，DC和ICC中只支持GBA的分析。</li>
-</ul>
-</li>
-<li>时序分析<ul>
+</ul></li>
+<li>时序分析
+<ul>
 <li>可分为静态时序分析和动态时序分析。</li>
-<li>动态时序分析<ul>
+<li>动态时序分析
+<ul>
 <li>通过网表和sdf文件，sdf将单元延迟和连线延迟反标到网表上；并给入大量的测试激励来验证电路的功能。</li>
-<li>需要特殊注意几个验证点<ul>
+<li>需要特殊注意几个验证点
+<ul>
 <li>典型应用场景的功能验证</li>
 <li>频率的动态切换</li>
 <li>跨时钟域信号是否正确同步</li>
 <li>PMU上电以及断电的顺序是否正确以及是否满足相应的时序要求</li>
 <li>Multi-Cycle等特别逻辑的功能是否正确</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>静态时序分析<ul>
-<li>将电路分割成大量的时序弧，根据CCS&#x2F;NLDM模型计算器件延时，以及根据StarRC提取出的SPEF等将R&#x2F;C反标到net上，并根据net delay计算连线延时。</li>
-<li>获得timing_path的delay之后，与用户定义的sdc比较，给出是否满足需求。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Signoff 阶段 STA需要做的分析<ul>
-<li>时序单元的相关约束：建立时间、保持时间、恢复时间、移除时间以及时钟信号最小脉冲宽度。<ul>
-<li>其中时钟信号脉宽必须要大于最小脉冲宽度，否则无法保证时序单元实现正常的逻辑功能。</li>
-<li>恢复、移除时间的分析可以看<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17559415.html">这篇博客</a>。</li>
-</ul>
-</li>
-<li>DRC相关检查<ul>
-<li>max&#x2F;min transition</li>
-<li>max&#x2F;min capacitance</li>
-<li>max_fanout</li>
-</ul>
-</li>
-<li>SI（信号完整性）分析<ul>
-<li>Bump&#x2F;Glitch&#x2F;Noise分析。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>时序弧<ul>
-<li>静态时序分析是基于时序弧进行时序分析的，用来描述两个节点之间延时信息的数据。</li>
-<li>一般分为连线延时和单元延时。器件延迟和连线延迟模型可见<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17459189.html">这篇博客</a>。</li>
-<li>更为详细的单元延迟时序弧分析可见《集成电路静态时序分析与建模》P21。</li>
-</ul>
-</li>
-<li>MCMM &amp; DMSA<ul>
-<li>Signoff阶段STA也需要MCMM分析，MCMM相关知识可见<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17638107.html">这篇博客</a>。</li>
-<li>依次跑完每个scenario，这种方法的不便之处在于：<ul>
-<li>scenario之间可能会有violation重合的部分，也有不重合的部分。需要比较violation在哪个scenario下最严重。</li>
-<li>在某个scenario下clean timing时，其它scenario可能没有clean掉，甚至可能在其它scenario下产生新的violation的点。</li>
-</ul>
-</li>
-<li>可以使用<strong>DMSA</strong>机制管理不同scenario。根据所有scenario的信息进行timing eco。DMSA相关内容可以看<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17662024.html">这篇博客</a>。</li>
-</ul>
-</li>
-</ul>
-<h2 id="2-RC网络"><a href="#2-RC网络" class="headerlink" title="2. RC网络"></a>2. RC网络</h2><ul>
-<li>一个cell可以被模拟成<strong>输入电容、输出电容、上拉电阻和下拉电阻。</strong><ul>
-<li>输入电容为前一级驱动的负载，输出电容为本级自身的负载。</li>
-<li>上拉电阻&#x2F;下拉电阻的大小决定了cell对负载电容充放电电流的大小，即驱动能力。</li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17459189.html">这篇博客</a>中有介绍NLDM&#x2F;CCS模型都是通过input transition和output load可以在查找表中找到cell delay以及output transition。<ul>
-<li><p>对于cell delay的计算，除了查找表之外，还有表头定义的四个attribute；这四个attribute决定了cell delay的定义方式。更为详细的介绍可见《集成电路静态时序分析与建模》P11。</p>
-<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tcl">input_threshold_pct_fall :<span class="hljs-number">60</span>;<br>output_threshold_pct_fall :<span class="hljs-number">50</span>;<br></code></pre></td></tr></table></figure>
-
-<img src="3201119-20230803132859974-1629355947.png" width = 40%/>
-</li>
-<li><p>transition的计算是逐级递进的，output transition是根据input_transition和output_load查找得到的。与cell_delay一样，也需要定义四个attribute，决定了rise&#x2F;fall transition time的定义方式。</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">slew_lower_threshold_pct_fall</span> :<span class="hljs-number">20</span>.<span class="hljs-number">0</span>;<br><span class="hljs-attribute">slew_upper_threshold_pct_fall</span> :<span class="hljs-number">80</span>.<span class="hljs-number">0</span>;<br><span class="hljs-attribute">slew_lower_threshold_pct_rise</span> :<span class="hljs-number">10</span>.<span class="hljs-number">0</span>;<br><span class="hljs-attribute">slew_upper_threshold_pct_rise</span> :<span class="hljs-number">90</span>.<span class="hljs-number">0</span>;<br></code></pre></td></tr></table></figure>
-
-<img src="3201119-20230803134043009-702555882.png" width = 60%/></li>
-</ul>
-</li>
-</ul>
-<h2 id="3-PVT"><a href="#3-PVT" class="headerlink" title="3. PVT"></a>3. PVT</h2><ul>
-<li><p>芯片的健壮性要求我们需要在物理实现过程中额外考虑温度、电压以及工艺偏差的影响。</p>
-</li>
-<li><p>可以使用PVT、RC Corner以及OCV来模拟这些不可控的随机因素。</p>
-</li>
-<li><p>根据不同的工艺，foundary会提供一张SignOff的表格。这里首先介绍PVT。</p>
-<img src="3201119-20230803143433098-462607844.png" width = 60%/>
-
+</ul></li>
+</ul></li>
+<li>静态时序分析
 <ul>
-<li>下图中ss和ff分别为slow nmos,slow pmos 以及fast nmos,fast pmos。为五种不同工艺角中的两种极限。 <ul>
+<li>将电路分割成大量的时序弧，根据CCS/NLDM模型计算器件延时，以及根据StarRC提取出的SPEF等将R/C反标到net上，并根据net
+delay计算连线延时。</li>
+<li>获得timing_path的delay之后，与用户定义的sdc比较，给出是否满足需求。</li>
+</ul></li>
+</ul></li>
+<li>Signoff 阶段 STA需要做的分析
+<ul>
+<li>时序单元的相关约束：建立时间、保持时间、恢复时间、移除时间以及时钟信号最小脉冲宽度。
+<ul>
+<li>其中时钟信号脉宽必须要大于最小脉冲宽度，否则无法保证时序单元实现正常的逻辑功能。</li>
+<li>恢复、移除时间的分析可以看<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17559415.html">这篇博客</a>。</li>
+</ul></li>
+<li>DRC相关检查
+<ul>
+<li>max/min transition</li>
+<li>max/min capacitance</li>
+<li>max_fanout</li>
+</ul></li>
+<li>SI（信号完整性）分析
+<ul>
+<li>Bump/Glitch/Noise分析。</li>
+</ul></li>
+</ul></li>
+<li>时序弧
+<ul>
+<li>静态时序分析是基于时序弧进行时序分析的，用来描述两个节点之间延时信息的数据。</li>
+<li>一般分为连线延时和单元延时。器件延迟和连线延迟模型可见<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17459189.html">这篇博客</a>。</li>
+<li>更为详细的单元延迟时序弧分析可见《集成电路静态时序分析与建模》P21。</li>
+</ul></li>
+<li>MCMM &amp; DMSA
+<ul>
+<li>Signoff阶段STA也需要MCMM分析，MCMM相关知识可见<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17638107.html">这篇博客</a>。</li>
+<li>依次跑完每个scenario，这种方法的不便之处在于：
+<ul>
+<li>scenario之间可能会有violation重合的部分，也有不重合的部分。需要比较violation在哪个scenario下最严重。</li>
+<li>在某个scenario下clean
+timing时，其它scenario可能没有clean掉，甚至可能在其它scenario下产生新的violation的点。</li>
+</ul></li>
+<li>可以使用<strong>DMSA</strong>机制管理不同scenario。根据所有scenario的信息进行timing
+eco。DMSA相关内容可以看<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17662024.html">这篇博客</a>。</li>
+</ul></li>
+</ul>
+<h2 id="rc网络">2. RC网络</h2>
+<ul>
+<li>一个cell可以被模拟成<strong>输入电容、输出电容、上拉电阻和下拉电阻。</strong>
+<ul>
+<li>输入电容为前一级驱动的负载，输出电容为本级自身的负载。</li>
+<li>上拉电阻/下拉电阻的大小决定了cell对负载电容充放电电流的大小，即驱动能力。</li>
+</ul></li>
+<li><a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17459189.html">这篇博客</a>中有介绍NLDM/CCS模型都是通过input
+transition和output load可以在查找表中找到cell delay以及output
+transition。
+<ul>
+<li><p>对于cell
+delay的计算，除了查找表之外，还有表头定义的四个attribute；这四个attribute决定了cell
+delay的定义方式。更为详细的介绍可见《集成电路静态时序分析与建模》P11。
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tcl">input_threshold_pct_fall :<span class="hljs-number">60</span>;<br>output_threshold_pct_fall :<span class="hljs-number">50</span>;<br></code></pre></td></tr></table></figure></p>
+<p><img src="3201119-20230803132859974-1629355947.png" width = 40%/></p></li>
+<li><p>transition的计算是逐级递进的，output
+transition是根据input_transition和output_load查找得到的。与cell_delay一样，也需要定义四个attribute，决定了rise/fall
+transition time的定义方式。 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">slew_lower_threshold_pct_fall</span> :<span class="hljs-number">20</span>.<span class="hljs-number">0</span>;<br><span class="hljs-attribute">slew_upper_threshold_pct_fall</span> :<span class="hljs-number">80</span>.<span class="hljs-number">0</span>;<br><span class="hljs-attribute">slew_lower_threshold_pct_rise</span> :<span class="hljs-number">10</span>.<span class="hljs-number">0</span>;<br><span class="hljs-attribute">slew_upper_threshold_pct_rise</span> :<span class="hljs-number">90</span>.<span class="hljs-number">0</span>;<br></code></pre></td></tr></table></figure></p>
+<p><img src="3201119-20230803134043009-702555882.png" width = 60%/></p></li>
+</ul></li>
+</ul>
+<h2 id="pvt">3. PVT</h2>
+<ul>
+<li><p>芯片的健壮性要求我们需要在物理实现过程中额外考虑温度、电压以及工艺偏差的影响。</p></li>
+<li><p>可以使用PVT、RC
+Corner以及OCV来模拟这些不可控的随机因素。</p></li>
+<li><p>根据不同的工艺，foundary会提供一张SignOff的表格。这里首先介绍PVT。</p>
+<p><img src="3201119-20230803143433098-462607844.png" width = 60%/></p>
+<ul>
+<li>下图中ss和ff分别为slow nmos,slow pmos 以及fast nmos,fast
+pmos。为五种不同工艺角中的两种极限。
+<ul>
 <li>其中有一些温度为-40°，因为需要考虑温度翻转效应，也需要signoff。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<img src="3201119-20230803162739913-1519710470.jpg" width = 60%/>
-</li>
+<p><img src="3201119-20230803162739913-1519710470.jpg" width = 60%/></p></li>
 <li><p>PVT的不理想性</p>
 <ul>
 <li>P：在制造过程中可能会出现偏差，导致管子的电阻和阈值电压以及宽长比可能会出现偏差。</li>
-<li>V：cell的延迟和电压有很大的关系，以单电压芯片为例，电池的供电电压本就在一个范围内变化，而且考虑片外&#x2F;片上的voltage regulator的误差，以及IR的影响，导致芯片上的每个管子都可能工作在不同的电压下。<ul>
-<li>必须保证IR Drop不能过大，否则芯片可能会因为得不到所需的电压而发生逻辑错误或停止工作。</li>
-</ul>
-</li>
-<li>T：温度升高，一方面降低了Vt，使延迟更小；另一方面，降低了空穴和电子的迁移率，使延迟更大；而后者的影响比前者更大，所以温度升高会导致管子的延时增加。<ul>
+<li>V：cell的延迟和电压有很大的关系，以单电压芯片为例，电池的供电电压本就在一个范围内变化，而且考虑片外/片上的voltage
+regulator的误差，以及IR的影响，导致芯片上的每个管子都可能工作在不同的电压下。
+<ul>
+<li>必须保证IR
+Drop不能过大，否则芯片可能会因为得不到所需的电压而发生逻辑错误或停止工作。</li>
+</ul></li>
+<li>T：温度升高，一方面降低了Vt，使延迟更小；另一方面，降低了空穴和电子的迁移率，使延迟更大；而后者的影响比前者更大，所以温度升高会导致管子的延时增加。
+<ul>
 <li><p>但是一味的降低温度，并不能一直减小延时；因为晶体管存在温度翻转效应，当温度低到一个阈值之后，温度的降低会导致延时的增加。</p>
-<img src="3201119-20230803153453247-516127716.png" width = 60%/></li>
+<p><img src="3201119-20230803153453247-516127716.png" width = 60%/></p></li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="4-RC-Corner"><a href="#4-RC-Corner" class="headerlink" title="4. RC Corner"></a>4. RC Corner</h2><ul>
-<li>STA中主要包括五个RC Corner：Cbest、Cworst、RCbest、RCworst 和 RCtypical。<ul>
+<h2 id="rc-corner">4. RC Corner</h2>
+<ul>
+<li>STA中主要包括五个RC Corner：Cbest、Cworst、RCbest、RCworst 和
+RCtypical。
+<ul>
 <li>Cbest：电容最小，电阻最大；Cworst：电容最大，电阻最小。</li>
 <li>RCbest：耦合电容最大，(对地电容*电阻)最小；RCworst：耦合电容最小，(对地电容*电阻)最大。</li>
+</ul></li>
+<li>Setup sign-off 的RC corner是: Cworst / RCworst
+<ul>
+<li>RC
+corner的产生是考虑到对于90nm往下的工艺，network的电容占比越来越大。90nm往上的工艺，cell电容占主导。</li>
+<li>对于短线，电容占主导，C
+corner就可以cover；但是对于长导线，电阻占主导地位，需要RC
+corner来cover。</li>
+</ul></li>
+<li>Hold time sign-off 的RC corner是: Cbest / RCbest / Cworst /
+RCworst。
+<ul>
+<li>为什么对于hold，需要best和worst都考虑？
+<ul>
+<li>个人理解：不同RC corner以及PVT的组合，对于Hold path
+delay值较小的部分，四个角都存在，所以signoff需要覆盖所有的corner。</li>
+</ul></li>
+</ul></li>
+<li>如果引入DPT(Double Patterning
+Technology)，即在同一层layer要做两次mask，两次mask之间可能存在偏差，导致线间距发生变化，从而影响耦合电容值。
+<ul>
+<li>需要将这一因素考虑到RC
+Corner中，用于signoff需要额外加corner：Cworst_CCworst, RCworst_CCworst,
+Cbest_CCbest, RCbest_CCbest.</li>
+</ul></li>
 </ul>
-</li>
-<li>Setup sign-off 的RC corner是: Cworst &#x2F; RCworst<ul>
-<li>RC corner的产生是考虑到对于90nm往下的工艺，network的电容占比越来越大。90nm往上的工艺，cell电容占主导。</li>
-<li>对于短线，电容占主导，C corner就可以cover；但是对于长导线，电阻占主导地位，需要RC corner来cover。</li>
-</ul>
-</li>
-<li>Hold time sign-off 的RC corner是: Cbest &#x2F; RCbest &#x2F; Cworst &#x2F; RCworst。<ul>
-<li>为什么对于hold，需要best和worst都考虑？<ul>
-<li>个人理解：不同RC corner以及PVT的组合，对于Hold path delay值较小的部分，四个角都存在，所以signoff需要覆盖所有的corner。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>如果引入DPT(Double Patterning Technology)，即在同一层layer要做两次mask，两次mask之间可能存在偏差，导致线间距发生变化，从而影响耦合电容值。<ul>
-<li>需要将这一因素考虑到RC Corner中，用于signoff需要额外加corner：Cworst_CCworst, RCworst_CCworst, Cbest_CCbest, RCbest_CCbest.</li>
-</ul>
-</li>
-</ul>
-<h2 id="5-GBA-PBA"><a href="#5-GBA-PBA" class="headerlink" title="5. GBA &amp; PBA"></a>5. GBA &amp; PBA</h2><ul>
+<h2 id="gba-pba">5. GBA &amp; PBA</h2>
+<ul>
 <li>这两种是STA的两种timing分析模式。以下图为例。</li>
 </ul>
-<img src="3201119-20230804172606732-306455573.jpg" width = 60%/>
-
+<p><img src="3201119-20230804172606732-306455573.jpg" width = 60%/></p>
 <ul>
-<li>GBA (Graph Base Analysis)<ul>
-<li><p>下表为在setup&#x2F;hold分析时，input transition的端口选择。</p>
+<li>GBA (Graph Base Analysis)
+<ul>
+<li><p>下表为在setup/hold分析时，input transition的端口选择。</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Gate</th>
 <th>setup 分析</th>
 <th>hold 分析</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>OR</td>
 <td>B</td>
 <td>A</td>
 </tr>
-<tr>
+<tr class="even">
 <td>NAND</td>
 <td>A</td>
 <td>B</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>XOR</td>
-<td>A&#x2F;B</td>
-<td>A&#x2F;B</td>
+<td>A/B</td>
+<td>A/B</td>
 </tr>
-<tr>
+<tr class="even">
 <td>NAN</td>
 <td>B</td>
 <td>A</td>
 </tr>
-</tbody></table>
-</li>
-<li><p>从上表可以看到，对于setup&#x2F;hold的分析都是选择的最悲观的input transition端口情况进行分析。</p>
-</li>
-</ul>
-</li>
-<li>PBA (Path Base Analysis)<ul>
+</tbody>
+</table></li>
+<li><p>从上表可以看到，对于setup/hold的分析都是选择的最悲观的input
+transition端口情况进行分析。</p></li>
+</ul></li>
+<li>PBA (Path Base Analysis)
+<ul>
 <li><p>与GBA分析相同的电路，其端口选择如下表。</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Gate</th>
 <th>setup 分析</th>
 <th>hold 分析</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>OR</td>
 <td>A</td>
 <td>A</td>
 </tr>
-<tr>
+<tr class="even">
 <td>NAND</td>
 <td>B</td>
 <td>B</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>XOR</td>
 <td>B</td>
 <td>B</td>
 </tr>
-<tr>
+<tr class="even">
 <td>NAN</td>
 <td>A</td>
 <td>A</td>
 </tr>
-</tbody></table>
-</li>
-<li><p>从上表可以看到，分析端口的选择是基于实际的时序路径。</p>
-</li>
-</ul>
-</li>
-<li>PBA &amp; GBA<ul>
-<li>优缺点分析   <ul>
+</tbody>
+</table></li>
+<li><p>从上表可以看到，分析端口的选择是基于实际的时序路径。</p></li>
+</ul></li>
+<li>PBA &amp; GBA
+<ul>
+<li>优缺点分析
+<ul>
 <li>GBA计算比较悲观，而PBA计算更为真实。</li>
 <li>但是考虑到PBA的计算方式相对复杂，所以 runtime 会比较久。</li>
-</ul>
-</li>
-<li>何时用PBA<ul>
-<li>默认情况下，PT都是使用GBA去进行分析的，如果在signoff时发现有较小（如&lt;5ps）的violation，且已经优化到极致，可以用PBA模式分析，是否可以meet。 </li>
-<li>PBA 模式还分为两种计算模式：Path和Exhaustive<ul>
+</ul></li>
+<li>何时用PBA
+<ul>
+<li>默认情况下，PT都是使用GBA去进行分析的，如果在signoff时发现有较小（如&lt;5ps）的violation，且已经优化到极致，可以用PBA模式分析，是否可以meet。</li>
+<li>PBA 模式还分为两种计算模式：Path和Exhaustive
+<ul>
 <li>Path：基于GBA分析的结果，选择最差的路径重新用PBA计算同样的path.</li>
-<li>Exhaustive：基于每个endpoint，会重新计算这个终点上所有的timing path（最多25000条），然后选择其中最差的path再重新用PBA计算slack。</li>
-<li>可以看到path计算方式并不能保证得到的时真正最差slack的path。但是通常这种方式速度较快，适用于我们想看下pba能带来多少timing的improvement。 </li>
-<li>而exhaustive是最真实的pba计算方式，但是它的runtime非常慢，适合于接近signoff最后阶段，violation的timing path较少时的情况。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li>Exhaustive：基于每个endpoint，会重新计算这个终点上所有的timing
+path（最多25000条），然后选择其中最差的path再重新用PBA计算slack。</li>
+<li>可以看到path计算方式并不能保证得到的时真正最差slack的path。但是通常这种方式速度较快，适用于我们想看下pba能带来多少timing的improvement。</li>
+<li>而exhaustive是最真实的pba计算方式，但是它的runtime非常慢，适合于接近signoff最后阶段，violation的timing
+path较少时的情况。</li>
+</ul></li>
+</ul></li>
+</ul></li>
 </ul>
 
                 

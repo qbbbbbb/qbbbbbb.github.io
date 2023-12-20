@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考 《专用集成电路设计实用教程》     1. 多时钟同步设计 时序约束 以下图为例，所有的时钟都来自同一个时钟源，所以是它们是同步设计。  可以看到要综合的模块输入只有CLKC，其他的时钟只作用于综合模块端口，我们需要对端口加以约束。 首先约束作为综合模块的主时钟CLKC，约束语句如下。1create_clock -p 20 [get_ports CLKC]     虚拟时钟  考虑到CLK">
+    <meta name="description" content="参考  《专用集成电路设计实用教程》    1. 多时钟同步设计 时序约束  以下图为例，所有的时钟都来自同一个时钟源，所以是它们是同步设计。  可以看到要综合的模块输入只有CLKC，其他的时钟只作用于综合模块端口，我们需要对端口加以约束。 首先约束作为综合模块的主时钟CLKC，约束语句如下。 1create_clock -p 20 [get_ports CLKC]">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DC相关理解（四）">
 <meta property="og:url" content="http://binbinqian.cn/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E5%9B%9B%EF%BC%89/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考 《专用集成电路设计实用教程》     1. 多时钟同步设计 时序约束 以下图为例，所有的时钟都来自同一个时钟源，所以是它们是同步设计。  可以看到要综合的模块输入只有CLKC，其他的时钟只作用于综合模块端口，我们需要对端口加以约束。 首先约束作为综合模块的主时钟CLKC，约束语句如下。1create_clock -p 20 [get_ports CLKC]     虚拟时钟  考虑到CLK">
+<meta property="og:description" content="参考  《专用集成电路设计实用教程》    1. 多时钟同步设计 时序约束  以下图为例，所有的时钟都来自同一个时钟源，所以是它们是同步设计。  可以看到要综合的模块输入只有CLKC，其他的时钟只作用于综合模块端口，我们需要对端口加以约束。 首先约束作为综合模块的主时钟CLKC，约束语句如下。 1create_clock -p 20 [get_ports CLKC]">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E5%9B%9B%EF%BC%89/3201119-20230801110619220-52097225.png">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E5%9B%9B%EF%BC%89/3201119-20230801112656557-102317151.png">
@@ -264,7 +264,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.7k 字
+          2.6k 字
         
       </span>
     
@@ -275,7 +275,7 @@
         
         
         
-          23 分钟
+          22 分钟
         
       </span>
     
@@ -682,131 +682,129 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考<ul>
+<li>参考
+<ul>
 <li>《专用集成电路设计实用教程》</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<hr>
-<h2 id="1-多时钟同步设计-时序约束"><a href="#1-多时钟同步设计-时序约束" class="headerlink" title="1. 多时钟同步设计 时序约束"></a>1. 多时钟同步设计 时序约束</h2><ul>
-<li><p>以下图为例，所有的时钟都来自同一个时钟源，所以是它们是同步设计。</p>
+<hr />
+<h2 id="多时钟同步设计-时序约束">1. 多时钟同步设计 时序约束</h2>
 <ul>
-<li>可以看到要综合的模块输入只有CLKC，其他的时钟只作用于综合模块端口，我们需要对端口加以约束。</li>
-<li>首先约束作为综合模块的主时钟CLKC，约束语句如下。<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">create_clock</span> -p <span class="hljs-number">20</span><span class="hljs-meta"> [get_ports CLKC]</span><br></code></pre></td></tr></table></figure>
-
-<img src="3201119-20230801110619220-52097225.png" style="zoom:50%"/></li>
-</ul>
-</li>
-<li><p>虚拟时钟</p>
+<li>以下图为例，所有的时钟都来自同一个时钟源，所以是它们是同步设计。
 <ul>
-<li><p>考虑到CLKA\CLKD\CLKE在要综合的设计中没有对应的输入端口，因此需要设置虚拟时钟。</p>
-</li>
-<li><p><strong>虚拟时钟在设计里并不驱动触发任何寄存器，主要用于说明相对主时钟I&#x2F;O端口的延迟。</strong></p>
-</li>
+<li><p>可以看到要综合的模块输入只有CLKC，其他的时钟只作用于综合模块端口，我们需要对端口加以约束。</p></li>
+<li><p>首先约束作为综合模块的主时钟CLKC，约束语句如下。
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">create_clock</span> -p <span class="hljs-number">20</span><span class="hljs-meta"> [get_ports CLKC]</span><br></code></pre></td></tr></table></figure></p>
+<p><img src="3201119-20230801110619220-52097225.png" style="zoom:50%"/></p></li>
+</ul></li>
+<li>虚拟时钟
+<ul>
+<li><p>考虑到CLKA，因此需要设置虚拟时钟。</p></li>
+<li><p><strong>虚拟时钟在设计里并不驱动触发任何寄存器，主要用于说明相对主时钟I/O端口的延迟。</strong></p></li>
 <li><p>输入端</p>
 <ul>
-<li><p>由于虚拟时钟没有对应的输入端口，所以定义中没有源端口和引脚；另外还需要定义input_delay，约束如下。</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">create_clock</span> -period <span class="hljs-number">30</span> -name CLKA<br><span class="hljs-attribute">set_input_delay</span> <span class="hljs-number">5</span>.<span class="hljs-number">5</span> -clock CLKA -max<span class="hljs-meta"> [get_ports IN1]</span><br></code></pre></td></tr></table></figure>
-
-<img src="3201119-20230801112656557-102317151.png" style="zoom:50%"/>
-
+<li><p>由于虚拟时钟没有对应的输入端口，所以定义中没有源端口和引脚；另外还需要定义input_delay，约束如下。
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">create_clock</span> -period <span class="hljs-number">30</span> -name CLKA<br><span class="hljs-attribute">set_input_delay</span> <span class="hljs-number">5</span>.<span class="hljs-number">5</span> -clock CLKA -max<span class="hljs-meta"> [get_ports IN1]</span><br></code></pre></td></tr></table></figure></p>
+<p><img src="3201119-20230801112656557-102317151.png" style="zoom:50%"/></p>
 <ul>
-<li>时序图如下，所以可以计算需要满足$ t_N &lt; 20-5.5-t_{setup}$ 以及 $t_N &lt; 10-5.5-t_{setup}$。</li>
+<li>时序图如下，所以可以计算需要满足$ t_N &lt; 20-5.5-t_{setup}$ 以及
+<span class="math inline">\(t_N &lt; 10-5.5-t_{setup}\)</span>。</li>
 </ul>
-<img src="3201119-20230801112837065-1640123071.png" style="zoom:50%"/></li>
-</ul>
-</li>
+<p><img src="3201119-20230801112837065-1640123071.png" style="zoom:50%"/></p></li>
+</ul></li>
 <li><p>输出端</p>
 <ul>
 <li>考虑到输出端有两个虚拟时钟，所以要加两个约束。</li>
-<li>注：<strong>第二个命令中需要加上 -add_delay 选项。</strong>如果不加，第二条命令会覆盖第一条命令。<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">create_clock</span> -period<span class="hljs-meta"> [expr 1.0/75*1000] -name CLKD #要用1.0而不是1</span><br><span class="hljs-meta">create_clock -period 10 -name CLKE</span><br><span class="hljs-meta">create_clock -period 20 [get_ports CLKC]</span><br><br><span class="hljs-attribute">set_output_delay</span> -max <span class="hljs-number">2</span>.<span class="hljs-number">5</span> -clock CLKD<span class="hljs-meta"> [get_ports OUT1]</span><br><span class="hljs-attribute">set_output_delay</span> -max <span class="hljs-number">4</span>.<span class="hljs-number">5</span> -clock CLKE -add_delay<span class="hljs-meta"> [get_ports OUT1]</span><br></code></pre></td></tr></table></figure></li>
+<li>注：<strong>第二个命令中需要加上 -add_delay
+选项。</strong>如果不加，第二条命令会覆盖第一条命令。 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">create_clock</span> -period<span class="hljs-meta"> [expr 1.0/75*1000] -name CLKD #要用1.0而不是1</span><br><span class="hljs-meta">create_clock -period 10 -name CLKE</span><br><span class="hljs-meta">create_clock -period 20 [get_ports CLKC]</span><br><br><span class="hljs-attribute">set_output_delay</span> -max <span class="hljs-number">2</span>.<span class="hljs-number">5</span> -clock CLKD<span class="hljs-meta"> [get_ports OUT1]</span><br><span class="hljs-attribute">set_output_delay</span> -max <span class="hljs-number">4</span>.<span class="hljs-number">5</span> -clock CLKE -add_delay<span class="hljs-meta"> [get_ports OUT1]</span><br></code></pre></td></tr></table></figure></li>
 </ul>
-<img src="3201119-20230801141919417-2022692869.png" style="zoom:50%"/>
-
+<p><img src="3201119-20230801141919417-2022692869.png" style="zoom:50%"/></p>
 <ul>
-<li>时序图如下，所以可以计算需要满足$ t_S &lt; 10-4.5$ 以及 $t_S &lt; 6.7-2.5$。</li>
+<li>时序图如下，所以可以计算需要满足$ t_S &lt; 10-4.5$ 以及 <span
+class="math inline">\(t_S &lt; 6.7-2.5\)</span>。</li>
 </ul>
-<img src="3201119-20230801143047026-1906983568.png" style="zoom:50%"/></li>
+<p><img src="3201119-20230801143047026-1906983568.png" style="zoom:50%"/></p></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="2-异步设计的时序约束"><a href="#2-异步设计的时序约束" class="headerlink" title="2. 异步设计的时序约束"></a>2. 异步设计的时序约束</h2><ul>
+<h2 id="异步设计的时序约束">2. 异步设计的时序约束</h2>
+<ul>
 <li>需要考虑异步带来的亚稳态问题，可以考虑在设计中使用一些同步电路处理。</li>
 <li>对于穿越异步边界的任何路径，我们都必须<strong>禁止对这些路径做时序综合</strong>，因为相位关系并不是确定的，对这些路径去做时间约束没有意义。</li>
-<li>set_false_path<ul>
-<li><p>我们可以使用 set_false_path 为跨时钟域路径作解除时序约束。指令如下。</p>
-<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tcl">set_false_path -from [get_clocks CLKA] -to [get_clocks CLKB] <br>set_false_path -from [get_clocks CLKB] -to [get_clocks CLKA]<br></code></pre></td></tr></table></figure>
-
-<img src="3201119-20230801143833520-640437126.png" style="zoom:50%"/>
-</li>
+<li>set_false_path
+<ul>
+<li><p>我们可以使用 set_false_path
+为跨时钟域路径作解除时序约束。指令如下。 <figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tcl">set_false_path -from [get_clocks CLKA] -to [get_clocks CLKB] <br>set_false_path -from [get_clocks CLKB] -to [get_clocks CLKA]<br></code></pre></td></tr></table></figure></p>
+<p><img src="3201119-20230801143833520-640437126.png" style="zoom:50%"/></p></li>
 <li><p>除了上面介绍的功能，还可以用来约束逻辑上不存在的路径，举例如下。</p>
 <ul>
 <li>设计中难免会出现一些物理上连接的通路，但信号永远不会从这条路径走。可以使用指令report_timing_requirments命令报告出设计中所有的例外。</li>
 </ul>
-<img src="3201119-20230801151731627-226754709.png" style="zoom:50%"/></li>
+<p><img src="3201119-20230801151731627-226754709.png" style="zoom:50%"/></p></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="3-多时钟周期的时序约束"><a href="#3-多时钟周期的时序约束" class="headerlink" title="3. 多时钟周期的时序约束"></a>3. 多时钟周期的时序约束</h2><ul>
-<li><p>以下图电路为例，时钟周期定义为10ns，加法器延迟为6个时钟周期，那么我们需要对其进行多时钟周期的时序约束。</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">set_multicycle_path</span> <span class="hljs-number">6</span> -setup -to<span class="hljs-meta"> [get_pins C_reg[*]/D]</span><br></code></pre></td></tr></table></figure>
-
-  <img src="3201119-20230801152328132-1946481598.png" style="zoom:50%"/>
-
+<h2 id="多时钟周期的时序约束">3. 多时钟周期的时序约束</h2>
+<ul>
+<li><p>以下图电路为例，时钟周期定义为10ns，加法器延迟为6个时钟周期，那么我们需要对其进行多时钟周期的时序约束。
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">set_multicycle_path</span> <span class="hljs-number">6</span> -setup -to<span class="hljs-meta"> [get_pins C_reg[*]/D]</span><br></code></pre></td></tr></table></figure></p>
+<p><img src="3201119-20230801152328132-1946481598.png" style="zoom:50%"/></p>
 <ul>
 <li><p>建立时间分析</p>
 <ul>
-<li>时序图如下，DC只在第6个上升沿做建立时间的分析，此时加法器允许的最大延迟为$ T_{delay} &lt; 60-T_{setup}-T_{uncertainty}-T_{clk2q} $.</li>
+<li>时序图如下，DC只在第6个上升沿做建立时间的分析，此时加法器允许的最大延迟为$
+T_{delay} &lt; 60-T_{setup}-T_{uncertainty}-T_{clk2q} $.</li>
 </ul>
-<img src="3201119-20230801153907814-2146387820.png" style="zoom:50%"/>
-</li>
+<p><img src="3201119-20230801153907814-2146387820.png" style="zoom:50%"/></p></li>
 <li><p>保持时间分析</p>
 <ul>
-<li>对于单周期的保持时间分析，时序图绘制如下，图中可以看到，对于FF2来说，想要采到正确的A值，那么组合逻辑延时需要满足 $ t_{delay-comb} &gt; t_{hold} + t_{skew}$.</li>
+<li>对于单周期的保持时间分析，时序图绘制如下，图中可以看到，对于FF2来说，想要采到正确的A值，那么组合逻辑延时需要满足
+$ t_{delay-comb} &gt; t_{hold} + t_{skew}$.</li>
 </ul>
-<p><img src="/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E5%9B%9B%EF%BC%89/3201119-20230801171420555-989107851.png"></p>
+<p><img src="3201119-20230801171420555-989107851.png" /></p>
 <ul>
-<li>同理，对于多周期的保持时间分析，时序图如下，需要保证加法器的延迟至少要 $ 50+t_{hold}+t_{uncertainty}$.</li>
+<li>同理，对于多周期的保持时间分析，时序图如下，需要保证加法器的延迟至少要
+$ 50+t_{hold}+t_{uncertainty}$.</li>
 </ul>
-<img src="3201119-20230801163759883-324298802.png" style="zoom:50%"/>
-</li>
+<p><img src="3201119-20230801163759883-324298802.png" style="zoom:50%"/></p></li>
 <li><p>对于既要综合出一条路径延时满足建立时间60ns又要满足保持时间50ns，实际上是没有必要的，这样会增加电路的复杂度。</p>
 <ul>
-<li>在保持时间分析给出的时序图可以看到，在CLK_FF1第一个采样的上升沿就分析保持时间，限定组合逻辑延迟。因此对于多周期也是同样道理，可以在0ns时分析保持时间。约束语句如下。<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs tcl">set_multicycle_path <span class="hljs-number">5</span> -hold -to [get_pins C_reg[*]/D]<br><span class="hljs-comment"># 简化后，指令为： </span><br>set_multicycle_path <span class="hljs-number">0</span> -hold -to [get_pins C_reg[*]/D]<br></code></pre></td></tr></table></figure></li>
+<li>在保持时间分析给出的时序图可以看到，在CLK_FF1第一个采样的上升沿就分析保持时间，限定组合逻辑延迟。因此对于多周期也是同样道理，可以在0ns时分析保持时间。约束语句如下。
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs tcl">set_multicycle_path <span class="hljs-number">5</span> -hold -to [get_pins C_reg[*]/D]<br><span class="hljs-comment"># 简化后，指令为： </span><br>set_multicycle_path <span class="hljs-number">0</span> -hold -to [get_pins C_reg[*]/D]<br></code></pre></td></tr></table></figure></li>
+</ul></li>
+<li><p>根据前面的介绍和计算，我们可以设计相应的时钟使能电路，使得最后一级寄存器可以在期望的时钟进行采样接收正确的数据。</p></li>
 </ul>
-</li>
-<li><p>根据前面的介绍和计算，我们可以设计相应的时钟使能电路，使得最后一级寄存器可以在期望的时钟进行采样接收正确的数据。</p>
-</li>
+<p><img src="3201119-20230801173205351-520598643.png" style="zoom:50%"/></p></li>
 </ul>
-<img src="3201119-20230801173205351-520598643.png" style="zoom:50%"/></li>
-</ul>
-<h2 id="4-门控时钟的约束"><a href="#4-门控时钟的约束" class="headerlink" title="4. 门控时钟的约束"></a>4. 门控时钟的约束</h2><ul>
-<li>关于门控时钟相关内容可以看<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17579897.html">这篇博客</a>。</li>
+<h2 id="门控时钟的约束">4. 门控时钟的约束</h2>
+<ul>
+<li>关于门控时钟相关内容可以看<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17579897.html">这篇博客</a>。</li>
 <li>考虑到不带锁存器的门控时钟可能会出现毛刺的情况，所以下面的分析都是基于带锁存器的。</li>
 <li>带锁存器的门控时钟的时序约束如下所示。需要A信号在时钟上升和下降沿分别满足setup和hold的时间约束。</li>
 </ul>
-<img src="3201119-20230801173859430-1378957056.png" style="zoom:50%"/>
-
-<h2 id="5-分频电路和多路传输电路的时钟约束"><a href="#5-分频电路和多路传输电路的时钟约束" class="headerlink" title="5. 分频电路和多路传输电路的时钟约束"></a>5. 分频电路和多路传输电路的时钟约束</h2><ul>
-<li>注意，在模块划分时，需要注意将时钟电路和核心功能电路划分成不同模块。<ul>
-<li>不仅可以对时钟逻辑更好的控制和分析，而且简化了其他模块的输入时钟约束。</li>
-</ul>
-</li>
-</ul>
-<img src="3201119-20230801191058941-1199247852.png" style="zoom:50%"/>
-
+<p><img src="3201119-20230801173859430-1378957056.png" style="zoom:50%"/></p>
+<h2 id="分频电路和多路传输电路的时钟约束">5.
+分频电路和多路传输电路的时钟约束</h2>
 <ul>
-<li>多路传输<ul>
+<li>注意，在模块划分时，需要注意将时钟电路和核心功能电路划分成不同模块。
+<ul>
+<li>不仅可以对时钟逻辑更好的控制和分析，而且简化了其他模块的输入时钟约束。</li>
+</ul></li>
+</ul>
+<p><img src="3201119-20230801191058941-1199247852.png" style="zoom:50%"/></p>
+<ul>
+<li>多路传输
+<ul>
 <li>上图中，CLOCK_GEN是通过多路时钟MUX选出的，如果我们不加约束去指定，那么DC会自己选择一个。</li>
-<li>我们可以加约束如下，去掉引脚a到引脚y的时间弧，此时DC认为选择了Ext_Clk.<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">set_disable_timing CLOCK_GEN/U1 -<span class="hljs-selector-tag">from</span> <span class="hljs-selector-tag">a</span> -<span class="hljs-selector-tag">to</span> y<br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>分频电路<ul>
+<li>我们可以加约束如下，去掉引脚a到引脚y的时间弧，此时DC认为选择了Ext_Clk.
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">set_disable_timing CLOCK_GEN/U1 -<span class="hljs-selector-tag">from</span> <span class="hljs-selector-tag">a</span> -<span class="hljs-selector-tag">to</span> y<br></code></pre></td></tr></table></figure></li>
+</ul></li>
+<li>分频电路
+<ul>
 <li><strong>DC并不能推导出分频时钟的波形，时钟信号可以通过任何的组合逻辑电路，但是终止于寄存器。</strong>因为DC并不知道寄存器的输出是时钟还是非时钟信号。</li>
-<li>建议的定义分频时钟脚本：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css">create_clock -period <span class="hljs-number">50</span> <span class="hljs-selector-attr">[get_ports Ext_Clk]</span><br>create_generated_clock -name Int_Clk \<br>  -source <span class="hljs-selector-attr">[get_pins CLOCK_GEN/U2/CP]</span> -divide_by <span class="hljs-number">2</span> \<br>  <span class="hljs-selector-attr">[get_pins CLOCK_GEN/U2/Q]</span><br>set_clock_latency -source <span class="hljs-number">1.5</span> <span class="hljs-selector-attr">[get_clocks Int_Clk]</span><br>set_clock_latency <span class="hljs-number">0.5</span> <span class="hljs-selector-attr">[get_clocks Int_Clk]</span><br></code></pre></td></tr></table></figure></li>
-<li>注意：对于CTS综合之后，我们不需要使用set_clock_latency为时钟建模，使用下面脚本。<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs inform7">set_propagated_clock <span class="hljs-comment">[list <span class="hljs-comment">[all_clocks]</span> <span class="hljs-comment">[get_generated_clock *]</span>]</span><br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
+<li>建议的定义分频时钟脚本： <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css">create_clock -period <span class="hljs-number">50</span> <span class="hljs-selector-attr">[get_ports Ext_Clk]</span><br>create_generated_clock -name Int_Clk \<br>  -source <span class="hljs-selector-attr">[get_pins CLOCK_GEN/U2/CP]</span> -divide_by <span class="hljs-number">2</span> \<br>  <span class="hljs-selector-attr">[get_pins CLOCK_GEN/U2/Q]</span><br>set_clock_latency -source <span class="hljs-number">1.5</span> <span class="hljs-selector-attr">[get_clocks Int_Clk]</span><br>set_clock_latency <span class="hljs-number">0.5</span> <span class="hljs-selector-attr">[get_clocks Int_Clk]</span><br></code></pre></td></tr></table></figure></li>
+<li>注意：对于CTS综合之后，我们不需要使用set_clock_latency为时钟建模，使用下面脚本。
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs inform7">set_propagated_clock <span class="hljs-comment">[list <span class="hljs-comment">[all_clocks]</span> <span class="hljs-comment">[get_generated_clock *]</span>]</span><br></code></pre></td></tr></table></figure></li>
+</ul></li>
 </ul>
 
                 

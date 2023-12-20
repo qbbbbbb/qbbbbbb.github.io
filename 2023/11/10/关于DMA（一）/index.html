@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhejfl&#x2F;article&#x2F;details&#x2F;82555634 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_25814297&#x2F;article&#x2F;details&#x2F;109256809     1. CPU与外设数据传送方式 主要有程序传送方式和中断传送方式。 程序传送方式 在程序控制下进行数据输入&#x2F;输出操作，分为无条件（无需考虑外设状态">
+    <meta name="description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhejfl&#x2F;article&#x2F;details&#x2F;82555634 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_25814297&#x2F;article&#x2F;details&#x2F;109256809    1. CPU与外设数据传送方式  主要有程序传送方式和中断传送方式。 程序传送方式  在程序控制下进行数据输入&#x2F;输出操作，分为无条">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于DMA（一）">
 <meta property="og:url" content="http://binbinqian.cn/2023/11/10/%E5%85%B3%E4%BA%8EDMA%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhejfl&#x2F;article&#x2F;details&#x2F;82555634 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_25814297&#x2F;article&#x2F;details&#x2F;109256809     1. CPU与外设数据传送方式 主要有程序传送方式和中断传送方式。 程序传送方式 在程序控制下进行数据输入&#x2F;输出操作，分为无条件（无需考虑外设状态">
+<meta property="og:description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhejfl&#x2F;article&#x2F;details&#x2F;82555634 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_25814297&#x2F;article&#x2F;details&#x2F;109256809    1. CPU与外设数据传送方式  主要有程序传送方式和中断传送方式。 程序传送方式  在程序控制下进行数据输入&#x2F;输出操作，分为无条">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/10/%E5%85%B3%E4%BA%8EDMA%EF%BC%88%E4%B8%80%EF%BC%89/3201119-20230619103536811-196767221.png">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/10/%E5%85%B3%E4%BA%8EDMA%EF%BC%88%E4%B8%80%EF%BC%89/3201119-20230619142642039-262400331.png">
@@ -254,7 +254,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k 字
+          1.7k 字
         
       </span>
     
@@ -635,100 +635,110 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhejfl/article/details/82555634">https://blog.csdn.net/zhejfl/article/details/82555634</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_25814297/article/details/109256809">https://blog.csdn.net/qq_25814297/article/details/109256809</a></li>
+<li>参考
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhejfl/article/details/82555634"
+class="uri">https://blog.csdn.net/zhejfl/article/details/82555634</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/qq_25814297/article/details/109256809"
+class="uri">https://blog.csdn.net/qq_25814297/article/details/109256809</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<hr>
-<h2 id="1-CPU与外设数据传送方式"><a href="#1-CPU与外设数据传送方式" class="headerlink" title="1. CPU与外设数据传送方式"></a>1. CPU与外设数据传送方式</h2><ul>
+<hr />
+<h2 id="cpu与外设数据传送方式">1. CPU与外设数据传送方式</h2>
+<ul>
 <li>主要有程序传送方式和中断传送方式。</li>
-<li>程序传送方式<ul>
-<li>在程序控制下进行数据输入&#x2F;输出操作，分为无条件（无需考虑外设状态，直接IN&#x2F;OUT指令输出）和查询（在IN&#x2F;OUT指令前，需要查询设备状态）两种。</li>
-</ul>
-</li>
-<li>中断传送方式<ul>
+<li>程序传送方式
+<ul>
+<li>在程序控制下进行数据输入/输出操作，分为无条件（无需考虑外设状态，直接IN/OUT指令输出）和查询（在IN/OUT指令前，需要查询设备状态）两种。</li>
+</ul></li>
+<li>中断传送方式
+<ul>
 <li>外设向CPU发起请求，CPU暂停正在执行的程序，去传输数据给外设，传输结束后。CPU再继续被暂停的程序。</li>
-</ul>
-</li>
-<li>程序传送方式和中断传送方式的区别<ul>
+</ul></li>
+<li>程序传送方式和中断传送方式的区别
+<ul>
 <li>前者为CPU主动发起，轮询外设，效率低。</li>
 <li>后者为外设主动发起，等待CPU处理，但是<strong>需要进行断点和现场的保护和恢复，浪费CPU时间，适合少量数据的传输。</strong></li>
-</ul>
-</li>
+</ul></li>
 <li>下图列出了CPU程序传送方式、中断传送方式以及DMA传送方式的CPU使用情况。（图源不知道是哪里，有点糊。）</li>
 </ul>
-<p><img src="/2023/11/10/%E5%85%B3%E4%BA%8EDMA%EF%BC%88%E4%B8%80%EF%BC%89/3201119-20230619103536811-196767221.png"> </p>
-<h2 id="2-DMA-批量数据传输"><a href="#2-DMA-批量数据传输" class="headerlink" title="2. DMA 批量数据传输"></a>2. DMA 批量数据传输</h2><h3 id="2-1-传输方向"><a href="#2-1-传输方向" class="headerlink" title="2.1 传输方向"></a>2.1 传输方向</h3><ul>
+<p><img src="3201119-20230619103536811-196767221.png" /></p>
+<h2 id="dma-批量数据传输">2. DMA 批量数据传输</h2>
+<h3 id="传输方向">2.1 传输方向</h3>
+<ul>
 <li>存储器到外设</li>
 </ul>
-<p><img src="/2023/11/10/%E5%85%B3%E4%BA%8EDMA%EF%BC%88%E4%B8%80%EF%BC%89/3201119-20230619142642039-262400331.png"></p>
+<p><img src="3201119-20230619142642039-262400331.png" /></p>
 <ul>
 <li>外设到存储器</li>
 </ul>
-<p><img src="/2023/11/10/%E5%85%B3%E4%BA%8EDMA%EF%BC%88%E4%B8%80%EF%BC%89/3201119-20230619142617331-2035675790.png"></p>
+<p><img src="3201119-20230619142617331-2035675790.png" /></p>
 <ul>
 <li>存储器到存储器</li>
 </ul>
-<p><img src="/2023/11/10/%E5%85%B3%E4%BA%8EDMA%EF%BC%88%E4%B8%80%EF%BC%89/3201119-20230619142711559-810710251.png"></p>
-<h3 id="2-2-传输过程"><a href="#2-2-传输过程" class="headerlink" title="2.2 传输过程"></a>2.2 传输过程</h3><ul>
-<li>（1）请求<ul>
-<li>CPU配置DMA相关寄存器：<ul>
+<p><img src="3201119-20230619142711559-810710251.png" /></p>
+<h3 id="传输过程">2.2 传输过程</h3>
+<ul>
+<li>（1）请求
+<ul>
+<li>CPU配置DMA相关寄存器：
+<ul>
 <li>控制命令寄存器，配置传输数据的发起方式、数据大小、通道。</li>
 <li>初始地址寄存器，DMAC根据该地址寄存器的值，进行寻址传输数据。</li>
-</ul>
+</ul></li>
+<li>之后向I/O接口发出操作命令；外设向DMA控制器发出请求，有单独请求信号线，而不是走AHB总线。</li>
+</ul></li>
+<li>（2）响应
+<ul>
+<li>DMA控制器对 多个DMA请求
+判断优先级以及是否屏蔽请求，之后向总线仲裁模块提出总线请求。</li>
+<li>当CPU执行完当前任务即可释放总线控制权。DMA控制器获得总线控制权后便开始传输。<br />
 </li>
-<li>之后向I&#x2F;O接口发出操作命令；外设向DMA控制器发出请求，有单独请求信号线，而不是走AHB总线。</li>
-</ul>
-</li>
-<li>（2）响应<ul>
-<li>DMA控制器对 多个DMA请求 判断优先级以及是否屏蔽请求，之后向总线仲裁模块提出总线请求。</li>
-<li>当CPU执行完当前任务即可释放总线控制权。DMA控制器获得总线控制权后便开始传输。</li>
-</ul>
-</li>
-<li>（3）传输<ul>
+</ul></li>
+<li>（3）传输
+<ul>
 <li>DMA拿到总线控制权后，CPU无法使用总线，所以它挂起或只执行内部操作；DMA控制器直接控制内部存储器与外设之间的数据交互。</li>
-</ul>
-</li>
-<li>（4）结束<ul>
+</ul></li>
+<li>（4）结束
+<ul>
 <li>完成数据传送后，DMA控制器释放总线控制权，并向外设发出结束信号，外设需要结束数据传输工作，并向CPU提出中断请求。</li>
 <li>CPU执行中断服务程序，检验DMA传输过程是否出错，以及是否要继续使用DMA传送其它数据块。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="3-DMA-CPU-内存分配"><a href="#3-DMA-CPU-内存分配" class="headerlink" title="3. DMA &amp; CPU 内存分配"></a>3. DMA &amp; CPU 内存分配</h2><ul>
-<li>DMA传输需要对内存进行操作，而CPU在DMA传输过程中仍可以继续工作，可能也会对内存进行操作，这就涉及到DMA和CPU怎么分时使用内存。通常有3种传送方式：<ul>
-<li>（1）停止CPU访问内存<ul>
+<h2 id="dma-cpu-内存分配">3. DMA &amp; CPU 内存分配</h2>
+<ul>
+<li>DMA传输需要对内存进行操作，而CPU在DMA传输过程中仍可以继续工作，可能也会对内存进行操作，这就涉及到DMA和CPU怎么分时使用内存。通常有3种传送方式：
+<ul>
+<li>（1）停止CPU访问内存
+<ul>
 <li>DMA控制器向仲裁器申请总线控制权时，CPU交出控制权，处于不工作状态或者保持状态。</li>
 <li>优点：控制简单；</li>
 <li>缺点：考虑到外设传送两个数据之间的间隔一般大于内存的存储周期，例如，外设读出两个数据之间的间隔大概32us，内存的存储周期大概为0.5us，那么内存就有31.5us（63个内存周期）的空闲。</li>
-</ul>
-</li>
-<li>（2）周期挪用（较为常用）<ul>
-<li>DMA访问内存和CPU访问内存没有冲突。<ul>
+</ul></li>
+<li>（2）周期挪用（较为常用）
+<ul>
+<li>DMA访问内存和CPU访问内存没有冲突。
+<ul>
 <li>例如，CPU正在执行乘法操作，从内存取出数据之后可能还要消耗一些周期，此时DMA挪用一两个内存周期也不会影响CPU的程序执行。</li>
-</ul>
-</li>
-<li>DMA访问内存和CPU访问内存有冲突。<ul>
-<li>需要优先DMA（I&#x2F;O）访内，因为I&#x2F;O访问内存有时间要求，这个数据必须在下一个I&#x2F;O访问请求之前存取&#x2F;读出完毕。</li>
+</ul></li>
+<li>DMA访问内存和CPU访问内存有冲突。
+<ul>
+<li>需要优先DMA（I/O）访内，因为I/O访问内存有时间要求，这个数据必须在下一个I/O访问请求之前存取/读出完毕。</li>
 <li>此时可以在CPU访问内存过程中插入DMA请求，挪用一两个CPU的内存周期，用于DMA的数据存取；延缓了CPU对内存空间的操作。</li>
 <li>但是DMA每次挪用需要有申请总线控制权、归还总线控制权的过程，所以每次读取一个字对于内存来说可能只要一个周期，但是对于DMA控制器却要2-5个内存周期。但是好在大部分的外设读写周期都要大于内存存储周期。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>（3）DMA和CPU交替访问内存<ul>
-<li>主要适用于CPU工作周期比内存存取周期长的多情况。<ul>
+</ul></li>
+</ul></li>
+<li>（3）DMA和CPU交替访问内存
+<ul>
+<li>主要适用于CPU工作周期比内存存取周期长的多情况。
+<ul>
 <li>例如CPU周期为1.2us，内存存取小于0.6us，这样就可以将一个CPU周期分为C1和C2两个周期，其中C1为DMA访问内存，C2为CPU访问内存。</li>
-</ul>
-</li>
+</ul></li>
 <li>这种方式不必像（2）中一样需要总线使用权的申请和归还过程，因为总线使用权是C1和C2分时制的。对于总线来说，输入的数据、地址、控制信号等是由C1,C2周期控制的多路选择器的输出。</li>
 <li>这种方式CPU不会停止主程序的运行，也不会进入等待状态，效率是三种方式中最高的，但是相应的硬件逻辑也更复杂。</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 </ul>
 
                 

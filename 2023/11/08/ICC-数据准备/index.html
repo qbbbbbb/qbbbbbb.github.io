@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_46752319&#x2F;article&#x2F;details&#x2F;107252336 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_38453556&#x2F;article&#x2F;details&#x2F;116528487 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;400608425     1. 需要准备好的文件 逻辑层：需要.db、.sdc、.v">
+    <meta name="description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_46752319&#x2F;article&#x2F;details&#x2F;107252336 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_38453556&#x2F;article&#x2F;details&#x2F;116528487 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;400608425    1. 需要准备好的文件  逻辑层：需">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ICC-数据准备">
 <meta property="og:url" content="http://binbinqian.cn/2023/11/08/ICC-%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_46752319&#x2F;article&#x2F;details&#x2F;107252336 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_38453556&#x2F;article&#x2F;details&#x2F;116528487 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;400608425     1. 需要准备好的文件 逻辑层：需要.db、.sdc、.v">
+<meta property="og:description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_46752319&#x2F;article&#x2F;details&#x2F;107252336 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_38453556&#x2F;article&#x2F;details&#x2F;116528487 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;400608425    1. 需要准备好的文件  逻辑层：需">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-11-08T08:44:13.000Z">
 <meta property="article:modified_time" content="2023-11-08T08:53:19.793Z">
@@ -667,93 +667,118 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46752319/article/details/107252336">https://blog.csdn.net/weixin_46752319/article/details/107252336</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38453556/article/details/116528487">https://blog.csdn.net/qq_38453556/article/details/116528487</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/400608425">https://zhuanlan.zhihu.com/p/400608425</a></li>
+<li>参考
+<ul>
+<li><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46752319/article/details/107252336"
+class="uri">https://blog.csdn.net/weixin_46752319/article/details/107252336</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38453556/article/details/116528487"
+class="uri">https://blog.csdn.net/qq_38453556/article/details/116528487</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/400608425"
+class="uri">https://zhuanlan.zhihu.com/p/400608425</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<hr>
-<h2 id="1-需要准备好的文件"><a href="#1-需要准备好的文件" class="headerlink" title="1. 需要准备好的文件"></a>1. 需要准备好的文件</h2><ul>
-<li>逻辑层：需要.db、.sdc、.v文件<ul>
-<li>.db：通常与DC使用的库是相同的，提供std_cell、IO、Macro时序、功耗和面积等信息，包含器件延迟，工艺角等信息。<ul>
+<hr />
+<h2 id="需要准备好的文件">1. 需要准备好的文件</h2>
+<ul>
+<li>逻辑层：需要.db、.sdc、.v文件
+<ul>
+<li>.db：通常与DC使用的库是相同的，提供std_cell、IO、Macro时序、功耗和面积等信息，包含器件延迟，工艺角等信息。
+<ul>
 <li>需要设置相应的库为target_library和link_library。</li>
-</ul>
-</li>
+</ul></li>
 <li>.sdc：由DC导出，可人工修改，使其满足设计要求。</li>
-<li>.v：由DC导出，门级网表文件。<ul>
-<li>除了可以读入.v文件还可以读入.ddc文件，.ddc中不仅包含了netlist、sdc，还可以包含一些物理信息：placement blockage，-spg信息等。<ul>
-<li>-spg相关信息可以看<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17639773.html">这篇博客</a>.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>物理层：需要.mw、.tf、TLU文件<ul>
-<li>Milkway：记录工艺和标准单元、macro、pad cell物理相关信息，以及这些单元在布局时需要的最小间隔和对绕线的要求等。<ul>
-<li>指定.tf文件以及mw_reference_library（包括使用的stdcell&#x2F;IP等physical library）可通过下面指令。<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">create_mw_lib</span> -tech <span class="hljs-variable">$TECH_FILE</span> -mw_reference_library <span class="hljs-variable">$MW_REFERENCE_LIB_DIRS</span><br></code></pre></td></tr></table></figure></li>
-<li>Milkway有多种view模式，可以看<a target="_blank" rel="noopener" href="https://www.shangyexinzhi.com/article/4236824.html">这篇文章</a>。比较常用的是：CEL&#x2F;FRAM，前者更为具体，而后者更抽象。<ul>
-<li><p>对于Stdcel：IP厂商一般会同时提供CEL View+FRAM View，以及GDS+LEF。</p>
-</li>
+<li>.v：由DC导出，门级网表文件。
+<ul>
+<li>除了可以读入.v文件还可以读入.ddc文件，.ddc中不仅包含了netlist、sdc，还可以包含一些物理信息：placement
+blockage，-spg信息等。
+<ul>
+<li>-spg相关信息可以看<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17639773.html">这篇博客</a>.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>物理层：需要.mw、.tf、TLU文件
+<ul>
+<li>Milkway：记录工艺和标准单元、macro、pad
+cell物理相关信息，以及这些单元在布局时需要的最小间隔和对绕线的要求等。
+<ul>
+<li>指定.tf文件以及mw_reference_library（包括使用的stdcell/IP等physical
+library）可通过下面指令。 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">create_mw_lib</span> -tech <span class="hljs-variable">$TECH_FILE</span> -mw_reference_library <span class="hljs-variable">$MW_REFERENCE_LIB_DIRS</span><br></code></pre></td></tr></table></figure></li>
+<li>Milkway有多种view模式，可以看<a
+target="_blank" rel="noopener" href="https://www.shangyexinzhi.com/article/4236824.html">这篇文章</a>。比较常用的是：CEL/FRAM，前者更为具体，而后者更抽象。
+<ul>
+<li><p>对于Stdcel：IP厂商一般会同时提供CEL View+FRAM
+View，以及GDS+LEF。</p></li>
 <li><p>Macro（包括Memory，PLL，IO等）：一般IP厂商只提供GDS+LEF，我们需要使用synopsys的Milkway工具将其转化为对应的CEL和FRAM文件，以便ICC使用。</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th></th>
 <th>细节</th>
 <th>抽象</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>Encounter</td>
 <td>GDS</td>
 <td>LEF</td>
 </tr>
-<tr>
+<tr class="even">
 <td>IC Compiler</td>
 <td>CEL View</td>
 <td>FRAM View</td>
 </tr>
-</tbody></table>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>physical library ：典型的ICC流程中，物理库的信息是被包含在Milkyway数据库中。</li>
-<li>.tf：工艺文件，提供了technology-specific信息以及tile的宽高，例如：每层金属的名称、物理和电学特性。另外，ICC要求TF必须包含<strong>Design Rules</strong>：包括width，pitch，spacing等值的定义。</li>
-<li>TLU+<ul>
-<li>RC寄生模型文件，用于计算互连线RC，有多个corner的建模。</li>
-<li>由工艺厂商提供，但如果工艺厂商仅提供了itf文件，可以通过工具StarRC使用grdgenxo将itf文件转换成tluplus文件。指令如下。<figure class="highlight bnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bnf">grdgenxo -itf2TLUPlus -i <span class="hljs-attribute">&lt;ITF FILE&gt;</span> -o <span class="hljs-attribute">&lt;TLU+ file&gt;</span><br></code></pre></td></tr></table></figure>
+</tbody>
+</table></li>
+</ul></li>
+</ul></li>
+<li>physical library
+：典型的ICC流程中，物理库的信息是被包含在Milkyway数据库中。</li>
+<li>.tf：工艺文件，提供了technology-specific信息以及tile的宽高，例如：每层金属的名称、物理和电学特性。另外，ICC要求TF必须包含<strong>Design
+Rules</strong>：包括width，pitch，spacing等值的定义。</li>
+<li>TLU+
 <ul>
-<li>在Signoff时，可以使用STARRC抽取的nxtgrd文件（该文件比tluplus有更详细的信息），导入pt中。</li>
-</ul>
+<li>RC寄生模型文件，用于计算互连线RC，有多个corner的建模。</li>
+<li>由工艺厂商提供，但如果工艺厂商仅提供了itf文件，可以通过工具StarRC使用grdgenxo将itf文件转换成tluplus文件。指令如下。
+<figure class="highlight bnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bnf">grdgenxo -itf2TLUPlus -i <span class="hljs-attribute">&lt;ITF FILE&gt;</span> -o <span class="hljs-attribute">&lt;TLU+ file&gt;</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li>在Signoff时，可以使用STARRC抽取的nxtgrd文件（该文件比tluplus有更详细的信息），导入pt中。<br />
 </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>IP库：.sldb文件<ul>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>IP库：.sldb文件
+<ul>
 <li>synthetic_library：DesignWare的可重用IP库，将运算符号转换成特定的库。</li>
+</ul></li>
 </ul>
-</li>
+<h2 id="指定库文件">2. 指定库文件</h2>
+<ul>
+<li>set
+link_library：为网表中的每个子设计在ICC内存中找到相应的设计。</li>
+<li>set target_library：与DC一致，使用link
+library进行翻译，优化后映射到目标库中。</li>
+<li>set_min_library：同时指定bestcase用作保持时间分析以及指定worstcase用作建立时间分析。（用MCMM分析更好）
+<ul>
+<li>MCMM（Multi Corner - Multi
+Mode）：让ICC吃掉所有scenario的时序约束，让软件自行评估和优化；例如一条违例的路径可能出现在不同的scenario中，有不同的时序裕量，有的-1，有的-0.2，那么ICC会在裕量最差的那个scenario中进行修复。在后面ICC
+Placement处还会详细介绍。 <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-keyword">set</span>_min_library <span class="hljs-string">&quot;./wc_ccs.db&quot;</span> -min_<span class="hljs-keyword">version</span> <span class="hljs-string">&quot;./bc_ccs.db&quot;</span><br></code></pre></td></tr></table></figure></li>
+</ul></li>
 </ul>
-<h2 id="2-指定库文件"><a href="#2-指定库文件" class="headerlink" title="2. 指定库文件"></a>2. 指定库文件</h2><ul>
-<li>set link_library：为网表中的每个子设计在ICC内存中找到相应的设计。</li>
-<li>set target_library：与DC一致，使用link library进行翻译，优化后映射到目标库中。</li>
-<li>set_min_library：同时指定bestcase用作保持时间分析以及指定worstcase用作建立时间分析。（用MCMM分析更好）<ul>
-<li>MCMM（Multi Corner - Multi Mode）：让ICC吃掉所有scenario的时序约束，让软件自行评估和优化；例如一条违例的路径可能出现在不同的scenario中，有不同的时序裕量，有的-1，有的-0.2，那么ICC会在裕量最差的那个scenario中进行修复。在后面ICC Placement处还会详细介绍。 <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-keyword">set</span>_min_library <span class="hljs-string">&quot;./wc_ccs.db&quot;</span> -min_<span class="hljs-keyword">version</span> <span class="hljs-string">&quot;./bc_ccs.db&quot;</span><br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<h2 id="3-检查物理库和逻辑库的一致性（check-library）"><a href="#3-检查物理库和逻辑库的一致性（check-library）" class="headerlink" title="3. 检查物理库和逻辑库的一致性（check_library）"></a>3. 检查物理库和逻辑库的一致性（check_library）</h2><ul>
+<h2 id="检查物理库和逻辑库的一致性check_library">3.
+检查物理库和逻辑库的一致性（check_library）</h2>
+<ul>
 <li>默认检查命令：check_library</li>
-<li>完整检查命令：set_check_library_options -all (还会检查UPF power的约束，MMMC，CCS电流源模型等)</li>
+<li>完整检查命令：set_check_library_options -all (还会检查UPF
+power的约束，MMMC，CCS电流源模型等)</li>
 </ul>
-<h2 id="4-设置0互联延时"><a href="#4-设置0互联延时" class="headerlink" title="4. 设置0互联延时"></a>4. 设置0互联延时</h2><ul>
-<li>首先在最理想的情况下看是否存在setup的违规，如果违规则应返回前端修改设计。<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-keyword">set</span>_zero_interconnect_delay_mode <span class="hljs-literal">true</span><br>report_timing -delay_type max<br><span class="hljs-keyword">set</span>_zero_interconnect_delay_mode <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure></li>
+<h2 id="设置0互联延时">4. 设置0互联延时</h2>
+<ul>
+<li>首先在最理想的情况下看是否存在setup的违规，如果违规则应返回前端修改设计。
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-keyword">set</span>_zero_interconnect_delay_mode <span class="hljs-literal">true</span><br>report_timing -delay_type max<br><span class="hljs-keyword">set</span>_zero_interconnect_delay_mode <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure></li>
 </ul>
 
                 
