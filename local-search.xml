@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>命名-未命名语句块</title>
+    <link href="/2024/01/06/%E5%91%BD%E5%90%8D&amp;%E6%9C%AA%E5%91%BD%E5%90%8D%E8%AF%AD%E5%8F%A5%E5%9D%97/"/>
+    <url>/2024/01/06/%E5%91%BD%E5%90%8D&amp;%E6%9C%AA%E5%91%BD%E5%90%8D%E8%AF%AD%E5%8F%A5%E5%9D%97/</url>
+    
+    <content type="html"><![CDATA[<h2 id="命名块中的局部变量">1. 命名块中的局部变量</h2><ul><li><p>Verilog 允许在命名的 <code>begin...end</code> 或<code>fork...join</code> 块中声明局部变量。</p><ul><li><p>该局部变量一般可用作循环控制。</p></li><li><p>该局部变量即使和模块级声明的变量同名，但是互不影响，举例如下。</p><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">module</span> chip(<span class="hljs-keyword">input</span> clk);<br>    <span class="hljs-keyword">integer</span> i;<span class="hljs-comment">//模块级声明</span><br>    <span class="hljs-keyword">always</span> @(<span class="hljs-keyword">posedge</span> clk) <br>    <span class="hljs-keyword">begin</span>: loop<span class="hljs-comment">//命名块</span><br>        <span class="hljs-keyword">integer</span> i;<span class="hljs-comment">//局部变量</span><br>        <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;=<span class="hljs-number">127</span>;i=i+<span class="hljs-number">1</span>) <span class="hljs-keyword">begin</span><br>           ... <br>        <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure></li></ul></li><li><p>在命名块中声明的局部变量可以使用层次路径引用出来，用在测试/验证程序中。</p><ul><li><p>举例如下</p><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-built_in">$display</span>(<span class="hljs-string">&quot;chip.i=%0d&quot;</span>,chip<span class="hljs-variable">.i</span>);<br><span class="hljs-built_in">$display</span>(<span class="hljs-string">&quot;chip.loop.i=%0d&quot;</span>,chip<span class="hljs-variable">.loop</span><span class="hljs-variable">.i</span>);<br></code></pre></td></tr></table></figure></li></ul></li></ul><h2 id="未命名块中的局部变量">2. 未命名块中的局部变量</h2><ul><li><p>System Verilog 扩展了Verilog，允许在未命名块中声明变量，举例如下。</p><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">module</span> chip(<span class="hljs-keyword">input</span> clk);<br>    <span class="hljs-keyword">integer</span> i;<span class="hljs-comment">//模块级声明</span><br>    <span class="hljs-keyword">always</span> @(<span class="hljs-keyword">posedge</span> clk) <br>    <span class="hljs-keyword">begin</span>     <span class="hljs-comment">//未命名块</span><br>        <span class="hljs-keyword">integer</span> i;<span class="hljs-comment">//局部变量</span><br>        <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;=<span class="hljs-number">127</span>;i=i+<span class="hljs-number">1</span>) <span class="hljs-keyword">begin</span><br>           ... <br>        <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure></li><li><p>由于块没有名字，不能被层次化引用。</p></li><li><p>但在未命名块中声明局部变量，可以保护局部变量不被外部引用。</p></li><li><p>Verilog 中不允许在未命名块中声明局部变量，如下图。</p><ul><li>但是对于UDP，允许未命名域声明变量。</li></ul><p><img src="image-20240106113937416.png" alt="image-20240106113937416" style="zoom:67%;" /></p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>System Verilog</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>param-相关用法</title>
     <link href="/2024/01/05/param-%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/"/>
     <url>/2024/01/05/param-%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/</url>
@@ -525,7 +544,7 @@
   
   
   <entry>
-    <title>DC &amp; DCT &amp; DCG</title>
+    <title>DC - DCT - DCG</title>
     <link href="/2023/11/02/DC%20&amp;%20DCT%20&amp;%20DCG/"/>
     <url>/2023/11/02/DC%20&amp;%20DCT%20&amp;%20DCG/</url>
     
@@ -714,7 +733,7 @@
   
   
   <entry>
-    <title>栈 &amp; 堆</title>
+    <title>栈 - 堆</title>
     <link href="/2023/11/01/%E6%A0%88%20&amp;%20%E5%A0%86/"/>
     <url>/2023/11/01/%E6%A0%88%20&amp;%20%E5%A0%86/</url>
     
@@ -939,7 +958,7 @@
   
   
   <entry>
-    <title>FIR &amp; IIR 滤波器</title>
+    <title>FIR - IIR 滤波器</title>
     <link href="/2023/10/28/FIR%20&amp;%20IIR%20%E6%BB%A4%E6%B3%A2%E5%99%A8/"/>
     <url>/2023/10/28/FIR%20&amp;%20IIR%20%E6%BB%A4%E6%B3%A2%E5%99%A8/</url>
     
