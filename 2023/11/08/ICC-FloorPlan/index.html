@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考  https:&#x2F;&#x2F;www.cnblogs.com&#x2F;duxinshupd&#x2F;p&#x2F;15925167.html https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_34110120&#x2F;article&#x2F;details&#x2F;83007656     在Floorplan之前，需要首先阅读一下IP和Stdcel的文档，观察是否有特别的要求，因为Floorplan的很多工作是跟stdcel和ma">
+    <meta name="description" content="参考 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;duxinshupd&#x2F;p&#x2F;15925167.html https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_34110120&#x2F;article&#x2F;details&#x2F;83007656      在Floorplan之前，需要首先阅读一下IP和Stdcel的文档，观察是否有特别的要求，因为Floorplan的很多工作是跟stdcel和macro的设计风格有">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ICC-FloorPlan">
 <meta property="og:url" content="http://binbinqian.cn/2023/11/08/ICC-FloorPlan/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考  https:&#x2F;&#x2F;www.cnblogs.com&#x2F;duxinshupd&#x2F;p&#x2F;15925167.html https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_34110120&#x2F;article&#x2F;details&#x2F;83007656     在Floorplan之前，需要首先阅读一下IP和Stdcel的文档，观察是否有特别的要求，因为Floorplan的很多工作是跟stdcel和ma">
+<meta property="og:description" content="参考 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;duxinshupd&#x2F;p&#x2F;15925167.html https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_34110120&#x2F;article&#x2F;details&#x2F;83007656      在Floorplan之前，需要首先阅读一下IP和Stdcel的文档，观察是否有特别的要求，因为Floorplan的很多工作是跟stdcel和macro的设计风格有">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/08/ICC-FloorPlan/3201119-20230818170236147-393202007.png">
 <meta property="article:published_time" content="2023-11-08T08:44:48.000Z">
@@ -262,7 +262,7 @@
         
         
         
-          20 分钟
+          21 分钟
         
       </span>
     
@@ -669,130 +669,124 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/duxinshupd/p/15925167.html"
-class="uri">https://www.cnblogs.com/duxinshupd/p/15925167.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34110120/article/details/83007656"
-class="uri">https://blog.csdn.net/qq_34110120/article/details/83007656</a></li>
-</ul></li>
+<li>参考<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/duxinshupd/p/15925167.html">https://www.cnblogs.com/duxinshupd/p/15925167.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34110120/article/details/83007656">https://blog.csdn.net/qq_34110120/article/details/83007656</a></li>
 </ul>
-<hr />
+</li>
+</ul>
+<hr>
 <ul>
 <li>在Floorplan之前，需要首先阅读一下IP和Stdcel的文档，观察是否有特别的要求，因为Floorplan的很多工作是跟stdcel和macro的设计风格有关，跟tf也有关。</li>
 </ul>
-<h2 id="实现流程">1. 实现流程</h2>
-<ul>
+<h2 id="1-实现流程"><a href="#1-实现流程" class="headerlink" title="1. 实现流程"></a>1. 实现流程</h2><ul>
 <li><p>（1）定义大小和形状</p>
 <ul>
-<li>可以在手册中查找create_floorplan指令的相关选项配置。
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-function"><span class="hljs-title">create_floorplan</span></span> -left_io2core <span class="hljs-number">10.</span>..<br></code></pre></td></tr></table></figure></li>
-</ul></li>
+<li>可以在手册中查找create_floorplan指令的相关选项配置。<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-function"><span class="hljs-title">create_floorplan</span></span> -left_io2core <span class="hljs-number">10.</span>..<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
 <li><p>（2）Macro Cell 摆放</p>
 <ul>
-<li>注意事项
-<ul>
-<li>macro的摆放需要考虑timing、congestion以及IR Drop。</li>
+<li>注意事项 <ul>
+<li>macro的摆放需要考虑timing、congestion以及IR Drop。 </li>
 <li>注意signal pin的方向，以及PG pin的分布。</li>
 <li>注意Macro之间的连接关系，Hierarchy分析以及DataFlow分析。</li>
 <li>Macro的堆叠需要考虑congestion、timing、si的影响。</li>
 <li>留一些空间给decap插入，用于减小Dynamic IR-Drop。</li>
 <li>也要留一些空间处理走线较长的信号线，留有空间，可以插入buffer。</li>
-</ul></li>
-<li>对于一些大型的设计，可以使用指令首先让工具摆放，作为一个初始参考。指令如下，可以选择多个选项。
-<ul>
-<li>其中 -no_hierarchy_gravity 为指定不按照module的hierarchy分块。
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-function"><span class="hljs-title">create_fp_placement</span></span> -timing_driven -congestion_driven...<br></code></pre></td></tr></table></figure></li>
-</ul></li>
+</ul>
+</li>
+<li>对于一些大型的设计，可以使用指令首先让工具摆放，作为一个初始参考。指令如下，可以选择多个选项。<ul>
+<li>其中 -no_hierarchy_gravity 为指定不按照module的hierarchy分块。 <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-function"><span class="hljs-title">create_fp_placement</span></span> -timing_driven -congestion_driven...<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
 <li>一般都是手动摆放macro，摆放好了之后可以导出脚本，方便下一次直接使用。</li>
 <li>摆放完之后要固定住，防止后面操作更改。</li>
-</ul></li>
-<li><p>（3）Ports/Terminals的摆放</p>
+</ul>
+</li>
+<li><p>（3）Ports&#x2F;Terminals的摆放</p>
 <ul>
 <li>port是逻辑存在的端口，而terminal是port的物理层实现。</li>
 </ul>
-<p><img src="3201119-20230818170236147-393202007.png" width = 50%/></p>
+<img src="3201119-20230818170236147-393202007.png" width = 50%/>
+
 <ul>
 <li>注意port的金属层选择，不同金属层有不同的方向，选择合适的金属层让port接口“顺着放”。</li>
-<li>也可以使用脚本让工具自动摆放，人为可以添加约束。 <figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">place_fp_pins -block_level<br></code></pre></td></tr></table></figure></li>
-</ul></li>
-<li><p>（4）EndCap Cell(Boundary Cell)</p>
-<ul>
-<li>放在Row的边界，主要为了满足DRC，保护处于边界位置的stdcell；以及match
-stdcell environment。<br />
+<li>也可以使用脚本让工具自动摆放，人为可以添加约束。<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">place_fp_pins -block_level<br></code></pre></td></tr></table></figure></li>
+</ul>
 </li>
-</ul></li>
+<li><p>（4）EndCap Cell(Boundary Cell) </p>
+<ul>
+<li>放在Row的边界，主要为了满足DRC，保护处于边界位置的stdcell；以及match stdcell environment。</li>
+</ul>
+</li>
 <li><p>（5）Tap Cell</p>
 <ul>
-<li>N 阱和P 衬底形成了一个PN结，为了避免这个PN结被正向偏置(Forwad
-Bias)，形成Latch-Up效应，从而损坏整个芯片。最容易的办法是把N-Well连接到最高电压上，同时把P-Substrate连接到最低电压上。</li>
-<li>而tap cell的目的就是这个，但是tap
-cell的作用范围有限，所以需要间隔一定距离就放置一个，具体的数据可以看Foundry给的文档。</li>
-<li>也可以在标准单元设计时，集成well tie，这种情况就不需要单独的tap
-cell了。</li>
-<li>可以使用下面语句添加tap cell。 <figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">add_tap_cell_array<br></code></pre></td></tr></table></figure></li>
-</ul></li>
+<li>N 阱和P 衬底形成了一个PN结，为了避免这个PN结被正向偏置(Forwad Bias)，形成Latch-Up效应，从而损坏整个芯片。最容易的办法是把N-Well连接到最高电压上，同时把P-Substrate连接到最低电压上。 </li>
+<li>而tap cell的目的就是这个，但是tap cell的作用范围有限，所以需要间隔一定距离就放置一个，具体的数据可以看Foundry给的文档。</li>
+<li>也可以在标准单元设计时，集成well tie，这种情况就不需要单独的tap cell了。</li>
+<li>可以使用下面语句添加tap cell。<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">add_tap_cell_array<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
 <li><p>（6）PG Network</p>
 <ul>
 <li>目的：给所有的Macro和StdCell供上电。</li>
 <li>评估标准：IR Drop。</li>
-<li>摆放注意点
-<ul>
+<li>摆放注意点<ul>
 <li>查看stdcell的metal layer及其方向。</li>
 <li>查看macro的PG Pin的使用和方向。</li>
-<li>注意Top给整个block的供电方案，连接关系（Via）。
-<ul>
+<li>注意Top给整个block的供电方案，连接关系（Via）。<ul>
 <li>从Top给底层金属供电，通过一层一层的Via孔打下去，这个从Top到底层金属的过程也有电压降的问题，但是如果Via孔打的多，电阻变小（具体公式可上网查），电压降就会减小。</li>
-</ul></li>
+</ul>
+</li>
 <li>注意Macro之间的channel的供电方案。</li>
-</ul></li>
-<li>实现流程
-<ul>
+</ul>
+</li>
+<li>实现流程<ul>
 <li>（a）Logically Connect PG Pins with PG Nets</li>
 <li>（b）设置Macro Rings</li>
-<li>（c）设置PG Strap
-<ul>
-<li>pitch within
-group：一组VDD和VSS之间的间距，建议两者不要间隔太近，因为两者都要向下打Via，可能会导致Route阻塞。</li>
+<li>（c）设置PG Strap<ul>
+<li>pitch within group：一组VDD和VSS之间的间距，建议两者不要间隔太近，因为两者都要向下打Via，可能会导致Route阻塞。</li>
 <li>建议strap细但密，还是考虑到strap太宽，打多个via，导致走线不好走。</li>
-</ul></li>
-<li>（d）Preroute Macros
-<ul>
+</ul>
+</li>
+<li>（d）Preroute Macros<ul>
 <li>对于Macro的pins需要preroute instances连接到电源网络上。</li>
-</ul></li>
-<li>（e）Preroute Rail
-<ul>
-<li>使用指令preroute_standard_cells布置Rail
-供电网络给Stdcell的供电。</li>
-<li>在Floorplan阶段可以使用下面指令快速将stdcell摆进去，然后检查供电网络是否布置出错或遗漏。
-<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">create fp placement -effort low<br></code></pre></td></tr></table></figure></li>
-<li>在Placement阶段可以使用下面指令将Floorplan阶段placement的StdCell
-remove掉；重新布置。 <figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">remove_placement<br></code></pre></td></tr></table></figure></li>
-</ul></li>
-<li>（f）Verify PG Connection
-<ul>
-<li>使用下面指令检查是否存在未供上电的cell/区域。 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">verify_pg_nets</span><br></code></pre></td></tr></table></figure></li>
-</ul></li>
-<li>注意：可以通过下面指令指定选择layer范围(M4到M1之间的金属层)进行Via连接。上面介绍的多个步骤中可能会使用到。
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-keyword">set</span>_preroute_drc_strategy -max_layer M4 -min_layer M1<br></code></pre></td></tr></table></figure></li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+<li>（e）Preroute Rail<ul>
+<li>使用指令preroute_standard_cells布置Rail 供电网络给Stdcell的供电。</li>
+<li>在Floorplan阶段可以使用下面指令快速将stdcell摆进去，然后检查供电网络是否布置出错或遗漏。<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">create fp placement -effort low<br></code></pre></td></tr></table></figure></li>
+<li>在Placement阶段可以使用下面指令将Floorplan阶段placement的StdCell remove掉；重新布置。<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">remove_placement<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>（f）Verify PG Connection<ul>
+<li>使用下面指令检查是否存在未供上电的cell&#x2F;区域。<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">verify_pg_nets</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>注意：可以通过下面指令指定选择layer范围(M4到M1之间的金属层)进行Via连接。上面介绍的多个步骤中可能会使用到。<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-keyword">set</span>_preroute_drc_strategy -max_layer M4 -min_layer M1<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><p>（7）额外的物理约束</p>
 <ul>
-<li>stdcell的摆放区域设定：例如靠近Core的边缘没必要摆放（硬性要求），部分区域指定部分stdcell可以摆（软性，自己定义的要求）。
-<ul>
-<li>create_placement_blockage：不允许在指定区域摆放指定cell。</li>
+<li>stdcell的摆放区域设定：例如靠近Core的边缘没必要摆放（硬性要求），部分区域指定部分stdcell可以摆（软性，自己定义的要求）。 <ul>
+<li>create_placement_blockage：不允许在指定区域摆放指定cell。 </li>
 <li>create_bounds：在指定区域摆放指定cell。</li>
-<li>create_route_guide / create_routing_blockage
-<ul>
+<li>create_route_guide &#x2F; create_routing_blockage<ul>
 <li>在Floorplan就指定Route相关设置的原因是，可能会虚拟走线计算时序等信息，所以需要提前把Route相关设置好。</li>
-</ul></li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><p>（8）Write Floorplan</p>
 <ul>
 <li>目的是将Floorplan信息指定部分写出DEF等文件，可以给DCT使用，做连线延时估计。</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
                 

@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhangningning1996&#x2F;article&#x2F;details&#x2F;107444387 https:&#x2F;&#x2F;blog.csdn.net&#x2F;pc153262603&#x2F;article&#x2F;details&#x2F;106385483 https:&#x2F;&#x2F;www.xilinx.com&#x2F;htmldocs&#x2F;xilinx2017_4&#x2F;sdaccel_doc&#x2F;eil1504">
+    <meta name="description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhangningning1996&#x2F;article&#x2F;details&#x2F;107444387 https:&#x2F;&#x2F;blog.csdn.net&#x2F;pc153262603&#x2F;article&#x2F;details&#x2F;106385483 https:&#x2F;&#x2F;www.xilinx.com&#x2F;htmldocs&#x2F;xilinx2017_4&#x2F;sdaccel_doc&#x2F;eil1504034361">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HLS-数组优化">
 <meta property="og:url" content="http://binbinqian.cn/2023/11/13/HLS-%E6%95%B0%E7%BB%84%E4%BC%98%E5%8C%96/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhangningning1996&#x2F;article&#x2F;details&#x2F;107444387 https:&#x2F;&#x2F;blog.csdn.net&#x2F;pc153262603&#x2F;article&#x2F;details&#x2F;106385483 https:&#x2F;&#x2F;www.xilinx.com&#x2F;htmldocs&#x2F;xilinx2017_4&#x2F;sdaccel_doc&#x2F;eil1504">
+<meta property="og:description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhangningning1996&#x2F;article&#x2F;details&#x2F;107444387 https:&#x2F;&#x2F;blog.csdn.net&#x2F;pc153262603&#x2F;article&#x2F;details&#x2F;106385483 https:&#x2F;&#x2F;www.xilinx.com&#x2F;htmldocs&#x2F;xilinx2017_4&#x2F;sdaccel_doc&#x2F;eil1504034361">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/13/HLS-%E6%95%B0%E7%BB%84%E4%BC%98%E5%8C%96/3201119-20230614163220222-364963959.png">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/13/HLS-%E6%95%B0%E7%BB%84%E4%BC%98%E5%8C%96/3201119-20230614163729467-1143607101.png">
@@ -264,7 +264,7 @@
         
         
         
-          20 分钟
+          21 分钟
         
       </span>
     
@@ -424,102 +424,92 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考
-<ul>
-<li><a
-target="_blank" rel="noopener" href="https://blog.csdn.net/zhangningning1996/article/details/107444387"
-class="uri">https://blog.csdn.net/zhangningning1996/article/details/107444387</a></li>
-<li><a
-target="_blank" rel="noopener" href="https://blog.csdn.net/pc153262603/article/details/106385483"
-class="uri">https://blog.csdn.net/pc153262603/article/details/106385483</a></li>
-<li><a
-target="_blank" rel="noopener" href="https://www.xilinx.com/htmldocs/xilinx2017_4/sdaccel_doc/eil1504034361560.html"
-class="uri">https://www.xilinx.com/htmldocs/xilinx2017_4/sdaccel_doc/eil1504034361560.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/50479555"
-class="uri">https://zhuanlan.zhihu.com/p/50479555</a></li>
-</ul></li>
+<li>参考<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangningning1996/article/details/107444387">https://blog.csdn.net/zhangningning1996/article/details/107444387</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/pc153262603/article/details/106385483">https://blog.csdn.net/pc153262603/article/details/106385483</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.xilinx.com/htmldocs/xilinx2017_4/sdaccel_doc/eil1504034361560.html">https://www.xilinx.com/htmldocs/xilinx2017_4/sdaccel_doc/eil1504034361560.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/50479555">https://zhuanlan.zhihu.com/p/50479555</a></li>
 </ul>
-<hr />
-<h2 id="复杂度">1. 复杂度</h2>
-<ul>
-<li>程序的两个衡量指标：时间复杂度和空间复杂度。
-<ul>
-<li>衡量一个算法的时间复杂度和空间复杂度可以使用大O标识法。<br />
 </li>
-<li>时间复杂度
-<ul>
+</ul>
+<hr>
+<h2 id="1-复杂度"><a href="#1-复杂度" class="headerlink" title="1. 复杂度"></a>1. 复杂度</h2><ul>
+<li>程序的两个衡量指标：时间复杂度和空间复杂度。<ul>
+<li>衡量一个算法的时间复杂度和空间复杂度可以使用大O标识法。  </li>
+<li>时间复杂度<ul>
 <li>对于没有循环等复杂结构，时间复杂度为O(1)；</li>
-<li>主要计算何时才可以跳出循环，所以循环结构越复杂的，时间复杂度越大。<br />
+<li>主要计算何时才可以跳出循环，所以循环结构越复杂的，时间复杂度越大。</li>
+</ul>
 </li>
-</ul></li>
-<li>空间复杂度
-<ul>
+<li>空间复杂度<ul>
 <li>是对一个算法在运行过程中临时占用存储空间大小的一个量度。</li>
 <li>对于所需要的临时空间都不随算法处理数据量变化，空间复杂度为1.</li>
 <li>观察算法在运行过程中是否申请了新的空间，空间的大小为空间复杂度，很多情况下与数组的大小相关。</li>
-</ul></li>
-<li>时间和空间复杂度是相互影响的，想要较好的时间复杂度，可能会牺牲空间复杂度，反之一样。</li>
-</ul></li>
 </ul>
-<h2 id="partition展开操作">2. Partition展开操作</h2>
-<ul>
+</li>
+<li>时间和空间复杂度是相互影响的，想要较好的时间复杂度，可能会牺牲空间复杂度，反之一样。</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-Partition展开操作"><a href="#2-Partition展开操作" class="headerlink" title="2. Partition展开操作"></a>2. Partition展开操作</h2><ul>
 <li><p>为什么Partition可以提升性能</p>
 <ul>
-<li>HLS将数组映射到Memory中。如果数组是作为顶层函数的形参，那么就会被综合成memory的接口；如果数组在设计内部，会根据数组大小及优化方式被综合成移位寄存器（大小&lt;1024）/BRAM,LUTRAM,UltraRAM（大小&gt;1024）。</li>
-<li>存在的问题
-<ul>
-<li>当数组作为存储器来实现时，存储器端口的数量会限制对数据的访问，可能导致流水线失败。</li>
-<li>假设一数组用单端口RAM实现，功能：扫描数组，依次访问连续三个地址的数据求和；此时每个周期只能进行一次读/写，无法实现流水线。
+<li>HLS将数组映射到Memory中。如果数组是作为顶层函数的形参，那么就会被综合成memory的接口；如果数组在设计内部，会根据数组大小及优化方式被综合成移位寄存器（大小&lt;1024）&#x2F;BRAM,LUTRAM,UltraRAM（大小&gt;1024）。</li>
+<li>存在的问题<ul>
+<li><p>当数组作为存储器来实现时，存储器端口的数量会限制对数据的访问，可能导致流水线失败。</p>
+</li>
+<li><p>假设一数组用单端口RAM实现，功能：扫描数组，依次访问连续三个地址的数据求和；此时每个周期只能进行一次读&#x2F;写，无法实现流水线。</p>
 <ul>
 <li>若想实现吞吐量为1，需要预读取数据，并手动对数据访问流水打拍。</li>
 </ul>
 <figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs smali"> dout_t array_mem_perform(din_t mem[N]) &#123; <br> <br> din_t tmp0, tmp1, tmp2;<br> dout_t sum=0;<br><span class="hljs-built_in"> int </span>i;<br> <br> tmp0 = mem[0];<br> tmp1 = mem[1];<br> SUM_LOOP:for (i = 2; i &lt; N; i++) &#123;<br> tmp2 = mem[i];<br> sum += tmp2 + tmp1 + tmp0;<br> tmp0 = tmp1;<br> tmp1 = tmp2;<br> &#125;<br>     <br><span class="hljs-built_in"> return </span>sum;<br>&#125;<br></code></pre></td></tr></table></figure></li>
-<li>即使使用双端口的RAM，每个时钟周期可进行两次访问，计算一个和，打一拍可以与第三次访问的值再次求和，组成一流水。（我的理解是这样，不太清楚是不是正确的。）</li>
-</ul></li>
-<li>可以不用更改设计，HLS可以使用优化指令：<strong>Array
-Partition、Array Reshape.</strong></li>
-</ul></li>
-<li><p>Array Partition</p>
-<ul>
-<li>将原先一个大的memory拆分成多个小的memory/registers，增加了存储器的读写端口。提高了设计的吞吐量，但是需要更多的内存/寄存器资源。</li>
-<li>有3个type可选：block、cyclic和complete
-<ul>
-<li>factor为n，将原数组等分成n个小的数组，每个数组的长度 =
-原长度/n。</li>
-<li>以一维数组为例，如下图 <figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs lasso">#param HLS ARRAY_PARTITION <span class="hljs-built_in">variable</span>=weight_group block factor = <span class="hljs-number">4</span> dim = <span class="hljs-number">1</span><br>#param HLS ARRAY_PARTITION <span class="hljs-built_in">variable</span>=weight_group cyclic factor = <span class="hljs-number">4</span> dim = <span class="hljs-number">1</span><br>#param HLS ARRAY_PARTITION <span class="hljs-built_in">variable</span>=weight_group complete dim = <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure></li>
-</ul></li>
+<li><p>即使使用双端口的RAM，每个时钟周期可进行两次访问，计算一个和，打一拍可以与第三次访问的值再次求和，组成一流水。（我的理解是这样，不太清楚是不是正确的。）</p>
+</li>
 </ul>
-<p><img src="3201119-20230614163220222-364963959.png" width = 50%/></p>
-<ul>
-<li>对多维数组采用Partition展开。当dim=0时，数组所有维度都被拆开。</li>
-</ul></li>
+</li>
+<li>可以不用更改设计，HLS可以使用优化指令：<strong>Array Partition、Array Reshape.</strong></li>
 </ul>
-<p><img src="3201119-20230614163729467-1143607101.png" width = 50%/></p>
-<h2 id="数组的映射和重组">3. 数组的映射和重组</h2>
-<h3 id="array_map">3.1 ARRAY_MAP</h3>
+</li>
+<li><p>Array Partition </p>
 <ul>
+<li>将原先一个大的memory拆分成多个小的memory&#x2F;registers，增加了存储器的读写端口。提高了设计的吞吐量，但是需要更多的内存&#x2F;寄存器资源。</li>
+<li>有3个type可选：block、cyclic和complete<ul>
+<li>factor为n，将原数组等分成n个小的数组，每个数组的长度 &#x3D; 原长度&#x2F;n。</li>
+<li>以一维数组为例，如下图<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs lasso">#param HLS ARRAY_PARTITION <span class="hljs-built_in">variable</span>=weight_group block factor = <span class="hljs-number">4</span> dim = <span class="hljs-number">1</span><br>#param HLS ARRAY_PARTITION <span class="hljs-built_in">variable</span>=weight_group cyclic factor = <span class="hljs-number">4</span> dim = <span class="hljs-number">1</span><br>#param HLS ARRAY_PARTITION <span class="hljs-built_in">variable</span>=weight_group complete dim = <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<img src="3201119-20230614163220222-364963959.png" width = 50%/>
+
+<ul>
+<li>对多维数组采用Partition展开。当dim&#x3D;0时，数组所有维度都被拆开。</li>
+</ul>
+</li>
+</ul>
+<img src="3201119-20230614163729467-1143607101.png" width = 50%/>
+
+<h2 id="3-数组的映射和重组"><a href="#3-数组的映射和重组" class="headerlink" title="3. 数组的映射和重组"></a>3. 数组的映射和重组</h2><h3 id="3-1-ARRAY-MAP"><a href="#3-1-ARRAY-MAP" class="headerlink" title="3.1 ARRAY_MAP"></a>3.1 ARRAY_MAP</h3><ul>
 <li>将多个较小的数组映射成一个数组，以减少RAM资源。FPGA中提供的最小RAM单元大小为18KB，如果很多小数组没有很好的使用完整的18K，可以使用MAP指令，将许多小数组映射到一个更大的数组中。</li>
 <li>Horizontal：直接将多个数组拼接在一起，数组的长度等于N+M，数组的宽度为N和M的最大数组宽度。</li>
 </ul>
-<p><img src= "3201119-20230614164743438-1243927523.png" width = 50%/></p>
+<img src= "3201119-20230614164743438-1243927523.png" width = 50%/>
+  
 <ul>
-<li>Vertical：对于数组的每一个元素进行拼接，数组的长度等于N/M中最大的长度。</li>
+<li>Vertical：对于数组的每一个元素进行拼接，数组的长度等于N&#x2F;M中最大的长度。</li>
 </ul>
-<p><img src= "3201119-20230614165614445-1380595643.png" width = 40%/></p>
+<img src= "3201119-20230614165614445-1380595643.png" width = 40%/>
+  
 <ul>
-<li>命令介绍：其中variable是被map的数组；instance是map后的数组；mode可选horizontal/vertical；offset仅horizontal可选，int为合并的数组相较于0的偏移量。
-<ul>
-<li>注：命令相关例子和用法可以查看<a
-target="_blank" rel="noopener" href="https://www.xilinx.com/htmldocs/xilinx2017_4/sdaccel_doc/eil1504034361560.html">Xilinx官网</a>，有较为全面的解释。
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> HLS array_map variable=<span class="hljs-string">&lt;name&gt;</span> instance=<span class="hljs-string">&lt;instance&gt;</span> <span class="hljs-string">&lt;mode&gt;</span> offset=<span class="hljs-string">&lt;int&gt;</span></span><br><span class="hljs-comment">//example 将C和D合并成CD</span><br><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> HLS array_map variable=C instance=CD vertical</span><br><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> HLS array_map variable=D instance=CD vertical</span><br></code></pre></td></tr></table></figure></li>
-</ul></li>
+<li>命令介绍：其中variable是被map的数组；instance是map后的数组；mode可选horizontal&#x2F;vertical；offset仅horizontal可选，int为合并的数组相较于0的偏移量。<ul>
+<li>注：命令相关例子和用法可以查看<a target="_blank" rel="noopener" href="https://www.xilinx.com/htmldocs/xilinx2017_4/sdaccel_doc/eil1504034361560.html">Xilinx官网</a>，有较为全面的解释。  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> HLS array_map variable=<span class="hljs-string">&lt;name&gt;</span> instance=<span class="hljs-string">&lt;instance&gt;</span> <span class="hljs-string">&lt;mode&gt;</span> offset=<span class="hljs-string">&lt;int&gt;</span></span><br><span class="hljs-comment">//example 将C和D合并成CD</span><br><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> HLS array_map variable=C instance=CD vertical</span><br><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> HLS array_map variable=D instance=CD vertical</span><br></code></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="array_reshape">3.2 ARRAY_RESHAPE</h3>
-<ul>
-<li><p>两步：将数组进行Partition + vertical MAP。</p></li>
-<li><p>减少了RAM的数量，组成新的数组，元素更少，但位宽更大，允许在单个时钟周期内访问更多的数据。
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> HLS ARRAY_RESHAPE variable=array1 block factor=2 dim=1</span><br><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> HLS ARRAY_RESHAPE variable=array2 cycle factor=2 dim=1</span><br><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> HLS ARRAY_RESHAPE variable=array3 complete dim=1</span><br></code></pre></td></tr></table></figure></p>
-<p><img src="3201119-20230614215724114-908302541.png" /></p></li>
+</li>
+</ul>
+<h3 id="3-2-ARRAY-RESHAPE"><a href="#3-2-ARRAY-RESHAPE" class="headerlink" title="3.2 ARRAY_RESHAPE"></a>3.2 ARRAY_RESHAPE</h3><ul>
+<li>两步：将数组进行Partition + vertical MAP。</li>
+<li>减少了RAM的数量，组成新的数组，元素更少，但位宽更大，允许在单个时钟周期内访问更多的数据。<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> HLS ARRAY_RESHAPE variable=array1 block factor=2 dim=1</span><br><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> HLS ARRAY_RESHAPE variable=array2 cycle factor=2 dim=1</span><br><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> HLS ARRAY_RESHAPE variable=array3 complete dim=1</span><br></code></pre></td></tr></table></figure>
+
+  <img src="/2023/11/13/HLS-%E6%95%B0%E7%BB%84%E4%BC%98%E5%8C%96/3201119-20230614215724114-908302541.png"></li>
 </ul>
 
                 
