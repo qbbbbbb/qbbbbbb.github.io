@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;Rocher_22&#x2F;article&#x2F;details&#x2F;116590629     1. 串行通信 &amp; 并行通信 串行通信：利用一条传输线将数据位一位一位的传送。 并行通信：利用多条传输线将一个数据的多bit同时传送。 串行和并行哪个更快？ 在时钟频率较低时，因为并行可以同时传输多个bit，所以速率比串行要快。  时钟频率提高到一定程度时，由">
+    <meta name="description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;Rocher_22&#x2F;article&#x2F;details&#x2F;116590629    1. 串行通信 &amp; 并行通信  串行通信：利用一条传输线将数据位一位一位的传送。 并行通信：利用多条传输线将一个数据的多bit同时传送。 串行和并行哪个更快？  在时钟频率较低时，因为并行可以同时传输多个bit，所以速率比串行要快。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="串行接口通信协议-概述">
 <meta property="og:url" content="http://binbinqian.cn/2023/10/28/%E4%B8%B2%E8%A1%8C%E6%8E%A5%E5%8F%A3%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE-%E6%A6%82%E8%BF%B0/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;Rocher_22&#x2F;article&#x2F;details&#x2F;116590629     1. 串行通信 &amp; 并行通信 串行通信：利用一条传输线将数据位一位一位的传送。 并行通信：利用多条传输线将一个数据的多bit同时传送。 串行和并行哪个更快？ 在时钟频率较低时，因为并行可以同时传输多个bit，所以速率比串行要快。  时钟频率提高到一定程度时，由">
+<meta property="og:description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;Rocher_22&#x2F;article&#x2F;details&#x2F;116590629    1. 串行通信 &amp; 并行通信  串行通信：利用一条传输线将数据位一位一位的传送。 并行通信：利用多条传输线将一个数据的多bit同时传送。 串行和并行哪个更快？  在时钟频率较低时，因为并行可以同时传输多个bit，所以速率比串行要快。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-10-28T13:30:11.000Z">
 <meta property="article:modified_time" content="2023-10-28T14:45:13.214Z">
@@ -249,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          767 字
+          762 字
         
       </span>
     
@@ -398,50 +398,54 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/Rocher_22/article/details/116590629">https://blog.csdn.net/Rocher_22/article/details/116590629</a></li>
+<li>参考
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/Rocher_22/article/details/116590629"
+class="uri">https://blog.csdn.net/Rocher_22/article/details/116590629</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<hr>
-<h2 id="1-串行通信-并行通信"><a href="#1-串行通信-并行通信" class="headerlink" title="1. 串行通信 &amp; 并行通信"></a>1. 串行通信 &amp; 并行通信</h2><ul>
+<hr />
+<h2 id="串行通信-并行通信">1. 串行通信 &amp; 并行通信</h2>
+<ul>
 <li>串行通信：利用一条传输线将数据位一位一位的传送。</li>
 <li>并行通信：利用多条传输线将一个数据的多bit同时传送。</li>
-<li>串行和并行哪个更快？<ul>
-<li>在时钟频率较低时，因为并行可以同时传输多个bit，所以速率比串行要快。 </li>
+<li>串行和并行哪个更快？
+<ul>
+<li>在时钟频率较低时，因为并行可以同时传输多个bit，所以速率比串行要快。</li>
 <li>时钟频率提高到一定程度时，由于并行通信存在很多平行且紧密的导线，信号变化越来越快，导致导线之间的干扰越来越严重。</li>
 <li>串行通信导线少，且有差分信号加持，抗干扰能力更强，可以通过不断提升时钟频率来获得更高的传输速率，所以很多高速传输也使用串行通信，如USB、PCIe等。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="2-单工-半双工-全双工"><a href="#2-单工-半双工-全双工" class="headerlink" title="2. 单工 &amp; 半双工 &amp; 全双工"></a>2. 单工 &amp; 半双工 &amp; 全双工</h2><ul>
-<li>串行通信按照传输的方向分类，有以下三种：<ul>
+<h2 id="单工-半双工-全双工">2. 单工 &amp; 半双工 &amp; 全双工</h2>
+<ul>
+<li>串行通信按照传输的方向分类，有以下三种：
+<ul>
 <li>单工：数据传输只能在一个固定方向上传输，这个方向固定后就不可更改，不能实现双向通信。</li>
 <li>半双工：传输方向可以切换，但是在某个时刻，只允许数据在一个方向上传输。（如IIC通信）</li>
 <li>全双工：允许数据同时两个方向传输，可以认为发送和接收是完全独立的。（如SPI通信）</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="3-同步通信和异步通信"><a href="#3-同步通信和异步通信" class="headerlink" title="3.同步通信和异步通信"></a>3.同步通信和异步通信</h2><ul>
-<li>串行通信按照传输的方式分类，有以下两种：<ul>
-<li>同步<ul>
-<li>收发双方使用一根时钟信号，来进行双方数据同步，一般双方会规定在时钟上升&#x2F;下降沿对数据进行采样。</li>
+<h2 id="同步通信和异步通信">3.同步通信和异步通信</h2>
+<ul>
+<li>串行通信按照传输的方式分类，有以下两种：
+<ul>
+<li>同步
+<ul>
+<li>收发双方使用一根时钟信号，来进行双方数据同步，一般双方会规定在时钟上升/下降沿对数据进行采样。</li>
 <li>SPI，IIC</li>
-</ul>
-</li>
-<li>异步 <ul>
+</ul></li>
+<li>异步
+<ul>
 <li>不使用时钟信号进行数据同步，而是<strong>在数据信号中穿插一些用于同步的信号位</strong>，或者以数据帧的格式传输数据，例如规定起始位、数据位、奇偶校验位、停止位等。</li>
 <li>一些通讯还需要使用波特率衡量数据传送速率，以便更好的同步。</li>
 <li>UART，但是USART可以同步&amp;异步通信。</li>
-</ul>
-</li>
-<li>两者比较<ul>
+</ul></li>
+<li>两者比较
+<ul>
 <li>对于同步来说，传输内容大部分就是有效数据；而异步，传输内容会包含帧的各种标识符；所以同步通讯的效率更高。</li>
 <li>但是同步对发送和接收方的时钟允许误差要求较小。</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 </ul>
 
                 
@@ -536,8 +540,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/28/MIPI-CSI/" title="MIPI-CSI">
-                        <span class="hidden-mobile">MIPI-CSI</span>
+                      <a href="/2023/10/28/MIPI-CSI-1/" title="MIPI-CSI-1">
+                        <span class="hidden-mobile">MIPI-CSI-1</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

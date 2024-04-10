@@ -1,0 +1,1136 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#37625B">
+  <meta name="author" content="qianbinbin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;sinat_43629962&#x2F;article&#x2F;details&#x2F;123089993 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;599531271 https:&#x2F;&#x2F;www.mipi.org&#x2F;    1. CSI (Camera Serial Interface) Layer Definitions  观察下图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIPI-CSI-1">
+<meta property="og:url" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/index.html">
+<meta property="og:site_name" content="可达达鸭">
+<meta property="og:description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;sinat_43629962&#x2F;article&#x2F;details&#x2F;123089993 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;599531271 https:&#x2F;&#x2F;www.mipi.org&#x2F;    1. CSI (Camera Serial Interface) Layer Definitions  观察下图">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/3201119-20230903112723912-1950951905.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/3201119-20230903115043490-1797678616.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/image-20240409185751691.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/image-20240409200611831.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/image-20240409202423590.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/image-20240409202628351.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/image-20240410095031308.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/image-20240410100119216.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/image-20240410100350088.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/image-20240410103804969.png">
+<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/image-20240410103827584.png">
+<meta property="article:published_time" content="2023-10-28T13:18:32.000Z">
+<meta property="article:modified_time" content="2024-04-10T03:01:24.139Z">
+<meta property="article:author" content="qianbinbin">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/3201119-20230903112723912-1950951905.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>MIPI-CSI-1 - 可达达鸭</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"binbinqian.cn","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>可达达鸭</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="MIPI-CSI-1"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-10-28 21:18" pubdate>
+          2023年10月28日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="高速串行总线"
+        id="heading-dbf6a8f31a8fb203dd44d788771b6490" role="tab" data-toggle="collapse" href="#collapse-dbf6a8f31a8fb203dd44d788771b6490"
+        aria-expanded="true"
+      >
+        高速串行总线
+        <span class="list-group-count">(9)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-dbf6a8f31a8fb203dd44d788771b6490"
+           role="tabpanel" aria-labelledby="heading-dbf6a8f31a8fb203dd44d788771b6490">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="MIPI 接口协议"
+        id="heading-eceb049bd3a5ec8a8d005b2a6156933e" role="tab" data-toggle="collapse" href="#collapse-eceb049bd3a5ec8a8d005b2a6156933e"
+        aria-expanded="true"
+      >
+        MIPI 接口协议
+        <span class="list-group-count">(5)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-eceb049bd3a5ec8a8d005b2a6156933e"
+           role="tabpanel" aria-labelledby="heading-eceb049bd3a5ec8a8d005b2a6156933e">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2024/04/08/MIPI-CCI/" title="MIPI-CCI"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MIPI-CCI</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/10/28/MIPI-CSI-1/" title="MIPI-CSI-1"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">MIPI-CSI-1</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/10/28/MIPI-CSI-2/" title="MIPI-CSI-2"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MIPI-CSI-2</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/04/08/MIPI-DPHY/" title="MIPI-DPHY"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MIPI-DPHY</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/10/28/MIPI-%E6%A6%82%E8%BF%B0/" title="MIPI-概述"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MIPI-概述</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="SerDes"
+        id="heading-6e0aa43980b6cf7b508876bf1eedf529" role="tab" data-toggle="collapse" href="#collapse-6e0aa43980b6cf7b508876bf1eedf529"
+        aria-expanded="false"
+      >
+        SerDes
+        <span class="list-group-count">(4)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-6e0aa43980b6cf7b508876bf1eedf529"
+           role="tabpanel" aria-labelledby="heading-6e0aa43980b6cf7b508876bf1eedf529">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/12/20/SerDes_PCS/" title="SerDes_PCS"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SerDes_PCS</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/12/20/SerDes_PMA/" title="SerDes_PMA"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SerDes_PMA</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/12/20/SerDes_%E7%94%B5%E8%B7%AF%E7%BB%93%E6%9E%84/" title="SerDes_电路结构"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SerDes_电路结构</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/12/20/SerDes_%E7%AE%80%E4%BB%8B/" title="SerDes_简介"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SerDes_简介</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">MIPI-CSI-1</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2024年4月10日 上午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <ul>
+<li>参考
+<ul>
+<li><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_43629962/article/details/123089993"
+class="uri">https://blog.csdn.net/sinat_43629962/article/details/123089993</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/599531271"
+class="uri">https://zhuanlan.zhihu.com/p/599531271</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.mipi.org/"
+class="uri">https://www.mipi.org/</a></li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="csi-camera-serial-interface-layer-definitions">1. CSI (Camera
+Serial Interface) Layer Definitions</h2>
+<ul>
+<li>观察下图，可以看到CSI是<strong>单向差分</strong>串行接口，传输数据和时钟信号。CCI(Camera
+Control
+Interface)是<strong>双线、双向、半双工的串行接口</strong>。数据传输协议符合I2C标准。I2C相关知识见<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17488308.html">这篇博客</a>。</li>
+</ul>
+<p>​
+<img src="3201119-20230903112723912-1950951905.png" width = 50%/></p>
+<ul>
+<li>如下图所示，CSI-2可以分为5层，分别为：应用层、组包/解包层，底层协议层（Low
+Level Protocol）、通道管理层和物理层。下面对每一层进行解释。
+<ul>
+<li>PHY Layer：物理层
+<ul>
+<li>该层定义了传输介质，输入/输出电路和时钟的机制，以便可以正确的从bit
+stream中捕获正确的0/1.</li>
+<li>记录传输介质的电气参数特性以及数据和时钟之间的时序关系，记录了传输的起始位(SoT)和终止位(EoT)。</li>
+</ul></li>
+<li>Protocal Layer：协议层
+<ul>
+<li>Pixel2Byte/Byte2Pixel Packing/Unpacking Layer：像素/字节转换层。
+<ul>
+<li>Transmitter在将从Application接收到的数据发送前需要将像素数据转换为对应的字节流。Receiver在将数据提供给Application之前，需要将字节流数据转换为像素数据。</li>
+</ul></li>
+</ul></li>
+<li>Low Level Protocol(LLP)：底层协议层
+<ul>
+<li>指的是SoT与EoT之间的数据包字节流协议，最小单元是字节。</li>
+</ul></li>
+<li>Lane Management：Lane管理层
+<ul>
+<li>Lane
+是指一对差分数据对，在上面Figure1中，有N对差分数据，所以有N个Lane。</li>
+<li>在Transimitter端，需要把上层打包好的数据按顺序依次Distribute到不同的lane上。</li>
+<li>而在Reciever端需要从不同的lane上依次接收数据并把其按顺序Merge起来。</li>
+<li>总结
+<ul>
+<li>在Transmitter端，从Apllication层接收到的数据，被打包成字节流数据包，可以选择将错误检查信息附加在要发送的数据流上，在底层协议层进行传输，并在Lane
+Management层进行分发到不同的Lane上。</li>
+<li>在Reciever端，从PHY层接收到数据后，经过Lane
+Management层进行按序Merge，在底层协议层传输时，可以将Transmitter附加的信息剥离下来，并通过相对应的逻辑进行解释，检查数据发送的完整性和正确性。</li>
+</ul></li>
+</ul></li>
+<li>Application layer
+<ul>
+<li>该层主要用于不同场景对数据进行处理的过程，对于Transimitter，一般为Camera生成数据包；对于Reciever，多为SOC对数据进行处理。</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>​
+<img src="3201119-20230903115043490-1797678616.png" width = 50%/></p>
+<h2 id="lane-management">2. Lane Management</h2>
+<h3 id="multi-lane-distribution-and-merging">2.1 Multi-Lane Distribution
+and Merging</h3>
+<ul>
+<li><p>对于带宽有高要求/想要降低时钟频率的应用，可以通过扩展多条Lane来得到更大的带宽。</p></li>
+<li><p>在PHY层和协议层之间还存在一个处理多通道配置的层，下面介绍TX端和RX端该层的结构。</p>
+<ul>
+<li><p>Transmitter端</p>
+<ul>
+<li>下面两张图分别为D-PHY和C-PHY下 TX端 Lane Manager
+Layer的结构示意图。</li>
+<li>包含通道分配功能(Lane Distribution Function,LDF)，LDF模块接收low
+level
+protocol(LLP)层输入的数据包字节序列，并将它们分布到N个通道中，之后依次通过SerDes和Lane传输出去。</li>
+</ul>
+<p><img src="image-20240409185751691.png" alt="image-20240409185751691" style="zoom:50%;" /></p>
+<p><img src="image-20240409200611831.png" alt="image-20240409200611831" style="zoom:50%;" /></p></li>
+<li><p>Reciever 端</p>
+<ul>
+<li><p>下面两张图分别为D-PHY和C-PHY下 Lane Manager
+Layer的结构示意图。</p></li>
+<li><p>包含通道合并功能(Lane Merging
+Function,LMF)，从N条Lane中收集字节，并将它们合并为完整的数据包，送到LLP层的分解器(decomposer)处理。</p></li>
+<li><p>在Transmitter端发送数据之前，所有的Lane会并行的执行SOT序列，以向后续模块指示接收数据包开始的第一个字节。</p>
+<p><img src="image-20240409202423590.png" alt="image-20240409202423590" style="zoom:50%;" /></p>
+<p><img src="image-20240409202628351.png" alt="image-20240409202628351" style="zoom:50%;" /></p></li>
+</ul></li>
+</ul></li>
+<li><p>在Lane的数据分发实例</p>
+<ul>
+<li><p>DPHY</p>
+<ul>
+<li><p>下图为DPHY层两条Lane的传输情况，由于总字节数可能不是通道数N的整数倍；因此在传输结束时，可能会有额外的字节。</p>
+<ul>
+<li>处理方法
+<ul>
+<li>一条/多条Lane出现无数据发送时，会让对应的Lane提前发送EOT序列完成传输，并进入LPS状态。</li>
+<li>其余还有有效数据的Lane并行的将最后一次数据传输完成之后，发送EOT序列。</li>
+<li>并无效掉所有Lane上的数据，表示无数据要传输。</li>
+</ul></li>
+</ul></li>
+<li><p>对于多条Lane，同样道理。</p>
+<p><img src="image-20240410095031308.png" alt="image-20240410095031308" style="zoom:67%;" /></p></li>
+<li><p>当进行短包传输时，即传输字节数=4，而Lane 个数
+N&gt;4，不接受字节的通道保持在LPS状态。</p>
+<p><img src="image-20240410100119216.png" alt="image-20240410100119216" style="zoom:67%;" /></p></li>
+</ul></li>
+<li><p>CPHY</p>
+<ul>
+<li><p>下图为CPHY层两条Lane的传输情况，其不存在DPHY有额外字节的问题，因为在LLP层会确保传输字节数B是2N的整数倍。</p></li>
+<li><p>在发送最后一组并行的数据包之后，会同时无效所有Lane中的数据，并通知每条Lane，可以开始它的EOT序列。</p>
+<figure>
+<img src="image-20240410100350088.png" alt="image-20240410100350088" />
+<figcaption aria-hidden="true">image-20240410100350088</figcaption>
+</figure></li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="multi-lane-interoperability互操作性">2.2 Multi-Lane
+Interoperability(互操作性)</h3>
+<ul>
+<li><p>当 Transimitter PHY层的Lane的个数M与Reciever
+PHY层的Lane的个数N不相等时，主要分为下面两种情况。</p>
+<ul>
+<li>（1）M &lt;=
+N：不会损失性能，因为接收机有足够的数据通道来匹配发射机。</li>
+<li>（2）M &gt;
+N：可能会出现性能损失（如帧率），因为接收机的数据通道少于发射机。</li>
+</ul>
+<p><img src="image-20240410103804969.png" alt="image-20240410103804969" style="zoom:67%;" /></p>
+<p><img src="image-20240410103827584.png" alt="image-20240410103827584" style="zoom:67%;" /></p></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/" class="category-chain-item">高速串行总线</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/MIPI-%E6%8E%A5%E5%8F%A3%E5%8D%8F%E8%AE%AE/" class="category-chain-item">MIPI 接口协议</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MIPI-CSI-1</div>
+      <div>http://binbinqian.cn/2023/10/28/MIPI-CSI-1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>qianbinbin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年10月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/10/28/%E4%B8%B2%E8%A1%8C%E6%8E%A5%E5%8F%A3%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE-%E6%A6%82%E8%BF%B0/" title="串行接口通信协议-概述">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">串行接口通信协议-概述</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/10/28/MIPI-CSI-2/" title="MIPI-CSI-2">
+                        <span class="hidden-mobile">MIPI-CSI-2</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"he0NhIf0IUn5fiZgzHQvxTMv-gzGzoHsz","appKey":"YOBsdTwafnru1yx9sCrfNIbw","path":"window.location.pathname","placeholder":"快来留言！","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":true,"serverURLs":"https://he0nhif0.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

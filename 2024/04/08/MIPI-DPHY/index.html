@@ -1,0 +1,1224 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#37625B">
+  <meta name="author" content="qianbinbin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;caokaiqiang123&#x2F;article&#x2F;details&#x2F;130830837 https:&#x2F;&#x2F;blog.csdn.net&#x2F;justlxy&#x2F;article&#x2F;details&#x2F;115453776    1.D-PHY Lane  可适用于Camera及Display场景。 管脚连接  下图为一个Lane的管脚示意图，其接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIPI-DPHY">
+<meta property="og:url" content="http://binbinqian.cn/2024/04/08/MIPI-DPHY/index.html">
+<meta property="og:site_name" content="可达达鸭">
+<meta property="og:description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;caokaiqiang123&#x2F;article&#x2F;details&#x2F;130830837 https:&#x2F;&#x2F;blog.csdn.net&#x2F;justlxy&#x2F;article&#x2F;details&#x2F;115453776    1.D-PHY Lane  可适用于Camera及Display场景。 管脚连接  下图为一个Lane的管脚示意图，其接">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/08/MIPI-DPHY/image-20240408144759780.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/08/MIPI-DPHY/image-20240408150657333.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/08/MIPI-DPHY/image-20240408152044541.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/08/MIPI-DPHY/image-20240408171404738.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/08/MIPI-DPHY/image-20240408164142862.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/08/MIPI-DPHY/image-20240408170328069.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/08/MIPI-DPHY/image-20240408185229301.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/08/MIPI-DPHY/image-20240408191224843.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/08/MIPI-DPHY/image-20240409142931436.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/08/MIPI-DPHY/image-20240409143248207.png">
+<meta property="article:published_time" content="2024-04-08T05:18:32.000Z">
+<meta property="article:modified_time" content="2024-04-09T10:33:49.038Z">
+<meta property="article:author" content="qianbinbin">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://binbinqian.cn/2024/04/08/MIPI-DPHY/image-20240408144759780.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>MIPI-DPHY - 可达达鸭</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"binbinqian.cn","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>可达达鸭</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="MIPI-DPHY"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-04-08 13:18" pubdate>
+          2024年4月8日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          31 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="高速串行总线"
+        id="heading-dbf6a8f31a8fb203dd44d788771b6490" role="tab" data-toggle="collapse" href="#collapse-dbf6a8f31a8fb203dd44d788771b6490"
+        aria-expanded="true"
+      >
+        高速串行总线
+        <span class="list-group-count">(9)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-dbf6a8f31a8fb203dd44d788771b6490"
+           role="tabpanel" aria-labelledby="heading-dbf6a8f31a8fb203dd44d788771b6490">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="MIPI 接口协议"
+        id="heading-eceb049bd3a5ec8a8d005b2a6156933e" role="tab" data-toggle="collapse" href="#collapse-eceb049bd3a5ec8a8d005b2a6156933e"
+        aria-expanded="true"
+      >
+        MIPI 接口协议
+        <span class="list-group-count">(5)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-eceb049bd3a5ec8a8d005b2a6156933e"
+           role="tabpanel" aria-labelledby="heading-eceb049bd3a5ec8a8d005b2a6156933e">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2024/04/08/MIPI-CCI/" title="MIPI-CCI"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MIPI-CCI</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/10/28/MIPI-CSI-1/" title="MIPI-CSI-1"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MIPI-CSI-1</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/10/28/MIPI-CSI-2/" title="MIPI-CSI-2"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MIPI-CSI-2</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/04/08/MIPI-DPHY/" title="MIPI-DPHY"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">MIPI-DPHY</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/10/28/MIPI-%E6%A6%82%E8%BF%B0/" title="MIPI-概述"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MIPI-概述</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="SerDes"
+        id="heading-6e0aa43980b6cf7b508876bf1eedf529" role="tab" data-toggle="collapse" href="#collapse-6e0aa43980b6cf7b508876bf1eedf529"
+        aria-expanded="false"
+      >
+        SerDes
+        <span class="list-group-count">(4)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-6e0aa43980b6cf7b508876bf1eedf529"
+           role="tabpanel" aria-labelledby="heading-6e0aa43980b6cf7b508876bf1eedf529">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/12/20/SerDes_PCS/" title="SerDes_PCS"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SerDes_PCS</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/12/20/SerDes_PMA/" title="SerDes_PMA"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SerDes_PMA</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/12/20/SerDes_%E7%94%B5%E8%B7%AF%E7%BB%93%E6%9E%84/" title="SerDes_电路结构"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SerDes_电路结构</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/12/20/SerDes_%E7%AE%80%E4%BB%8B/" title="SerDes_简介"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SerDes_简介</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">MIPI-DPHY</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2024年4月9日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <ul>
+<li>参考
+<ul>
+<li><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/caokaiqiang123/article/details/130830837"
+class="uri">https://blog.csdn.net/caokaiqiang123/article/details/130830837</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/justlxy/article/details/115453776"
+class="uri">https://blog.csdn.net/justlxy/article/details/115453776</a></li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="d-phy-lane">1.D-PHY Lane</h2>
+<ul>
+<li><p>可适用于Camera及Display场景。</p></li>
+<li><p>管脚连接</p>
+<ul>
+<li><p>下图为一个Lane的管脚示意图，其接口包括<code>LP-TX、LP-RX、HS-TX、HS-RX、LP-CD</code>。</p>
+<ul>
+<li>其中LP：Low Power，HS：High Speed，CD：Contention-Detectors。</li>
+<li>可以对上面介绍的接口进行剪裁，根据设计选定。</li>
+</ul></li>
+<li><p>最终输出接口为<code>Dp、Dn</code>，为传输的一组差分/单端信号，根据LP/HS决定。</p>
+<p><img src="image-20240408144759780.png" alt="image-20240408144759780" style="zoom:47%;" /></p>
+<figure>
+<img src="image-20240408150657333.png" alt="image-20240408150657333" />
+<figcaption aria-hidden="true">image-20240408150657333</figcaption>
+</figure></li>
+</ul></li>
+<li><p>D-PHY 时钟</p>
+<ul>
+<li>其时钟为DDR(Double Data
+Rate)，双边沿采样，采用源同步的传输方式，时钟信号始终由Master提供给Slave。</li>
+</ul></li>
+<li><p>D-PHY Lane 主要由 Clock Lane 和 Data
+Lane组成，两者有部分特性是相同的，有部分特性是不同的，将在1.1小节介绍。</p></li>
+</ul>
+<h3 id="相同特性">1.1 相同特性</h3>
+<ul>
+<li><p>D-PHY Lane 的模式分为了 2 种：High-Speed / Low-Power.</p>
+<ul>
+<li>High-Speed: 用于高速的数据传输，如图像数据传输。</li>
+<li>Low-Power: 用于一些控制信息，如一些指令。</li>
+<li>无论是哪种模式，数据传输都是LSB First、MSB Last.</li>
+</ul></li>
+<li><p>两种模式信号摆幅如下。</p>
+<ul>
+<li>其中HS模式下，Lane上传输的是差分信号，摆幅更小；</li>
+<li>LP模式下，Lane上两根线传输的是<strong>两个独立的信号</strong>，是单端信号，摆幅更大。</li>
+</ul>
+<figure>
+<img src="image-20240408152044541.png" alt="image-20240408152044541" />
+<figcaption aria-hidden="true">image-20240408152044541</figcaption>
+</figure></li>
+<li><p>传输特性和方向</p>
+<ul>
+<li>对于差分时钟信号，是单向的，Master -&gt; Slave。</li>
+<li>对于数据信号，在HS模式下，均为<strong>单向传输</strong>(Unidirectional)；在LP模式下，允许半双工的<strong>双向传输</strong>(Bi-directional)，反向传输速度只有正向传输的1/4.</li>
+<li>在LP模式下(包括Control Mode和Escape
+Mode)，采用<strong>Spaced-One-Hot Coding</strong>机制。
+<ul>
+<li>在该机制下，时钟可以在传输的数据中被体现，因此不需要传输时钟，用户可以据此关闭Clock
+Lane来降低功耗。</li>
+</ul></li>
+</ul></li>
+<li><p>状态码</p>
+<ul>
+<li><p>将Lane两个模式下的两根线不同信号值组合表示不同的状态，后续介绍的模式转变、双向传输均需要组合不同的状态码实现不同的事件。</p>
+<figure>
+<img src="image-20240408171404738.png" alt="image-20240408171404738" />
+<figcaption aria-hidden="true">image-20240408171404738</figcaption>
+</figure></li>
+</ul></li>
+</ul>
+<h3 id="d-phy-data-lane-特性">1.2 D-PHY Data Lane 特性</h3>
+<ul>
+<li><p>LP-HS 模式转变</p>
+<ul>
+<li><p>Data Lane 从LP模式进入HS模式，需要按照协议发送一个
+Start-of-Transmission (SOT) Sequence。具体内容可参考D-PHY协议。</p>
+<ul>
+<li>LP Stop state - HS-Rqst state - Bridge state - HS0 - Inserts HS
+Sync-Sequence - 继续传数据</li>
+</ul></li>
+<li><p>同样，协议定义了一个End-of-Transmission (EoT)
+Sequence，推出HS模式，进入LP的Stop模式。</p></li>
+<li><p>可以看到无论是SOT还是EOT序列，除了设置一些状态，对持续时间也有一定要求，防止切换错误。</p>
+<figure>
+<img src="image-20240408164142862.png" alt="image-20240408164142862" />
+<figcaption aria-hidden="true">image-20240408164142862</figcaption>
+</figure></li>
+</ul></li>
+<li><p>双向传输 (Data Lane Turnaround)</p>
+<ul>
+<li><p>这个操作可以让从机返回数据给主机，同样需要一些状态码进行组合。</p>
+<figure>
+<img src="image-20240408170328069.png" alt="image-20240408170328069" />
+<figcaption aria-hidden="true">image-20240408170328069</figcaption>
+</figure></li>
+</ul></li>
+<li><p>Escape模式</p>
+<ul>
+<li><p>低功耗模式下主要包含Control Mode和Escape Mode。若将Escape
+Mode再划分，可以划分为Mode和Trigger。</p>
+<ul>
+<li><p>Mode可以划分为</p>
+<ul>
+<li><p>Low-Power Data Transmission ：简称为 LPDT，意味在 LP
+模式下进行数据传输，数据可以在低速情况下进行传输，也可以暂停发送，如下图所示；</p>
+<figure>
+<img src="image-20240408185229301.png" alt="image-20240408185229301" />
+<figcaption aria-hidden="true">image-20240408185229301</figcaption>
+</figure></li>
+<li><p>Ultra-Low Power State：简称为
+ULPS，超低功耗状态；进入该状态后将暂停数据发送，可通过设置LP-10，并等待<code>T_wakeup</code>时间后，即可唤醒。</p></li>
+</ul></li>
+<li><p>Trigger 主要用来触发 Reset。</p></li>
+</ul></li>
+<li><p>进入Escape模式，依然是组合状态码，但若具体到哪个mode/trigger，需要添加协议规定的Entry
+Command。</p></li>
+<li><p>还需注意，由于Escape mode 下使用的是 Spaced-One-Hot bit 的
+encoding 的方式做数据的异步传输，因此只需要 Data Lane 就行了，不需要
+Clock Lane。</p></li>
+</ul></li>
+</ul>
+<h3 id="d-phy-clock-lane-特性">1.3 D-PHY Clock Lane 特性</h3>
+<ul>
+<li><p>下图为Clock Lane 和 Data Lane 进入和退出 Low-Power 的时序。</p>
+<ul>
+<li>进入Low-Power：
+<ul>
+<li>在 Data Lane 进入 Stop State 的时候，再经过 <code>T_clk-post</code>
+后，Clock Lane 才进入 HS-0 的状态，然后在 HS-0 持续 Tclk-trail后，进入到
+LP-11 状态。</li>
+</ul></li>
+<li>退出Low-Power：
+<ul>
+<li>Clock Lane 先进入 LP-11，然后进入 LP-01 并位处 Tlpx，然后进入 LP-00
+并维持一些时间 Tclk-prepare，然后维持 HS-0 ，时间为 Tclk-zero，之后
+Clock Lane 就可以正常工作了；对于Data Lane，在经过 Tclk-pre
+后再工作。</li>
+</ul></li>
+</ul>
+<figure>
+<img src="image-20240408191224843.png" alt="image-20240408191224843" />
+<figcaption aria-hidden="true">image-20240408191224843</figcaption>
+</figure></li>
+<li><p>Clock Lane 没有 Escape 模式，但是 Clock Lane 有 ULPS 模式。</p>
+<ul>
+<li>状态码组合为：<code>LP-11、LP-10、LP-00</code>.</li>
+</ul></li>
+</ul>
+<h2 id="错误检测">2. 错误检测</h2>
+<ul>
+<li>有些错误可以在D-PHY层就检测出来，而有的错误只能在协议层检测出来。</li>
+</ul>
+<h3 id="争用检测contention-detection">2.1 争用检测(Contention
+Detection)</h3>
+<ul>
+<li>如果一个双向的Lane和一个单向模块组合到一起作为一条Lane使用，那么只有单向功能可用，此时需要将双向模块的双向特性禁用掉，否则可能导致死锁的发生。</li>
+<li>对于双向通信的Lane，可能会出现争用。正常情况，连接的两端只能有一端去驱动，但由于故障可能导致两端同时驱动同一个Lane。
+<ul>
+<li>可能出现下面两种情况
+<ul>
+<li><ol type="1">
+<li>Lane的两侧在相互驱动相反的LP电平。</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>Lane的一侧在驱动LP-High，一侧则在驱动HS-Low。</li>
+</ol></li>
+</ul></li>
+<li>对于(1)，可以通过LP-CD和LP-RX组合检测；对于(2)，可以通过LP-RX检测。检测原理与电气规范相关。</li>
+<li>低功耗模式下，当信号稳定后，每个bit周期都需要进行争用检测。</li>
+<li>在ULPS模式下，不需要进行争用检测，因为可能没有可用的时钟，无法判断可检测的周期。</li>
+</ul></li>
+<li>在冲突被检测到之后，协议层要采取适当的措施解决问题。</li>
+</ul>
+<h3 id="序列错误检测sequence-error-detection">2.2 序列错误检测(Sequence
+Error Detection)</h3>
+<ul>
+<li>某些原因可能导致Lane信号损坏，接收处的PHY可以检测到signal
+sequence错误，并通过PPI与协议层进行通信。</li>
+<li>下面是 D-PHY 层可以监测到的 Sequence Error Detection：
+<ul>
+<li>SoT Error</li>
+<li>SoT Sync Error</li>
+<li>EoT Sync Error</li>
+<li>Escape Mode Entry Command Error</li>
+<li>LP Transmission Sync Error</li>
+<li>False Control Error</li>
+</ul></li>
+</ul>
+<h3 id="协议层看门狗定时器">2.3 协议层看门狗定时器</h3>
+<ul>
+<li>有些错误无法在PHY层被检测出来，因此需要额外的超时机制来限制特定模式和状态的最大持续时间，如果超出该时间，则认为出现问题。</li>
+<li>使用场景如下：
+<ul>
+<li>HS RX Timeout：HS RX模式下，如果特定时间没有收到 EoT，认为超时</li>
+<li>HS TX Timeout：HS
+TX模式下，发送时间是有限制的（比如用什么样的速率传输多少个数据），超过特定时间，认为超时。</li>
+<li>Escape Mode Timeout：</li>
+<li>Escape Mode Silence Timeout：</li>
+<li>Turnaround Error：在Turnaround实现过程中，存在一个关键的Turn
+State转换驱动关系；而看门狗检测的是指定时间内是否出现该状态，若没有，协议层则需要相关操作。</li>
+</ul></li>
+</ul>
+<h2 id="skew-calibration">3. Skew Calibration</h2>
+<ul>
+<li><p>为什么需要Deskew</p>
+<ul>
+<li><p>当传输速度大于1.5Gbps时，CLK Lane 和 Data Lane之间以及Data Lane
+和 Data Lane之间可能存在相位偏差，导致容易采样到错误数据。</p></li>
+<li><p>Spec规定当速率大于1.5Gbps时，RX端需要根据TX端发送的特殊的去偏斜(deskew)
+burst序列完成初始化，之后才能进行数据接收。</p></li>
+<li><p>当速度小于1.5Gbps时，HS-Deskew是可选的，周期性deskew也是可选的。一旦链路速率发生变化，大于1.5Gbps之后，需要重新进行HS-Deskew操作。</p>
+<figure>
+<img src="image-20240409142931436.png" alt="image-20240409142931436" />
+<figcaption aria-hidden="true">image-20240409142931436</figcaption>
+</figure></li>
+</ul></li>
+<li><p>如何操作</p>
+<ul>
+<li><p>TX端发送一个16bit全部由1组成的同步帧，之后发送序列<code>01010101...0101</code>数据至少持续2<sup>15</sup>个Unit
+Interval（初始化deskew），或是2<sup>10</sup>（周期化deskew）。</p>
+<ul>
+<li><p>Unit Interval：equal to the duration of any HS state on the Clock
+Lane.</p>
+<figure>
+<img src="image-20240409143248207.png" alt="image-20240409143248207" />
+<figcaption aria-hidden="true">image-20240409143248207</figcaption>
+</figure></li>
+</ul></li>
+</ul></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/" class="category-chain-item">高速串行总线</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/MIPI-%E6%8E%A5%E5%8F%A3%E5%8D%8F%E8%AE%AE/" class="category-chain-item">MIPI 接口协议</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MIPI-DPHY</div>
+      <div>http://binbinqian.cn/2024/04/08/MIPI-DPHY/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>qianbinbin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年4月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/04/08/MIPI-CCI/" title="MIPI-CCI">
+                        <span class="hidden-mobile">MIPI-CCI</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"he0NhIf0IUn5fiZgzHQvxTMv-gzGzoHsz","appKey":"YOBsdTwafnru1yx9sCrfNIbw","path":"window.location.pathname","placeholder":"快来留言！","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":true,"serverURLs":"https://he0nhif0.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

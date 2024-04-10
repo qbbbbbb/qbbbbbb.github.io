@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. Shell shell可认为是一个开机自启动的命令行程序，连接了用户和Linux内核，让用户更加高效的使用Linux内核。 shell 中每执行一个指令可以认为是执行一个子程序。   重定向 &lt;file和&gt;file，分别将程序的输入和输出流重定向到文件。 &gt;&gt;file向一个文件追加内容。 |允许将一个程序的输出和另一个程序的输入连接起来。    2. Bash2.1">
+    <meta name="description" content="1. Shell  shell可认为是一个开机自启动的命令行程序，连接了用户和Linux内核，让用户更加高效的使用Linux内核。  shell 中每执行一个指令可以认为是执行一个子程序。  重定向  &lt;file和&gt;file，分别将程序的输入和输出流重定向到文件。 &gt;&gt;file向一个文件追加内容。 |允许将一个程序的输出和另一个程序的输入连接起来。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Shell - 基础">
 <meta property="og:url" content="http://binbinqian.cn/2024/04/01/Shell-%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="1. Shell shell可认为是一个开机自启动的命令行程序，连接了用户和Linux内核，让用户更加高效的使用Linux内核。 shell 中每执行一个指令可以认为是执行一个子程序。   重定向 &lt;file和&gt;file，分别将程序的输入和输出流重定向到文件。 &gt;&gt;file向一个文件追加内容。 |允许将一个程序的输出和另一个程序的输入连接起来。    2. Bash2.1">
+<meta property="og:description" content="1. Shell  shell可认为是一个开机自启动的命令行程序，连接了用户和Linux内核，让用户更加高效的使用Linux内核。  shell 中每执行一个指令可以认为是执行一个子程序。  重定向  &lt;file和&gt;file，分别将程序的输入和输出流重定向到文件。 &gt;&gt;file向一个文件追加内容。 |允许将一个程序的输出和另一个程序的输入连接起来。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-04-01T09:03:38.000Z">
 <meta property="article:modified_time" content="2024-04-01T09:06:34.409Z">
@@ -379,51 +379,47 @@
             
               <div class="markdown-body">
                 
-                <h2 id="1-Shell"><a href="#1-Shell" class="headerlink" title="1. Shell"></a>1. Shell</h2><ul>
-<li>shell可认为是一个开机自启动的命令行程序，连接了用户和Linux内核，让用户更加高效的使用Linux内核。<ul>
+                <h2 id="shell">1. Shell</h2>
+<ul>
+<li>shell可认为是一个开机自启动的命令行程序，连接了用户和Linux内核，让用户更加高效的使用Linux内核。
+<ul>
 <li>shell 中每执行一个指令可以认为是执行一个子程序。</li>
-</ul>
-</li>
-<li>重定向<ul>
+</ul></li>
+<li>重定向
+<ul>
 <li><code>&lt;file</code>和<code>&gt;file</code>，分别将程序的输入和输出流重定向到文件。</li>
 <li><code>&gt;&gt;file</code>向一个文件追加内容。</li>
 <li><code>|</code>允许将一个程序的输出和另一个程序的输入连接起来。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="2-Bash"><a href="#2-Bash" class="headerlink" title="2. Bash"></a>2. Bash</h2><h3 id="2-1-工具与脚本"><a href="#2-1-工具与脚本" class="headerlink" title="2.1 工具与脚本"></a>2.1 工具与脚本</h3><ul>
+<h2 id="bash">2. Bash</h2>
+<h3 id="工具与脚本">2.1 工具与脚本</h3>
+<ul>
 <li><p>为变量赋值，<code>foo=bar</code>，但注意不能是<code>foo = bar</code>，空格的存在让解释器误将<code>=</code>和<code>bar</code>作为参数。</p>
 <ul>
 <li>因此在shell脚本中，空格会起到分割参数的作用，使用时需要注意。</li>
-</ul>
-</li>
-<li><p><code>&#39;</code>和<code>&quot;</code></p>
+</ul></li>
+<li><p><code>'</code>和<code>"</code></p>
 <ul>
-<li><p>以<code>&#39;</code>定义的字符串为原义字符串，其中的变量不会被转义</p>
-</li>
-<li><p>而 <code>&quot;</code>定义的字符串会将变量值进行替换。</p>
+<li><p>以<code>'</code>定义的字符串为原义字符串，其中的变量不会被转义</p></li>
+<li><p>而 <code>"</code>定义的字符串会将变量值进行替换。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">foo=bar<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$foo</span>&quot;</span><br><span class="hljs-comment"># 打印 bar</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;$foo&#x27;</span><br><span class="hljs-comment"># 打印 $foo</span><br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
+</ul></li>
 <li><p><code>$</code></p>
 <ul>
-<li><p>访问变量中存储的数值使用的语法是<code>$</code>，如<code>$foo</code>。</p>
-</li>
+<li><p>访问变量中存储的数值使用的语法是<code>$</code>，如<code>$foo</code>。</p></li>
 <li><p>还可以通过命令替换实现，即以变量的形式获取一个命令的输出。</p>
 <ul>
 <li><code>for file in $(ls)</code>，shell首先调用ls，遍历得到ls的返回值。</li>
-</ul>
-</li>
+</ul></li>
 <li><p>进程替换</p>
 <ul>
-<li><p><code>&lt;(CMD)</code> 会执行指令CMD，并将结果输出到一个临时的文件中，并将<code>&lt;(CMD)</code>替换成临时文件名。</p>
-</li>
+<li><p><code>&lt;(CMD)</code>
+会执行指令CMD，并将结果输出到一个临时的文件中，并将<code>&lt;(CMD)</code>替换成临时文件名。</p></li>
 <li><p>举例：<code>diff &lt;(ls foo) &lt;(ls bar)</code>，会显示文件夹foo与bar中文件的区别，注意只会比对文件名称，不会比对文件内容。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">touch</span> foo/x bar/y<br><span class="hljs-comment"># 比较文件夹 foo 和 bar 中包含文件的不同</span><br>diff &lt;(<span class="hljs-built_in">ls</span> foo) &lt;(<span class="hljs-built_in">ls</span> bar)<br><span class="hljs-comment"># 输出</span><br><span class="hljs-comment"># &lt; x</span><br><span class="hljs-comment"># ---</span><br><span class="hljs-comment"># &gt; y</span><br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 <li><p>shell 的通配</p>
 <ul>
 <li><p>？与 *</p>
@@ -431,80 +427,71 @@
 <li>举例：foo,foo1,foo2,foo10,bar.</li>
 <li>rm foo? 会删除掉foo1,foo2。</li>
 <li>rm foo* 则会只留下bar。</li>
-</ul>
-</li>
+</ul></li>
 <li><p>{}</p>
 <ul>
 <li><p>当有一系列的指令，其中包含一段公共子串时，可以用花括号来自动展开这些命令。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">convert image.&#123;png,jpg&#125;<br><span class="hljs-comment"># 会展开为</span><br>convert image.png image.jpg<br><br><span class="hljs-built_in">cp</span> /path/to/project/&#123;foo,bar,baz&#125;.sh /newpath<br><span class="hljs-comment"># 会展开为</span><br><span class="hljs-built_in">cp</span> /path/to/project/foo.sh /path/to/project/bar.sh /path/to/project/baz.sh /newpath<br><br><span class="hljs-comment"># 也可以结合通配使用</span><br><span class="hljs-built_in">mv</span> *&#123;.py,.sh&#125; folder<br><span class="hljs-comment"># 会移动所有 *.py 和 *.sh 文件</span><br><br><span class="hljs-built_in">mkdir</span> foo bar<br><span class="hljs-comment"># 下面命令会创建foo/a, foo/b, ... foo/h, bar/a, bar/b, ... bar/h这些文件</span><br><span class="hljs-built_in">touch</span> &#123;foo,bar&#125;/&#123;a..h&#125;<br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 <li><p>在终端，可以运行的脚本并不一定必须是bash</p>
 <ul>
 <li><p>例如，可以用python脚本，在脚本第一行Shebang，告知了内核应用python解释器而不是shell命令。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/local/bin/python</span><br><span class="hljs-keyword">import</span> sys<br><span class="hljs-keyword">for</span> arg <span class="hljs-keyword">in</span> <span class="hljs-built_in">reversed</span>(sys.argv[<span class="hljs-number">1</span>:]):<br>    <span class="hljs-built_in">print</span>(arg)<br></code></pre></td></tr></table></figure>
-
 <ul>
-<li><p>使用env命令，也可编写Shebang行，如<code>#!/usr/bin/env python</code>，告诉内核应去环境变量$PATH包含的路径中寻找，选择最先找到的使用。</p>
-</li>
-<li><p>两种写法的优缺点可以参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37164975/article/details/106181500">这篇文章</a>.</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li><p>使用env命令，也可编写Shebang行，如<code>#!/usr/bin/env python</code>，告诉内核应去环境变量$PATH包含的路径中寻找，选择最先找到的使用。</p></li>
+<li><p>两种写法的优缺点可以参考<a
+target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37164975/article/details/106181500">这篇文章</a>.</p></li>
+</ul></li>
+</ul></li>
 <li><p>查找文件</p>
 <ul>
 <li><p><code>find</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查找所有名称为src的文件夹</span><br>find . -name src -<span class="hljs-built_in">type</span> d<br><span class="hljs-comment"># 查找所有文件夹路径中包含test的python文件</span><br>find . -path <span class="hljs-string">&#x27;*/test/*.py&#x27;</span> -<span class="hljs-built_in">type</span> f<br><span class="hljs-comment"># 查找前一天修改的所有文件</span><br>find . -mtime -1<br><span class="hljs-comment"># 查找所有大小在500k至10M的tar.gz文件</span><br>find . -size +500k -size -10M -name <span class="hljs-string">&#x27;*.tar.gz&#x27;</span><br></code></pre></td></tr></table></figure>
-</li>
-<li><p>fd&#x2F;locate</p>
-</li>
-</ul>
-</li>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查找所有名称为src的文件夹</span><br>find . -name src -<span class="hljs-built_in">type</span> d<br><span class="hljs-comment"># 查找所有文件夹路径中包含test的python文件</span><br>find . -path <span class="hljs-string">&#x27;*/test/*.py&#x27;</span> -<span class="hljs-built_in">type</span> f<br><span class="hljs-comment"># 查找前一天修改的所有文件</span><br>find . -mtime -1<br><span class="hljs-comment"># 查找所有大小在500k至10M的tar.gz文件</span><br>find . -size +500k -size -10M -name <span class="hljs-string">&#x27;*.tar.gz&#x27;</span><br></code></pre></td></tr></table></figure></li>
+<li><p>fd/locate</p></li>
+</ul></li>
 <li><p>查找代码</p>
 <ul>
 <li><p>grep</p>
 <ul>
-<li><code>-C</code> ：获取查找结果的上下文（Context）；<code>grep -C 5</code> 会输出匹配结果前后五行。</li>
-<li><code>-v</code> 将对结果进行反选（Invert），也就是输出不匹配的结果。</li>
-<li>当需要搜索大量文件的时候，使用 <code>-R</code> 会递归地进入子目录并搜索所有的文本文件。</li>
-</ul>
-</li>
-<li><p>ack&#x2F;ag&#x2F;rg</p>
+<li><code>-C</code>
+：获取查找结果的上下文（Context）；<code>grep -C 5</code>
+会输出匹配结果前后五行。</li>
+<li><code>-v</code>
+将对结果进行反选（Invert），也就是输出不匹配的结果。</li>
+<li>当需要搜索大量文件的时候，使用 <code>-R</code>
+会递归地进入子目录并搜索所有的文本文件。</li>
+</ul></li>
+<li><p>ack/ag/rg</p>
 <ul>
 <li><p>rg(ripgrep)，相较于grep更快，举例如下。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查找所有使用了 requests 库的文件</span><br>rg -t py <span class="hljs-string">&#x27;import requests&#x27;</span><br><span class="hljs-comment"># 查找所有没有写 shebang 的文件（包含隐藏文件）</span><br>rg -u --files-without-match <span class="hljs-string">&quot;^#!&quot;</span><br><span class="hljs-comment"># 查找所有的foo字符串，并打印其之后的5行</span><br>rg foo -A 5<br><span class="hljs-comment"># 打印匹配的统计信息（匹配的行和文件的数量）</span><br>rg --stats PATTERN<br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 <li><p>查找shell命令</p>
 <ul>
-<li>可以组合使用history以及grep来寻找之前输入的指令。<ul>
+<li>可以组合使用history以及grep来寻找之前输入的指令。
+<ul>
 <li>history |grep find 会打印包含find字串的指令。</li>
-</ul>
-</li>
+</ul></li>
 <li>或使用Ctrl+R来对历史记录进行回溯搜索。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="2-2-任务控制"><a href="#2-2-任务控制" class="headerlink" title="2.2 任务控制"></a>2.2 任务控制</h3><ul>
-<li>结束进程<ul>
+<h3 id="任务控制">2.2 任务控制</h3>
+<ul>
+<li>结束进程
+<ul>
 <li>当我们输入Ctrl-C时，shell会发送一个SIGINT信号到进程。但可能会被忽略，无法让程序停止。</li>
-<li>当我们输入Ctrl-\时，shell会发送一个SIGQUIT信号到进程。</li>
-<li>SIGTERM是一个更加通用的退出信号，我们需要使用kill命令，语法是<code>kill -TERM &lt;PID&gt;</code>.<ul>
+<li>当我们输入Ctrl-，shell会发送一个SIGQUIT信号到进程。</li>
+<li>SIGTERM是一个更加通用的退出信号，我们需要使用kill命令，语法是<code>kill -TERM &lt;PID&gt;</code>.
+<ul>
 <li>查看PID可以通过指令<code>ps aux |grep &lt;进程名&gt;</code>，其中aux参数表示列出所有用户的所有进程。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>暂停后台执行进程<ul>
+</ul></li>
+</ul></li>
+<li>暂停后台执行进程
+<ul>
 <li>输入Ctrl-Z，会让shell发送SIGTSTP信号，Terminal Stop缩写。</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 
                 
@@ -588,6 +575,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/04/08/MIPI-CCI/" title="MIPI-CCI">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MIPI-CCI</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

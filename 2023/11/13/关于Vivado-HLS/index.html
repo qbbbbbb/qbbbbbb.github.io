@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_39507748&#x2F;article&#x2F;details&#x2F;114411155 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;dadaozhijian22&#x2F;p&#x2F;9523510.html     1. 用来作什么 HLS(High Level Synthesis) Xilinx推出的可以直接使用C&#x2F;C++&#x2F;SystemC对Xili">
+    <meta name="description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_39507748&#x2F;article&#x2F;details&#x2F;114411155 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;dadaozhijian22&#x2F;p&#x2F;9523510.html    1. 用来作什么  HLS(High Level Synthesis) Xilinx推出的可以直接使用C&#x2F;C++&#x2F;SystemC对Xi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于Vivado-HLS">
 <meta property="og:url" content="http://binbinqian.cn/2023/11/13/%E5%85%B3%E4%BA%8EVivado-HLS/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_39507748&#x2F;article&#x2F;details&#x2F;114411155 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;dadaozhijian22&#x2F;p&#x2F;9523510.html     1. 用来作什么 HLS(High Level Synthesis) Xilinx推出的可以直接使用C&#x2F;C++&#x2F;SystemC对Xili">
+<meta property="og:description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_39507748&#x2F;article&#x2F;details&#x2F;114411155 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;dadaozhijian22&#x2F;p&#x2F;9523510.html    1. 用来作什么  HLS(High Level Synthesis) Xilinx推出的可以直接使用C&#x2F;C++&#x2F;SystemC对Xi">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/13/%E5%85%B3%E4%BA%8EVivado-HLS/3201119-20230614143018239-1102110734.png">
 <meta property="og:image" content="http://binbinqian.cn/2023/11/13/%E5%85%B3%E4%BA%8EVivado-HLS/3201119-20230614150224724-608335972.png">
@@ -252,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          983 字
+          963 字
         
       </span>
     
@@ -423,65 +423,73 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39507748/article/details/114411155">https://blog.csdn.net/qq_39507748/article/details/114411155</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dadaozhijian22/p/9523510.html">https://www.cnblogs.com/dadaozhijian22/p/9523510.html</a></li>
+<li>参考
+<ul>
+<li><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39507748/article/details/114411155"
+class="uri">https://blog.csdn.net/qq_39507748/article/details/114411155</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dadaozhijian22/p/9523510.html"
+class="uri">https://www.cnblogs.com/dadaozhijian22/p/9523510.html</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<hr>
-<h2 id="1-用来作什么"><a href="#1-用来作什么" class="headerlink" title="1. 用来作什么"></a>1. 用来作什么</h2><ul>
+<hr />
+<h2 id="用来作什么">1. 用来作什么</h2>
+<ul>
 <li>HLS(High Level Synthesis)</li>
-<li>Xilinx推出的可以直接使用C&#x2F;C++&#x2F;SystemC对Xilinx系列的FPGA进行编程，提高抽象等级，减少开发时间。</li>
+<li>Xilinx推出的可以直接使用C/C++/SystemC对Xilinx系列的FPGA进行编程，提高抽象等级，减少开发时间。</li>
 <li>数字IC设计过程中不同的抽象等级：</li>
 </ul>
-<img src="3201119-20230614143018239-1102110734.png">
-
-
+<p><img src="3201119-20230614143018239-1102110734.png"></p>
 <ul>
-<li>这里引申一下行为级和RTL级的区别<ul>
+<li>这里引申一下行为级和RTL级的区别
+<ul>
 <li>RTL级：寄存器传输级，使用寄存器这一级别的描述方式来描述，要求可综合，</li>
 <li>行为级：通过行为语句描述电路要实现的功能，而不涉及具体结构，不考虑电路实现。</li>
+</ul></li>
+<li>HLS在系统级对电路算法进行描述，然后由Vivado
+HLS编译器将C代码综合成HDL描述，之后再进行逻辑综合，得到的网表可以直接映射到FPGA的器件上。</li>
 </ul>
-</li>
-<li>HLS在系统级对电路算法进行描述，然后由Vivado HLS编译器将C代码综合成HDL描述，之后再进行逻辑综合，得到的网表可以直接映射到FPGA的器件上。</li>
+<h2 id="hls-综合过程">2. HLS 综合过程</h2>
+<ul>
+<li>分析，处理基于C的代码，加上用户所给出的指令和约束，来创建RTL描述，综合结束后得到Verilog/VHDL编写的RTL设计文档。</li>
+<li>综合得到的RTL模型，可以放到HLS中进行C/RTL的协同仿真，Vivado
+HLS会自动产生一个测试集，进一步验证RTL设计的正确性。</li>
 </ul>
-<h2 id="2-HLS-综合过程"><a href="#2-HLS-综合过程" class="headerlink" title="2. HLS 综合过程"></a>2. HLS 综合过程</h2><ul>
-<li>分析，处理基于C的代码，加上用户所给出的指令和约束，来创建RTL描述，综合结束后得到Verilog&#x2F;VHDL编写的RTL设计文档。</li>
-<li>综合得到的RTL模型，可以放到HLS中进行C&#x2F;RTL的协同仿真，Vivado HLS会自动产生一个测试集，进一步验证RTL设计的正确性。</li>
+<h2 id="验证之后的打包">3. 验证之后的打包</h2>
+<ul>
+<li>使用Vivado
+HLS的IP打包功能，那么HLS设计可以以IP核的形式被用到其它Xilinx工具中。</li>
 </ul>
-<h2 id="3-验证之后的打包"><a href="#3-验证之后的打包" class="headerlink" title="3. 验证之后的打包"></a>3. 验证之后的打包</h2><ul>
-<li>使用Vivado HLS的IP打包功能，那么HLS设计可以以IP核的形式被用到其它Xilinx工具中。</li>
-</ul>
-<h2 id="4-接口综合-算法综合"><a href="#4-接口综合-算法综合" class="headerlink" title="4. 接口综合 &amp; 算法综合"></a>4. 接口综合 &amp; 算法综合</h2><ul>
+<h2 id="接口综合-算法综合">4. 接口综合 &amp; 算法综合</h2>
+<ul>
 <li>做HLS时，设计者需要注意 接口综合以及算法综合。</li>
 </ul>
-<img src="3201119-20230614150224724-608335972.png" width = 50%/>
-
+<p><img src="3201119-20230614150224724-608335972.png" width = 50%/></p>
 <ul>
-<li>接口综合<ul>
+<li>接口综合
+<ul>
 <li>指接口类型及接口使用的协议，通过工具接口综合获取代码中参数、返回值（类型、位宽、方向）以及端口行为（协议）得到，也可以自己为接口选择协议。</li>
-</ul>
-</li>
-<li>算法综合<ul>
-<li>从代码中推断出各种运算操作，转换成RTL语句。主要包括以下三个阶段<ul>
+</ul></li>
+<li>算法综合
+<ul>
+<li>从代码中推断出各种运算操作，转换成RTL语句。主要包括以下三个阶段
+<ul>
 <li>（1）解析出数据通路和控制元件</li>
-<li>（2）调度和绑定<ul>
+<li>（2）调度和绑定
+<ul>
 <li>调度是把由 C 代码解释得到的 RTL 语句翻译成一组运算。</li>
 <li>绑定是调度好了的运算和目标芯片上的实际资源联系起来的过程。资源的功能和时序特性可能会影响调度，所以绑定得到的信息还会反馈给调度。</li>
-</ul>
-</li>
-<li>（3）优化<ul>
+</ul></li>
+<li>（3）优化
+<ul>
 <li>设计者对设计的某些指标以及资源的利用情况加以限制（如时钟），对设计进行优化。</li>
 <li>施加指令，映射到代码的某些特征上，比如可以指定HLS如何处理C识别出来的循环或数组。</li>
+</ul></li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="5-HLS库"><a href="#5-HLS库" class="headerlink" title="5. HLS库"></a>5. HLS库</h2><ul>
+<h2 id="hls库">5. HLS库</h2>
+<ul>
 <li>包含了一系列的库，可以更方便的建模和综合。</li>
 </ul>
 
