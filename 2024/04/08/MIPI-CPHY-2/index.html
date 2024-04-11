@@ -17,35 +17,23 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;sinat_43629962&#x2F;article&#x2F;details&#x2F;123089993 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;599531271 https:&#x2F;&#x2F;www.mipi.org&#x2F;    1. CSI (Camera Serial Interface) Layer Definitions  观察下图">
+    <meta name="description" content="参考  C-PHY 2.1 Spec https:&#x2F;&#x2F;blog.csdn.net&#x2F;xianghbo&#x2F;article&#x2F;details&#x2F;128992304 https:&#x2F;&#x2F;blog.csdn.net&#x2F;cy413026&#x2F;article&#x2F;details&#x2F;133130068    1. C-PHY 全局操作 1.1 传输数据结构  数据格式  HS模式下，最小数据单元是16bi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MIPI-CSI-1">
-<meta property="og:url" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/index.html">
+<meta property="og:title" content="MIPI-CPHY-2">
+<meta property="og:url" content="http://binbinqian.cn/2024/04/08/MIPI-CPHY-2/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;sinat_43629962&#x2F;article&#x2F;details&#x2F;123089993 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;599531271 https:&#x2F;&#x2F;www.mipi.org&#x2F;    1. CSI (Camera Serial Interface) Layer Definitions  观察下图">
+<meta property="og:description" content="参考  C-PHY 2.1 Spec https:&#x2F;&#x2F;blog.csdn.net&#x2F;xianghbo&#x2F;article&#x2F;details&#x2F;128992304 https:&#x2F;&#x2F;blog.csdn.net&#x2F;cy413026&#x2F;article&#x2F;details&#x2F;133130068    1. C-PHY 全局操作 1.1 传输数据结构  数据格式  HS模式下，最小数据单元是16bi">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/3201119-20230903112723912-1950951905.png">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/3201119-20230903115043490-1797678616.png">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/image-20240409185751691.png">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/image-20240409200611831.png">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/image-20240409202423590.png">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/image-20240409202628351.png">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/image-20240410095031308.png">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/image-20240410100119216.png">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/image-20240410100350088.png">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/image-20240410103804969.png">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/image-20240410103827584.png">
-<meta property="article:published_time" content="2023-10-28T13:18:32.000Z">
-<meta property="article:modified_time" content="2024-04-10T03:01:24.139Z">
+<meta property="article:published_time" content="2024-04-08T05:18:32.000Z">
+<meta property="article:modified_time" content="2024-04-11T02:16:12.747Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-1/3201119-20230903112723912-1950951905.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>MIPI-CSI-1 - 可达达鸭</title>
+  <title>MIPI-CPHY-2 - 可达达鸭</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -238,7 +226,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="MIPI-CSI-1"></span>
+            <span id="subtitle" data-typed-text="MIPI-CPHY-2"></span>
           
         </div>
 
@@ -249,8 +237,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-28 21:18" pubdate>
-          2023年10月28日 晚上
+        <time datetime="2024-04-08 13:18" pubdate>
+          2024年4月8日 下午
         </time>
       </span>
     
@@ -261,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          272 字
         
       </span>
     
@@ -272,7 +260,7 @@
         
         
         
-          19 分钟
+          3 分钟
         
       </span>
     
@@ -391,7 +379,7 @@
       
         <a href="/2024/04/08/MIPI-CPHY-2/" title="MIPI-CPHY-2"
            class="list-group-item list-group-item-action
-           ">
+           active">
           <span class="category-post">MIPI-CPHY-2</span>
         </a>
       
@@ -400,7 +388,7 @@
       
         <a href="/2023/10/28/MIPI-CSI-1/" title="MIPI-CSI-1"
            class="list-group-item list-group-item-action
-           active">
+           ">
           <span class="category-post">MIPI-CSI-1</span>
         </a>
       
@@ -518,12 +506,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">MIPI-CSI-1</h1>
+            <h1 id="seo-header">MIPI-CPHY-2</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2024年4月10日 上午
+                    本文最后更新于：2024年4月11日 上午
                   
                 
               </p>
@@ -534,140 +522,27 @@
                 <ul>
 <li>参考
 <ul>
-<li><a
-target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_43629962/article/details/123089993"
-class="uri">https://blog.csdn.net/sinat_43629962/article/details/123089993</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/599531271"
-class="uri">https://zhuanlan.zhihu.com/p/599531271</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.mipi.org/"
-class="uri">https://www.mipi.org/</a></li>
+<li>C-PHY 2.1 Spec</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/xianghbo/article/details/128992304"
+class="uri">https://blog.csdn.net/xianghbo/article/details/128992304</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/cy413026/article/details/133130068"
+class="uri">https://blog.csdn.net/cy413026/article/details/133130068</a></li>
 </ul></li>
 </ul>
 <hr />
-<h2 id="csi-camera-serial-interface-layer-definitions">1. CSI (Camera
-Serial Interface) Layer Definitions</h2>
+<h2 id="c-phy-全局操作">1. C-PHY 全局操作</h2>
+<h3 id="传输数据结构">1.1 传输数据结构</h3>
 <ul>
-<li>观察下图，可以看到CSI是<strong>单向差分</strong>串行接口，传输数据和时钟信号。CCI(Camera
-Control
-Interface)是<strong>双线、双向、半双工的串行接口</strong>。数据传输协议符合I2C标准。I2C相关知识见<a
-target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17488308.html">这篇博客</a>。</li>
-</ul>
-<p>​
-<img src="3201119-20230903112723912-1950951905.png" width = 50%/></p>
+<li>数据格式
 <ul>
-<li>如下图所示，CSI-2可以分为5层，分别为：应用层、组包/解包层，底层协议层（Low
-Level Protocol）、通道管理层和物理层。下面对每一层进行解释。
-<ul>
-<li>PHY Layer：物理层
-<ul>
-<li>该层定义了传输介质，输入/输出电路和时钟的机制，以便可以正确的从bit
-stream中捕获正确的0/1.</li>
-<li>记录传输介质的电气参数特性以及数据和时钟之间的时序关系，记录了传输的起始位(SoT)和终止位(EoT)。</li>
+<li>HS模式下，最小数据单元是16bit。</li>
+<li>LP模式下，最小数据单元是8bit。</li>
 </ul></li>
-<li>Protocal Layer：协议层
+<li>在HS模式下，将16bit数据映射为一组7个symbol，分别是s0,s1,s2...s6。
 <ul>
-<li>Pixel2Byte/Byte2Pixel Packing/Unpacking Layer：像素/字节转换层。
-<ul>
-<li>Transmitter在将从Application接收到的数据发送前需要将像素数据转换为对应的字节流。Receiver在将数据提供给Application之前，需要将字节流数据转换为像素数据。</li>
+<li>其中s6被设置为最高位，s0被设置为最低位。</li>
+<li>先传输s0，之后是s1...s6。</li>
 </ul></li>
-</ul></li>
-<li>Low Level Protocol(LLP)：底层协议层
-<ul>
-<li>指的是SoT与EoT之间的数据包字节流协议，最小单元是字节。</li>
-</ul></li>
-<li>Lane Management：Lane管理层
-<ul>
-<li>Lane
-是指一对差分数据对，在上面Figure1中，有N对差分数据，所以有N个Lane。</li>
-<li>在Transimitter端，需要把上层打包好的数据按顺序依次Distribute到不同的lane上。</li>
-<li>而在Reciever端需要从不同的lane上依次接收数据并把其按顺序Merge起来。</li>
-<li>总结
-<ul>
-<li>在Transmitter端，从Apllication层接收到的数据，被打包成字节流数据包，可以选择将错误检查信息附加在要发送的数据流上，在底层协议层进行传输，并在Lane
-Management层进行分发到不同的Lane上。</li>
-<li>在Reciever端，从PHY层接收到数据后，经过Lane
-Management层进行按序Merge，在底层协议层传输时，可以将Transmitter附加的信息剥离下来，并通过相对应的逻辑进行解释，检查数据发送的完整性和正确性。</li>
-</ul></li>
-</ul></li>
-<li>Application layer
-<ul>
-<li>该层主要用于不同场景对数据进行处理的过程，对于Transimitter，一般为Camera生成数据包；对于Reciever，多为SOC对数据进行处理。</li>
-</ul></li>
-</ul></li>
-</ul>
-<p>​
-<img src="3201119-20230903115043490-1797678616.png" width = 50%/></p>
-<h2 id="lane-management">2. Lane Management</h2>
-<h3 id="multi-lane-distribution-and-merging">2.1 Multi-Lane Distribution
-and Merging</h3>
-<ul>
-<li><p>对于带宽有高要求/想要降低时钟频率的应用，可以通过扩展多条Lane来得到更大的带宽。</p></li>
-<li><p>在PHY层和协议层之间还存在一个处理多通道配置的层，下面介绍TX端和RX端该层的结构。</p>
-<ul>
-<li><p>Transmitter端</p>
-<ul>
-<li>下面两张图分别为D-PHY和C-PHY下 TX端 Lane Manager
-Layer的结构示意图。</li>
-<li>包含通道分配功能(Lane Distribution Function,LDF)，LDF模块接收low
-level
-protocol(LLP)层输入的数据包字节序列，并将它们分布到N个通道中，之后依次通过SerDes和Lane传输出去。</li>
-</ul>
-<p><img src="image-20240409185751691.png" alt="image-20240409185751691" style="zoom:50%;" /></p>
-<p><img src="image-20240409200611831.png" alt="image-20240409200611831" style="zoom:50%;" /></p></li>
-<li><p>Reciever 端</p>
-<ul>
-<li><p>下面两张图分别为D-PHY和C-PHY下 Lane Manager
-Layer的结构示意图。</p></li>
-<li><p>包含通道合并功能(Lane Merging
-Function,LMF)，从N条Lane中收集字节，并将它们合并为完整的数据包，送到LLP层的分解器(decomposer)处理。</p></li>
-<li><p>在Transmitter端发送数据之前，所有的Lane会并行的执行SOT序列，以向后续模块指示接收数据包开始的第一个字节。</p>
-<p><img src="image-20240409202423590.png" alt="image-20240409202423590" style="zoom:50%;" /></p>
-<p><img src="image-20240409202628351.png" alt="image-20240409202628351" style="zoom:50%;" /></p></li>
-</ul></li>
-</ul></li>
-<li><p>在Lane的数据分发实例</p>
-<ul>
-<li><p>DPHY</p>
-<ul>
-<li><p>下图为DPHY层两条Lane的传输情况，由于总字节数可能不是通道数N的整数倍；因此在传输结束时，可能会有额外的字节。</p>
-<ul>
-<li>处理方法
-<ul>
-<li>一条/多条Lane出现无数据发送时，会让对应的Lane提前发送EOT序列完成传输，并进入LPS状态。</li>
-<li>其余还有有效数据的Lane并行的将最后一次数据传输完成之后，发送EOT序列。</li>
-<li>并无效掉所有Lane上的数据，表示无数据要传输。</li>
-</ul></li>
-</ul></li>
-<li><p>对于多条Lane，同样道理。</p>
-<p><img src="image-20240410095031308.png" alt="image-20240410095031308" style="zoom:67%;" /></p></li>
-<li><p>当进行短包传输时，即传输字节数=4，而Lane 个数
-N&gt;4，不接受字节的通道保持在LPS状态。</p>
-<p><img src="image-20240410100119216.png" alt="image-20240410100119216" style="zoom:67%;" /></p></li>
-</ul></li>
-<li><p>CPHY</p>
-<ul>
-<li><p>下图为CPHY层两条Lane的传输情况，其不存在DPHY有额外字节的问题，因为在LLP层会确保传输字节数B是2N的整数倍。</p></li>
-<li><p>在发送最后一组并行的数据包之后，会同时无效所有Lane中的数据，并通知每条Lane，可以开始它的EOT序列。</p>
-<figure>
-<img src="image-20240410100350088.png" alt="image-20240410100350088" />
-<figcaption aria-hidden="true">image-20240410100350088</figcaption>
-</figure></li>
-</ul></li>
-</ul></li>
-</ul>
-<h3 id="multi-lane-interoperability互操作性">2.2 Multi-Lane
-Interoperability(互操作性)</h3>
-<ul>
-<li><p>当 Transimitter PHY层的Lane的个数M与Reciever
-PHY层的Lane的个数N不相等时，主要分为下面两种情况。</p>
-<ul>
-<li>（1）M &lt;=
-N：不会损失性能，因为接收机有足够的数据通道来匹配发射机。</li>
-<li>（2）M &gt;
-N：可能会出现性能损失（如帧率），因为接收机的数据通道少于发射机。</li>
-</ul>
-<p><img src="image-20240410103804969.png" alt="image-20240410103804969" style="zoom:67%;" /></p>
-<p><img src="image-20240410103827584.png" alt="image-20240410103827584" style="zoom:67%;" /></p></li>
 </ul>
 
                 
@@ -714,8 +589,8 @@ N：可能会出现性能损失（如帧率），因为接收机的数据通道�
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>MIPI-CSI-1</div>
-      <div>http://binbinqian.cn/2023/10/28/MIPI-CSI-1/</div>
+      <div>MIPI-CPHY-2</div>
+      <div>http://binbinqian.cn/2024/04/08/MIPI-CPHY-2/</div>
     </div>
     <div class="license-meta">
       
@@ -727,7 +602,7 @@ N：可能会出现性能损失（如帧率），因为接收机的数据通道�
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年10月28日</div>
+          <div>2024年4月8日</div>
         </div>
       
       
@@ -759,9 +634,9 @@ N：可能会出现性能损失（如帧率），因为接收机的数据通道�
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/28/%E4%B8%B2%E8%A1%8C%E6%8E%A5%E5%8F%A3%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE-%E6%A6%82%E8%BF%B0/" title="串行接口通信协议-概述">
+                      <a href="/2024/04/08/MIPI-DPHY/" title="MIPI-DPHY">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">串行接口通信协议-概述</span>
+                        <span class="hidden-mobile">MIPI-DPHY</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -769,8 +644,8 @@ N：可能会出现性能损失（如帧率），因为接收机的数据通道�
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/28/MIPI-CSI-2/" title="MIPI-CSI-2">
-                        <span class="hidden-mobile">MIPI-CSI-2</span>
+                      <a href="/2024/04/08/MIPI-CPHY-1/" title="MIPI-CPHY-1">
+                        <span class="hidden-mobile">MIPI-CPHY-1</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

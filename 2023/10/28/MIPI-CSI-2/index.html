@@ -17,18 +17,18 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;vivo01&#x2F;article&#x2F;details&#x2F;126289397    1. Low Level Protocol (LLP)  LLP是一种以字节为导向、基于数据包的协议，支持使用短数据包和长数据包格式传输任意数据。其特性如下。  Transport of arbitrary data (Payload independ">
+    <meta name="description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;vivo01&#x2F;article&#x2F;details&#x2F;126289397     1. Low Level Protocol (LLP) LLP是一种以字节为导向、基于数据包的协议，支持使用短数据包和长数据包格式传输任意数据。其特性如下。  Transport of arbitrary data (Payload independent)   8-bit">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MIPI-CSI-2">
 <meta property="og:url" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-2/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;vivo01&#x2F;article&#x2F;details&#x2F;126289397    1. Low Level Protocol (LLP)  LLP是一种以字节为导向、基于数据包的协议，支持使用短数据包和长数据包格式传输任意数据。其特性如下。  Transport of arbitrary data (Payload independ">
+<meta property="og:description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;vivo01&#x2F;article&#x2F;details&#x2F;126289397     1. Low Level Protocol (LLP) LLP是一种以字节为导向、基于数据包的协议，支持使用短数据包和长数据包格式传输任意数据。其特性如下。  Transport of arbitrary data (Payload independent)   8-bit">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-2/MIPI-CSI-2.assets/image-20240410105430220.png">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-2/MIPI-CSI-2.assets/image-20240410131938094.png">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-2/MIPI-CSI-2.assets/image-20240410140559921.png">
+<meta property="og:image" content="http://binbinqian.cn/MIPI-CSI-2.assets/image-20240410131938094.png">
+<meta property="og:image" content="http://binbinqian.cn/MIPI-CSI-2.assets/image-20240410140559921.png">
 <meta property="article:published_time" content="2023-10-28T13:18:32.000Z">
-<meta property="article:modified_time" content="2024-04-10T06:45:01.290Z">
+<meta property="article:modified_time" content="2024-04-10T07:33:28.699Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-2/MIPI-CSI-2.assets/image-20240410105430220.png">
@@ -322,7 +322,7 @@
         aria-expanded="true"
       >
         高速串行总线
-        <span class="list-group-count">(9)</span>
+        <span class="list-group-count">(11)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
@@ -349,7 +349,7 @@
         aria-expanded="true"
       >
         MIPI 接口协议
-        <span class="list-group-count">(5)</span>
+        <span class="list-group-count">(7)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
@@ -367,6 +367,24 @@
            class="list-group-item list-group-item-action
            ">
           <span class="category-post">MIPI-CCI</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/04/08/MIPI-CPHY-1/" title="MIPI-CPHY-1"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MIPI-CPHY-1</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/04/08/MIPI-CPHY-2/" title="MIPI-CPHY-2"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MIPI-CPHY-2</span>
         </a>
       
     
@@ -506,104 +524,86 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考
-<ul>
-<li>https://blog.csdn.net/vivo01/article/details/126289397</li>
-</ul></li>
+<li>参考<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/vivo01/article/details/126289397">https://blog.csdn.net/vivo01/article/details/126289397</a></li>
 </ul>
-<hr />
-<h2 id="low-level-protocol-llp">1. Low Level Protocol (LLP)</h2>
-<ul>
+</li>
+</ul>
+<hr>
+<h2 id="1-Low-Level-Protocol-LLP"><a href="#1-Low-Level-Protocol-LLP" class="headerlink" title="1. Low Level Protocol (LLP)"></a>1. Low Level Protocol (LLP)</h2><ul>
 <li><p>LLP是一种以字节为导向、基于数据包的协议，支持使用短数据包和长数据包格式传输任意数据。其特性如下。</p>
 <ul>
-<li>Transport of arbitrary data (Payload independent)<br />
-</li>
+<li>Transport of arbitrary data (Payload independent)  </li>
 <li>8-bit word size</li>
-<li>Support for up to sixteen interleaved virtual channels on the same
-D-PHY Link, or up to 32 interleaved virtual channels on the same C-PHY
-Link</li>
-<li>Special packets for frame start, frame end, line start and line end
-information</li>
-<li>Descriptor for the type, pixel depth and format of the Application
-Specific Payload data</li>
+<li>Support for up to sixteen interleaved virtual channels on the same D-PHY Link, or up to 32 interleaved virtual channels on the same C-PHY Link</li>
+<li>Special packets for frame start, frame end, line start and line end information </li>
+<li>Descriptor for the type, pixel depth and format of the Application Specific Payload data</li>
 <li>16-bit Checksum Code for error detection.</li>
-<li>6-bit Error Correction Code for error detection and correction
-(D-PHY physical layer only)</li>
-</ul></li>
+<li>6-bit Error Correction Code for error detection and correction (D-PHY physical layer only)</li>
 </ul>
-<h3 id="llp-包格式">1.1 LLP 包格式</h3>
-<ul>
+</li>
+</ul>
+<h3 id="1-1-LLP-包格式"><a href="#1-1-LLP-包格式" class="headerlink" title="1.1 LLP 包格式"></a>1.1 LLP 包格式</h3><ul>
 <li><p>数据格式如下图所示，有两种数据包结构，长数据包和短数据包。</p>
 <ul>
 <li>每个数据包的传输都是经历先从低功耗状态退出，之后是SOT序列，表示数据包的开始，之后是EOT，表示数据包的结束。</li>
 </ul>
-<p><img src="./MIPI-CSI-2.assets/image-20240410105430220.png" alt="image-20240410105430220" style="zoom:67%;" /></p></li>
+<img src="./MIPI-CSI-2.assets/image-20240410105430220.png" alt="image-20240410105430220" style="zoom:67%;" /></li>
 </ul>
-<h4 id="d-phy长数据包格式">1.1.1 D-PHY长数据包格式</h4>
-<ul>
+<h4 id="1-1-1-D-PHY长数据包格式"><a href="#1-1-1-D-PHY长数据包格式" class="headerlink" title="1.1.1 D-PHY长数据包格式"></a>1.1.1 D-PHY长数据包格式</h4><ul>
 <li><p>D-PHY长数据包格式如下图所示，主要包含三部分：32bit的数据包头，可变大小的应用相关数据以及16bit的数据包尾。</p>
 <ul>
-<li>数据包头
-<ul>
-<li>Data ID：作为数据的标识，其中[7:6]表示Virtual
-Channel的4bit标识中的低两位，[5:0]是Data Type的标识。</li>
-<li>Word
-Count：用于计数传输字节的个数，接收端根据该值判断数据接收何时结束。</li>
-<li>VCX+ECC：
-<ul>
-<li>[7:6] 虚拟通道扩展 VCX，表示Virtual
-Channel的4bit标识中的最高两位。</li>
-<li>[5:0] 错误检测和纠正码
-ECC，可以对数据包头进行1bit的错误进行纠正；并检测出2bit的错误，但不能纠正。</li>
-</ul></li>
-</ul></li>
-<li>数据包尾
-<ul>
+<li>数据包头<ul>
+<li>Data ID：作为数据的标识，其中[7:6]表示Virtual Channel的4bit标识中的低两位，[5:0]是Data Type的标识。</li>
+<li>Word Count：用于计数传输字节的个数，接收端根据该值判断数据接收何时结束。</li>
+<li>VCX+ECC：<ul>
+<li>[7:6] 虚拟通道扩展 VCX，表示Virtual Channel的4bit标识中的最高两位。</li>
+<li>[5:0] 错误检测和纠正码 ECC，可以对数据包头进行1bit的错误进行纠正；并检测出2bit的错误，但不能纠正。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>数据包尾<ul>
 <li>16bit CRC(循环冗余校验) 检测输出数据是否有错误。</li>
-</ul></li>
 </ul>
-<figure>
-<img src="./MIPI-CSI-2.assets/image-20240410131938094.png"
-alt="image-20240410131938094" />
-<figcaption aria-hidden="true">image-20240410131938094</figcaption>
-</figure></li>
+</li>
 </ul>
-<h4 id="c-phy长数据包格式">1.1.2 C-PHY长数据包格式</h4>
+<p><img src="/./MIPI-CSI-2.assets/image-20240410131938094.png" alt="image-20240410131938094"></p>
+</li>
+</ul>
+<h4 id="1-1-2-C-PHY长数据包格式"><a href="#1-1-2-C-PHY长数据包格式" class="headerlink" title="1.1.2 C-PHY长数据包格式"></a>1.1.2 C-PHY长数据包格式</h4><ul>
+<li><p>C-PHY长数据包格式如下图所示，主要包含四部分：数据包头、可变大小的应用相关数据、16bit的数据包尾 以及零&#x2F;多个填充字节(FILLER).</p>
 <ul>
-<li><p>C-PHY长数据包格式如下图所示，主要包含四部分：数据包头、可变大小的应用相关数据、16bit的数据包尾
-以及零/多个填充字节(FILLER).</p>
-<ul>
-<li>数据包头
-<ul>
-<li>其长度为6N*16bit，其中N为Lane
-的个数。可以看到其由两个相同部分组合得到。</li>
-<li>5bit RES + 3bit VCX
-<ul>
+<li>数据包头<ul>
+<li>其长度为6N*16bit，其中N为Lane 的个数。可以看到其由两个相同部分组合得到。</li>
+<li>5bit RES + 3bit VCX<ul>
 <li>5bit保留位，设置为0.</li>
 <li>3bit VCX是Virtual Channel的5bit标识中的最高三位。</li>
-</ul></li>
-<li>8bit DI
-<ul>
+</ul>
+</li>
+<li>8bit DI<ul>
 <li>2bit VCX是Virtual Channel的5bit标识中的最低两位。</li>
 <li>6bit Data Type 是数据标识。</li>
-</ul></li>
-<li>16bit WC：与DPHY一样。</li>
-<li>16bit PH-CRC
-<ul>
-<li>数据包头(PH)的CRC码，计算前面4个字节，使得多bit错误被检测出来。</li>
-</ul></li>
-</ul></li>
-<li>数据包尾
-<ul>
-<li>16bit CRC(循环冗余校验) 检测输出数据是否有错误。</li>
-</ul></li>
-<li><h2 id="filler">FILLER</h2></li>
 </ul>
-<figure>
-<img src="./MIPI-CSI-2.assets/image-20240410140559921.png"
-alt="image-20240410140559921" />
-<figcaption aria-hidden="true">image-20240410140559921</figcaption>
-</figure></li>
+</li>
+<li>16bit WC：与DPHY一样。</li>
+<li>16bit  PH-CRC<ul>
+<li>数据包头(PH)的CRC码，计算前面4个字节，使得多bit错误被检测出来。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>数据包尾<ul>
+<li>16bit CRC(循环冗余校验) 检测输出数据是否有错误。</li>
+</ul>
+</li>
+<li>FILLER<ul>
+<li><a href="https://binbinqian.cn/2023/10/28/MIPI-CSI-1/">这篇博客</a>中介绍到CPHY中LLP层会确保传输的字节数目是2N的整数倍，在LLP层主要通过FILLER进行调节。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/./MIPI-CSI-2.assets/image-20240410140559921.png" alt="image-20240410140559921"></p>
+</li>
 </ul>
 
                 
