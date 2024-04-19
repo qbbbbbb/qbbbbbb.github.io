@@ -35,7 +35,7 @@
 <meta property="og:image" content="http://binbinqian.cn/2024/04/08/MIPI-CPHY-1/image-20240410203458625.png">
 <meta property="og:image" content="http://binbinqian.cn/2024/04/08/MIPI-CPHY-1/image-20240410201854749.png">
 <meta property="article:published_time" content="2024-04-08T05:18:32.000Z">
-<meta property="article:modified_time" content="2024-04-11T02:40:58.930Z">
+<meta property="article:modified_time" content="2024-04-19T02:55:49.638Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://binbinqian.cn/2024/04/08/MIPI-CPHY-1/image-20240410161404176.png">
@@ -260,7 +260,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k 字
+          2k 字
         
       </span>
     
@@ -271,7 +271,7 @@
         
         
         
-          24 分钟
+          17 分钟
         
       </span>
     
@@ -522,7 +522,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2024年4月11日 上午
+                    本文最后更新于：2024年4月19日 上午
                   
                 
               </p>
@@ -549,27 +549,6 @@ class="uri">https://blog.csdn.net/cy413026/article/details/133130068</a></li>
 <ul>
 <li>HS模式用于高速数据传输，电压摆幅较小，如250mV。</li>
 <li>LP模式用于传输控制信号，以及在Escape模式中，可以进行LPDT(低速数据传输)；电压摆幅较大，如1.2V.</li>
-</ul></li>
-<li><p>C-PHY Key characteristics</p>
-<ul>
-<li>Uses a group of three conductors, rather than conventional pairs.
-The group of three wires is called a Lane, and the individual Lines of
-the Lane are called A, B and C. C-PHY does not have a separate clock
-Lane.</li>
-<li>Within a three-wire Lane, two of the three wires are driven to
-opposite levels; the third wire is terminated to a mid-level (at either
-one end or both ends), and the voltages at which the wires are driven
-changes at every symbol.</li>
-<li>Multiple bits are encoded into each symbol epoch, the data rate is
-~2.28x the symbol rate. There is no additional overhead for line coding,
-such as 8b10b, which is not needed.</li>
-<li>Clock timing is encoded into each symbol. This is accomplished by
-requiring that the combination of voltages driven onto the wires must
-change at every symbol boundary. This simplifies clock recovery.</li>
-<li>The signal is received using a group of three differential
-receivers.</li>
-<li>The C-PHY interface can co-exist on the same pins/pads as the D-PHY
-interface signals.</li>
 </ul></li>
 <li><p>Lane Signal States</p>
 <ul>
