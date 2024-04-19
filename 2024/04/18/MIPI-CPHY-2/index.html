@@ -17,17 +17,35 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考  C-PHY 2.1 Spec https:&#x2F;&#x2F;blog.csdn.net&#x2F;xianghbo&#x2F;article&#x2F;details&#x2F;128992304 https:&#x2F;&#x2F;blog.csdn.net&#x2F;cy413026&#x2F;article&#x2F;details&#x2F;133130068    1. C-PHY 全局操作 1.1 传输数据结构  数据格式  HS模式下，最小数据单元是16bi">
+    <meta name="description" content="参考  C-PHY 2.1 Spec https:&#x2F;&#x2F;blog.csdn.net&#x2F;xianghbo&#x2F;article&#x2F;details&#x2F;128992304 https:&#x2F;&#x2F;blog.csdn.net&#x2F;cy413026&#x2F;article&#x2F;details&#x2F;133130068    1. 传输数据结构  数据格式  HS模式下，最小数据单元是16bit。 LP模式下，最小数据单元">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MIPI-CPHY-2">
-<meta property="og:url" content="http://binbinqian.cn/2024/04/08/MIPI-CPHY-2/index.html">
+<meta property="og:url" content="http://binbinqian.cn/2024/04/18/MIPI-CPHY-2/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考  C-PHY 2.1 Spec https:&#x2F;&#x2F;blog.csdn.net&#x2F;xianghbo&#x2F;article&#x2F;details&#x2F;128992304 https:&#x2F;&#x2F;blog.csdn.net&#x2F;cy413026&#x2F;article&#x2F;details&#x2F;133130068    1. C-PHY 全局操作 1.1 传输数据结构  数据格式  HS模式下，最小数据单元是16bi">
+<meta property="og:description" content="参考  C-PHY 2.1 Spec https:&#x2F;&#x2F;blog.csdn.net&#x2F;xianghbo&#x2F;article&#x2F;details&#x2F;128992304 https:&#x2F;&#x2F;blog.csdn.net&#x2F;cy413026&#x2F;article&#x2F;details&#x2F;133130068    1. 传输数据结构  数据格式  HS模式下，最小数据单元是16bit。 LP模式下，最小数据单元">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-04-08T05:18:32.000Z">
-<meta property="article:modified_time" content="2024-04-11T02:16:12.747Z">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/18/MIPI-CPHY-2/image-20240411104606168.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/18/MIPI-CPHY-2/image-20240411112138494.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/18/MIPI-CPHY-2/image-20240411135641293.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/18/MIPI-CPHY-2/image-20240411135907249.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/18/MIPI-CPHY-2/image-20240411140603257.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/18/MIPI-CPHY-2/image-20240411153813184.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/18/MIPI-CPHY-2/image-20240411144637406.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/18/MIPI-CPHY-2/image-20240411145600757.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/18/MIPI-CPHY-2/image-20240417222531178.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/18/MIPI-CPHY-2/image-20240417222555775.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/18/MIPI-CPHY-2/image-20240417225252197.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/18/MIPI-CPHY-2/image-20240417230318303.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/18/MIPI-CPHY-2/image-20240417231257190.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/18/MIPI-CPHY-2/image-20240418105643856.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/18/MIPI-CPHY-2/image-20240418162032041.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/18/MIPI-CPHY-2/image-20240418164207591.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/18/MIPI-CPHY-2/image-20240418165354247.png">
+<meta property="article:published_time" content="2024-04-18T05:18:32.000Z">
+<meta property="article:modified_time" content="2024-04-19T02:52:14.476Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://binbinqian.cn/2024/04/18/MIPI-CPHY-2/image-20240411104606168.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -237,8 +255,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-04-08 13:18" pubdate>
-          2024年4月8日 下午
+        <time datetime="2024-04-18 13:18" pubdate>
+          2024年4月18日 下午
         </time>
       </span>
     
@@ -249,7 +267,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          272 字
+          5.6k 字
         
       </span>
     
@@ -260,7 +278,7 @@
         
         
         
-          3 分钟
+          47 分钟
         
       </span>
     
@@ -377,7 +395,7 @@
     
       
       
-        <a href="/2024/04/08/MIPI-CPHY-2/" title="MIPI-CPHY-2"
+        <a href="/2024/04/18/MIPI-CPHY-2/" title="MIPI-CPHY-2"
            class="list-group-item list-group-item-action
            active">
           <span class="category-post">MIPI-CPHY-2</span>
@@ -511,7 +529,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2024年4月11日 上午
+                    本文最后更新于：2024年4月19日 上午
                   
                 
               </p>
@@ -530,8 +548,7 @@ class="uri">https://blog.csdn.net/cy413026/article/details/133130068</a></li>
 </ul></li>
 </ul>
 <hr />
-<h2 id="c-phy-全局操作">1. C-PHY 全局操作</h2>
-<h3 id="传输数据结构">1.1 传输数据结构</h3>
+<h2 id="传输数据结构">1. 传输数据结构</h2>
 <ul>
 <li>数据格式
 <ul>
@@ -543,6 +560,359 @@ class="uri">https://blog.csdn.net/cy413026/article/details/133130068</a></li>
 <li>其中s6被设置为最高位，s0被设置为最低位。</li>
 <li>先传输s0，之后是s1...s6。</li>
 </ul></li>
+</ul>
+<h3 id="encoding-decoding">1.1 Encoding, Decoding</h3>
+<ul>
+<li><p>参考<a
+href="https://binbinqian.cn/2024/04/08/MIPI-CPHY-1/">这篇博客</a>中的第1节中Figure3流程图，下面将着重介绍其中部分模块。</p></li>
+<li><p>Encoder相关的发射电路如下图所示。</p>
+<ul>
+<li>其中Transmit Symbol Encoding Logic 模块产生需要发送的Wire
+State。</li>
+<li>之后通过Transmit Pre-Drivers模块将3bit的Wire State发送出去。</li>
+</ul>
+<figure>
+<img src="image-20240411104606168.png" alt="image-20240411104606168" />
+<figcaption aria-hidden="true">image-20240411104606168</figcaption>
+</figure></li>
+<li><p>Decoder相关的接收电路如下图所示。</p>
+<ul>
+<li>主要包含两部分功能模块：Decoder以及时钟恢复电路。</li>
+<li>Decoder根据查找表、当前UI接收的Wire State以及前一UI接收的Wire
+State判断Symbol值。</li>
+</ul>
+<figure>
+<img src="image-20240411112138494.png" alt="image-20240411112138494" />
+<figcaption aria-hidden="true">image-20240411112138494</figcaption>
+</figure></li>
+</ul>
+<h2 id="lane-states-and-line-levels">2. Lane States and Line Levels</h2>
+<ul>
+<li><p>HS Mode &amp; LP Mode</p>
+<ul>
+<li><p>HS-TX始终以差分方式驱动Lane，而LP-TX是独立的驱动Lane中的一根线，并且以单端方式进行。</p>
+<figure>
+<img src="image-20240411135641293.png" alt="image-20240411135641293" />
+<figcaption aria-hidden="true">image-20240411135641293</figcaption>
+</figure></li>
+<li><p>HS和LP模式下Lane的状态码如下表所示。</p>
+<figure>
+<img src="image-20240411135907249.png" alt="image-20240411135907249" />
+<figcaption aria-hidden="true">image-20240411135907249</figcaption>
+</figure></li>
+</ul></li>
+<li><p>Alternate Low-Power(ALP) Mode</p>
+<ul>
+<li><p>ALP Mode除了HS Mode的六种状态外还定义了两种状态：ALP-Pause
+State和ALP-Pause Wake State。</p></li>
+<li><p>ALP模式下也是差分信号传输。</p></li>
+<li><p>在ALP-Pause模式下，将Lane的三条线设置为相同电压值。</p>
+<ul>
+<li>ALP-Pause可以进一步分为ALP-Pause Stop和ALP-Pause
+ULPS状态，具体由电平设置决定。</li>
+</ul></li>
+<li><p>Reciever端辨别ALP-Pause State和ALP-Wake
+State的转化是通过电平转变实现的。</p>
+<figure>
+<img src="image-20240411140603257.png" alt="image-20240411140603257" />
+<figcaption aria-hidden="true">image-20240411140603257</figcaption>
+</figure></li>
+</ul></li>
+</ul>
+<h2 id="操作模式">3. 操作模式</h2>
+<h3 id="hs-lp-操作模式">3.1 HS &amp; LP 操作模式</h3>
+<ul>
+<li>主要涉及到的几种操作模式包括
+<ul>
+<li>HS Data or Calibration Burst</li>
+<li>Turnaround Procedure</li>
+<li>Escape Command</li>
+</ul></li>
+<li>操作状态序列具体可见协议P41.</li>
+</ul>
+<h3 id="高速数据传输">3.2 高速数据传输</h3>
+<ul>
+<li><p>高速数据以突发形式传输，为了帮助接收端同步，在发射端可以对发送的数据的开始和结束进行扩展(Premable、Post
+Sequence)。</p></li>
+<li><p>C-PHY中存在与D-PHY相同的SOT和EOT序列，应在突发传输数据的前端和后端。</p></li>
+<li><p>下图为高速数据传输波形图。</p>
+<ul>
+<li>LP111-LP001-LP000，标识高速数据传输即将开始。之后关闭低功耗驱动器，打开高速传输驱动器。</li>
+<li>之后经过t3-PREPARE时间后，开始发送<strong>前导码</strong>。
+<ul>
+<li>前导码主要包含三部分：t3-PREBEGIN，t3-PROGSEQ，t3-PREEND.</li>
+<li>t3-PREBEGIN前几个Wire
+State可能接收端无法接收，t3-SETTLE之后，接收器启用，可以接收发送端发送的数据，并对其进行解码。
+<ul>
+<li>t3-PREBEGIN是由多组 7个3 组合的，具体数目可由设计者指定。</li>
+</ul></li>
+<li>t3-PROGSEQ设计者可选择是否包含，但应注意该部分不可以包含Sync Word,
+Post sequence, and ALP Codes。下图两张图分别是包含和不包含的情况。</li>
+<li>t3-PREEND包含了一组7个3的组合。</li>
+<li>前导码的长度主要取决于接收端电路实现。</li>
+</ul></li>
+<li>前导码之后是<strong>Sync
+Word</strong>，其标识了数据包的开始，并可用作数据包的定时对齐。其组合包含4，4，4，4.</li>
+<li><strong>Post</strong>
+<ul>
+<li>当接收器检测到七个连续的'4'，标识Packet
+Data数据传输完成。可以有多组，取决于接收端电路设计。</li>
+<li>Post状态长度可调，与t3-PREBEGIN类似。</li>
+</ul></li>
+<li>在t3-POST结束时，高速传输驱动器关闭，低功耗驱动器打开，并进入状态<strong>LP-111</strong>。</li>
+</ul>
+<figure>
+<img src="image-20240411153813184.png" alt="image-20240411153813184" />
+<figcaption aria-hidden="true">image-20240411153813184</figcaption>
+</figure></li>
+</ul>
+<h3 id="alp-操作模式">3.3 ALP 操作模式</h3>
+<ul>
+<li><p>ALP传输情况如下图所示。</p>
+<figure>
+<img src="image-20240411144637406.png" alt="image-20240411144637406" />
+<figcaption aria-hidden="true">image-20240411144637406</figcaption>
+</figure>
+<ul>
+<li><p>（1）高速数据传输以ALP-Pause Stop或ALP-Pause
+ULPS开始，该阶段，Lane的三根线都被驱动到相同的电平。</p></li>
+<li><p>（2）Transmitter发送”+x“ state
+来唤醒Reciever，该阶段被称为ALP-Pause-Wake。</p></li>
+<li><p>（3）Transmitter开始发送前导码。</p>
+<ul>
+<li>前导码是用于同步接收端和发送端的符号序列，可保证正确的数据传输。</li>
+<li>前导码由全3序列/全1序列组成，具体由突发传输类型决定。</li>
+</ul></li>
+<li><p>（4）前导码发送之后发送包数据，主要根据传输类型进行划分，如下图所示，共介绍了5种不同情况。</p></li>
+<li><p>（5）在任何突发传输完成之后，Transmitter会发送Stop Code/ULPS
+Code，后续需要发送Post2序列，来通知Reciever需要立即进入ALP-Pause
+Stop/ULPS状态。</p>
+<ul>
+<li>在PHY层，从ALP-Pause ULPS 状态唤醒时间比从 ALP-Pause Stop
+状态唤醒时间要更长，这样具有更低的功耗。</li>
+</ul>
+<figure>
+<img src="image-20240411145600757.png" alt="image-20240411145600757" />
+<figcaption aria-hidden="true">image-20240411145600757</figcaption>
+</figure></li>
+</ul></li>
+<li><p>ALP传输种的Code</p>
+<ul>
+<li>Trigger Code
+<ul>
+<li>与DPHY相同，Trigger被包含在Escape模式下，在Trans端，LLP通过PPI发送
+Trig Code 给
+PHY层；在Recie端，PHY层接收，并通过PPI传输给LLP层，作为一个标志，进行操作。</li>
+<li>在ALP模式下，Trigger Code包含Trig 1 Code、Trig 2 Code、Reset
+Trig、Trig 3 Code、Trig 4 Code 和 Trig 5 Code。</li>
+</ul></li>
+<li>Spacer Code（间隔码）
+<ul>
+<li>间隔码可以在前导码之后，Stop/ULPS Code之前的任何时间传输。</li>
+<li>间隔码期间并不执行任何操作。</li>
+<li>插入间隔码目的是为了在其它码之间插入间隔，或暂时暂停Lane中的传输。</li>
+</ul></li>
+<li>LPDT Start/Nibble Code
+<ul>
+<li>低功耗模式 - Escape Mode - Mode - LPDT（低功耗传输模式）</li>
+<li>LPDT传输格式如 Fig.33 所示，前导码之后是LPDT Start
+Code，标识着LPDT传输的开始。</li>
+<li>两个LPDT Nibble以1Byte为传输单位，第1个LPDT Nibble是字节LSB
+4bit数据编码得到的，第二个LPDT Nibble是字节MSB 4bit数据编码得到的。</li>
+<li>LP Data 被编码为LPDT
+Nibble序列：S<sub>1</sub>04444S<sub>0</sub>，其中S<sub>0</sub>是LSB
+Symbol，S1是MSB Symbol。对应表格可以在Spec P56查找。
+<ul>
+<li>LPDT Nibble 序列是7bit的5进制数据。</li>
+</ul></li>
+</ul></li>
+<li>Post1/2 Code
+<ul>
+<li>在高速数据传输模式下，协议要求TX端在发送高速数据之后，发送Stop/ULPS
+Code之前，需要发送<strong>Post1</strong>序列。
+<ul>
+<li>Post1序列的作用在于保证高速数据传输状态与Stop/ULPS状态之间存在一个间隔，确保接收端可以准确的识别高速数据突发传输的结束。</li>
+</ul></li>
+<li>在发送Stop/ULPS Code之后发送<strong>Post2</strong>序列。
+<ul>
+<li>Post2序列的作用在于为RX提供足够的时间来确保可以切换到ALP-Pause
+Stop/ULPS状态。</li>
+<li>TX端发送的Post2序列长度取决于RX端的电路设计。</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="bi-directional-lane-turnaround">4. Bi-Directional Lane
+Turnaround</h2>
+<ul>
+<li>对于双向Lane，它的传输方向可以通过Lane Turnaround操作进行改变。
+<ul>
+<li>注意，传输方向可以被改变，但是Primary和Secondary不应该改变。</li>
+</ul></li>
+<li>Turnaround可以在两种模式下进行：
+<ul>
+<li>在低功耗模式下，Control Mode下进行。</li>
+<li>Fast Lane Turnaround.</li>
+</ul></li>
+</ul>
+<h3 id="control-mode-lane-turnaround">4.1 Control Mode Lane
+Turnaround</h3>
+<ul>
+<li><p>控制模式下，Lane Turnaround 过程如下。</p></li>
+<li><p>Fig.36</p>
+<ul>
+<li>Primary和Secondary两侧的低功耗时钟周期t<sub>LPX</sub>可能不同，因此协议约束了两侧时钟周期的ratio范围。</li>
+<li>如果Lane还没有进入TX-LP-Yield状态，可以通过驱动Stop状态来终止Turnaround，Lane将返回Stop状态。</li>
+<li>如果Lane已进入TX-LP-Yield状态，不可以终止Turnaround。</li>
+</ul>
+<p><img src="image-20240417222531178.png" alt="image-20240417222531178" style="zoom:67%;" /></p>
+<p><img src="image-20240417222555775.png" alt="image-20240417222555775" style="zoom:67%;" /></p></li>
+</ul>
+<h3 id="fast-lane-turnaround">4.2 Fast Lane Turnaround</h3>
+<ul>
+<li><p>不需要返回低功耗模式，减小了双向通信延迟。</p></li>
+<li><p>传输过程如下图所示。</p>
+<ul>
+<li><p>在高速传输模式下，转向代码(TAC)在Post1 Code 和 Post2
+Code之间发送，以此通知RX端将要进行Turnaround。</p></li>
+<li><p>在Post2传输完成之后存在一个转向间隙(TGAP)，完成Primary和Secondary之间传输的转向，并禁用两侧的驱动输出，防止出现争用情况。</p></li>
+<li><p>TGAP之后，反向数据传输开始。</p>
+<figure>
+<img src="image-20240417225252197.png" alt="image-20240417225252197" />
+<figcaption aria-hidden="true">image-20240417225252197</figcaption>
+</figure></li>
+</ul></li>
+<li><p>下图为Control Mode与Fast Lane
+Mode下传输的比较，可以明显看到两者时间差。</p>
+<figure>
+<img src="image-20240417230318303.png" alt="image-20240417230318303" />
+<figcaption aria-hidden="true">image-20240417230318303</figcaption>
+</figure></li>
+<li><p>下图为Fast Lane Turnaround 详细的事件序列。</p>
+<ul>
+<li>其中TAC符号序列为: ‘2144441’，其中LSB：1被先传输，MSB：2被最后传输。
+<ul>
+<li>为了保证传输准确性，可以发送多个TAC序列。</li>
+</ul></li>
+<li>当Second Transmitting
+Devices接收到TAC序列，它开启一个计数器决定TGAP的终止时刻。
+<ul>
+<li>因为TGAP期间没有传输进行，Second Tx
+无法确定何时可以开始前导码的传输。</li>
+<li>同时，First
+Tx端也在发送TAC之后开始计数，以此判断何时终止传输Post2.</li>
+</ul></li>
+</ul>
+<figure>
+<img src="image-20240417231257190.png" alt="image-20240417231257190" />
+<figcaption aria-hidden="true">image-20240417231257190</figcaption>
+</figure></li>
+<li><p>中断Turnaround</p>
+<ul>
+<li>如果Lane还未传输TAC，可以中断Fast Lane
+Turnaround，此时LLP层可以通过PPI发送一个Stop/ULPS码给PHY层，此时Lane将返回到ALP-Pause-Stop/ALP-Pause-ULPS状态。</li>
+<li>如果Lane发送了TAC，那么Fast Lane Turnaround无法被终止。</li>
+</ul></li>
+</ul>
+<h2 id="escape-mode">5. Escape Mode</h2>
+<ul>
+<li><p>下图是以进入Escape Mode下的 Reset Trigger为例。</p>
+<ul>
+<li>Lane 通过(LP-111, LP-100, LP-000, LP-001, LP-000)进入Escape Mode。
+<ul>
+<li>如果在最终状态LP-000之前观察到了有LP-111状态，则逃逸模式将被终止。</li>
+</ul></li>
+<li>当进入Escape Mode，需要发送一个8bit的Entry
+Command指定进入具体的某个mode/trig。</li>
+<li>与DPHY一样，CPHY在Escape mode下也是使用Spaced-One-Hot的 encoding
+的方式做数据的异步传输。
+<ul>
+<li>Spaced-One-Hot 是由one-hot bit (LP-001/LP-010/LP-100)和 spaced
+bit(LP-000)组成.</li>
+<li>CLK可以通过Data Lane解析得到。</li>
+</ul></li>
+<li>可以通过Stop状态退出 Escape
+模式，但不可以在Escape操作进行时退出。</li>
+</ul>
+<p><img src="image-20240418105643856.png" alt="image-20240418105643856" style="zoom:67%;" /></p></li>
+<li><p>LPDT</p>
+<ul>
+<li><p>下图为Entry
+Command指定为LPDT模式，数据将在低功耗模式下进行传输。</p>
+<ul>
+<li>其可以在传输字节之间插入Pause状态。</li>
+<li>使用LPDT，解析出的时钟频率一般小于20MHz。</li>
+</ul>
+<figure>
+<img src="image-20240418162032041.png" alt="image-20240418162032041" />
+<figcaption aria-hidden="true">image-20240418162032041</figcaption>
+</figure></li>
+</ul></li>
+<li><p>ULPS</p>
+<ul>
+<li>当Entry Command指定为ULPS模式，Lane将处于space state(LP-000)。</li>
+</ul></li>
+</ul>
+<h2 id="calibration">6. Calibration</h2>
+<ul>
+<li>对于工作速率超过3Gbps的数据传输，需要添加校准电路。</li>
+</ul>
+<h3 id="calibration-format">6.1 Calibration Format</h3>
+<ul>
+<li><p>下图为添加了校准序列与未添加校准序列的对比。</p>
+<ul>
+<li>带校准序列的包是由全'1'组成的，接收机很容易区分于普通传输的前导序列，后者为全'3'序列组成，共有三种格式。</li>
+<li>对于能够根据接收序列进行校准的接收机，可以无需带有校准序列的数据格式，普通格式即可。</li>
+</ul>
+<figure>
+<img src="image-20240418164207591.png" alt="image-20240418164207591" />
+<figcaption aria-hidden="true">image-20240418164207591</figcaption>
+</figure></li>
+<li><p>三种格式具体传输序列如下图所示。</p>
+<ul>
+<li>Format 1
+<ul>
+<li>仅将前导序列更改为校准序列，校准序列由多组7个’1‘组成，TX端可控校准序列长度。</li>
+</ul></li>
+<li>Format 2
+<ul>
+<li>将前导序列更改为三部分
+<ul>
+<li>t<sub>3-CALPREAMBLE</sub>：由全'1'序列组成，其长度范围：1*7-256*7
+UI.</li>
+<li>t<sub>3-ASID</sub>：备用序列标识符，由7个UI的3组成，长度固定为7UI，用于告知RX端，备用序列字段即将到来。</li>
+<li>t<sub>3-CALALTSEQ</sub>：备用序列字段，是一组由 PRBS9（Pseudorandom
+Binary Sequence
+9）伪随机序列组成（具体如何生成，可参考协议P86），之后按照CPHY的encoding和mapping，生成Lane上传输的序列。
+<ul>
+<li>其作用在于在传输过程中提供一种备用的数据模式，用于RX端的校准和自适应。</li>
+<li>其长度范围：1*7-2048*7 UI.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Format 3
+<ul>
+<li>将前导序列更改为三部分
+<ul>
+<li>t<sub>3-CALPREAMBLE</sub>：由全'1'序列组成，其长度范围：1*7-256*7
+UI.</li>
+<li>t<sub>3-UDID</sub>：用户定义序列标识符，MSB-LSB：3333313，长度固定为7UI，用于告知RX端，用户定义序列字段即将到来。</li>
+<li>t<sub>3-CALUDEFSEQ</sub>：用户定义序列字段，由用户定义的一系列符号组成。
+<ul>
+<li>其长度范围：1*7-2048*7 UI.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<figure>
+<img src="image-20240418165354247.png" alt="image-20240418165354247" />
+<figcaption aria-hidden="true">image-20240418165354247</figcaption>
+</figure></li>
+</ul>
+<h3 id="calibration-operation">6.2 Calibration operation</h3>
+<ul>
+<li>当检测到前导校准序列，校准开始。</li>
+<li>具体校准流程参考协议P89.</li>
 </ul>
 
                 
@@ -590,7 +960,7 @@ class="uri">https://blog.csdn.net/cy413026/article/details/133130068</a></li>
   <div class="license-box my-3">
     <div class="license-title">
       <div>MIPI-CPHY-2</div>
-      <div>http://binbinqian.cn/2024/04/08/MIPI-CPHY-2/</div>
+      <div>http://binbinqian.cn/2024/04/18/MIPI-CPHY-2/</div>
     </div>
     <div class="license-meta">
       
@@ -602,7 +972,7 @@ class="uri">https://blog.csdn.net/cy413026/article/details/133130068</a></li>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年4月8日</div>
+          <div>2024年4月18日</div>
         </div>
       
       
@@ -634,18 +1004,12 @@ class="uri">https://blog.csdn.net/cy413026/article/details/133130068</a></li>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/04/08/MIPI-DPHY/" title="MIPI-DPHY">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MIPI-DPHY</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/04/08/MIPI-CPHY-1/" title="MIPI-CPHY-1">
-                        <span class="hidden-mobile">MIPI-CPHY-1</span>
+                      <a href="/2024/04/08/MIPI-DPHY/" title="MIPI-DPHY">
+                        <span class="hidden-mobile">MIPI-DPHY</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

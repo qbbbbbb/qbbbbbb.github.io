@@ -35,7 +35,7 @@
 <meta property="og:image" content="http://binbinqian.cn/2024/04/08/MIPI-CPHY-1/image-20240410203458625.png">
 <meta property="og:image" content="http://binbinqian.cn/2024/04/08/MIPI-CPHY-1/image-20240410201854749.png">
 <meta property="article:published_time" content="2024-04-08T05:18:32.000Z">
-<meta property="article:modified_time" content="2024-04-10T14:39:41.870Z">
+<meta property="article:modified_time" content="2024-04-11T02:40:58.930Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://binbinqian.cn/2024/04/08/MIPI-CPHY-1/image-20240410161404176.png">
@@ -388,7 +388,7 @@
     
       
       
-        <a href="/2024/04/08/MIPI-CPHY-2/" title="MIPI-CPHY-2"
+        <a href="/2024/04/18/MIPI-CPHY-2/" title="MIPI-CPHY-2"
            class="list-group-item list-group-item-action
            ">
           <span class="category-post">MIPI-CPHY-2</span>
@@ -522,7 +522,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2024年4月10日 晚上
+                    本文最后更新于：2024年4月11日 上午
                   
                 
               </p>
@@ -586,14 +586,16 @@ state)到下一个UI导线状态变化的编码。即有5种编码方式，分�
 <ul>
 <li>变化规律
 <ul>
-<li>bit[2]:表示只有线态正负之间的跳变，其他不变，+x与-x之间，+y与-y之间。此时bit[1:0]=2'b00</li>
-<li>bit[1]: 0表示线态跳变是逆时针，1表示顺时针</li>
-<li>bit[0]: 1表示线态之间极性发生变化，且线态xyz符号也发生了变化</li>
+<li>bit[2]:表示只有线态正负之间的跳变，其他不变，+x与-x之间，+y与-y之间。此时bit[1:0]=2'b00，<strong>Flip</strong></li>
+<li>bit[1]:
+0表示线态跳变是逆时针，1表示顺时针，<strong>Rotation</strong></li>
+<li>bit[0]:
+1表示线态之间极性发生变化，且线态xyz符号也发生了变化，<strong>Polarity</strong></li>
 </ul></li>
 </ul></li>
 <li><p>C-PHY的HS模式下，数据传输的最小单元是两个字节即16bit，而16bit至少需要7个5进制符号进行传输。因此每个符号可传输2.28bit数据。
 <span class="math display">\[
-log_25=2.3219...\\
+log_25=2.3219... \\
 7*log_25=16.2533\ bit \\
 16/7 = 2.28...
 \]</span> ​
@@ -604,9 +606,10 @@ log_25=2.3219...\\
 <ul>
 <li><p><strong>TX端</strong>，将16bit数据通过Mapper映射为7个5进制的Symbol，共21bit。</p></li>
 <li><p>之后通过并-串转换器，将7个Symbol转化为串行的，输出为3bit。</p></li>
-<li><p>经过符号编码器及三线驱动器输出A,B,C。</p></li>
-<li><p><strong>RX端</strong>，存在三个差分接收器，分别接收A-B、B-C、C-A。</p></li>
-<li><p>差分输出送到符号解码器和时钟恢复电路中。</p></li>
+<li><p>符号编码器根据当前的3bit符号值以及上一个UI Wire
+State的值，将符号转换为这个UI的Wire State。</p></li>
+<li><p><strong>RX端</strong>，符号解码器根据当前UI的Wire State和上一个UI
+Wire State，计算出接收到的符号值。</p></li>
 <li><p>之后通过串-并转换器，及Demapper，最后得到16bit数据。</p>
 <figure>
 <img src="image-20240410165247393.png" alt="image-20240410165247393" />
@@ -775,9 +778,9 @@ Module外，PHY适配层，它将所有的Lane、时钟单元以及协议接口�
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/04/08/MIPI-CPHY-2/" title="MIPI-CPHY-2">
+                      <a href="/2024/04/08/MIPI-DPHY/" title="MIPI-DPHY">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MIPI-CPHY-2</span>
+                        <span class="hidden-mobile">MIPI-DPHY</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
