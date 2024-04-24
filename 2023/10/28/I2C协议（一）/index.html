@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;362287272 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;282949543 https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhangduang_KHKW&#x2F;article&#x2F;details&#x2F;121953275     波形文件来自NXP的IIC user manual.   1. I2C">
+    <meta name="description" content="参考 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;362287272 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;282949543 https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhangduang_KHKW&#x2F;article&#x2F;details&#x2F;121953275      波形文件来自NXP的IIC user manual.   1. I2C 用来做什么？ 全称：Int">
 <meta property="og:type" content="article">
 <meta property="og:title" content="I2C协议（一）">
 <meta property="og:url" content="http://binbinqian.cn/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考  https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;362287272 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;282949543 https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhangduang_KHKW&#x2F;article&#x2F;details&#x2F;121953275     波形文件来自NXP的IIC user manual.   1. I2C">
+<meta property="og:description" content="参考 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;362287272 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;282949543 https:&#x2F;&#x2F;blog.csdn.net&#x2F;zhangduang_KHKW&#x2F;article&#x2F;details&#x2F;121953275      波形文件来自NXP的IIC user manual.   1. I2C 用来做什么？ 全称：Int">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%80%EF%BC%89/3201119-20230618154435605-1791635155.png">
 <meta property="og:image" content="http://binbinqian.cn/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%80%EF%BC%89/3201119-20230618155923953-611387111.png">
@@ -402,92 +402,81 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考
-<ul>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/362287272"
-class="uri">https://zhuanlan.zhihu.com/p/362287272</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/282949543"
-class="uri">https://zhuanlan.zhihu.com/p/282949543</a></li>
-<li><a
-target="_blank" rel="noopener" href="https://blog.csdn.net/zhangduang_KHKW/article/details/121953275"
-class="uri">https://blog.csdn.net/zhangduang_KHKW/article/details/121953275</a></li>
-</ul></li>
+<li>参考<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/362287272">https://zhuanlan.zhihu.com/p/362287272</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/282949543">https://zhuanlan.zhihu.com/p/282949543</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangduang_KHKW/article/details/121953275">https://blog.csdn.net/zhangduang_KHKW/article/details/121953275</a></li>
 </ul>
-<hr />
+</li>
+</ul>
+<hr>
 <ul>
 <li>波形文件来自NXP的IIC user manual.</li>
 </ul>
-<hr />
-<h2 id="i2c-用来做什么">1. I2C 用来做什么？</h2>
-<ul>
+<hr>
+<h2 id="1-I2C-用来做什么？"><a href="#1-I2C-用来做什么？" class="headerlink" title="1. I2C 用来做什么？"></a>1. I2C 用来做什么？</h2><ul>
 <li>全称：Inter-Integrated Circuit.</li>
-<li>一个双向，两线（SCL/SDA）制总线协议；用于主控器件和外围设备器件互联通信。简化PCB布线，降低成本。</li>
-<li>I2C是一种多主机总线，所以也提供了仲裁功能，仲裁相关内容见<a
-target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17489279.html">这篇博客</a>。</li>
+<li>一个双向，两线（SCL&#x2F;SDA）制总线协议；用于主控器件和外围设备器件互联通信。简化PCB布线，降低成本。</li>
+<li>I2C是一种多主机总线，所以也提供了仲裁功能，仲裁相关内容见<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17489279.html">这篇博客</a>。</li>
 </ul>
-<h2 id="i2c-的5种速率模式">2. I2C 的5种速率模式</h2>
-<ul>
-<li>对于不同的器件使用不同的模式，一共有5种模式，具体可看<a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/362287272">这篇文章</a>.</li>
+<h2 id="2-I2C-的5种速率模式"><a href="#2-I2C-的5种速率模式" class="headerlink" title="2. I2C 的5种速率模式"></a>2. I2C 的5种速率模式</h2><ul>
+<li>对于不同的器件使用不同的模式，一共有5种模式，具体可看<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/362287272">这篇文章</a>.</li>
 </ul>
-<h2 id="通信过程">3. 通信过程</h2>
-<ul>
+<h2 id="3-通信过程"><a href="#3-通信过程" class="headerlink" title="3. 通信过程"></a>3. 通信过程</h2><ul>
 <li>（1）当总线空闲时，SDA和SCL都处于高电平状态。</li>
-<li>（2）当主设备决定开始通讯时，需要<strong>首先发送开始信号</strong>
-。</li>
-<li>（3）发送从机设备的地址（7
-bits）以及1bit数据传送方向（R/W）；一共8bit，一个字节大小的数据。</li>
+<li>（2）当主设备决定开始通讯时，需要<strong>首先发送开始信号</strong> 。</li>
+<li>（3）发送从机设备的地址（7 bits）以及1bit数据传送方向（R&#x2F;W）；一共8bit，一个字节大小的数据。</li>
 <li>（4）被寻址的从机发送应答信号给主机。</li>
-<li>（5）发送器送出一个字节的数据，接收器收到完毕返回一个应答信号给主机。（发送器和接收器根据（3）中指定的传送方向分别选择为主机/从机）。</li>
+<li>（5）发送器送出一个字节的数据，接收器收到完毕返回一个应答信号给主机。（发送器和接收器根据（3）中指定的传送方向分别选择为主机&#x2F;从机）。</li>
 <li>（6）重复（5）直到通信完成后，主机发送停止信号释放总线。</li>
 <li>注意：<strong>发送数据过程中不可以改变数据传送方向，在（3）那步指定之后就不可更改。</strong>除非重启通信。</li>
 </ul>
-<h2 id="i2c的基础信号">4. I2C的基础信号</h2>
-<ul>
+<h2 id="4-I2C的基础信号"><a href="#4-I2C的基础信号" class="headerlink" title="4. I2C的基础信号"></a>4. I2C的基础信号</h2><ul>
 <li><p>起始、停止、应答和非应答信号。</p>
 <ul>
 <li>起始信号：SCL处于高电平时，SDA从高电平到低电平变化，为起始信号。</li>
 <li>停止信号：SCL处于高电平时，SDA从低电平到高电平变化，为停止信号。</li>
 </ul>
-<p><img src="3201119-20230618154435605-1791635155.png" /></p>
+<p><img src="/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%80%EF%BC%89/3201119-20230618154435605-1791635155.png"></p>
 <ul>
-<li>应答信号：其出现在一个字节传输完成之后，第9个SCL时钟周期内，SDA总线的控制权从主机给到从机，SDA总线由于上拉电阻的原因为高，如果从机正确的收到了数据，那么会将SDA拉低。
-<ul>
-<li>主机发现SDA被拉低之后，可以选择下一步操作（发下一字节的传输/停止传输）。</li>
+<li>应答信号：其出现在一个字节传输完成之后，第9个SCL时钟周期内，SDA总线的控制权从主机给到从机，SDA总线由于上拉电阻的原因为高，如果从机正确的收到了数据，那么会将SDA拉低。<ul>
+<li>主机发现SDA被拉低之后，可以选择下一步操作（发下一字节的传输&#x2F;停止传输）。</li>
 <li>需要注意，应答信号是接收设备给发送设备的反馈信号，而并不一定是从机给主机的反馈信号。</li>
-</ul></li>
 </ul>
-<p><img src="3201119-20230618155923953-611387111.png" /></p>
+</li>
+</ul>
+<p><img src="/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%80%EF%BC%89/3201119-20230618155923953-611387111.png"></p>
 <ul>
-<li>非应答信号：第9个SCL时钟周期，SDA保持高电平，表示非应答，主机就需要发送停止信号，结束通信。以下情况可能会出现非应答：
-<ul>
+<li>非应答信号：第9个SCL时钟周期，SDA保持高电平，表示非应答，主机就需要发送停止信号，结束通信。以下情况可能会出现非应答：<ul>
 <li>主机指定的地址，I2C总线上没有对应地址的从机设备。</li>
 <li>主机发送从机地址，希望通信时；从机正忙，没办法通信。</li>
 <li>主机接收从机发送的数据，主机产生非应答信号，告诉从机不要再发数据了，传输结束了。</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><p>数据有效性</p>
 <ul>
 <li>I2C在进行数据传送时，在SCL为低电平时发送器向SDA上送1bit数据，此时SDA可以发生变化；在SCL为高电平时，接收器从SDA上采样1bit数据，SDA需要保持稳定。</li>
-</ul></li>
 </ul>
-<p><img src="3201119-20230618154320356-1776344245.png" /></p>
-<ul>
-<li>I2C传输的一帧有9位信号，包括一个字节的传输信号和1bit的应答/非应答信号。对于第一笔主机发送从机的传输包括（地址7bits
-+ 传输方向1bit）+ 1bit应答信号。
-<ul>
-<li>对于1字节的数据，先发送高位，再传送低位。<br />
 </li>
-</ul></li>
-<li>前面介绍的SCL和SDA高低电平判断有些混乱，这里做一下总结。
-<ul>
-<li>在开始和结束的判断，需要判断SCL信号为高电平时，SDA的变化。</li>
-<li>在采样SDA时，需要判断SCL信号是否为高电平/低电平采样。</li>
-<li>在判断应答/非应答，需要在SCL为高电平时，判断SDA信号是否被拉高/拉低。</li>
-</ul></li>
 </ul>
-<hr />
-<p>如有问题，请指正！！</p>
+<p><img src="/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%80%EF%BC%89/3201119-20230618154320356-1776344245.png"></p>
+<ul>
+<li>I2C传输的一帧有9位信号，包括一个字节的传输信号和1bit的应答&#x2F;非应答信号。对于第一笔主机发送从机的传输包括（地址7bits + 传输方向1bit）+ 1bit应答信号。<ul>
+<li>对于1字节的数据，先发送高位，再传送低位。</li>
+</ul>
+</li>
+<li>前面介绍的SCL和SDA高低电平判断有些混乱，这里做一下总结。<ul>
+<li>在开始和结束的判断，需要判断SCL信号为高电平时，SDA的变化。</li>
+<li>在采样SDA时，需要判断SCL信号是否为高电平&#x2F;低电平采样。</li>
+<li>在判断应答&#x2F;非应答，需要在SCL为高电平时，判断SDA信号是否被拉高&#x2F;拉低。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>如有问题，请指正！！
+ </p>
 
                 
               </div>

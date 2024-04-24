@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考  http:&#x2F;&#x2F;www.cnblogs.com&#x2F;IClearner https:&#x2F;&#x2F;www.cnblogs.com&#x2F;ASIC-Horizon&#x2F;p&#x2F;10053487.html http:&#x2F;&#x2F;www.kiaic.com&#x2F;article&#x2F;detail&#x2F;2469.html https:&#x2F;&#x2F;blog.csdn.net&#x2F;uiojhi&#x2F;article&#x2F;details&#x2F;113575422 h">
+    <meta name="description" content="参考 http:&#x2F;&#x2F;www.cnblogs.com&#x2F;IClearner https:&#x2F;&#x2F;www.cnblogs.com&#x2F;ASIC-Horizon&#x2F;p&#x2F;10053487.html http:&#x2F;&#x2F;www.kiaic.com&#x2F;article&#x2F;detail&#x2F;2469.html https:&#x2F;&#x2F;blog.csdn.net&#x2F;uiojhi&#x2F;article&#x2F;details&#x2F;113575422 https:&#x2F;&#x2F;z">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DC相关理解（一）">
 <meta property="og:url" content="http://binbinqian.cn/2023/11/02/DC%E7%9B%B8%E5%85%B3%E7%90%86%E8%A7%A3%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考  http:&#x2F;&#x2F;www.cnblogs.com&#x2F;IClearner https:&#x2F;&#x2F;www.cnblogs.com&#x2F;ASIC-Horizon&#x2F;p&#x2F;10053487.html http:&#x2F;&#x2F;www.kiaic.com&#x2F;article&#x2F;detail&#x2F;2469.html https:&#x2F;&#x2F;blog.csdn.net&#x2F;uiojhi&#x2F;article&#x2F;details&#x2F;113575422 h">
+<meta property="og:description" content="参考 http:&#x2F;&#x2F;www.cnblogs.com&#x2F;IClearner https:&#x2F;&#x2F;www.cnblogs.com&#x2F;ASIC-Horizon&#x2F;p&#x2F;10053487.html http:&#x2F;&#x2F;www.kiaic.com&#x2F;article&#x2F;detail&#x2F;2469.html https:&#x2F;&#x2F;blog.csdn.net&#x2F;uiojhi&#x2F;article&#x2F;details&#x2F;113575422 https:&#x2F;&#x2F;z">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-11-02T02:56:22.000Z">
 <meta property="article:modified_time" content="2023-11-03T10:08:16.241Z">
@@ -249,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.2k 字
+          3.3k 字
         
       </span>
     
@@ -260,7 +260,7 @@
         
         
         
-          27 分钟
+          28 分钟
         
       </span>
     
@@ -667,217 +667,190 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考
-<ul>
-<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/IClearner"
-class="uri">http://www.cnblogs.com/IClearner</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ASIC-Horizon/p/10053487.html"
-class="uri">https://www.cnblogs.com/ASIC-Horizon/p/10053487.html</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.kiaic.com/article/detail/2469.html"
-class="uri">http://www.kiaic.com/article/detail/2469.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/uiojhi/article/details/113575422"
-class="uri">https://blog.csdn.net/uiojhi/article/details/113575422</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/139113465"
-class="uri">https://zhuanlan.zhihu.com/p/139113465</a></li>
-</ul></li>
+<li>参考<ul>
+<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/IClearner">http://www.cnblogs.com/IClearner</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ASIC-Horizon/p/10053487.html">https://www.cnblogs.com/ASIC-Horizon/p/10053487.html</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.kiaic.com/article/detail/2469.html">http://www.kiaic.com/article/detail/2469.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/uiojhi/article/details/113575422">https://blog.csdn.net/uiojhi/article/details/113575422</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/139113465">https://zhuanlan.zhihu.com/p/139113465</a></li>
 </ul>
-<hr />
-<h2 id="注意">注意</h2>
-<ul>
+</li>
+</ul>
+<hr>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul>
 <li>report_lib命令可以查看工艺库中常用的物理量单位。</li>
 <li>不要人为加紧对整个设计的约束，以免限制DC对真正关键的器件适当的优化。</li>
 </ul>
-<hr />
-<h2 id="dc做了什么">1. DC做了什么？</h2>
-<ol type="1">
-<li>对读入的设计（verilog/vhdl/system
-verilog）进行翻译，得到统一的格式GTECH。</li>
+<hr>
+<h2 id="1-DC做了什么？"><a href="#1-DC做了什么？" class="headerlink" title="1. DC做了什么？"></a>1. DC做了什么？</h2><ol>
+<li>对读入的设计（verilog&#x2F;vhdl&#x2F;system verilog）进行翻译，得到统一的格式GTECH。</li>
 <li>施加各种约束，接近实际电路，这样在库中才能选择更准确地映射器件；对时序和面积进行优化。</li>
 <li>选择合适工艺库中的器件一一映射。</li>
 </ol>
-<h2 id="做完综合可以得到什么">2. 做完综合可以得到什么？</h2>
-<ul>
-<li>.ddc
-包括映射的门电路信息与网表、.v格式的网表、延时信息（sdf）、设计约束（sdc）等信息。</li>
-<li>.v 网表，用作后仿真</li>
-<li>.sdf 描述设计网表中单元延迟以及互连线延迟，用作后仿真</li>
-<li>.sdc 约束文件，可以给到ICC，用于下一步布局布线</li>
-<li>Scan_def.def 扫描链布局信息</li>
+<h2 id="2-做完综合可以得到什么？"><a href="#2-做完综合可以得到什么？" class="headerlink" title="2. 做完综合可以得到什么？"></a>2. 做完综合可以得到什么？</h2><ul>
+<li>.ddc   包括映射的门电路信息与网表、.v格式的网表、延时信息（sdf）、设计约束（sdc）等信息。</li>
+<li>.v     网表，用作后仿真</li>
+<li>.sdf   描述设计网表中单元延迟以及互连线延迟，用作后仿真</li>
+<li>.sdc   约束文件，可以给到ICC，用于下一步布局布线</li>
+<li>Scan_def.def   扫描链布局信息</li>
 </ul>
-<h2 id="电路延迟模型">3. 电路延迟模型</h2>
-<ul>
-<li>器件延迟
-<ul>
-<li>NLDM
-<ul>
+<h2 id="3-电路延迟模型"><a href="#3-电路延迟模型" class="headerlink" title="3. 电路延迟模型"></a>3. 电路延迟模型</h2><ul>
+<li>器件延迟<ul>
+<li>NLDM  <ul>
 <li>表格得到的信息是上升下降沿delay的值以及output transition的值。</li>
 <li>查找表依照input transition，output load查找。</li>
 <li>65nm及更大工艺 准确可靠。</li>
 <li>电压源模型，随着连线金属电阻变大，电压源模型失真。</li>
-</ul></li>
-<li>CCS
-<ul>
+</ul>
+</li>
+<li>CCS   <ul>
 <li>电流源模型，查找表参数依然是input transition，output load。</li>
 <li>表中的值不再是定值，而是电流波形。</li>
-</ul></li>
+</ul>
+</li>
 <li>无论是CCS还是NLDM模型，都需要注意index不要超过查找表的range，否则计算结果不准确，没有参考意义。</li>
-</ul></li>
-<li>线延迟
-<ul>
-<li>WLM 线负载模型
-<ul>
+</ul>
+</li>
+<li>线延迟<ul>
+<li>WLM 线负载模型 <ul>
 <li>设计规模不同，模型不同，不准确</li>
 <li>关心线上挂了多少负载，计算RC模型。并不关心线长。</li>
-</ul></li>
-<li>Topographical Mode
-<ul>
-<li>先用DC跑一版不带物理约束（布局信息）的，得到ddc网表，用于ICC初步布局，吐出物理约束DEF文件，再跑DC综合，得到第二次的ddc网表文件，再给ICC布局布线。
-<ul>
-<li>DEF Design Exchange Format,
-用于不同软件之间的电路物理信息交互；对库单元以及他们的位置和连接关系进行描述。</li>
-</ul></li>
+</ul>
+</li>
+<li>Topographical Mode<ul>
+<li>先用DC跑一版不带物理约束（布局信息）的，得到ddc网表，用于ICC初步布局，吐出物理约束DEF文件，再跑DC综合，得到第二次的ddc网表文件，再给ICC布局布线。<ul>
+<li>DEF Design Exchange Format, 用于不同软件之间的电路物理信息交互；对库单元以及他们的位置和连接关系进行描述。</li>
+</ul>
+</li>
 <li>dc_shell -topo 模式启动</li>
 <li>该模式下需要使用compile_ultra</li>
-</ul></li>
-</ul></li>
 </ul>
-<h2 id="dc的几个库文件">4. DC的几个库文件</h2>
-<ul>
-<li>逻辑库
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-DC的几个库文件"><a href="#4-DC的几个库文件" class="headerlink" title="4. DC的几个库文件"></a>4. DC的几个库文件</h2><ul>
+<li><p>逻辑库</p>
 <ul>
 <li>逻辑单元相关信息</li>
 <li>设计规则约束</li>
 <li>针对特定工艺的操作条件及线负载模型（WLM）</li>
-</ul></li>
-<li>链接库（link_library）
+</ul>
+</li>
+<li><p>链接库（link_library）</p>
 <ul>
 <li>用于解析元件使用的逻辑库</li>
-</ul></li>
-<li>目标库 (target_library)
+</ul>
+</li>
+<li><p>目标库 (target_library)</p>
 <ul>
 <li>用于实现设计功能的逻辑库</li>
-</ul></li>
-<li>DC使用链接库中的单元对设计进行翻译，然后再将其优化、映射到目标库上。</li>
-<li>举个例子
-<ul>
-<li>link_library：tcbn65lpwc.db,dw_fondation.sldb；
-<ul>
-<li>其中dw_foundation.sldb 是Synopsys提供的Design
-Ware的综合库，除了在link_library中指定<strong>还需要在synthetic_library中指定</strong>。</li>
-<li>Design Ware库：它包含了一些IP，如一些基础运算和算术单元等（DWF_
-mult_ tc,DWF_ div_ uns和DWF_sqrt_tc单元等）。</li>
-</ul></li>
-<li>target_library：tcbn65lpwc.db</li>
-</ul></li>
-<li>symbol library
-<ul>
-<li>提供DC
-GUI界面设计实现的图形符号，如果使用脚本模式而不是图形模式，可以不指定。</li>
-</ul></li>
-<li>库文件一般都是.db结尾，该文件无法直接打开，需要找到对应的lib文件。</li>
 </ul>
-<h2 id="读入设计文件">5. 读入设计文件</h2>
-<ul>
-<li>analyze &amp; elaborate
-<ul>
-<li>analyze 对设计进行检查。 <figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">analyze -<span class="hljs-keyword">format</span> verilog -vcs <span class="hljs-string">&quot;-f filelist.f&quot;</span><br></code></pre></td></tr></table></figure></li>
-<li>elaborate
-将检查后的设计转化为工艺独立的GTECH设计。该指令可以自动link。
-<ul>
-<li>link：首先确认设计需要引用哪些库单元或子设计，然后在链接库中找这些单元，之后再将设计连接到链接库中的单元。</li>
-</ul></li>
-</ul></li>
-</ul>
-<h2 id="接口特性">6. 接口特性</h2>
-<ul>
-<li>为了保证使用约束语言对电路的每一条时序路径建模精准，我们需要考虑
-<ul>
-<li>输入/输出路径延迟约束，在<a
-target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17505346.html">这篇博客</a>中有详细介绍。</li>
-<li>接口的环境属性，下面详细展开。</li>
-</ul></li>
-</ul>
-<h3 id="输入端口的外部驱动特性">6.1 输入端口的外部驱动特性</h3>
-<ul>
-<li>对于输入端口来说，上一级的驱动能力以及输入端口的容性负载决定了输入信号的延迟时间和transition
-time。</li>
-<li>驱动能力是驱动阻抗的倒数，跳变时间是驱动阻抗和输入端口容性负载的乘积。
-<ul>
-<li>一个MOS管的开关模型是一个电阻串联一个开关，驱动阻抗越小，分压就越少，而负载上的电压越高，可以带起功率更大的负载来。</li>
-<li>跳变时间的计算是基于RC模型的。<br />
 </li>
-</ul></li>
-<li>几条指令区别
+<li><p>DC使用链接库中的单元对设计进行翻译，然后再将其优化、映射到目标库上。</p>
+</li>
+<li><p>举个例子</p>
 <ul>
-<li>set_driving_cell
-<ul>
-<li>模拟端口驱动器件，工具在库中找到更真实的transition。</li>
-</ul></li>
-<li>set_drive
-<ul>
-<li>通过为input/inout端口指定电阻值来定义外部驱动强度。</li>
-</ul></li>
-<li>set_input_transition
-<ul>
-<li>指定端口transition time。</li>
-</ul></li>
-<li>对于设计顶层端口进行驱动定义时,不可以使用set_drive_cell，因为不知道顶层端口的驱动单元是什么。</li>
-<li>对于时钟、复位信号这类大扇出的信号，一般设置set_drive
-0,表示驱动无穷大，并且设置set_dont_touch_network不让综合工具插入buffer。
-<ul>
-<li>因为综合时没有布局布线信息，即使综合工具针对时钟和复位进行了优化，也是不准确的，拿一个不准确的clk信号去分析setup和hold也没有意义；正确的做法就是不要处理，而要到后端再去做CTS。</li>
-<li>对于复位信号处理：满足恢复时间约束和撤销时间约束。create_buffer_tree
-（？？？）.</li>
-</ul></li>
-</ul></li>
+<li>link_library：tcbn65lpwc.db,dw_fondation.sldb；<ul>
+<li>其中dw_foundation.sldb 是Synopsys提供的Design Ware的综合库，除了在link_library中指定<strong>还需要在synthetic_library中指定</strong>。</li>
+<li>Design Ware库：它包含了一些IP，如一些基础运算和算术单元等（DWF_ mult_ tc,DWF_ div_ uns和DWF_sqrt_tc单元等）。</li>
 </ul>
-<h3 id="设置输入输出端口的负载">6.2 设置输入、输出端口的负载</h3>
+</li>
+<li>target_library：tcbn65lpwc.db</li>
+</ul>
+</li>
+<li><p>symbol library</p>
 <ul>
-<li>使用set_load指令对输入/输出容性负载进行定义。</li>
+<li>提供DC GUI界面设计实现的图形符号，如果使用脚本模式而不是图形模式，可以不指定。</li>
+</ul>
+</li>
+<li><p>库文件一般都是.db结尾，该文件无法直接打开，需要找到对应的lib文件。</p>
+</li>
+</ul>
+<h2 id="5-读入设计文件"><a href="#5-读入设计文件" class="headerlink" title="5. 读入设计文件"></a>5. 读入设计文件</h2><ul>
+<li>analyze &amp; elaborate<ul>
+<li>analyze 对设计进行检查。<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tcl">analyze -<span class="hljs-keyword">format</span> verilog -vcs <span class="hljs-string">&quot;-f filelist.f&quot;</span><br></code></pre></td></tr></table></figure></li>
+<li>elaborate 将检查后的设计转化为工艺独立的GTECH设计。该指令可以自动link。<ul>
+<li>link：首先确认设计需要引用哪些库单元或子设计，然后在链接库中找这些单元，之后再将设计连接到链接库中的单元。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-接口特性"><a href="#6-接口特性" class="headerlink" title="6. 接口特性"></a>6. 接口特性</h2><ul>
+<li>为了保证使用约束语言对电路的每一条时序路径建模精准，我们需要考虑<ul>
+<li>输入&#x2F;输出路径延迟约束，在<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17505346.html">这篇博客</a>中有详细介绍。</li>
+<li>接口的环境属性，下面详细展开。</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-1-输入端口的外部驱动特性"><a href="#6-1-输入端口的外部驱动特性" class="headerlink" title="6.1 输入端口的外部驱动特性"></a>6.1 输入端口的外部驱动特性</h3><ul>
+<li>对于输入端口来说，上一级的驱动能力以及输入端口的容性负载决定了输入信号的延迟时间和transition time。</li>
+<li>驱动能力是驱动阻抗的倒数，跳变时间是驱动阻抗和输入端口容性负载的乘积。<ul>
+<li>一个MOS管的开关模型是一个电阻串联一个开关，驱动阻抗越小，分压就越少，而负载上的电压越高，可以带起功率更大的负载来。</li>
+<li>跳变时间的计算是基于RC模型的。</li>
+</ul>
+</li>
+<li>几条指令区别<ul>
+<li>set_driving_cell<ul>
+<li>模拟端口驱动器件，工具在库中找到更真实的transition。</li>
+</ul>
+</li>
+<li>set_drive<ul>
+<li>通过为input&#x2F;inout端口指定电阻值来定义外部驱动强度。</li>
+</ul>
+</li>
+<li>set_input_transition<ul>
+<li>指定端口transition time。</li>
+</ul>
+</li>
+<li>对于设计顶层端口进行驱动定义时,不可以使用set_drive_cell，因为不知道顶层端口的驱动单元是什么。 </li>
+<li>对于时钟、复位信号这类大扇出的信号，一般设置set_drive 0,表示驱动无穷大，并且设置set_dont_touch_network不让综合工具插入buffer。<ul>
+<li>因为综合时没有布局布线信息，即使综合工具针对时钟和复位进行了优化，也是不准确的，拿一个不准确的clk信号去分析setup和hold也没有意义；正确的做法就是不要处理，而要到后端再去做CTS。</li>
+<li>对于复位信号处理：满足恢复时间约束和撤销时间约束。create_buffer_tree （？？？）.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-2-设置输入、输出端口的负载"><a href="#6-2-设置输入、输出端口的负载" class="headerlink" title="6.2 设置输入、输出端口的负载"></a>6.2 设置输入、输出端口的负载</h3><ul>
+<li>使用set_load指令对输入&#x2F;输出容性负载进行定义。</li>
 <li>输入端口负载DC可以自动获取，不需要人为设置。</li>
 </ul>
-<h3 id="定义输出端口扇出负载">6.3 定义输出端口扇出负载</h3>
-<ul>
-<li>set_fanout_load：用于约束输出端口，设置该级扇出负载为N，告诉下一级cell，最大的max_fanout要至少大于N
-+ 已知load。
-<ul>
+<h3 id="6-3-定义输出端口扇出负载"><a href="#6-3-定义输出端口扇出负载" class="headerlink" title="6.3 定义输出端口扇出负载"></a>6.3 定义输出端口扇出负载</h3><ul>
+<li>set_fanout_load：用于约束输出端口，设置该级扇出负载为N，告诉下一级cell，最大的max_fanout要至少大于N + 已知load。<ul>
 <li>而上面那句话介绍的set_max_fanout是用来约束输入端口的，限制前一级的扇出负载不能大于这级能承受的值。</li>
-</ul></li>
 </ul>
-<h3 id="几条易混淆命令解释">6.4 几条易混淆命令解释</h3>
-<ul>
-<li>注意
-<ul>
-<li>默认情况下，DRC的约束等级最高，可以使用compile -option
-选择更高优先级优化，可见用户指令手册。</li>
+</li>
+</ul>
+<h3 id="6-4-几条易混淆命令解释"><a href="#6-4-几条易混淆命令解释" class="headerlink" title="6.4 几条易混淆命令解释"></a>6.4 几条易混淆命令解释</h3><ul>
+<li>注意<ul>
+<li>默认情况下，DRC的约束等级最高，可以使用compile -option 选择更高优先级优化，可见用户指令手册。</li>
 <li>因为DRC优先级最高，所以不要施加过紧或过松的约束，都会影响DC对其他单元的优化。</li>
-<li>DRC的约束主要包括
-<ul>
+<li>DRC的约束主要包括<ul>
 <li>set_max_transition、set_max_fanout、set_max_capacitance</li>
-</ul></li>
-</ul></li>
-<li>set_max_transition
-<ul>
-<li>防止出现长连线导致的长的转换时间，另外这条指令可以约束转换时间，降低功耗。<br />
+</ul>
 </li>
-</ul></li>
-<li>set_load
-<ul>
-<li>选项加上[load_of
-AN2]，可以设置一个标准单元，并用该单元的标称电容和连线电容作为总的电容值。模拟输出端口驱动的外部负载，设置的值影响输出端口net上的电容，影响相应路径延时。</li>
-<li>可以在set_load直接加数字，指定一常数负载值。<br />
+</ul>
 </li>
-</ul></li>
-<li>set_max_capacitance
-<ul>
+<li>set_max_transition<ul>
+<li>防止出现长连线导致的长的转换时间，另外这条指令可以约束转换时间，降低功耗。</li>
+</ul>
+</li>
+<li>set_load <ul>
+<li>选项加上[load_of AN2]，可以设置一个标准单元，并用该单元的标称电容和连线电容作为总的电容值。模拟输出端口驱动的外部负载，设置的值影响输出端口net上的电容，影响相应路径延时。</li>
+<li>可以在set_load直接加数字，指定一常数负载值。</li>
+</ul>
+</li>
+<li>set_max_capacitance <ul>
 <li>可以使用该命令为整个设计所有的线网设置最大电容的设计规则。</li>
-</ul></li>
-<li>set_max_fanout
-<ul>
-<li>fanout数量太大一方面会导致route容易在此处出现congestion；另一方面可能会出现EM问题：由于fanout太大，输出电流过大，导致这部分的金属线长时间被熔断或变形，进而出现短路/断路的问题。</li>
-<li>同样可能会出现EM现象的还有尺寸大的cell，例如大小为x24/x32；这种cell的默认属性为dont
-use。这种尺寸的cell，虽然驱动能力大，但其输出电流也大，如果fanout后为多个这样的cell，那么容易出现EM问题。</li>
-</ul></li>
+</ul>
+</li>
+<li>set_max_fanout<ul>
+<li>fanout数量太大一方面会导致route容易在此处出现congestion；另一方面可能会出现EM问题：由于fanout太大，输出电流过大，导致这部分的金属线长时间被熔断或变形，进而出现短路&#x2F;断路的问题。</li>
+<li>同样可能会出现EM现象的还有尺寸大的cell，例如大小为x24&#x2F;x32；这种cell的默认属性为dont use。这种尺寸的cell，虽然驱动能力大，但其输出电流也大，如果fanout后为多个这样的cell，那么容易出现EM问题。</li>
+</ul>
+</li>
 </ul>
 
                 

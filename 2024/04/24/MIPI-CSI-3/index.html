@@ -17,27 +17,23 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;vivo01&#x2F;article&#x2F;details&#x2F;126289397     1. Low Level Protocol (LLP) LLP是一种以字节为导向、基于数据包的协议，支持使用短数据包和长数据包格式传输任意数据。其特性如下。  Transport of arbitrary data (Payload independent)   8-bit">
+    <meta name="description" content="参考    本篇博客接着MIPI-CSI-2继续介绍CSI协议中Low Level Protocol (LLP)相关内容。  1. Latency Reduction and Transport Efficiency (LRTE)-">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MIPI-CSI-2">
-<meta property="og:url" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-2/index.html">
+<meta property="og:title" content="MIPI-CSI-3">
+<meta property="og:url" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;vivo01&#x2F;article&#x2F;details&#x2F;126289397     1. Low Level Protocol (LLP) LLP是一种以字节为导向、基于数据包的协议，支持使用短数据包和长数据包格式传输任意数据。其特性如下。  Transport of arbitrary data (Payload independent)   8-bit">
+<meta property="og:description" content="参考    本篇博客接着MIPI-CSI-2继续介绍CSI协议中Low Level Protocol (LLP)相关内容。  1. Latency Reduction and Transport Efficiency (LRTE)-">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-2/MIPI-CSI-2.assets/image-20240410105430220.png">
-<meta property="og:image" content="http://binbinqian.cn/MIPI-CSI-2.assets/image-20240410131938094.png">
-<meta property="og:image" content="http://binbinqian.cn/MIPI-CSI-2.assets/image-20240410140559921.png">
-<meta property="article:published_time" content="2023-10-28T13:18:32.000Z">
-<meta property="article:modified_time" content="2024-04-10T07:33:28.699Z">
+<meta property="article:published_time" content="2024-04-24T02:18:32.000Z">
+<meta property="article:modified_time" content="2024-04-24T02:58:29.117Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://binbinqian.cn/2023/10/28/MIPI-CSI-2/MIPI-CSI-2.assets/image-20240410105430220.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>MIPI-CSI-2 - 可达达鸭</title>
+  <title>MIPI-CSI-3 - 可达达鸭</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -230,7 +226,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="MIPI-CSI-2"></span>
+            <span id="subtitle" data-typed-text="MIPI-CSI-3"></span>
           
         </div>
 
@@ -241,8 +237,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-28 21:18" pubdate>
-          2023年10月28日 晚上
+        <time datetime="2024-04-24 10:18" pubdate>
+          2024年4月24日 上午
         </time>
       </span>
     
@@ -253,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          101 字
         
       </span>
     
@@ -264,7 +260,7 @@
         
         
         
-          12 分钟
+          1 分钟
         
       </span>
     
@@ -322,7 +318,7 @@
         aria-expanded="true"
       >
         高速串行总线
-        <span class="list-group-count">(11)</span>
+        <span class="list-group-count">(12)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
@@ -349,7 +345,7 @@
         aria-expanded="true"
       >
         MIPI 接口协议
-        <span class="list-group-count">(7)</span>
+        <span class="list-group-count">(8)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
@@ -399,10 +395,19 @@
     
       
       
-        <a href="/2023/10/28/MIPI-CSI-2/" title="MIPI-CSI-2"
+        <a href="/2024/04/24/MIPI-CSI-2/" title="MIPI-CSI-2"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MIPI-CSI-2</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/04/24/MIPI-CSI-3/" title="MIPI-CSI-3"
            class="list-group-item list-group-item-action
            active">
-          <span class="category-post">MIPI-CSI-2</span>
+          <span class="category-post">MIPI-CSI-3</span>
         </a>
       
     
@@ -510,12 +515,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">MIPI-CSI-2</h1>
+            <h1 id="seo-header">MIPI-CSI-3</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2024年4月10日 下午
+                    本文最后更新于：2024年4月24日 上午
                   
                 
               </p>
@@ -524,87 +529,13 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/vivo01/article/details/126289397">https://blog.csdn.net/vivo01/article/details/126289397</a></li>
-</ul>
-</li>
+<li>参考</li>
 </ul>
 <hr>
-<h2 id="1-Low-Level-Protocol-LLP"><a href="#1-Low-Level-Protocol-LLP" class="headerlink" title="1. Low Level Protocol (LLP)"></a>1. Low Level Protocol (LLP)</h2><ul>
-<li><p>LLP是一种以字节为导向、基于数据包的协议，支持使用短数据包和长数据包格式传输任意数据。其特性如下。</p>
 <ul>
-<li>Transport of arbitrary data (Payload independent)  </li>
-<li>8-bit word size</li>
-<li>Support for up to sixteen interleaved virtual channels on the same D-PHY Link, or up to 32 interleaved virtual channels on the same C-PHY Link</li>
-<li>Special packets for frame start, frame end, line start and line end information </li>
-<li>Descriptor for the type, pixel depth and format of the Application Specific Payload data</li>
-<li>16-bit Checksum Code for error detection.</li>
-<li>6-bit Error Correction Code for error detection and correction (D-PHY physical layer only)</li>
+<li>本篇博客接着MIPI-CSI-2继续介绍CSI协议中Low Level Protocol (LLP)相关内容。</li>
 </ul>
-</li>
-</ul>
-<h3 id="1-1-LLP-包格式"><a href="#1-1-LLP-包格式" class="headerlink" title="1.1 LLP 包格式"></a>1.1 LLP 包格式</h3><ul>
-<li><p>数据格式如下图所示，有两种数据包结构，长数据包和短数据包。</p>
-<ul>
-<li>每个数据包的传输都是经历先从低功耗状态退出，之后是SOT序列，表示数据包的开始，之后是EOT，表示数据包的结束。</li>
-</ul>
-<img src="./MIPI-CSI-2.assets/image-20240410105430220.png" alt="image-20240410105430220" style="zoom:67%;" /></li>
-</ul>
-<h4 id="1-1-1-D-PHY长数据包格式"><a href="#1-1-1-D-PHY长数据包格式" class="headerlink" title="1.1.1 D-PHY长数据包格式"></a>1.1.1 D-PHY长数据包格式</h4><ul>
-<li><p>D-PHY长数据包格式如下图所示，主要包含三部分：32bit的数据包头，可变大小的应用相关数据以及16bit的数据包尾。</p>
-<ul>
-<li>数据包头<ul>
-<li>Data ID：作为数据的标识，其中[7:6]表示Virtual Channel的4bit标识中的低两位，[5:0]是Data Type的标识。</li>
-<li>Word Count：用于计数传输字节的个数，接收端根据该值判断数据接收何时结束。</li>
-<li>VCX+ECC：<ul>
-<li>[7:6] 虚拟通道扩展 VCX，表示Virtual Channel的4bit标识中的最高两位。</li>
-<li>[5:0] 错误检测和纠正码 ECC，可以对数据包头进行1bit的错误进行纠正；并检测出2bit的错误，但不能纠正。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>数据包尾<ul>
-<li>16bit CRC(循环冗余校验) 检测输出数据是否有错误。</li>
-</ul>
-</li>
-</ul>
-<p><img src="/./MIPI-CSI-2.assets/image-20240410131938094.png" alt="image-20240410131938094"></p>
-</li>
-</ul>
-<h4 id="1-1-2-C-PHY长数据包格式"><a href="#1-1-2-C-PHY长数据包格式" class="headerlink" title="1.1.2 C-PHY长数据包格式"></a>1.1.2 C-PHY长数据包格式</h4><ul>
-<li><p>C-PHY长数据包格式如下图所示，主要包含四部分：数据包头、可变大小的应用相关数据、16bit的数据包尾 以及零&#x2F;多个填充字节(FILLER).</p>
-<ul>
-<li>数据包头<ul>
-<li>其长度为6N*16bit，其中N为Lane 的个数。可以看到其由两个相同部分组合得到。</li>
-<li>5bit RES + 3bit VCX<ul>
-<li>5bit保留位，设置为0.</li>
-<li>3bit VCX是Virtual Channel的5bit标识中的最高三位。</li>
-</ul>
-</li>
-<li>8bit DI<ul>
-<li>2bit VCX是Virtual Channel的5bit标识中的最低两位。</li>
-<li>6bit Data Type 是数据标识。</li>
-</ul>
-</li>
-<li>16bit WC：与DPHY一样。</li>
-<li>16bit  PH-CRC<ul>
-<li>数据包头(PH)的CRC码，计算前面4个字节，使得多bit错误被检测出来。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>数据包尾<ul>
-<li>16bit CRC(循环冗余校验) 检测输出数据是否有错误。</li>
-</ul>
-</li>
-<li>FILLER<ul>
-<li><a href="https://binbinqian.cn/2023/10/28/MIPI-CSI-1/">这篇博客</a>中介绍到CPHY中LLP层会确保传输的字节数目是2N的整数倍，在LLP层主要通过FILLER进行调节。</li>
-</ul>
-</li>
-</ul>
-<p><img src="/./MIPI-CSI-2.assets/image-20240410140559921.png" alt="image-20240410140559921"></p>
-</li>
-</ul>
+<h2 id="1-Latency-Reduction-and-Transport-Efficiency-LRTE"><a href="#1-Latency-Reduction-and-Transport-Efficiency-LRTE" class="headerlink" title="1. Latency Reduction and Transport Efficiency (LRTE)"></a>1. Latency Reduction and Transport Efficiency (LRTE)</h2><p>- </p>
 
                 
               </div>
@@ -650,8 +581,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>MIPI-CSI-2</div>
-      <div>http://binbinqian.cn/2023/10/28/MIPI-CSI-2/</div>
+      <div>MIPI-CSI-3</div>
+      <div>http://binbinqian.cn/2024/04/24/MIPI-CSI-3/</div>
     </div>
     <div class="license-meta">
       
@@ -663,7 +594,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年10月28日</div>
+          <div>2024年4月24日</div>
         </div>
       
       
@@ -695,9 +626,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/28/MIPI-CSI-1/" title="MIPI-CSI-1">
+                      <a href="/2024/04/24/MIPI-CSI-2/" title="MIPI-CSI-2">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MIPI-CSI-1</span>
+                        <span class="hidden-mobile">MIPI-CSI-2</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -705,8 +636,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/28/MIPI-%E6%A6%82%E8%BF%B0/" title="MIPI-概述">
-                        <span class="hidden-mobile">MIPI-概述</span>
+                      <a href="/2024/04/18/MIPI-CPHY-2/" title="MIPI-CPHY-2">
+                        <span class="hidden-mobile">MIPI-CPHY-2</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
