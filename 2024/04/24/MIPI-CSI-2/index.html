@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;vivo01&#x2F;article&#x2F;details&#x2F;126289397 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Kroner&#x2F;p&#x2F;18017607 https:&#x2F;&#x2F;cloud.tencent.com&#x2F;developer&#x2F;article&#x2F;2063788      本篇博客主要介绍CSI协议中Low Level Protocol (LLP)相关内容">
+    <meta name="description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;vivo01&#x2F;article&#x2F;details&#x2F;126289397 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Kroner&#x2F;p&#x2F;18017607 https:&#x2F;&#x2F;cloud.tencent.com&#x2F;developer&#x2F;article&#x2F;2063788     本篇博客主要介绍CSI协议中Low Level Protocol">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MIPI-CSI-2">
 <meta property="og:url" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-2/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考 https:&#x2F;&#x2F;blog.csdn.net&#x2F;vivo01&#x2F;article&#x2F;details&#x2F;126289397 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Kroner&#x2F;p&#x2F;18017607 https:&#x2F;&#x2F;cloud.tencent.com&#x2F;developer&#x2F;article&#x2F;2063788      本篇博客主要介绍CSI协议中Low Level Protocol (LLP)相关内容">
+<meta property="og:description" content="参考  https:&#x2F;&#x2F;blog.csdn.net&#x2F;vivo01&#x2F;article&#x2F;details&#x2F;126289397 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Kroner&#x2F;p&#x2F;18017607 https:&#x2F;&#x2F;cloud.tencent.com&#x2F;developer&#x2F;article&#x2F;2063788     本篇博客主要介绍CSI协议中Low Level Protocol">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-2/image-20240410105430220.png">
 <meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-2/image-20240410131938094.png">
@@ -42,7 +42,7 @@
 <meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-2/image-20240423154705649.png">
 <meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-2/image-20240423162813180.png">
 <meta property="article:published_time" content="2024-04-24T02:18:32.000Z">
-<meta property="article:modified_time" content="2024-04-24T02:59:40.376Z">
+<meta property="article:modified_time" content="2024-04-24T04:07:48.531Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-2/image-20240410105430220.png">
@@ -267,7 +267,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.4k 字
+          5.6k 字
         
       </span>
     
@@ -278,7 +278,7 @@
         
         
         
-          45 分钟
+          48 分钟
         
       </span>
     
@@ -538,7 +538,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2024年4月24日 上午
+                    本文最后更新于：2024年4月24日 中午
                   
                 
               </p>
@@ -547,328 +547,397 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/vivo01/article/details/126289397">https://blog.csdn.net/vivo01/article/details/126289397</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Kroner/p/18017607">https://www.cnblogs.com/Kroner/p/18017607</a></li>
-<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2063788">https://cloud.tencent.com/developer/article/2063788</a></li>
+<li>参考
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/vivo01/article/details/126289397"
+class="uri">https://blog.csdn.net/vivo01/article/details/126289397</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Kroner/p/18017607"
+class="uri">https://www.cnblogs.com/Kroner/p/18017607</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2063788"
+class="uri">https://cloud.tencent.com/developer/article/2063788</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<hr>
+<hr />
 <ul>
 <li>本篇博客主要介绍CSI协议中Low Level Protocol (LLP)相关内容。</li>
-<li>LLP是一种以字节为导向、基于数据包的协议，支持使用短数据包和长数据包格式传输任意数据。其特性如下。<ul>
-<li>Transport of arbitrary data (Payload independent)  </li>
-<li>8-bit word size</li>
-<li>Support for up to sixteen interleaved virtual channels on the same D-PHY Link, or up to 32 interleaved virtual channels on the same C-PHY Link</li>
-<li>Special packets for frame start, frame end, line start and line end information </li>
-<li>Descriptor for the type, pixel depth and format of the Application Specific Payload data</li>
-<li>16-bit Checksum Code for error detection.</li>
-<li>6-bit Error Correction Code for error detection and correction (D-PHY physical layer only)</li>
-</ul>
+<li>LLP是一种以字节为导向、基于数据包的协议，支持使用短数据包和长数据包格式传输任意数据。其特性如下。
+<ul>
+<li>Transport of arbitrary data (Payload independent)<br />
 </li>
+<li>8-bit word size</li>
+<li>Support for up to sixteen interleaved virtual channels on the same
+D-PHY Link, or up to 32 interleaved virtual channels on the same C-PHY
+Link</li>
+<li>Special packets for frame start, frame end, line start and line end
+information</li>
+<li>Descriptor for the type, pixel depth and format of the Application
+Specific Payload data</li>
+<li>16-bit Checksum Code for error detection.</li>
+<li>6-bit Error Correction Code for error detection and correction
+(D-PHY physical layer only)</li>
+</ul></li>
 </ul>
-<h2 id="1-LLP-包格式"><a href="#1-LLP-包格式" class="headerlink" title="1. LLP 包格式"></a>1. LLP 包格式</h2><ul>
+<h2 id="llp-包格式">1. LLP 包格式</h2>
+<ul>
 <li><p>数据格式如下图所示，有两种数据包结构，长数据包和短数据包。</p>
 <ul>
-<li>每个数据包的传输都是经历先从低功耗状态退出，之后是SOT序列，表示数据包的开始，之后是EOT，表示数据包的结束。</li>
+<li><p>每个数据包的传输都是经历先从低功耗状态退出，之后是SOT序列，表示数据包的开始，之后是EOT，表示数据包的结束。</p>
+<p><img src="image-20240410105430220.png" alt="image-20240410105430220" style="zoom:67%;" /></p></li>
+</ul></li>
 </ul>
-<img src="image-20240410105430220.png" alt="image-20240410105430220" style="zoom:67%;" /></li>
-</ul>
-<h3 id="1-1-D-PHY长数据包格式"><a href="#1-1-D-PHY长数据包格式" class="headerlink" title="1.1 D-PHY长数据包格式"></a>1.1 D-PHY长数据包格式</h3><ul>
+<h3 id="d-phy长数据包格式">1.1 D-PHY长数据包格式</h3>
+<ul>
 <li><p>D-PHY长数据包格式如下图所示，主要包含三部分：32bit的数据包头，可变大小的应用相关数据以及16bit的数据包尾。</p>
 <ul>
-<li>数据包头<ul>
-<li>Data ID：作为数据的标识，其中[7:6]表示Virtual Channel的4bit标识中的低两位，[5:0]是Data Type的标识。</li>
-<li>Word Count：用于计数传输字节的个数，接收端根据该值判断数据接收何时结束。</li>
-<li>VCX+ECC：<ul>
-<li>[7:6] 虚拟通道扩展 VCX，表示Virtual Channel的4bit标识中的最高两位。</li>
-<li>[5:0] 错误检测和纠正码 ECC，可以对数据包头进行1bit的错误进行纠正；并检测出2bit的错误，但不能纠正。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>数据包尾<ul>
-<li>16bit CRC(循环冗余校验) 检测输出数据是否有错误。</li>
-</ul>
-</li>
-</ul>
-<p><img src="/2024/04/24/MIPI-CSI-2/image-20240410131938094.png" alt="image-20240410131938094"></p>
-</li>
-</ul>
-<h3 id="1-2-C-PHY长数据包格式"><a href="#1-2-C-PHY长数据包格式" class="headerlink" title="1.2 C-PHY长数据包格式"></a>1.2 C-PHY长数据包格式</h3><ul>
-<li><p>C-PHY长数据包格式如下图所示，主要包含四部分：数据包头、可变大小的应用相关数据、16bit的数据包尾 以及零&#x2F;多个填充字节(FILLER).</p>
+<li>数据包头
 <ul>
-<li>数据包头<ul>
-<li>其长度为6N*16bit，其中N为Lane 的个数。可以看到其由两个相同部分组合得到。<ul>
-<li>在两个相同部分之间需要插入7-symbol的Sync Word。</li>
+<li>Data ID：作为数据的标识，其中[7:6]表示Virtual
+Channel的4bit标识中的低两位，[5:0]是Data Type的标识。</li>
+<li>Word
+Count：用于计数传输字节的个数，接收端根据该值判断数据接收何时结束。</li>
+<li>VCX+ECC：
+<ul>
+<li>[7:6] 虚拟通道扩展 VCX，表示Virtual
+Channel的4bit标识中的最高两位。</li>
+<li>[5:0] 错误检测和纠正码
+ECC，可以对数据包头进行1bit的错误进行纠正；并检测出2bit的错误，但不能纠正。</li>
+</ul></li>
+</ul></li>
+<li>数据包尾
+<ul>
+<li>16bit CRC(循环冗余校验) 检测输出数据是否有错误。</li>
+</ul></li>
 </ul>
-</li>
-<li>5bit RES + 3bit VCX<ul>
+<figure>
+<img src="image-20240410131938094.png" alt="image-20240410131938094" />
+<figcaption aria-hidden="true">image-20240410131938094</figcaption>
+</figure></li>
+</ul>
+<h3 id="c-phy长数据包格式">1.2 C-PHY长数据包格式</h3>
+<ul>
+<li><p>C-PHY长数据包格式如下图所示，主要包含四部分：数据包头、可变大小的应用相关数据、16bit的数据包尾
+以及零/多个填充字节(FILLER).</p>
+<ul>
+<li>数据包头
+<ul>
+<li>其长度为6N*16bit，其中N为Lane
+的个数。可以看到其由两个相同部分组合得到。
+<ul>
+<li>在两个相同部分之间需要插入7-symbol的Sync Word。</li>
+</ul></li>
+<li>5bit RES + 3bit VCX
+<ul>
 <li>5bit保留位，设置为0.</li>
 <li>3bit VCX是Virtual Channel的5bit标识中的最高三位。</li>
-</ul>
-</li>
-<li>8bit DI<ul>
+</ul></li>
+<li>8bit DI
+<ul>
 <li>2bit VCX是Virtual Channel的5bit标识中的最低两位。</li>
 <li>6bit Data Type 是数据标识。</li>
-</ul>
-</li>
+</ul></li>
 <li>16bit WC：与DPHY一样。</li>
-<li>16bit  PH-CRC<ul>
+<li>16bit PH-CRC
+<ul>
 <li>CPHY不需要ECC纠正码，因为它的传输是基于5进制的symbol，一个symbol传输错误，那么会有多个bit都是错的，使得ECC纠正码无效。</li>
-<li>因此需要 数据包头(PH)的CRC码，计算前面4个字节，使得多bit错误被检测出来。</li>
-<li>并发送多个副本（后面接着的相同部分字段），接收器根据CRC及副本可以尽可能恢复丢失&#x2F;损坏的数据。</li>
+<li>因此需要
+数据包头(PH)的CRC码，计算前面4个字节，使得多bit错误被检测出来。</li>
+<li>并发送多个副本（后面接着的相同部分字段），接收器根据CRC及副本可以尽可能恢复丢失/损坏的数据。</li>
 <li>C-PHY 还在数据包头中插入Sync Word，有助于接收器重新同步数据。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>数据包尾<ul>
+</ul></li>
+</ul></li>
+<li>数据包尾
+<ul>
 <li>16bit CRC(循环冗余校验) 检测输出数据是否有错误。</li>
+</ul></li>
+<li>FILLER
+<ul>
+<li><a
+href="https://binbinqian.cn/2023/10/28/MIPI-CSI-1/">这篇博客</a>中介绍到CPHY中LLP层会确保传输的字节数目是2N的整数倍，在LLP层主要通过FILLER进行调节。</li>
+</ul></li>
 </ul>
-</li>
-<li>FILLER<ul>
-<li><a href="https://binbinqian.cn/2023/10/28/MIPI-CSI-1/">这篇博客</a>中介绍到CPHY中LLP层会确保传输的字节数目是2N的整数倍，在LLP层主要通过FILLER进行调节。</li>
+<figure>
+<img src="image-20240410140559921.png" alt="image-20240410140559921" />
+<figcaption aria-hidden="true">image-20240410140559921</figcaption>
+</figure></li>
+<li><p>长包格式下，无论是DPHY还是CPHY，对于Packet Data
+可以按照任何字节顺序(MSB-LSB/LSB-MSB)进行传输；对于Packet
+Header/Footer，需要先传输LSB字节，后传输MSB字节。</p></li>
 </ul>
-</li>
-</ul>
-<p><img src="/2024/04/24/MIPI-CSI-2/image-20240410140559921.png" alt="image-20240410140559921"></p>
-</li>
-<li><p>长包格式下，无论是DPHY还是CPHY，对于Packet Data 可以按照任何字节顺序(MSB-LSB&#x2F;LSB-MSB)进行传输；对于Packet Header&#x2F;Footer，需要先传输LSB字节，后传输MSB字节。</p>
-</li>
-</ul>
-<h3 id="1-3-短数据包格式"><a href="#1-3-短数据包格式" class="headerlink" title="1.3 短数据包格式"></a>1.3 短数据包格式</h3><ul>
+<h3 id="短数据包格式">1.3 短数据包格式</h3>
+<ul>
 <li><p>DPHY短数据包格式如下图</p>
 <ul>
-<li><p>短数据包仅有32bit，包含三部分：Data ID、16-bit 有效数据、8bitVCX+ECC。</p>
-<p><img src="/2024/04/24/MIPI-CSI-2/image-20240419155943004.png" alt="image-20240419155943004"></p>
-</li>
-</ul>
-</li>
+<li><p>短数据包仅有32bit，包含三部分：Data ID、16-bit
+有效数据、8bitVCX+ECC。</p>
+<figure>
+<img src="image-20240419155943004.png" alt="image-20240419155943004" />
+<figcaption aria-hidden="true">image-20240419155943004</figcaption>
+</figure></li>
+</ul></li>
 <li><p>CPHY短数据包格式如下图</p>
 <ul>
 <li><p>短数据包长度为6N*16 bit,其中N为Lane的个数。</p>
-<p><img src="/2024/04/24/MIPI-CSI-2/image-20240419163331034.png" alt="image-20240419163331034"></p>
-</li>
+<figure>
+<img src="image-20240419163331034.png" alt="image-20240419163331034" />
+<figcaption aria-hidden="true">image-20240419163331034</figcaption>
+</figure></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="1-4-Virtual-Channel-Identifier"><a href="#1-4-Virtual-Channel-Identifier" class="headerlink" title="1.4 Virtual Channel Identifier"></a>1.4 Virtual Channel Identifier</h3><ul>
+<h3 id="virtual-channel-identifier">1.4 Virtual Channel Identifier</h3>
+<ul>
 <li><p>如下图所示，RX端从接收的数据包中提取包头中VCX标识信息，并将数据送入指定通道。</p>
 <ul>
-<li>对于DPHY，Virtual Channel Identifier 有4bit，因此最大可支持16个通道的数据传输。</li>
-<li>对于CPHY，Virtual Channel Identifier 有5bit，因此最大可支持32个通道的数据传输。</li>
+<li>对于DPHY，Virtual Channel Identifier
+有4bit，因此最大可支持16个通道的数据传输。</li>
+<li>对于CPHY，Virtual Channel Identifier
+有5bit，因此最大可支持32个通道的数据传输。</li>
 </ul>
-<p><img src="/2024/04/24/MIPI-CSI-2/image-20240419171500476.png" alt="image-20240419171500476"></p>
-</li>
+<figure>
+<img src="image-20240419171500476.png" alt="image-20240419171500476" />
+<figcaption aria-hidden="true">image-20240419171500476</figcaption>
+</figure></li>
 </ul>
-<h2 id="2-Packet-Error-Correction"><a href="#2-Packet-Error-Correction" class="headerlink" title="2. Packet Error Correction"></a>2. Packet Error Correction</h2><h3 id="2-1-D-PHY-Packet-Header-Error-Correction"><a href="#2-1-D-PHY-Packet-Header-Error-Correction" class="headerlink" title="2.1 D-PHY Packet Header Error Correction"></a>2.1 D-PHY Packet Header Error Correction</h3><ul>
-<li><p>在1.1节中介绍到，可以使用ECC对数据包头进行错误检测，可以纠正1bit错误，检测到2bit错误。</p>
-</li>
-<li><p>如下图所示，32bit的数据包头映射为ECC的输入26bit D，映射关系如下图所示。</p>
+<h2 id="packet-error-correction">2. Packet Error Correction</h2>
+<h3 id="d-phy-packet-header-error-correction">2.1 D-PHY Packet Header
+Error Correction</h3>
 <ul>
-<li>DI[7:0] - D[7:0], WC[7:0] - D[15:8], WC[15:8] - D[23:16], VCX[1:0] - D[25:24].</li>
+<li><p>在1.1节中介绍到，可以使用ECC对数据包头进行错误检测，可以纠正1bit错误，检测到2bit错误。</p></li>
+<li><p>如下图所示，32bit的数据包头映射为ECC的输入26bit
+D，映射关系如下图所示。</p>
+<ul>
+<li>DI[7:0] - D[7:0], WC[7:0] - D[15:8], WC[15:8] - D[23:16], VCX[1:0] -
+D[25:24].</li>
 </ul>
-<p><img src="/2024/04/24/MIPI-CSI-2/image-20240422101635914.png" alt="image-20240422101635914"></p>
-</li>
+<figure>
+<img src="image-20240422101635914.png" alt="image-20240422101635914" />
+<figcaption aria-hidden="true">image-20240422101635914</figcaption>
+</figure></li>
 <li><p>Hamming code</p>
 <ul>
-<li><p>假设要传输的真实数据bit数为d，校验位Parity bit 数位p，则需要满足规则 d+p+1≤2<sup>p</sup>.</p>
+<li><p>假设要传输的真实数据bit数为d，校验位Parity bit
+数位p，则需要满足规则 d+p+1≤2<sup>p</sup>.</p>
 <ul>
-<li>以d&#x3D;4为例，则p&#x3D;3，一共实际传输的为7bit。</li>
+<li>以d=4为例，则p=3，一共实际传输的为7bit。</li>
 <li>由于原始发送数据4bit，一共有16种可能的字符，经过编码后，7个bit可以有128种不同组合，112种是错误的码字。</li>
-<li>对于汉明码，要求正确的码字之间最小的汉明距离d<sub>min</sub>为3. 则可以纠正的错误的最大比特数为$\frac{d_{min}-1}{2}$, 可以检测的错误的最大比特数为$d_{min}-1$.<ul>
-<li>汉明距离：两个码字之间对应bit位置上值不同的比特个数。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>汉明码生成矩阵G可由单位矩阵I和奇偶校验产生矩阵A构成。<br>$$<br>G&#x3D;[I|A]<br>$$</p>
+<li>对于汉明码，要求正确的码字之间最小的汉明距离d<sub>min</sub>为3.
+则可以纠正的错误的最大比特数为<span
+class="math inline">\(\frac{d_{min}-1}{2}\)</span>,
+可以检测的错误的最大比特数为<span
+class="math inline">\(d_{min}-1\)</span>.
 <ul>
-<li><p>包头加上ECC码可以根据下面等式获取，其中p为包头即Fig 47中的输入D（26bit&#x2F;64bit），G是上面介绍的汉明码生成矩阵。<br>$$<br>PH&#x3D;p*G<br>$$</p>
-</li>
-<li><p>若要校验接收的码字是否正确，检查故障校验(syndrome check) 向量s，s由下面等式得到。其中H为奇偶校验矩阵。<br>$$<br>s&#x3D;H*PH \<br>H&#x3D;[A^T|I]<br>$$</p>
+<li>汉明距离：两个码字之间对应bit位置上值不同的比特个数。</li>
+</ul></li>
+</ul></li>
+<li><p>汉明码生成矩阵G可由单位矩阵I和奇偶校验产生矩阵A构成。 <span
+class="math display">\[
+G=[I|A]
+\]</span></p>
+<ul>
+<li><p>包头加上ECC码可以根据下面等式获取，其中p为包头即Fig
+47中的输入D（26bit/64bit），G是上面介绍的汉明码生成矩阵。 <span
+class="math display">\[
+PH=p*G
+\]</span></p></li>
+<li><p>若要校验接收的码字是否正确，检查故障校验(syndrome check)
+向量s，s由下面等式得到。其中H为奇偶校验矩阵。 <span
+class="math display">\[
+s=H*PH \\
+H=[A^T|I]
+\]</span></p>
 <ul>
 <li>如果s全部元素都为0，则表示接收到的数据均正确。</li>
 <li>如果s中包含了非零元素，那么至少有1个错误。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
+</ul></li>
 <li><p>Hamming Modified Code</p>
 <ul>
-<li><p>汉明码最多可以检测到2bit，校正1bit的错误，但是无法区分是1bit还是2bit，因此在原有汉明码的基础上加了1bit校验位，来实现区分。</p>
-</li>
-<li><p>以传输数据bit数 d&#x3D;26为例，则校验位应为5。如果增加1bit校验位，可以修正64bit序列的前26bit，如下图所示。</p>
+<li><p>汉明码最多可以检测到2bit，校正1bit的错误，但是无法区分是1bit还是2bit，因此在原有汉明码的基础上加了1bit校验位，来实现区分。</p></li>
+<li><p>以传输数据bit数
+d=26为例，则校验位应为5。如果增加1bit校验位，可以修正64bit序列的前26bit，如下图所示。</p>
 <ul>
-<li><p>行定义了数据位置的3个LSB，列定义了数据位置的3个MSB，举例6‘b100101 对应的是第37个bit位置，对应的故障为0x68.</p>
-</li>
-<li><p>故障对应关系是MSB左对齐：0x68&#x3D;0110_1000，对应的分别是 P7 P6 P5 P4 P3 P2 P1 P0.</p>
-</li>
+<li><p>行定义了数据位置的3个LSB，列定义了数据位置的3个MSB，举例6‘b100101
+对应的是第37个bit位置，对应的故障为0x68.</p></li>
+<li><p>故障对应关系是MSB左对齐：0x68=0110_1000，对应的分别是 P7 P6 P5 P4
+P3 P2 P1 P0.</p></li>
 </ul>
-<p><img src="/2024/04/24/MIPI-CSI-2/image-20240422164159274.png" alt="image-20240422164159274"></p>
+<figure>
+<img src="image-20240422164159274.png" alt="image-20240422164159274" />
+<figcaption aria-hidden="true">image-20240422164159274</figcaption>
+</figure>
 <ul>
-<li>若要计算26bit中P0的值，则需要将26bit中P0值为1的数据位异或起来。例如：<code> P0 = D0^D1^D2^D4^D5^D7^D10^D11^D13^D16^D20^D21^D22^D23^D24</code></li>
+<li>若要计算26bit中P0的值，则需要将26bit中P0值为1的数据位异或起来。例如：<code>P0 = D0^D1^D2^D4^D5^D7^D10^D11^D13^D16^D20^D21^D22^D23^D24</code></li>
 </ul>
-<p><img src="/2024/04/24/MIPI-CSI-2/image-20240422165900674.png" alt="image-20240422165900674"></p>
-</li>
-</ul>
-</li>
+<figure>
+<img src="image-20240422165900674.png" alt="image-20240422165900674" />
+<figcaption aria-hidden="true">image-20240422165900674</figcaption>
+</figure></li>
+</ul></li>
 <li><p>ECC Generation on TX Side</p>
 <ul>
-<li><p>64bit&#x2F;26bit Header的校验码生成器分别如下图所示。</p>
+<li><p>64bit/26bit Header的校验码生成器分别如下图所示。</p>
 <ul>
 <li>生成器电路基于上面的表格产生对应的校验码。</li>
 </ul>
-<img src="image-20240422171813921.png" alt="image-20240422171813921" style="zoom:67%;" />
-
-<img src="image-20240422171833852.png" alt="image-20240422171833852" style="zoom:67%;" /></li>
-</ul>
-</li>
+<p><img src="image-20240422171813921.png" alt="image-20240422171813921" style="zoom:67%;" /></p>
+<p><img src="image-20240422171833852.png" alt="image-20240422171833852" style="zoom:67%;" /></p></li>
+</ul></li>
 <li><p>ECC on RX Side</p>
 <ul>
 <li><p>64bit 电路结构如下图所示。</p>
 <ul>
 <li>需要RX端对接收的数据再次生成一个新的ECC，之后利用这个ECC和接收到的ECC进行异或计算。</li>
-<li>得到的值可能会有以下四种情况<ul>
+<li>得到的值可能会有以下四种情况
+<ul>
 <li>如果值为0，则表示没有错误。</li>
-<li>如果值与Table4有匹配上的元素，则证明发生了单bit错误，对应bit位可以通过反转&#x2F;与1异或来进行修正。</li>
+<li>如果值与Table4有匹配上的元素，则证明发生了单bit错误，对应bit位可以通过反转/与1异或来进行修正。</li>
 <li>如果值只有1个bit，则表示奇偶校验位中出现单bit错误，错误的位置就是故障bit的位置，接收的数据没有错误。</li>
 <li>如果不满足上面三种情况，则表示发生了不可修复的错误，需要置位一个错误标志，指示包头数据损坏。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p><img src="/2024/04/24/MIPI-CSI-2/image-20240422172110089.png" alt="image-20240422172110089"></p>
-</li>
+<figure>
+<img src="image-20240422172110089.png" alt="image-20240422172110089" />
+<figcaption aria-hidden="true">image-20240422172110089</figcaption>
+</figure></li>
 <li><p>26bit 电路结构如下图所示。</p>
-<p><img src="/2024/04/24/MIPI-CSI-2/image-20240422182631898.png" alt="image-20240422182631898"></p>
-</li>
+<figure>
+<img src="image-20240422182631898.png" alt="image-20240422182631898" />
+<figcaption aria-hidden="true">image-20240422182631898</figcaption>
+</figure></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="2-2-Checksum-Generation"><a href="#2-2-Checksum-Generation" class="headerlink" title="2.2 Checksum Generation"></a>2.2 Checksum Generation</h3><ul>
+<h3 id="checksum-generation">2.2 Checksum Generation</h3>
+<ul>
 <li><p>在DPHY和CPHY的长数据包包尾以及CPHY的包头中都需要进行CRC校验。</p>
 <ul>
 <li>所有情况中，校验和的实现都是16-bit CRC。</li>
-</ul>
-</li>
+</ul></li>
 <li><p>CRC校验的根本思想</p>
 <ul>
 <li>在要发送的数据码后附加校验码，附加的校验码要求生成的新的拼接码能够被一个特定的数A整除，在RX端，同样检测接收到的拼接码能够整除这个特定的数A。</li>
-</ul>
-</li>
+</ul></li>
 <li><p>下图展示了16bit串行CRC实现方案</p>
-<p><img src="/2024/04/24/MIPI-CSI-2/image-20240423110544668.png" alt="image-20240423110544668"></p>
+<figure>
+<img src="image-20240423110544668.png" alt="image-20240423110544668" />
+<figcaption aria-hidden="true">image-20240423110544668</figcaption>
+</figure>
 <ul>
-<li>多项式公式<ul>
-<li>CRC的标准除数，一般是使用多项式公式来表示的，例如，多项式$x^4+x^3+x+1$ 表示为2进制数是’b11011.</li>
+<li>多项式公式
+<ul>
+<li>CRC的标准除数，一般是使用多项式公式来表示的，例如，多项式<span
+class="math inline">\(x^4+x^3+x+1\)</span> 表示为2进制数是’b11011.</li>
 <li>可以看到除数位数是多项式最高次幂+1，但CRC长度始终要比除数位数少1，去除掉最高bit。</li>
-</ul>
-</li>
-<li>实现流程<ul>
+</ul></li>
+<li>实现流程
+<ul>
 <li>选定一个标准除数</li>
-<li>在要发送的数据(M bit)后面加上K-1位0，然后将这个新数(M+K-1 bit)以模2除法的方式除以标准除数，所得到的余数就是该数据的CRC校验码，也成为FCS(帧校验序列)。</li>
-<li>将这个CRC校验码附加在原M bit 数据后，构成M+K-1 bit 新数据，发送给RX端。</li>
+<li>在要发送的数据(M bit)后面加上K-1位0，然后将这个新数(M+K-1
+bit)以模2除法的方式除以标准除数，所得到的余数就是该数据的CRC校验码，也成为FCS(帧校验序列)。</li>
+<li>将这个CRC校验码附加在原M bit 数据后，构成M+K-1 bit
+新数据，发送给RX端。</li>
 <li>RX端将接收的数据除以标准除数，如果余数为0，则认为数据正确。</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="3-Short-Packet-Data-Type-Codes"><a href="#3-Short-Packet-Data-Type-Codes" class="headerlink" title="3. Short Packet Data Type Codes"></a>3. Short Packet Data Type Codes</h2><h3 id="3-1-Synchronization-Short-Packet-Data-Type-Codes"><a href="#3-1-Synchronization-Short-Packet-Data-Type-Codes" class="headerlink" title="3.1 Synchronization Short Packet Data Type Codes"></a>3.1 Synchronization Short Packet Data Type Codes</h3><ul>
+<h2 id="short-packet-data-type-codes">3. Short Packet Data Type
+Codes</h2>
+<h3 id="synchronization-short-packet-data-type-codes">3.1
+Synchronization Short Packet Data Type Codes</h3>
+<ul>
 <li><p>下面这些短包数据类型只能通过短包形式进行传输。</p>
-<p><img src="/2024/04/24/MIPI-CSI-2/image-20240423154133906.png" alt="image-20240423154133906"></p>
-</li>
+<figure>
+<img src="image-20240423154133906.png" alt="image-20240423154133906" />
+<figcaption aria-hidden="true">image-20240423154133906</figcaption>
+</figure></li>
 </ul>
-<h4 id="3-1-1-Frame-Synchronization-Packets（帧同步包）"><a href="#3-1-1-Frame-Synchronization-Packets（帧同步包）" class="headerlink" title="3.1.1 Frame Synchronization Packets（帧同步包）"></a>3.1.1 Frame Synchronization Packets（帧同步包）</h4><ul>
-<li>每个图像帧都是从一个“帧开始FS”包开始，这个包中有Frame Start Code。</li>
-<li>FS包之后是1个或多个含有图像数据的长包， 以及0个&#x2F;多个包含同步编码的短包。</li>
-<li>每个图像帧都是以一个“帧结束FE”的包结束，这个包中有Frame End Code。</li>
-<li>对于FS和FE同步包，Data Filed 应该包含16bit的Frame Number，对于同一个帧，FS和FE同步包的帧号是一样的。<ul>
+<h4 id="frame-synchronization-packets帧同步包">3.1.1 Frame
+Synchronization Packets（帧同步包）</h4>
+<ul>
+<li>每个图像帧都是从一个“帧开始FS”包开始，这个包中有Frame Start
+Code。</li>
+<li>FS包之后是1个或多个含有图像数据的长包，
+以及0个/多个包含同步编码的短包。</li>
+<li>每个图像帧都是以一个“帧结束FE”的包结束，这个包中有Frame End
+Code。</li>
+<li>对于FS和FE同步包，Data Filed 应该包含16bit的Frame
+Number，对于同一个帧，FS和FE同步包的帧号是一样的。
+<ul>
 <li>当帧号为0时，帧号无效。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4 id="3-1-2-Line-Synchronization-Packets（行同步包）"><a href="#3-1-2-Line-Synchronization-Packets（行同步包）" class="headerlink" title="3.1.2 Line Synchronization Packets（行同步包）"></a>3.1.2 Line Synchronization Packets（行同步包）</h4><ul>
-<li><p>行同步包是可选的，其短包中Data Filed 应该包含16bit的 Line Number.</p>
+<h4 id="line-synchronization-packets行同步包">3.1.2 Line Synchronization
+Packets（行同步包）</h4>
+<ul>
+<li><p>行同步包是可选的，其短包中Data Filed 应该包含16bit的 Line
+Number.</p>
 <ul>
 <li>对于一个特定的行，LS和LE中的Line Number应该是相同的。</li>
 <li>行号是逻辑上的行号，并不一定与物理行号相同。</li>
-</ul>
-</li>
+</ul></li>
 <li><p>行号可以是以下几种情况</p>
 <ul>
-<li><p>（1）行号为0，表示无效行号。</p>
-</li>
+<li><p>（1）行号为0，表示无效行号。</p></li>
 <li><p>（2）相同虚拟通道和数据类型，连续行的LS包，行号都增加1。</p>
 <ul>
-<li><p>当在新的FS包之后第一个行包中，LS被重置为1。</p>
-</li>
-<li><p>这种模式用于progressive scan，逐行扫描视频数据流。</p>
-</li>
-</ul>
-</li>
+<li><p>当在新的FS包之后第一个行包中，LS被重置为1。</p></li>
+<li><p>这种模式用于progressive scan，逐行扫描视频数据流。</p></li>
+</ul></li>
 <li><p>（3）相同虚拟通道和数据类型，连续行的LS包，行号都增加一个相同的任意值，这个任意值大于1。</p>
 <ul>
 <li>当在新的FS包之后第一个行包中，LS被重置为任意的非零初始值。</li>
 <li>这种模式用于interlaced，交织扫描视频数据流。</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 <li><p>下图展示了几种情况</p>
 <ul>
-<li><p>DT1，行号递增1</p>
-</li>
-<li><p>DT2，行号递增2</p>
-</li>
-<li><p>DT3，无行号</p>
-</li>
-<li><p>DT4，无效行号</p>
-</li>
+<li><p>DT1，行号递增1</p></li>
+<li><p>DT2，行号递增2</p></li>
+<li><p>DT3，无行号</p></li>
+<li><p>DT4，无效行号</p></li>
 </ul>
-<p><img src="/2024/04/24/MIPI-CSI-2/image-20240423154705649.png" alt="image-20240423154705649"></p>
-</li>
+<figure>
+<img src="image-20240423154705649.png" alt="image-20240423154705649" />
+<figcaption aria-hidden="true">image-20240423154705649</figcaption>
+</figure></li>
 </ul>
-<h3 id="3-2-Generic-Short-Packet-Data-Type-Codes"><a href="#3-2-Generic-Short-Packet-Data-Type-Codes" class="headerlink" title="3.2 Generic Short Packet Data Type Codes"></a>3.2 Generic Short Packet Data Type Codes</h3><ul>
+<h3 id="generic-short-packet-data-type-codes">3.2 Generic Short Packet
+Data Type Codes</h3>
+<ul>
 <li>主要包含快门开关的时序信息，闪光灯触发等信息的机制。</li>
 </ul>
-<h2 id="4-Packet-Spacing"><a href="#4-Packet-Spacing" class="headerlink" title="4. Packet Spacing"></a>4. Packet Spacing</h2><ul>
+<h2 id="packet-spacing">4. Packet Spacing</h2>
+<ul>
 <li><p>CSI-2协议要求在包传输之间需要支持进入和退出LPS状态。</p>
 <ul>
-<li><p>但也有可选的实现方案会在包传输之间仍保持HS状态。</p>
-</li>
-<li><p>包间隔不需要是8bit的整数倍，因为RX端在下一个数据包包头前的SOT序列中重新同步并修正对齐字节边界。</p>
-</li>
-</ul>
-</li>
+<li><p>但也有可选的实现方案会在包传输之间仍保持HS状态。</p></li>
+<li><p>包间隔不需要是8bit的整数倍，因为RX端在下一个数据包包头前的SOT序列中重新同步并修正对齐字节边界。</p></li>
+</ul></li>
 <li><p>下图为多数据包传输时Packet Spacing的插入。</p>
 <ul>
-<li><p>Line Blanking 和 Frame Blanking的定义如下图所示。</p>
-</li>
-<li><p>RX端要能处理Line Blanking Period 接近0的情况，在PHY层，为其定义为minimum inter-packet sapcing.</p>
-</li>
-<li><p>TX端定义了Frame Blanking Period的最小时间，并且要求是可编程的。</p>
+<li><p>Line Blanking 和 Frame Blanking的定义如下图所示。</p></li>
+<li><p>RX端要能处理Line Blanking Period
+接近0的情况，在PHY层，为其定义为minimum inter-packet sapcing.</p></li>
+<li><p>TX端定义了Frame Blanking
+Period的最小时间，并且要求是可编程的。</p>
 <ul>
-<li>建议FS包到第一个数据包之间的间隔以及最后一个数据包到FE包之间的间隔要尽可能接近minimum inter-packet sapcing.</li>
+<li>建议FS包到第一个数据包之间的间隔以及最后一个数据包到FE包之间的间隔要尽可能接近minimum
+inter-packet sapcing.</li>
 </ul>
-<p><img src="/2024/04/24/MIPI-CSI-2/image-20240423162813180.png" alt="image-20240423162813180"></p>
-</li>
-<li><p>FS包和FE包的位置可以在Frame Blanking Period内发生变化，以确保可以提供精确到像素级的垂直同步时序信息。</p>
+<figure>
+<img src="image-20240423162813180.png" alt="image-20240423162813180" />
+<figcaption aria-hidden="true">image-20240423162813180</figcaption>
+</figure></li>
+<li><p>FS包和FE包的位置可以在Frame Blanking
+Period内发生变化，以确保可以提供精确到像素级的垂直同步时序信息。</p>
 <ul>
 <li>垂直同步(Vertical Sync)：表示一帧图像的起始是否对齐。</li>
-</ul>
-</li>
-<li><p>LS和LE包的位置可以在Line Blanking Period 内发生变化，以确保可以提供精确到像素级的水平同步时序信息。</p>
+</ul></li>
+<li><p>LS和LE包的位置可以在Line Blanking Period
+内发生变化，以确保可以提供精确到像素级的水平同步时序信息。</p>
 <ul>
 <li>水平同步(Horizontal Sync)：表示一行像素点起始是否对齐。</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 </ul>
 
                 
