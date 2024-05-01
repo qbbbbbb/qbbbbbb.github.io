@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考 CSI-2 2.0 Spec     1.CCI（Camera Control Interface）1.1 CCI 主从机定义 I2C支持多主机多从机传输，但CCI只支持一个主机的传输。 CCI将CSI的Transmitter配置为Slave，而将Reciever配置为Master。  1.2 CCI Message Types CCI 传输信息类型包括：Start信号、ACK信号、Sto">
+    <meta name="description" content="参考  CSI-2 2.0 Spec    1.CCI（Camera Control Interface） 1.1 CCI 主从机定义  I2C支持多主机多从机传输，但CCI只支持一个主机的传输。 CCI将CSI的Transmitter配置为Slave，而将Reciever配置为Master。  1.2 CCI Message Types  CCI 传输信息类型">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MIPI-CCI">
 <meta property="og:url" content="http://binbinqian.cn/2024/04/08/MIPI-CCI/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考 CSI-2 2.0 Spec     1.CCI（Camera Control Interface）1.1 CCI 主从机定义 I2C支持多主机多从机传输，但CCI只支持一个主机的传输。 CCI将CSI的Transmitter配置为Slave，而将Reciever配置为Master。  1.2 CCI Message Types CCI 传输信息类型包括：Start信号、ACK信号、Sto">
+<meta property="og:description" content="参考  CSI-2 2.0 Spec    1.CCI（Camera Control Interface） 1.1 CCI 主从机定义  I2C支持多主机多从机传输，但CCI只支持一个主机的传输。 CCI将CSI的Transmitter配置为Slave，而将Reciever配置为Master。  1.2 CCI Message Types  CCI 传输信息类型">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2024/04/08/MIPI-CCI/3201119-20230903161249778-1539658959.png">
 <meta property="og:image" content="http://binbinqian.cn/2024/04/08/MIPI-CCI/3201119-20230903163440137-201009953.png">
@@ -40,7 +40,7 @@
 <meta property="og:image" content="http://binbinqian.cn/2024/04/08/MIPI-CCI/image-20240407221313225.png">
 <meta property="og:image" content="http://binbinqian.cn/2024/04/08/MIPI-CCI/image-20240408103247979.png">
 <meta property="article:published_time" content="2024-04-08T03:18:32.000Z">
-<meta property="article:modified_time" content="2024-04-10T07:32:56.401Z">
+<meta property="article:modified_time" content="2024-04-25T02:37:17.714Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://binbinqian.cn/2024/04/08/MIPI-CCI/3201119-20230903161249778-1539658959.png">
@@ -265,7 +265,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          2k 字
         
       </span>
     
@@ -334,7 +334,7 @@
         aria-expanded="true"
       >
         高速串行总线
-        <span class="list-group-count">(12)</span>
+        <span class="list-group-count">(13)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
@@ -361,7 +361,7 @@
         aria-expanded="true"
       >
         MIPI 接口协议
-        <span class="list-group-count">(8)</span>
+        <span class="list-group-count">(9)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
@@ -424,6 +424,15 @@
            class="list-group-item list-group-item-action
            ">
           <span class="category-post">MIPI-CSI-3</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/05/01/MIPI-CSI-4/" title="MIPI-CSI-4"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MIPI-CSI-4</span>
         </a>
       
     
@@ -536,7 +545,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2024年4月10日 下午
+                    本文最后更新于：2024年4月25日 上午
                   
                 
               </p>
@@ -545,135 +554,156 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考<ul>
+<li>参考
+<ul>
 <li>CSI-2 2.0 Spec</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<hr>
-<h2 id="1-CCI（Camera-Control-Interface）"><a href="#1-CCI（Camera-Control-Interface）" class="headerlink" title="1.CCI（Camera Control Interface）"></a>1.CCI（Camera Control Interface）</h2><h3 id="1-1-CCI-主从机定义"><a href="#1-1-CCI-主从机定义" class="headerlink" title="1.1 CCI 主从机定义"></a>1.1 CCI 主从机定义</h3><ul>
+<hr />
+<h2 id="ccicamera-control-interface">1.CCI（Camera Control
+Interface）</h2>
+<h3 id="cci-主从机定义">1.1 CCI 主从机定义</h3>
+<ul>
 <li>I2C支持多主机多从机传输，但CCI只支持一个主机的传输。</li>
 <li>CCI将CSI的Transmitter配置为Slave，而将Reciever配置为Master。</li>
 </ul>
-<h3 id="1-2-CCI-Message-Types"><a href="#1-2-CCI-Message-Types" class="headerlink" title="1.2 CCI Message Types"></a>1.2 CCI Message Types</h3><ul>
-<li>CCI 传输信息类型包括：Start信号、ACK信号、Stop信号以及从机地址、从机内部寄存器子地址。<ul>
-<li>CCI的从机地址位为7bit，8bit DATA传输，以及8bit&#x2F;16bit INDEX传输。</li>
+<h3 id="cci-message-types">1.2 CCI Message Types</h3>
+<ul>
+<li>CCI
+传输信息类型包括：Start信号、ACK信号、Stop信号以及从机地址、从机内部寄存器子地址。
+<ul>
+<li><p>CCI的从机地址位为7bit，8bit DATA传输，以及8bit/16bit
+INDEX传输。</p>
+<p><img src="3201119-20230903161249778-1539658959.png" width = 50%/></p></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<img src="3201119-20230903161249778-1539658959.png" width = 50%/>
-
-<h3 id="1-3-读写操作"><a href="#1-3-读写操作" class="headerlink" title="1.3 读写操作"></a>1.3 读写操作</h3><ul>
-<li><p>CCI支持四种读操作和两种写操作，下面展开介绍。</p>
-</li>
+<h3 id="读写操作">1.3 读写操作</h3>
+<ul>
+<li><p>CCI支持四种读操作和两种写操作，下面展开介绍。</p></li>
 <li><p>（1）随机位置单次读</p>
 <ul>
-<li>如下图所示，主机先会发起一个虚拟的写操作，指定好从机地址以及INDEX值后，再发起读操作。至于为什么需要Dummy Write可以看<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17489279.html">这篇博客</a>。</li>
-<li>和I2C一样，更改数据传输方向需要再次发起开始信号Sr，并且主机需要再次给从机的地址，但不需要给INDEX值。</li>
-<li>完成一次数据读操作之后，将SDA信号拉高表示主机不应答，结束传输。</li>
-</ul>
-<img src="3201119-20230903163440137-201009953.png" width = 50%/>
-</li>
+<li><p>如下图所示，主机先会发起一个虚拟的写操作，指定好从机地址以及INDEX值后，再发起读操作。至于为什么需要Dummy
+Write可以看<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/qianbinbin/p/17489279.html">这篇博客</a>。</p></li>
+<li><p>和I2C一样，更改数据传输方向需要再次发起开始信号Sr，并且主机需要再次给从机的地址，但不需要给INDEX值。</p></li>
+<li><p>完成一次数据读操作之后，将SDA信号拉高表示主机不应答，结束传输。</p>
+<p><img src="3201119-20230903163440137-201009953.png" width = 50%/></p></li>
+</ul></li>
 <li><p>（2）随机位置连续读</p>
-<img src="3201119-20230903224825560-1446970425.png" width = 50%/>
-</li>
+<p>​
+<img src="3201119-20230903224825560-1446970425.png" width = 50%/></p></li>
 <li><p>（3）当前位置单次读</p>
 <ul>
-<li>使用的是Previous_index + 1，不需要Dummy Write。</li>
-</ul>
-<img src="3201119-20230903223348145-837229902.png" width = 50%/>
-</li>
+<li><p>使用的是Previous_index + 1，不需要Dummy Write。</p>
+<p><img src="3201119-20230903223348145-837229902.png" width = 50%/></p></li>
+</ul></li>
 <li><p>（4）当前位置连续读</p>
-<img src="3201119-20230903224946740-1858592558.png" width = 50%/>
-</li>
-<li><p>（5）随机位置单次写 </p>
-<img src="3201119-20230903225103926-1703203642.png" width = 50%/>
-</li>
+<p>​
+<img src="3201119-20230903224946740-1858592558.png" width = 50%/></p></li>
+<li><p>（5）随机位置单次写</p>
+<p>​
+<img src="3201119-20230903225103926-1703203642.png" width = 50%/></p></li>
 <li><p>（6）随机位置连续写</p>
 <ul>
-<li>下图中，我认为最后一个Data对应的Index值应为M+L-1。</li>
+<li><p>下图中，我认为最后一个Data对应的Index值应为M+L-1。</p>
+<p><img src="3201119-20230903225324858-1566777564.png" width = 50%/></p></li>
+</ul></li>
 </ul>
-<img src="3201119-20230903225324858-1566777564.png" width = 50%/></li>
-</ul>
-<h3 id="1-4-CCI-Multi-Byte-Registers"><a href="#1-4-CCI-Multi-Byte-Registers" class="headerlink" title="1.4 CCI Multi-Byte Registers"></a>1.4 CCI Multi-Byte Registers</h3><ul>
-<li>CSI-2 协议支持以下寄存器宽度<ul>
+<h3 id="cci-multi-byte-registers">1.4 CCI Multi-Byte Registers</h3>
+<ul>
+<li>CSI-2 协议支持以下寄存器宽度
+<ul>
 <li>8-bits - 常用寄存器宽度</li>
-<li>16bits - parameters like line-length, frame-length and exposure values（曝光值）</li>
+<li>16bits - parameters like line-length, frame-length and exposure
+values（曝光值）</li>
 <li>32bits - 用于高精度的寄存器宽度</li>
-<li>64bits - for needs of future sensors</li>
-</ul>
+<li>64bits - for needs of future sensors<br />
 </li>
-<li>对于寄存器位宽大于8bits，CCI协议传输情况如下图所示。<ul>
-<li>最高数据有效字节(MS Data Byte)对应着Register Index最小值，最低数据有效字节(LS Data Byte)对应着Register Index最大值。</li>
-<li>寄存器第一个字节地址可能与寄存器大小并为对齐，如下第一张图，这是被允许的，但读出数据并不一定正确。<ul>
+</ul></li>
+<li>对于寄存器位宽大于8bits，CCI协议传输情况如下图所示。
+<ul>
+<li>最高数据有效字节(MS Data Byte)对应着Register
+Index最小值，最低数据有效字节(LS Data Byte)对应着Register
+Index最大值。</li>
+<li>寄存器第一个字节地址可能与寄存器大小并为对齐，如下第一张图，这是被允许的，但读出数据并不一定正确。
+<ul>
 <li>寄存器是否需要对齐取决于系统对数据处理效率优化及数据传输带宽优化的权衡。</li>
-</ul>
-</li>
+</ul></li>
 <li><strong>不允许</strong>对多字节寄存器进行<strong>部分字节访问</strong>，需要按照字节MS-LS之间的顺序访问，如下第二张图。</li>
-<li>读&#x2F;写指令格式与前面介绍的CCI读写相似，区别在于对读&#x2F;写的数据拼接处理。</li>
+<li>读/写指令格式与前面介绍的CCI读写相似，区别在于对读/写的数据拼接处理。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p>​		<img src="image-20240407201522861.png"  width =67% /></p>
-<p>​		<img src="image-20240407202456249.png"  width =67% /></p>
-<p>​		<img src="image-20240407205012507.png"  width =67% /></p>
+<p>​ <img src="image-20240407201522861.png"  width =67% /></p>
+<p>​ <img src="image-20240407202456249.png"  width =67% /></p>
+<p>​ <img src="image-20240407205012507.png"  width =67% /></p>
 <ul>
 <li><p>Multi-Byte Read</p>
 <ul>
-<li><p>下面内容并无明确规范要求，可以根据设计更改。</p>
-</li>
+<li><p>下面内容并无明确规范要求，可以根据设计更改。</p></li>
 <li><p>为保证读取数据为同一Multi-Byte寄存器中的值，需要插入缓冲区，之后再从缓冲区加载字节序列输出到SDA线上。</p>
 <ul>
-<li><p>如下图所示，在更新到新的Multi-Byte 寄存器(0x01020304)后，缓冲区被刷新。</p>
-<p><img src="/2024/04/08/MIPI-CCI/image-20240407210621957.png" alt="16bit-read"></p>
-</li>
+<li><p>如下图所示，在更新到新的Multi-Byte
+寄存器(0x01020304)后，缓冲区被刷新。</p>
+<figure>
+<img src="image-20240407210621957.png" alt="16bit-read" />
+<figcaption aria-hidden="true">16bit-read</figcaption>
+</figure></li>
 <li><p>对于更大位宽的寄存器，若仍采用上述缓冲更新策略，可能会出现数据被覆盖的问题，需更改缓冲区更新策略，如下图所示。</p>
 <ul>
-<li>当开始读数据MS Byte时，将Multi-Byte 寄存器中的值全部加载到缓冲区，直到主机发出Start&#x2F;Stop信号之后再重置缓冲区。</li>
+<li>当开始读数据MS Byte时，将Multi-Byte
+寄存器中的值全部加载到缓冲区，直到主机发出Start/Stop信号之后再重置缓冲区。</li>
 <li>这样可以保证数据读取正确，不会在读取过程中数据被覆盖。</li>
 </ul>
-<p><img src="/2024/04/08/MIPI-CCI/image-20240407211621328.png" alt="2"></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<figure>
+<img src="image-20240407211621328.png" alt="2" />
+<figcaption aria-hidden="true">2</figcaption>
+</figure></li>
+</ul></li>
+</ul></li>
 <li><p>Multi-Byte Write</p>
 <ul>
-<li><p>如下图所示，为保证Multi-Byte 寄存器的数据被同时写入，仍需要增加缓冲区。</p>
-</li>
-<li><p>在寄存器LS Data 字节被写入后，完整的多字节值会被传输到对应地址的寄存器中。</p>
-<p><img src="/2024/04/08/MIPI-CCI/image-20240407220514369.png" alt="image-20240407220514369"></p>
-<p><img src="/2024/04/08/MIPI-CCI/image-20240407221313225.png" alt="image-20240407221313225"></p>
-</li>
+<li><p>如下图所示，为保证Multi-Byte
+寄存器的数据被同时写入，仍需要增加缓冲区。</p></li>
+<li><p>在寄存器LS Data
+字节被写入后，完整的多字节值会被传输到对应地址的寄存器中。</p>
+<figure>
+<img src="image-20240407220514369.png" alt="image-20240407220514369" />
+<figcaption aria-hidden="true">image-20240407220514369</figcaption>
+</figure>
+<figure>
+<img src="image-20240407221313225.png" alt="image-20240407221313225" />
+<figcaption aria-hidden="true">image-20240407221313225</figcaption>
+</figure></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="1-5-CCI-Timing"><a href="#1-5-CCI-Timing" class="headerlink" title="1.5 CCI Timing"></a>1.5 CCI Timing</h3><ul>
+<h3 id="cci-timing">1.5 CCI Timing</h3>
+<ul>
 <li><p>CCI 需要考虑的时序约束变量如下图所示。</p>
 <ul>
-<li><p><code>t_R/t_F</code>: Rise time &#x2F; Fall time of both SDA and SCL  signals </p>
-</li>
-<li><p><code>t_BUF</code>: Bus free time between a STOP  and START condition </p>
-</li>
-<li><p><code>t_HD,STA</code>: 检测到SDA从高到低变化(START)时，SCL应需要额外保持高电平这些时间，之后开始产生时钟(SCL)脉冲。</p>
-</li>
-<li><p><code>t_SU,STA</code>: 在Repeated-START信号前，SCL信号应保持为高电平的建立时间。</p>
-</li>
-<li><p><code>t_LOW/t_HIGH</code>: SCL 保持低电平和高电平的周期时间。</p>
-</li>
-<li><p><code>t_SU,DAT/t_HD,DAT</code>: 数据在时钟(SCL)高电平到来之前应保持稳定的建立时间&#x2F;数据在SCL变为低电平之前应保持稳定的保持时间。</p>
+<li><p><code>t_R/t_F</code>: Rise time / Fall time of both SDA and SCL
+signals</p></li>
+<li><p><code>t_BUF</code>: Bus free time between a STOP and START
+condition</p></li>
+<li><p><code>t_HD,STA</code>:
+检测到SDA从高到低变化(START)时，SCL应需要额外保持高电平这些时间，之后开始产生时钟(SCL)脉冲。</p></li>
+<li><p><code>t_SU,STA</code>:
+在Repeated-START信号前，SCL信号应保持为高电平的建立时间。</p></li>
+<li><p><code>t_LOW/t_HIGH</code>: SCL
+保持低电平和高电平的周期时间。</p></li>
+<li><p><code>t_SU,DAT/t_HD,DAT</code>:
+数据在时钟(SCL)高电平到来之前应保持稳定的建立时间/数据在SCL变为低电平之前应保持稳定的保持时间。</p>
 <ul>
-<li>CCI与I2C一样，在SCL为高电平时，接收器从SDA上采样1bit数据，SDA需要保持稳定。关于I2C相关内容可以看<a href="https://binbinqian.cn/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%80%EF%BC%89/">这篇博客</a>。</li>
-</ul>
-</li>
-<li><p><code>t_SU,STO</code>: 在SDA从低电平拉高(产生STOP信号），SCL需要保持为高电平的时间。</p>
-<p><img src="/2024/04/08/MIPI-CCI/image-20240408103247979.png" alt="image-20240408103247979"></p>
-</li>
-</ul>
-</li>
-<li><p>总结：建立保持时间与常见的同步时序电路中上升沿采样的一致，关键需要清楚SDA及SCL的<code>开始、停止、采样条件</code>。</p>
-</li>
+<li>CCI与I2C一样，在SCL为高电平时，接收器从SDA上采样1bit数据，SDA需要保持稳定。关于I2C相关内容可以看<a
+href="https://binbinqian.cn/2023/10/28/I2C%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%80%EF%BC%89/">这篇博客</a>。</li>
+</ul></li>
+<li><p><code>t_SU,STO</code>:
+在SDA从低电平拉高(产生STOP信号），SCL需要保持为高电平的时间。</p>
+<figure>
+<img src="image-20240408103247979.png" alt="image-20240408103247979" />
+<figcaption aria-hidden="true">image-20240408103247979</figcaption>
+</figure></li>
+</ul></li>
+<li><p>总结：建立保持时间与常见的同步时序电路中上升沿采样的一致，关键需要清楚SDA及SCL的<code>开始、停止、采样条件</code>。</p></li>
 </ul>
 
                 
