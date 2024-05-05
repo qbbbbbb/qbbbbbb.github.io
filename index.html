@@ -254,6 +254,74 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2024/05/04/MIPI-CSI-5/" target="_self">
+          MIPI-CSI-5
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/05/04/MIPI-CSI-5/" target="_self">
+        <div>
+          本节主要介绍 CSI-2 的实现案例   1. 概述  假设物理层为D-PHY，实现框图如下图所示。   image-20240504123518115  实现案例没有展示错误恢复机制和错误处理细节相关内容，主要从数据流向进行介绍。 实现案例中传输的数据为RAW8格式，其不需要完成Pixel 和 Byte 转换的打包和解包过程。  2. CSI-2 Transmit
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-05-04 10:18" pubdate>
+              2024-05-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/" class="category-chain-item">高速串行总线</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/MIPI-%E6%8E%A5%E5%8F%A3%E5%8D%8F%E8%AE%AE/" class="category-chain-item">MIPI 接口协议</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/MIPI-%E6%8E%A5%E5%8F%A3%E5%8D%8F%E8%AE%AE/CSI/" class="category-chain-item">CSI</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2024/05/01/MIPI-CSI-4/" target="_self">
           MIPI-CSI-4
         </a>
@@ -262,7 +330,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/05/01/MIPI-CSI-4/" target="_self">
         <div>
-          1. YUV 图像数据 1.1 关于YUV  YUV将亮度与色度进行分离。  Y 表示亮度，即灰度值。另外，其还包含了较多的绿色通道信息。 U 表示蓝色通道与亮度的差值。 V 表示红色通道与亮度的差值。  YUV 优点  研究发现，人眼对亮度的敏感程度超过了色度。  因此YUV将亮度与色度信息分离，并使用不同bit进行存储，这样可以更高效的存储图像数据。   YUV
+          本篇博客将重点介绍 YUV/RGB/RAW 三种图像格式在CSI-2协议中的数据传输格式。   1. YUV 图像数据 1.1 关于YUV  YUV将亮度与色度进行分离。  Y 表示亮度，即灰度值。另外，其还包含了较多的绿色通道信息。 U 表示蓝色通道与亮度的差值。 V 表示红色通道与亮度的差值。  YUV 优点  研究发现，人眼对亮度的敏感程度超过了色度。
         </div>
       </a>
 
@@ -293,6 +361,81 @@
     
   <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/MIPI-%E6%8E%A5%E5%8F%A3%E5%8D%8F%E8%AE%AE/" class="category-chain-item">MIPI 接口协议</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/MIPI-%E6%8E%A5%E5%8F%A3%E5%8D%8F%E8%AE%AE/CSI/" class="category-chain-item">CSI</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/04/25/MIPI-CSI-3/" target="_self">
+          MIPI-CSI-3
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/04/25/MIPI-CSI-3/" target="_self">
+        <div>
+          本篇博客接着MIPI-CSI-2继续介绍CSI协议中Low Level Protocol (LLP)相关内容。  1. Latency Reduction and Transport Efficiency (LRTE)  LRTE是CSI-2可选特性，能够促使系统达到最优的传输效率。LRTE主要有两部分  Interpacket Latency Reduction (ILR
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-04-25 10:18" pubdate>
+              2024-04-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/" class="category-chain-item">高速串行总线</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/MIPI-%E6%8E%A5%E5%8F%A3%E5%8D%8F%E8%AE%AE/" class="category-chain-item">MIPI 接口协议</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/MIPI-%E6%8E%A5%E5%8F%A3%E5%8D%8F%E8%AE%AE/CSI/" class="category-chain-item">CSI</a>
+  
+  
+
   
 
   
@@ -355,66 +498,12 @@
   <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/MIPI-%E6%8E%A5%E5%8F%A3%E5%8D%8F%E8%AE%AE/" class="category-chain-item">MIPI 接口协议</a>
   
   
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/04/24/MIPI-CSI-3/" target="_self">
-          MIPI-CSI-3
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/04/24/MIPI-CSI-3/" target="_self">
-        <div>
-          本篇博客接着MIPI-CSI-2继续介绍CSI协议中Low Level Protocol (LLP)相关内容。  1. Latency Reduction and Transport Efficiency (LRTE)  LRTE是CSI-2可选特性，能够促使系统达到最优的传输效率。LRTE主要有两部分  Interpacket Latency Reduction (ILR
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-04-24 10:18" pubdate>
-              2024-04-24
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/" class="category-chain-item">高速串行总线</a>
-  
-  
     <span>></span>
     
-  <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/MIPI-%E6%8E%A5%E5%8F%A3%E5%8D%8F%E8%AE%AE/" class="category-chain-item">MIPI 接口协议</a>
+  <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/MIPI-%E6%8E%A5%E5%8F%A3%E5%8D%8F%E8%AE%AE/CSI/" class="category-chain-item">CSI</a>
   
+  
+
   
 
   
@@ -477,6 +566,13 @@
   <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/MIPI-%E6%8E%A5%E5%8F%A3%E5%8D%8F%E8%AE%AE/" class="category-chain-item">MIPI 接口协议</a>
   
   
+    <span>></span>
+    
+  <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/MIPI-%E6%8E%A5%E5%8F%A3%E5%8D%8F%E8%AE%AE/PHY/" class="category-chain-item">PHY</a>
+  
+  
+
+  
 
   
 
@@ -538,6 +634,13 @@
   <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/MIPI-%E6%8E%A5%E5%8F%A3%E5%8D%8F%E8%AE%AE/" class="category-chain-item">MIPI 接口协议</a>
   
   
+    <span>></span>
+    
+  <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/MIPI-%E6%8E%A5%E5%8F%A3%E5%8D%8F%E8%AE%AE/PHY/" class="category-chain-item">PHY</a>
+  
+  
+
+  
 
   
 
@@ -598,6 +701,13 @@
     
   <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/MIPI-%E6%8E%A5%E5%8F%A3%E5%8D%8F%E8%AE%AE/" class="category-chain-item">MIPI 接口协议</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/MIPI-%E6%8E%A5%E5%8F%A3%E5%8D%8F%E8%AE%AE/PHY/" class="category-chain-item">PHY</a>
+  
+  
+
   
 
   
@@ -769,67 +879,6 @@
         
   <a href="/categories/System-Verilog/" class="category-chain-item">System Verilog</a>
   
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/01/05/param-%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/" target="_self">
-          param-相关用法
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/05/param-%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/" target="_self">
-        <div>
-          参考  https://worktile.com/kb/ask/19107.html https://zhuanlan.zhihu.com/p/420873197    1. Verilog 1.1 parameter  声明  可以被声明为integer、real、realtime、time四种类型。 可以声明parameter的位宽。 可以使用表达式来计算它的值
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-01-05 20:35" pubdate>
-              2024-01-05
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80/" class="category-chain-item">硬件设计基础</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80/%E8%AF%AD%E6%B3%95%E8%A1%A5%E8%AE%B0/" class="category-chain-item">语法补记</a>
-  
-  
-
   
 
       </span>

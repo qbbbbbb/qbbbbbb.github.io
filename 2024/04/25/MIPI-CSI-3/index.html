@@ -20,36 +20,36 @@
     <meta name="description" content="本篇博客接着MIPI-CSI-2继续介绍CSI协议中Low Level Protocol (LLP)相关内容。  1. Latency Reduction and Transport Efficiency (LRTE)  LRTE是CSI-2可选特性，能够促使系统达到最优的传输效率。LRTE主要有两部分  Interpacket Latency Reduction (ILR">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MIPI-CSI-3">
-<meta property="og:url" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/index.html">
+<meta property="og:url" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/index.html">
 <meta property="og:site_name" content="可达达鸭">
 <meta property="og:description" content="本篇博客接着MIPI-CSI-2继续介绍CSI协议中Low Level Protocol (LLP)相关内容。  1. Latency Reduction and Transport Efficiency (LRTE)  LRTE是CSI-2可选特性，能够促使系统达到最优的传输效率。LRTE主要有两部分  Interpacket Latency Reduction (ILR">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/image-20240424124613940.png">
-<meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/image-20240424133058197.png">
-<meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/image-20240424145122800.png">
-<meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/image-20240424154817918.png">
-<meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/image-20240424164848440.png">
-<meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/image-20240424170608673.png">
-<meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/image-20240424170905884.png">
-<meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/image-20240424180929986.png">
-<meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/image-20240430110531878.png">
-<meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/image-20240430112708367.png">
-<meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/image-20240430152613101.png">
-<meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/image-20240430154559927.png">
-<meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/image-20240430162602213.png">
-<meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/image-20240430181522535.png">
-<meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/image-20240430181618897.png">
-<meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/image-20240430183323311.png">
-<meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/image-20240430184252724.png">
-<meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/image-20240430184344306.png">
-<meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/image-20240430185124342.png">
-<meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/image-20240501120259564.png">
-<meta property="og:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/image-20240501120616798.png">
-<meta property="article:published_time" content="2024-04-24T02:18:32.000Z">
-<meta property="article:modified_time" content="2024-05-01T13:28:00.701Z">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240424124613940.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240424133058197.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240424145122800.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240424154817918.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240424164848440.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240424170608673.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240424170905884.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240424180929986.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240430110531878.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240430112708367.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240430152613101.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240430154559927.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240430162602213.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240430181522535.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240430181618897.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240430183323311.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240430184252724.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240430184344306.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240430185124342.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240501120259564.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240501120616798.png">
+<meta property="article:published_time" content="2024-04-25T02:18:32.000Z">
+<meta property="article:modified_time" content="2024-05-04T04:39:06.051Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://binbinqian.cn/2024/04/24/MIPI-CSI-3/image-20240424124613940.png">
+<meta name="twitter:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240424124613940.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -259,8 +259,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-04-24 10:18" pubdate>
-          2024年4月24日 上午
+        <time datetime="2024-04-25 10:18" pubdate>
+          2024年4月25日 上午
         </time>
       </span>
     
@@ -340,7 +340,7 @@
         aria-expanded="true"
       >
         高速串行总线
-        <span class="list-group-count">(13)</span>
+        <span class="list-group-count">(14)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
@@ -367,7 +367,7 @@
         aria-expanded="true"
       >
         MIPI 接口协议
-        <span class="list-group-count">(9)</span>
+        <span class="list-group-count">(10)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
@@ -375,6 +375,7 @@
            role="tabpanel" aria-labelledby="heading-eceb049bd3a5ec8a8d005b2a6156933e">
         
         
+          
           
   <div class="category-post-list">
     
@@ -390,21 +391,38 @@
     
       
       
-        <a href="/2024/04/08/MIPI-CPHY-1/" title="MIPI-CPHY-1"
+        <a href="/2023/10/28/MIPI-%E6%A6%82%E8%BF%B0/" title="MIPI-概述"
            class="list-group-item list-group-item-action
            ">
-          <span class="category-post">MIPI-CPHY-1</span>
+          <span class="category-post">MIPI-概述</span>
         </a>
       
     
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="CSI"
+        id="heading-29231abcf88777a5ff99e2e0feec4718" role="tab" data-toggle="collapse" href="#collapse-29231abcf88777a5ff99e2e0feec4718"
+        aria-expanded="true"
+      >
+        CSI
+        <span class="list-group-count">(5)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
       
-      
-        <a href="/2024/04/18/MIPI-CPHY-2/" title="MIPI-CPHY-2"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">MIPI-CPHY-2</span>
-        </a>
-      
+      <div class="category-collapse collapse show" id="collapse-29231abcf88777a5ff99e2e0feec4718"
+           role="tabpanel" aria-labelledby="heading-29231abcf88777a5ff99e2e0feec4718">
+        
+        
+          
+  <div class="category-post-list">
+    
     
       
       
@@ -426,7 +444,7 @@
     
       
       
-        <a href="/2024/04/24/MIPI-CSI-3/" title="MIPI-CSI-3"
+        <a href="/2024/04/25/MIPI-CSI-3/" title="MIPI-CSI-3"
            class="list-group-item list-group-item-action
            active">
           <span class="category-post">MIPI-CSI-3</span>
@@ -444,6 +462,61 @@
     
       
       
+        <a href="/2024/05/04/MIPI-CSI-5/" title="MIPI-CSI-5"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MIPI-CSI-5</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="PHY"
+        id="heading-7cc33284ca55317351dd1c389fff521a" role="tab" data-toggle="collapse" href="#collapse-7cc33284ca55317351dd1c389fff521a"
+        aria-expanded="false"
+      >
+        PHY
+        <span class="list-group-count">(3)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-7cc33284ca55317351dd1c389fff521a"
+           role="tabpanel" aria-labelledby="heading-7cc33284ca55317351dd1c389fff521a">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2024/04/08/MIPI-CPHY-1/" title="MIPI-CPHY-1"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MIPI-CPHY-1</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/04/18/MIPI-CPHY-2/" title="MIPI-CPHY-2"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MIPI-CPHY-2</span>
+        </a>
+      
+    
+      
+      
         <a href="/2024/04/08/MIPI-DPHY/" title="MIPI-DPHY"
            class="list-group-item list-group-item-action
            ">
@@ -451,17 +524,12 @@
         </a>
       
     
-      
-      
-        <a href="/2023/10/28/MIPI-%E6%A6%82%E8%BF%B0/" title="MIPI-概述"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">MIPI-概述</span>
-        </a>
-      
-    
   </div>
 
+        
+      </div>
+    </div>
+  
         
       </div>
     </div>
@@ -551,7 +619,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2024年5月1日 晚上
+                    本文最后更新于：2024年5月4日 下午
                   
                 
               </p>
@@ -889,6 +957,13 @@ footer）。</li>
   <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/MIPI-%E6%8E%A5%E5%8F%A3%E5%8D%8F%E8%AE%AE/" class="category-chain-item">MIPI 接口协议</a>
   
   
+    <span>></span>
+    
+  <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/MIPI-%E6%8E%A5%E5%8F%A3%E5%8D%8F%E8%AE%AE/CSI/" class="category-chain-item">CSI</a>
+  
+  
+
+  
 
   
 
@@ -909,7 +984,7 @@ footer）。</li>
   <div class="license-box my-3">
     <div class="license-title">
       <div>MIPI-CSI-3</div>
-      <div>http://binbinqian.cn/2024/04/24/MIPI-CSI-3/</div>
+      <div>http://binbinqian.cn/2024/04/25/MIPI-CSI-3/</div>
     </div>
     <div class="license-meta">
       
@@ -921,7 +996,7 @@ footer）。</li>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年4月24日</div>
+          <div>2024年4月25日</div>
         </div>
       
       
@@ -953,9 +1028,9 @@ footer）。</li>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/04/24/MIPI-CSI-2/" title="MIPI-CSI-2">
+                      <a href="/2024/05/01/MIPI-CSI-4/" title="MIPI-CSI-4">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MIPI-CSI-2</span>
+                        <span class="hidden-mobile">MIPI-CSI-4</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -963,8 +1038,8 @@ footer）。</li>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/04/18/MIPI-CPHY-2/" title="MIPI-CPHY-2">
-                        <span class="hidden-mobile">MIPI-CPHY-2</span>
+                      <a href="/2024/04/24/MIPI-CSI-2/" title="MIPI-CSI-2">
+                        <span class="hidden-mobile">MIPI-CSI-2</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
