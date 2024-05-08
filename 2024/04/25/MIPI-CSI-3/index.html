@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本篇博客接着MIPI-CSI-2继续介绍CSI协议中Low Level Protocol (LLP)相关内容。  1. Latency Reduction and Transport Efficiency (LRTE)  LRTE是CSI-2可选特性，能够促使系统达到最优的传输效率。LRTE主要有两部分  Interpacket Latency Reduction (ILR">
+    <meta name="description" content="本篇博客接着MIPI-CSI-2继续介绍CSI协议中Low Level Protocol (LLP)相关内容。  1. Latency Reduction and Transport Efficiency (LRTE) LRTE是CSI-2可选特性，能够促使系统达到最优的传输效率。LRTE主要有两部分 Interpacket Latency Reduction (ILR) Enhanced T">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MIPI-CSI-3">
 <meta property="og:url" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="本篇博客接着MIPI-CSI-2继续介绍CSI协议中Low Level Protocol (LLP)相关内容。  1. Latency Reduction and Transport Efficiency (LRTE)  LRTE是CSI-2可选特性，能够促使系统达到最优的传输效率。LRTE主要有两部分  Interpacket Latency Reduction (ILR">
+<meta property="og:description" content="本篇博客接着MIPI-CSI-2继续介绍CSI协议中Low Level Protocol (LLP)相关内容。  1. Latency Reduction and Transport Efficiency (LRTE) LRTE是CSI-2可选特性，能够促使系统达到最优的传输效率。LRTE主要有两部分 Interpacket Latency Reduction (ILR) Enhanced T">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240424124613940.png">
 <meta property="og:image" content="http://binbinqian.cn/2024/04/25/MIPI-CSI-3/image-20240424133058197.png">
@@ -271,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.3k 字
+          3.9k 字
         
       </span>
     
@@ -282,7 +282,7 @@
         
         
         
-          36 分钟
+          33 分钟
         
       </span>
     
@@ -627,309 +627,259 @@
             
               <div class="markdown-body">
                 
-                <hr />
+                <hr>
 <ul>
-<li>本篇博客接着MIPI-CSI-2继续介绍CSI协议中Low Level Protocol
-(LLP)相关内容。</li>
+<li>本篇博客接着MIPI-CSI-2继续介绍CSI协议中Low Level Protocol (LLP)相关内容。</li>
 </ul>
-<h2 id="latency-reduction-and-transport-efficiency-lrte">1. Latency
-Reduction and Transport Efficiency (LRTE)</h2>
-<ul>
-<li>LRTE是CSI-2可选特性，能够促使系统达到最优的传输效率。LRTE主要有两部分
-<ul>
+<h2 id="1-Latency-Reduction-and-Transport-Efficiency-LRTE"><a href="#1-Latency-Reduction-and-Transport-Efficiency-LRTE" class="headerlink" title="1. Latency Reduction and Transport Efficiency (LRTE)"></a>1. Latency Reduction and Transport Efficiency (LRTE)</h2><ul>
+<li>LRTE是CSI-2可选特性，能够促使系统达到最优的传输效率。LRTE主要有两部分<ul>
 <li>Interpacket Latency Reduction (ILR)</li>
 <li>Enhanced Transport Efficiency</li>
-</ul></li>
 </ul>
-<h3 id="ilr">1.1 ILR</h3>
-<ul>
-<li><p>根据D-PHY和C-PHY的物理规范，CSI-2短包之间和长包之间通过EOT、LPS、SOT包分隔符分开。</p></li>
-<li><p>一些高级图像会通过降低这些分隔符的开销，来提升速度。</p></li>
-<li><p>如下图所示，将EOT、LPS、SOT包分隔符替换为EPD(Efficient Packet
-Delimiter)。</p>
+</li>
+</ul>
+<h3 id="1-1-ILR"><a href="#1-1-ILR" class="headerlink" title="1.1 ILR"></a>1.1 ILR</h3><ul>
+<li><p>根据D-PHY和C-PHY的物理规范，CSI-2短包之间和长包之间通过EOT、LPS、SOT包分隔符分开。</p>
+</li>
+<li><p>一些高级图像会通过降低这些分隔符的开销，来提升速度。</p>
+</li>
+<li><p>如下图所示，将EOT、LPS、SOT包分隔符替换为EPD(Efficient Packet Delimiter)。</p>
 <ul>
 <li>EPD避免了HS-LPS-HS 的转换。</li>
 </ul>
-<figure>
-<img src="image-20240424124613940.png" alt="image-20240424124613940" />
-<figcaption aria-hidden="true">image-20240424124613940</figcaption>
-</figure></li>
-<li><p>EPD由PHY层 和/或 LLP层提供的元素构成。</p>
+<p><img src="/2024/04/25/MIPI-CSI-3/image-20240424124613940.png" alt="image-20240424124613940"></p>
+</li>
+<li><p>EPD由PHY层 和&#x2F;或 LLP层提供的元素构成。</p>
 <ul>
 <li>其中PHY层产生的EPD元素被称为 Packet Delimiter Quick(PDQ).</li>
-<li>其中LLP层产生的EPD元素被称为Spacers.
-如果一个Lane插入了Spacers，那么所有的Lane都需要插入Spacers.</li>
-</ul></li>
+<li>其中LLP层产生的EPD元素被称为Spacers. 如果一个Lane插入了Spacers，那么所有的Lane都需要插入Spacers.</li>
+</ul>
+</li>
 <li><p>LRTE要求EPD应在高速传输模式下最后一个包数据之后插入，不允许在EOT之后再插入EPD。</p>
 <ul>
 <li>但存在某些特殊情况，允许在EOT后插入Spacers，但不可插入PDQ。</li>
-</ul></li>
 </ul>
-<h3 id="c-phy-epd">1.2 C-PHY EPD</h3>
-<ul>
-<li><p>C-PHY EPD中的PDQ是由7-UI Sync Word构成的。</p></li>
+</li>
+</ul>
+<h3 id="1-2-C-PHY-EPD"><a href="#1-2-C-PHY-EPD" class="headerlink" title="1.2 C-PHY EPD"></a>1.2 C-PHY EPD</h3><ul>
+<li><p>C-PHY EPD中的PDQ是由7-UI Sync Word构成的。</p>
+</li>
 <li><p>PDQ由TX 端 PHY层生成，RX端 PHY层解析。</p>
 <ul>
 <li>TX端，在PHY层的PPI接口处应重复使用<code>TxSendSyncHS</code>，以通知C-PHY生成PDQ控制码。</li>
 <li>RX端，在PHY层接收到PDQ控制码时，应在PPI处重复使用<code>RxSyncHS</code>，以通知LLP层。</li>
-</ul></li>
-<li><p>Spacer Word 数量可通过寄存器配置指定，Space
-Word的值为0xFFFF。</p>
-<figure>
-<img src="image-20240424133058197.png" alt="image-20240424133058197" />
-<figcaption aria-hidden="true">image-20240424133058197</figcaption>
-</figure></li>
 </ul>
-<h3 id="d-phy-epd">1.3 D-PHY EPD</h3>
-<ul>
-<li><p>在D-PHY下，有两种EPD选项。但无论哪种选项，当打开EPD使能后，都需要用Filler字节对齐所有Lane上的数据，Filler字节的值是0x00.</p></li>
+</li>
+<li><p>Spacer Word 数量可通过寄存器配置指定，Space Word的值为0xFFFF。</p>
+<p><img src="/2024/04/25/MIPI-CSI-3/image-20240424133058197.png" alt="image-20240424133058197"></p>
+</li>
+</ul>
+<h3 id="1-3-D-PHY-EPD"><a href="#1-3-D-PHY-EPD" class="headerlink" title="1.3 D-PHY EPD"></a>1.3 D-PHY EPD</h3><ul>
+<li><p>在D-PHY下，有两种EPD选项。但无论哪种选项，当打开EPD使能后，都需要用Filler字节对齐所有Lane上的数据，Filler字节的值是0x00.</p>
+</li>
 <li><p>D-PHY EPD Option 1</p>
 <ul>
 <li><p>传输模式如下图所示。</p>
-<p><img src="image-20240424145122800.png" alt="image-20240424145122800" style="zoom: 50%;" /></p></li>
+<img src="image-20240424145122800.png" alt="image-20240424145122800" style="zoom: 50%;" />
+</li>
 <li><p>PDQ是由D-PHY中的HS-Idle构成的。</p>
 <ul>
 <li>注意：HS-Idle并不被ALP模式所支持。</li>
 <li>TX端，在PHY层的PPI接口处应重复使用<code>TxSendPDQHS</code>，以通知D-PHY生成PDQ控制码。</li>
 <li>RX端，在PHY层接收到PDQ控制码时，应在PPI处重复使用<code>RXDetectPDQHS</code>，以通知LLP层。</li>
-</ul></li>
+</ul>
+</li>
 <li><p>Spacers仍是由LLP生成的，其字节值为0xFF.</p>
 <ul>
-<li>DPHY
-RX端接收到数据包之后，会先将数据加载到缓冲区中，之后再处理传递至LLP层。</li>
+<li>DPHY RX端接收到数据包之后，会先将数据加载到缓冲区中，之后再处理传递至LLP层。</li>
 <li>因此在数据包传输之间插入Spacers，以便RX端足够的时间去处理接收到的数据，避免数据丢失。</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><p>D-PHY EPD Option 2</p>
 <ul>
 <li><p>传输模式如下图所示。</p>
-<p><img src="image-20240424154817918.png" alt="image-20240424154817918" style="zoom:50%;" /></p></li>
-<li><p>该模式下只有LLP层生成的Spacer，没有PHY层生成的PDQ
-来实现包间隔。</p></li>
-<li><p>由于Option 1中提到，HS-Idle并不被ALP模式支持，但Option
-2可以被ALP模式支持。</p></li>
+<img src="image-20240424154817918.png" alt="image-20240424154817918" style="zoom:50%;" />
+</li>
+<li><p>该模式下只有LLP层生成的Spacer，没有PHY层生成的PDQ 来实现包间隔。</p>
+</li>
+<li><p>由于Option 1中提到，HS-Idle并不被ALP模式支持，但Option 2可以被ALP模式支持。</p>
+</li>
 <li><p>在连续传输数据包时，PDQ还可用作数据包之间的分界。</p>
 <ul>
-<li>但Option
-2模式下，数据包的间隔只有Spacers，所以在大量数据包连续传输时，可能影响数据传输的稳定性和准确性。</li>
-</ul></li>
-<li><p>DPHY EPD Option 2同样也可应用于C-PHY/D-PHY Escape模式下LPDT
-传输。</p></li>
-<li><p>Option 2
-下，无论是高速模式还是LPDT模式，EPD都不能在EoT/EoTp之后插入。</p></li>
-</ul></li>
+<li>但Option 2模式下，数据包的间隔只有Spacers，所以在大量数据包连续传输时，可能影响数据传输的稳定性和准确性。</li>
 </ul>
-<h3 id="using-ilr-and-enhanced-transport-efficiency-together">1.4 Using
-ILR and Enhanced Transport Efficiency Together</h3>
-<ul>
+</li>
+<li><p>DPHY EPD Option 2同样也可应用于C-PHY&#x2F;D-PHY Escape模式下LPDT 传输。</p>
+</li>
+<li><p>Option 2 下，无论是高速模式还是LPDT模式，EPD都不能在EoT&#x2F;EoTp之后插入。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-4-Using-ILR-and-Enhanced-Transport-Efficiency-Together"><a href="#1-4-Using-ILR-and-Enhanced-Transport-Efficiency-Together" class="headerlink" title="1.4 Using ILR and Enhanced Transport Efficiency Together"></a>1.4 Using ILR and Enhanced Transport Efficiency Together</h3><ul>
 <li><p>如下图所示，同时使用EPD和ALPS。</p>
-<p><img src="image-20240424164848440.png" alt="image-20240424164848440" style="zoom:50%;" /></p></li>
+<img src="image-20240424164848440.png" alt="image-20240424164848440" style="zoom:50%;" /></li>
 </ul>
-<h2 id="data-scrambling">2. Data Scrambling</h2>
-<ul>
-<li><p>数据加扰(Data Scrambling)
-目的是减轻EMI和RF自干扰的影响，数据加扰主要是使用了一种数据随机化技术。</p></li>
+<h2 id="2-Data-Scrambling"><a href="#2-Data-Scrambling" class="headerlink" title="2. Data Scrambling"></a>2. Data Scrambling</h2><ul>
+<li><p>数据加扰(Data Scrambling) 目的是减轻EMI和RF自干扰的影响，数据加扰主要是使用了一种数据随机化技术。</p>
+</li>
 <li><p>如下图所示，数据加扰被应用到每个Lane。</p>
-<figure>
-<img src="image-20240424170608673.png" alt="image-20240424170608673" />
-<figcaption aria-hidden="true">image-20240424170608673</figcaption>
-</figure></li>
+<p><img src="/2024/04/25/MIPI-CSI-3/image-20240424170608673.png" alt="image-20240424170608673"></p>
+</li>
 </ul>
-<h3 id="d-phy-scrambling">2.1 D-PHY Scrambling</h3>
-<ul>
+<h3 id="2-1-D-PHY-Scrambling"><a href="#2-1-D-PHY-Scrambling" class="headerlink" title="2.1 D-PHY Scrambling"></a>2.1 D-PHY Scrambling</h3><ul>
 <li><p>如下图所示，D-PHY下，使用两条Lane进行传输，突发传输两个数据包。</p>
 <ul>
 <li>在SoT之后，HS-ZERO和HS-Sync会被发送到Lane中。</li>
-<li>加扰主要通过LFSR电路实现，用于产生伪随机序列，与串行输入的数据进行异或操作。
-<ul>
+<li>加扰主要通过LFSR电路实现，用于产生伪随机序列，与串行输入的数据进行异或操作。<ul>
 <li>在每次传输开始时，需要对LFSR seed 进行初始化。</li>
-<li>在Burst起始位置，紧跟HS
-Sync之后第一个要发送字节之前，由D-PHY立即生成初始化值。</li>
+<li>在Burst起始位置，紧跟HS Sync之后第一个要发送字节之前，由D-PHY立即生成初始化值。</li>
 <li>在EDP Option1 下，EPD HS-Idle发送之后，立即生成初始化值。</li>
 <li>在EDP Option2 下，突发传输的包之间不需要再次初始化。</li>
-</ul></li>
 </ul>
-<figure>
-<img src="image-20240424170905884.png" alt="image-20240424170905884" />
-<figcaption aria-hidden="true">image-20240424170905884</figcaption>
-</figure></li>
+</li>
 </ul>
-<h3 id="c-phy-scrambling">2.2 C-PHY Scrambling</h3>
-<ul>
+<p><img src="/2024/04/25/MIPI-CSI-3/image-20240424170905884.png" alt="image-20240424170905884"></p>
+</li>
+</ul>
+<h3 id="2-2-C-PHY-Scrambling"><a href="#2-2-C-PHY-Scrambling" class="headerlink" title="2.2 C-PHY Scrambling"></a>2.2 C-PHY Scrambling</h3><ul>
 <li><p>如下图所示，C-PHY下，使用两条Lane进行传输，突发传输两个数据包。</p>
 <ul>
-<li><p>在SoT之后，Preamble和Sync被发送到Lane上。</p></li>
+<li><p>在SoT之后，Preamble和Sync被发送到Lane上。</p>
+</li>
 <li><p>每条Lane 的LFSR总是在Sync Word被发送时，初始化LFSR seed。</p>
-<figure>
-<img src="image-20240424180929986.png" alt="image-20240424180929986" />
-<figcaption aria-hidden="true">image-20240424180929986</figcaption>
-</figure></li>
-</ul></li>
+<p><img src="/2024/04/25/MIPI-CSI-3/image-20240424180929986.png" alt="image-20240424180929986"></p>
+</li>
+</ul>
+</li>
 <li><p>Different Seed for Sync Word</p>
 <ul>
-<li><p>在某些场景下，传输的图像可能带有相同/高度相似的长包包头和相同的像素数据的长包。</p></li>
-<li><p>如果每个包传输开始LFSR都被初始化相同的seed值，则加扰后的伪随机序列会同样高速相似，导致信号随机性减少。</p></li>
-<li><p>为了减轻这个问题，TX端每次发送sync word时，会选择不同的Sync
-Type，用于通知RX端使用了哪个Starting Seed。</p></li>
-<li><p>下表为C-PHY中定义的五种Sync Type，而CSI-2协议只会使用Sync
-Type前面四种。</p>
+<li><p>在某些场景下，传输的图像可能带有相同&#x2F;高度相似的长包包头和相同的像素数据的长包。</p>
+</li>
+<li><p>如果每个包传输开始LFSR都被初始化相同的seed值，则加扰后的伪随机序列会同样高速相似，导致信号随机性减少。</p>
+</li>
+<li><p>为了减轻这个问题，TX端每次发送sync word时，会选择不同的Sync Type，用于通知RX端使用了哪个Starting Seed。</p>
+</li>
+<li><p>下表为C-PHY中定义的五种Sync Type，而CSI-2协议只会使用Sync Type前面四种。</p>
 <ul>
 <li>如果只使用一个seed值，那么这个seed值应是seed3。</li>
 </ul>
-<figure>
-<img src="image-20240430110531878.png" alt="image-20240430110531878" />
-<figcaption aria-hidden="true">image-20240430110531878</figcaption>
-</figure></li>
-</ul></li>
-<li><p>扰码器/解码器 结构</p>
+<p><img src="/2024/04/25/MIPI-CSI-3/image-20240430110531878.png" alt="image-20240430110531878"></p>
+</li>
+</ul>
+</li>
+<li><p>扰码器&#x2F;解码器 结构</p>
 <ul>
-<li><p>下图为单条Lane中扰码器/解码器结构。</p>
-<figure>
-<img src="image-20240430112708367.png" alt="image-20240430112708367" />
-<figcaption aria-hidden="true">image-20240430112708367</figcaption>
-</figure></li>
-<li><p>由LFSR产生的PRBS（Pseudo-Random Binary
-Sequence）伪随机数被用作seed index，并根据Sync
-Type选择合适的seed初始值。</p></li>
-<li><p>下图为多条Lane中扰码器/解码器结构示意图。</p>
-<figure>
-<img src="image-20240430152613101.png" alt="image-20240430152613101" />
-<figcaption aria-hidden="true">image-20240430152613101</figcaption>
-</figure></li>
+<li><p>下图为单条Lane中扰码器&#x2F;解码器结构。</p>
+<p><img src="/2024/04/25/MIPI-CSI-3/image-20240430112708367.png" alt="image-20240430112708367"></p>
+</li>
+<li><p>由LFSR产生的PRBS（Pseudo-Random Binary Sequence）伪随机数被用作seed index，并根据Sync Type选择合适的seed初始值。</p>
+</li>
+<li><p>下图为多条Lane中扰码器&#x2F;解码器结构示意图。</p>
+<p><img src="/2024/04/25/MIPI-CSI-3/image-20240430152613101.png" alt="image-20240430152613101"></p>
+</li>
 <li><p>扰码电路的具体实现如下电路所示。</p>
 <ul>
-<li><p>其中PktD0-7
-为输入一个Byte的数据，其与LFSR生成的PRBS序列G(x)进行异或，加扰运算，得到输出发送数据TxD0-7.</p>
-<figure>
-<img src="image-20240430154559927.png" alt="image-20240430154559927" />
-<figcaption aria-hidden="true">image-20240430154559927</figcaption>
-</figure></li>
-</ul></li>
-</ul></li>
+<li><p>其中PktD0-7 为输入一个Byte的数据，其与LFSR生成的PRBS序列G(x)进行异或，加扰运算，得到输出发送数据TxD0-7.</p>
+<p><img src="/2024/04/25/MIPI-CSI-3/image-20240430154559927.png" alt="image-20240430154559927"></p>
+</li>
 </ul>
-<h2 id="传输数据格式">3. 传输数据格式</h2>
-<h3 id="packet-data-payload-size-rules">3.1 Packet Data Payload Size
-Rules</h3>
-<ul>
-<li>对于YUV/RGB/RAW 数据类型，一个长包包含一行的图像数据。
-<ul>
-<li>如果数据包的虚拟通道号相同，且都属于同一帧，那么相同的Data
-Type的长包长度应相同。<strong>YUV420例外。</strong></li>
-</ul></li>
-<li>对于用户自定义的数据类型(Data Type)、USL Data Type 以及 SROI Data
-Type，长包的长度可以是任意的，包与包之间的间隔也是可变的。</li>
-<li>对于所有的Data Type，长包中的有效数据长度必须是8 bits的整数倍。
-<ul>
-<li>有些Data Type的数据长度可能不足8
-bits整数倍，可以通过填充额外的像素到有效数据的结尾，以满足要求。</li>
-</ul></li>
+</li>
 </ul>
-<h3 id="帧格式示例">3.2 帧格式示例</h3>
-<ul>
+</li>
+</ul>
+<h2 id="3-传输数据格式"><a href="#3-传输数据格式" class="headerlink" title="3. 传输数据格式"></a>3. 传输数据格式</h2><h3 id="3-1-Packet-Data-Payload-Size-Rules"><a href="#3-1-Packet-Data-Payload-Size-Rules" class="headerlink" title="3.1 Packet Data Payload Size Rules"></a>3.1 Packet Data Payload Size Rules</h3><ul>
+<li>对于YUV&#x2F;RGB&#x2F;RAW 数据类型，一个长包包含一行的图像数据。<ul>
+<li>如果数据包的虚拟通道号相同，且都属于同一帧，那么相同的Data Type的长包长度应相同。<strong>YUV420例外。</strong></li>
+</ul>
+</li>
+<li>对于用户自定义的数据类型(Data Type)、USL Data Type 以及 SROI Data Type，长包的长度可以是任意的，包与包之间的间隔也是可变的。</li>
+<li>对于所有的Data Type，长包中的有效数据长度必须是8 bits的整数倍。<ul>
+<li>有些Data Type的数据长度可能不足8 bits整数倍，可以通过填充额外的像素到有效数据的结尾，以满足要求。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-2-帧格式示例"><a href="#3-2-帧格式示例" class="headerlink" title="3.2 帧格式示例"></a>3.2 帧格式示例</h3><ul>
 <li><p>CSI-2协议中一共给出了以下三种帧格式示例。</p>
 <ul>
 <li><p>常见帧格式</p>
-<figure>
-<img src="image-20240430162602213.png" alt="image-20240430162602213" />
-<figcaption aria-hidden="true">image-20240430162602213</figcaption>
-</figure></li>
+<p><img src="/2024/04/25/MIPI-CSI-3/image-20240430162602213.png" alt="image-20240430162602213"></p>
+</li>
 <li><p>Digital Interlaced Video</p>
-<figure>
-<img src="image-20240430181522535.png" alt="image-20240430181522535" />
-<figcaption aria-hidden="true">image-20240430181522535</figcaption>
-</figure></li>
-<li><p>Digital Interlaced Video with Accurate Synchronization Timing
-Information</p>
-<figure>
-<img src="image-20240430181618897.png" alt="image-20240430181618897" />
-<figcaption aria-hidden="true">image-20240430181618897</figcaption>
-</figure></li>
-</ul></li>
+<p><img src="/2024/04/25/MIPI-CSI-3/image-20240430181522535.png" alt="image-20240430181522535"></p>
+</li>
+<li><p>Digital Interlaced Video with Accurate Synchronization Timing Information</p>
+<p><img src="/2024/04/25/MIPI-CSI-3/image-20240430181618897.png" alt="image-20240430181618897"></p>
+</li>
 </ul>
-<h3 id="data-interleaving">3.3 Data Interleaving</h3>
-<ul>
+</li>
+</ul>
+<h3 id="3-3-Data-Interleaving"><a href="#3-3-Data-Interleaving" class="headerlink" title="3.3 Data Interleaving"></a>3.3 Data Interleaving</h3><ul>
 <li>CSI-2协议支持交错传输不同数据类型的数据包，主要通过以下两种方式进行交错传输。</li>
 </ul>
-<h4 id="data-type-interleaving">3.3.1 Data Type Interleaving</h4>
-<ul>
-<li><p>在视频数据传输时，可以使用Data
-Type来进行标识，交错传输不同数据格式的数据包。</p></li>
+<h4 id="3-3-1-Data-Type-Interleaving"><a href="#3-3-1-Data-Type-Interleaving" class="headerlink" title="3.3.1 Data Type Interleaving"></a>3.3.1 Data Type Interleaving</h4><ul>
+<li><p>在视频数据传输时，可以使用Data Type来进行标识，交错传输不同数据格式的数据包。</p>
+</li>
 <li><p>RX端会在接收到的数据包头中解析该数据格式类型，如下图所示。</p>
-<figure>
-<img src="image-20240430183323311.png" alt="image-20240430183323311" />
-<figcaption aria-hidden="true">image-20240430183323311</figcaption>
-</figure></li>
-<li><p>他们是相同虚拟通道的数据包，无论Data
-Type值是什么，他们都共享相同的 <strong>帧开始/结束</strong> 和
-<strong>行开始/结束</strong> 同步信息。</p>
+<p><img src="/2024/04/25/MIPI-CSI-3/image-20240430183323311.png" alt="image-20240430183323311"></p>
+</li>
+<li><p>他们是相同虚拟通道的数据包，无论Data Type值是什么，他们都共享相同的 <strong>帧开始&#x2F;结束</strong> 和 <strong>行开始&#x2F;结束</strong> 同步信息。</p>
 <ul>
-<li><p>根据定义，相同虚拟通道内所有处于Frame Start和Frame
-End包之间的包，无论Data Type是什么，都属于同一帧。</p></li>
+<li><p>根据定义，相同虚拟通道内所有处于Frame Start和Frame End包之间的包，无论Data Type是什么，都属于同一帧。</p>
+</li>
 <li><p>下图为<strong>Packet Level交错数据传输</strong>。</p>
-<figure>
-<img src="image-20240430184252724.png" alt="image-20240430184252724" />
-<figcaption aria-hidden="true">image-20240430184252724</figcaption>
-</figure></li>
+<p><img src="/2024/04/25/MIPI-CSI-3/image-20240430184252724.png" alt="image-20240430184252724"></p>
+</li>
 <li><p>下图为<strong>Frame Level交错数据传输</strong>。</p>
-<figure>
-<img src="image-20240430184344306.png" alt="image-20240430184344306" />
-<figcaption aria-hidden="true">image-20240430184344306</figcaption>
-</figure></li>
-</ul></li>
+<p><img src="/2024/04/25/MIPI-CSI-3/image-20240430184344306.png" alt="image-20240430184344306"></p>
+</li>
 </ul>
-<h4 id="virtual-channel-identifier-interleaving">3.3.2 Virtual Channel
-Identifier Interleaving</h4>
-<ul>
-<li><p>这种方式允许一条数据流中存在不同的数据类型，他们在不同的虚拟通道上。</p></li>
-<li><p>每个虚拟通道有自己的Frame Start和Frame End包。</p></li>
-<li><p>不同的虚拟通道可能有不同的帧率，即使不同虚拟通道中可能存在相同Data
-Type的数据，仍属于不同数据帧。</p>
-<figure>
-<img src="image-20240430185124342.png" alt="image-20240430185124342" />
-<figcaption aria-hidden="true">image-20240430185124342</figcaption>
-</figure></li>
+</li>
+</ul>
+<h4 id="3-3-2-Virtual-Channel-Identifier-Interleaving"><a href="#3-3-2-Virtual-Channel-Identifier-Interleaving" class="headerlink" title="3.3.2 Virtual Channel Identifier Interleaving"></a>3.3.2 Virtual Channel Identifier Interleaving</h4><ul>
+<li><p>这种方式允许一条数据流中存在不同的数据类型，他们在不同的虚拟通道上。</p>
+</li>
+<li><p>每个虚拟通道有自己的Frame Start和Frame End包。</p>
+</li>
+<li><p>不同的虚拟通道可能有不同的帧率，即使不同虚拟通道中可能存在相同Data Type的数据，仍属于不同数据帧。</p>
+<p><img src="/2024/04/25/MIPI-CSI-3/image-20240430185124342.png" alt="image-20240430185124342"></p>
+</li>
 <li><p>另外，每条虚拟通道还允许使用Data Type Interleaving.</p>
 <ul>
-<li>因此，RX端可以通过检测VCI以及Data
-Type值的组合情况，来解析不同的数据包。</li>
-</ul></li>
+<li>因此，RX端可以通过检测VCI以及Data Type值的组合情况，来解析不同的数据包。</li>
 </ul>
-<h3 id="data-format">3.4 Data Format</h3>
-<ul>
+</li>
+</ul>
+<h3 id="3-4-Data-Format"><a href="#3-4-Data-Format" class="headerlink" title="3.4 Data Format"></a>3.4 Data Format</h3><ul>
 <li><p>D-PHY to C-PHY</p>
 <ul>
-<li><p>对于D-PHY，序列中的字节是按照LSB优先的方式串行传输。</p></li>
-<li><p>对于C-PHY，连续两个字节被编码为7个5bit的symbol，之后再按照LSS(Least
-Significant Symbol)优先的方式进行传输。</p>
-<figure>
-<img src="image-20240501120259564.png" alt="image-20240501120259564" />
-<figcaption aria-hidden="true">image-20240501120259564</figcaption>
-</figure></li>
-</ul></li>
+<li><p>对于D-PHY，序列中的字节是按照LSB优先的方式串行传输。</p>
+</li>
+<li><p>对于C-PHY，连续两个字节被编码为7个5bit的symbol，之后再按照LSS(Least Significant Symbol)优先的方式进行传输。</p>
+<p><img src="/2024/04/25/MIPI-CSI-3/image-20240501120259564.png" alt="image-20240501120259564"></p>
+</li>
+</ul>
+</li>
 <li><p>通用8bit长包数据类型如下图所示。</p>
-<figure>
-<img src="image-20240501120616798.png" alt="image-20240501120616798" />
-<figcaption aria-hidden="true">image-20240501120616798</figcaption>
-</figure>
+<p><img src="/2024/04/25/MIPI-CSI-3/image-20240501120616798.png" alt="image-20240501120616798"></p>
 <ul>
-<li>Null 和 Blanking Data
-<ul>
+<li>Null 和 Blanking Data <ul>
 <li>对于null和blanking数据类型，接收器需要忽略包中有效数据的内容。</li>
 <li>Null包没有任何含义。</li>
-<li>Blanking包可能有专门用途，比如在一条ITU-R
-BT.656风格的视频流中，它作为帧之间的blanking lines。</li>
-</ul></li>
-<li>Embedded Information
-<ul>
+<li>Blanking包可能有专门用途，比如在一条ITU-R BT.656风格的视频流中，它作为帧之间的blanking lines。</li>
+</ul>
+</li>
+<li>Embedded Information<ul>
 <li>如下图所示，在每一帧图像数据的开头和结尾处，有可能嵌入额外信息的行。</li>
-<li>对于这些额外嵌入信息的行，在数据传输时，需要标识为特殊的Data
-Type，即0x12.</li>
-<li>在帧的开始处可能存在0行或多行内嵌数据。这些行被称为帧头（frame
-header）。</li>
-<li>在帧的结尾处可能存在0行或多行内嵌数据。这些行被称为帧尾（frame
-footer）。</li>
-</ul></li>
-</ul></li>
+<li>对于这些额外嵌入信息的行，在数据传输时，需要标识为特殊的Data Type，即0x12.</li>
+<li>在帧的开始处可能存在0行或多行内嵌数据。这些行被称为帧头（frame header）。</li>
+<li>在帧的结尾处可能存在0行或多行内嵌数据。这些行被称为帧尾（frame footer）。</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
                 

@@ -254,6 +254,114 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2024/05/08/SystemVerilog_%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%92%8C%E6%9E%9A%E4%B8%BE%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" target="_self">
+          SystemVerilog_用户自定义和枚举数据类型
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/05/08/SystemVerilog_%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%92%8C%E6%9E%9A%E4%B8%BE%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" target="_self">
+        <div>
+          参考   1. 用户自定义类型  Verilog 并没有提供用户自行扩展 变量和线网 类型的机制。 System Verilog 增加了用户定义新变量和线网类型的能力。  System Verilog 同C一样，可以使用typedef关键字来建立用户自定义类型。 其允许使用现有的数据类型建立新的数据类型；新的数据类型定义后，可以声明这个类型的变量。 123typedef
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-05-08 10:35" pubdate>
+              2024-05-08
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/System-Verilog/" class="category-chain-item">System Verilog</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/05/05/SystemVerilog_%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" target="_self">
+          SystemVerilog_数据类型
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/05/05/SystemVerilog_%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" target="_self">
+        <div>
+          参考  https://www.cnblogs.com/Alfred-HOO/articles/17436702.html https://blog.csdn.net/weixin_41969690/article/details/108006834    1. 增强的 文本值赋值  在Verilog中，可以很轻松的为变量赋值0、X、Z，但是很难实现直接为每1bit赋值为1.
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-05-05 10:35" pubdate>
+              2024-05-05
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/System-Verilog/" class="category-chain-item">System Verilog</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2024/05/04/MIPI-CSI-5/" target="_self">
           MIPI-CSI-5
         </a>
@@ -262,7 +370,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/05/04/MIPI-CSI-5/" target="_self">
         <div>
-          本节主要介绍 CSI-2 的实现案例   1. 概述  假设物理层为D-PHY，实现框图如下图所示。   image-20240504123518115  实现案例没有展示错误恢复机制和错误处理细节相关内容，主要从数据流向进行介绍。 实现案例中传输的数据为RAW8格式，其不需要完成Pixel 和 Byte 转换的打包和解包过程。  2. CSI-2 Transmit
+          本节主要介绍 CSI-2 的实现案例   1. 概述 假设物理层为D-PHY，实现框图如下图所示。   实现案例没有展示错误恢复机制和错误处理细节相关内容，主要从数据流向进行介绍。  实现案例中传输的数据为RAW8格式，其不需要完成Pixel 和 Byte 转换的打包和解包过程。   2. CSI-2 Transmitter Detailed Block Diagram 其框图如下图所示。  主
         </div>
       </a>
 
@@ -330,7 +438,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/05/01/MIPI-CSI-4/" target="_self">
         <div>
-          本篇博客将重点介绍 YUV/RGB/RAW 三种图像格式在CSI-2协议中的数据传输格式。   1. YUV 图像数据 1.1 关于YUV  YUV将亮度与色度进行分离。  Y 表示亮度，即灰度值。另外，其还包含了较多的绿色通道信息。 U 表示蓝色通道与亮度的差值。 V 表示红色通道与亮度的差值。  YUV 优点  研究发现，人眼对亮度的敏感程度超过了色度。
+          本篇博客将重点介绍 YUV&#x2F;RGB&#x2F;RAW 三种图像格式在CSI-2协议中的数据传输格式。   1. YUV 图像数据1.1 关于YUV YUV将亮度与色度进行分离。  Y 表示亮度，即灰度值。另外，其还包含了较多的绿色通道信息。 U 表示蓝色通道与亮度的差值。 V 表示红色通道与亮度的差值。   YUV 优点  研究发现，人眼对亮度的敏感程度超过了色度。 因此YUV将亮度与
         </div>
       </a>
 
@@ -398,7 +506,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/04/25/MIPI-CSI-3/" target="_self">
         <div>
-          本篇博客接着MIPI-CSI-2继续介绍CSI协议中Low Level Protocol (LLP)相关内容。  1. Latency Reduction and Transport Efficiency (LRTE)  LRTE是CSI-2可选特性，能够促使系统达到最优的传输效率。LRTE主要有两部分  Interpacket Latency Reduction (ILR
+          本篇博客接着MIPI-CSI-2继续介绍CSI协议中Low Level Protocol (LLP)相关内容。  1. Latency Reduction and Transport Efficiency (LRTE) LRTE是CSI-2可选特性，能够促使系统达到最优的传输效率。LRTE主要有两部分 Interpacket Latency Reduction (ILR) Enhanced T
         </div>
       </a>
 
@@ -466,7 +574,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/04/24/MIPI-CSI-2/" target="_self">
         <div>
-          参考  https://blog.csdn.net/vivo01/article/details/126289397 https://www.cnblogs.com/Kroner/p/18017607 https://cloud.tencent.com/developer/article/2063788     本篇博客主要介绍CSI协议中Low Level Protocol
+          参考 https://blog.csdn.net/vivo01/article/details/126289397 https://www.cnblogs.com/Kroner/p/18017607 https://cloud.tencent.com/developer/article/2063788      本篇博客主要介绍CSI协议中Low Level Protocol (LLP)相关内容
         </div>
       </a>
 
@@ -534,7 +642,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/04/18/MIPI-CPHY-2/" target="_self">
         <div>
-          参考  C-PHY 2.1 Spec https://blog.csdn.net/xianghbo/article/details/128992304 https://blog.csdn.net/cy413026/article/details/133130068    1. 传输数据结构  数据格式  HS模式下，最小数据单元是16bit。 LP模式下，最小数据单元
+          参考 C-PHY 2.1 Spec https://blog.csdn.net/xianghbo/article/details/128992304 https://blog.csdn.net/cy413026/article/details/133130068     1. 传输数据结构 数据格式 HS模式下，最小数据单元是16bit。 LP模式下，最小数据单元是8bit。   在HS模式下，
         </div>
       </a>
 
@@ -602,7 +710,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/04/08/MIPI-CPHY-1/" target="_self">
         <div>
-          参考  C-PHY 2.1 Spec https://blog.csdn.net/xianghbo/article/details/128992304 https://blog.csdn.net/cy413026/article/details/133130068    1. C-PHY 概述  C-PHY 通过使用一种称为"三相符号编码"技术，三根线A，每根传输2.28
+          参考 C-PHY 2.1 Spec https://blog.csdn.net/xianghbo/article/details/128992304 https://blog.csdn.net/cy413026/article/details/133130068     1. C-PHY 概述 C-PHY 通过使用一种称为”三相符号编码”技术，三根线A\B\C被称为一个Lane，每根传输2.28
         </div>
       </a>
 
@@ -670,7 +778,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/04/08/MIPI-DPHY/" target="_self">
         <div>
-          参考  https://blog.csdn.net/caokaiqiang123/article/details/130830837 https://blog.csdn.net/justlxy/article/details/115453776    1.D-PHY Lane  可适用于Camera及Display场景。 管脚连接  下图为一个Lane的管脚示意图，其包
+          参考 https://blog.csdn.net/caokaiqiang123/article/details/130830837 https://blog.csdn.net/justlxy/article/details/115453776     1.D-PHY Lane 可适用于Camera及Display场景。  管脚连接  下图为一个Lane的管脚示意图，其包括功能LP-TX、LP-R
         </div>
       </a>
 
@@ -738,7 +846,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/04/08/MIPI-CCI/" target="_self">
         <div>
-          参考  CSI-2 2.0 Spec    1.CCI（Camera Control Interface） 1.1 CCI 主从机定义  I2C支持多主机多从机传输，但CCI只支持一个主机的传输。 CCI将CSI的Transmitter配置为Slave，而将Reciever配置为Master。  1.2 CCI Message Types  CCI 传输信息类型
+          参考 CSI-2 2.0 Spec     1.CCI（Camera Control Interface）1.1 CCI 主从机定义 I2C支持多主机多从机传输，但CCI只支持一个主机的传输。 CCI将CSI的Transmitter配置为Slave，而将Reciever配置为Master。  1.2 CCI Message Types CCI 传输信息类型包括：Start信号、ACK信号、Sto
         </div>
       </a>
 
@@ -771,114 +879,6 @@
   
   
 
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/04/01/Shell-%E5%9F%BA%E7%A1%80/" target="_self">
-          Shell - 基础
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/04/01/Shell-%E5%9F%BA%E7%A1%80/" target="_self">
-        <div>
-          1. Shell  shell可认为是一个开机自启动的命令行程序，连接了用户和Linux内核，让用户更加高效的使用Linux内核。  shell 中每执行一个指令可以认为是执行一个子程序。  重定向  &lt;file和&gt;file，分别将程序的输入和输出流重定向到文件。 &gt;&gt;file向一个文件追加内容。 |允许将一个程序的输出和另一个程序的输入连接起来。
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-04-01 17:03" pubdate>
-              2024-04-01
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E5%B7%A5%E5%85%B7/" class="category-chain-item">工具</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/01/06/%E5%91%BD%E5%90%8D&amp;%E6%9C%AA%E5%91%BD%E5%90%8D%E8%AF%AD%E5%8F%A5%E5%9D%97/" target="_self">
-          命名 - 未命名语句块
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/06/%E5%91%BD%E5%90%8D&amp;%E6%9C%AA%E5%91%BD%E5%90%8D%E8%AF%AD%E5%8F%A5%E5%9D%97/" target="_self">
-        <div>
-          1. 命名块中的局部变量  Verilog 允许在命名的 begin...end 或 fork...join 块中声明局部变量。  该局部变量一般可用作循环控制。 该局部变量即使和模块级声明的变量同名，但是互不影响，举例如下。 12345678910module chip(input clk);    integer i;	//模块级声明    always @(posedge cl
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-01-06 11:35" pubdate>
-              2024-01-06
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/System-Verilog/" class="category-chain-item">System Verilog</a>
-  
   
 
       </span>
