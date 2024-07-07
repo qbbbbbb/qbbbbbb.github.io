@@ -254,6 +254,60 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2024/05/10/SystemVerilog_%E6%95%B0%E7%BB%84/" target="_self">
+          SystemVerilog_数组
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/05/10/SystemVerilog_%E6%95%B0%E7%BB%84/" target="_self">
+        <div>
+          参考   1. 结构体  System Verilog相对Verilog增加了类似C语言的结构体，其可以对一系列相关信息进行分组。 结构体使用struct关键字声明，结构体内的成员可以是任何数据类型，可以是变量、常量、用户自定义类型和其它结构体类型。 123456struct&#123;    int a,b;    opcode_t opcode;  //用户自定义类型
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-05-10 10:35" pubdate>
+              2024-05-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/System-Verilog/" class="category-chain-item">System Verilog</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2024/05/08/SystemVerilog_%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%92%8C%E6%9E%9A%E4%B8%BE%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" target="_self">
           SystemVerilog_用户自定义和枚举数据类型
         </a>
@@ -370,7 +424,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/05/04/MIPI-CSI-5/" target="_self">
         <div>
-          本节主要介绍 CSI-2 的实现案例   1. 概述 假设物理层为D-PHY，实现框图如下图所示。   实现案例没有展示错误恢复机制和错误处理细节相关内容，主要从数据流向进行介绍。  实现案例中传输的数据为RAW8格式，其不需要完成Pixel 和 Byte 转换的打包和解包过程。   2. CSI-2 Transmitter Detailed Block Diagram 其框图如下图所示。  主
+          本节主要介绍 CSI-2 的实现案例   1. 概述  假设物理层为D-PHY，实现框图如下图所示。   image-20240504123518115  实现案例没有展示错误恢复机制和错误处理细节相关内容，主要从数据流向进行介绍。 实现案例中传输的数据为RAW8格式，其不需要完成Pixel 和 Byte 转换的打包和解包过程。  2. CSI-2 Transmit
         </div>
       </a>
 
@@ -438,7 +492,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/05/01/MIPI-CSI-4/" target="_self">
         <div>
-          本篇博客将重点介绍 YUV&#x2F;RGB&#x2F;RAW 三种图像格式在CSI-2协议中的数据传输格式。   1. YUV 图像数据1.1 关于YUV YUV将亮度与色度进行分离。  Y 表示亮度，即灰度值。另外，其还包含了较多的绿色通道信息。 U 表示蓝色通道与亮度的差值。 V 表示红色通道与亮度的差值。   YUV 优点  研究发现，人眼对亮度的敏感程度超过了色度。 因此YUV将亮度与
+          本篇博客将重点介绍 YUV/RGB/RAW 三种图像格式在CSI-2协议中的数据传输格式。   1. YUV 图像数据 1.1 关于YUV  YUV将亮度与色度进行分离。  Y 表示亮度，即灰度值。另外，其还包含了较多的绿色通道信息。 U 表示蓝色通道与亮度的差值。 V 表示红色通道与亮度的差值。  YUV 优点  研究发现，人眼对亮度的敏感程度超过了色度。
         </div>
       </a>
 
@@ -506,7 +560,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/04/25/MIPI-CSI-3/" target="_self">
         <div>
-          本篇博客接着MIPI-CSI-2继续介绍CSI协议中Low Level Protocol (LLP)相关内容。  1. Latency Reduction and Transport Efficiency (LRTE) LRTE是CSI-2可选特性，能够促使系统达到最优的传输效率。LRTE主要有两部分 Interpacket Latency Reduction (ILR) Enhanced T
+          本篇博客接着MIPI-CSI-2继续介绍CSI协议中Low Level Protocol (LLP)相关内容。  1. Latency Reduction and Transport Efficiency (LRTE)  LRTE是CSI-2可选特性，能够促使系统达到最优的传输效率。LRTE主要有两部分  Interpacket Latency Reduction (ILR
         </div>
       </a>
 
@@ -574,7 +628,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/04/24/MIPI-CSI-2/" target="_self">
         <div>
-          参考 https://blog.csdn.net/vivo01/article/details/126289397 https://www.cnblogs.com/Kroner/p/18017607 https://cloud.tencent.com/developer/article/2063788      本篇博客主要介绍CSI协议中Low Level Protocol (LLP)相关内容
+          参考  https://blog.csdn.net/vivo01/article/details/126289397 https://www.cnblogs.com/Kroner/p/18017607 https://cloud.tencent.com/developer/article/2063788     本篇博客主要介绍CSI协议中Low Level Protocol
         </div>
       </a>
 
@@ -642,7 +696,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/04/18/MIPI-CPHY-2/" target="_self">
         <div>
-          参考 C-PHY 2.1 Spec https://blog.csdn.net/xianghbo/article/details/128992304 https://blog.csdn.net/cy413026/article/details/133130068     1. 传输数据结构 数据格式 HS模式下，最小数据单元是16bit。 LP模式下，最小数据单元是8bit。   在HS模式下，
+          参考  C-PHY 2.1 Spec https://blog.csdn.net/xianghbo/article/details/128992304 https://blog.csdn.net/cy413026/article/details/133130068    1. 传输数据结构  数据格式  HS模式下，最小数据单元是16bit。 LP模式下，最小数据单元
         </div>
       </a>
 
@@ -710,7 +764,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/04/08/MIPI-CPHY-1/" target="_self">
         <div>
-          参考 C-PHY 2.1 Spec https://blog.csdn.net/xianghbo/article/details/128992304 https://blog.csdn.net/cy413026/article/details/133130068     1. C-PHY 概述 C-PHY 通过使用一种称为”三相符号编码”技术，三根线A\B\C被称为一个Lane，每根传输2.28
+          参考  C-PHY 2.1 Spec https://blog.csdn.net/xianghbo/article/details/128992304 https://blog.csdn.net/cy413026/article/details/133130068    1. C-PHY 概述  C-PHY 通过使用一种称为"三相符号编码"技术，三根线A，每根传输2.28
         </div>
       </a>
 
@@ -778,7 +832,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/04/08/MIPI-DPHY/" target="_self">
         <div>
-          参考 https://blog.csdn.net/caokaiqiang123/article/details/130830837 https://blog.csdn.net/justlxy/article/details/115453776     1.D-PHY Lane 可适用于Camera及Display场景。  管脚连接  下图为一个Lane的管脚示意图，其包括功能LP-TX、LP-R
+          参考  https://blog.csdn.net/caokaiqiang123/article/details/130830837 https://blog.csdn.net/justlxy/article/details/115453776    1.D-PHY Lane  可适用于Camera及Display场景。 管脚连接  下图为一个Lane的管脚示意图，其包
         </div>
       </a>
 
@@ -816,67 +870,6 @@
   
   
 
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/04/08/MIPI-CCI/" target="_self">
-          MIPI-CCI
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/04/08/MIPI-CCI/" target="_self">
-        <div>
-          参考 CSI-2 2.0 Spec     1.CCI（Camera Control Interface）1.1 CCI 主从机定义 I2C支持多主机多从机传输，但CCI只支持一个主机的传输。 CCI将CSI的Transmitter配置为Slave，而将Reciever配置为Master。  1.2 CCI Message Types CCI 传输信息类型包括：Start信号、ACK信号、Sto
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-04-08 11:18" pubdate>
-              2024-04-08
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/" class="category-chain-item">高速串行总线</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/%E9%AB%98%E9%80%9F%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF/MIPI-%E6%8E%A5%E5%8F%A3%E5%8D%8F%E8%AE%AE/" class="category-chain-item">MIPI 接口协议</a>
-  
   
 
   

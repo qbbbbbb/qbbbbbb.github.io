@@ -17,12 +17,12 @@
   <meta name="author" content="qianbinbin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考 C-PHY 2.1 Spec https:&#x2F;&#x2F;blog.csdn.net&#x2F;xianghbo&#x2F;article&#x2F;details&#x2F;128992304 https:&#x2F;&#x2F;blog.csdn.net&#x2F;cy413026&#x2F;article&#x2F;details&#x2F;133130068     1. C-PHY 概述 C-PHY 通过使用一种称为”三相符号编码”技术，三根线A\B\C被称为一个Lane，每根传输2.28">
+    <meta name="description" content="参考  C-PHY 2.1 Spec https:&#x2F;&#x2F;blog.csdn.net&#x2F;xianghbo&#x2F;article&#x2F;details&#x2F;128992304 https:&#x2F;&#x2F;blog.csdn.net&#x2F;cy413026&#x2F;article&#x2F;details&#x2F;133130068    1. C-PHY 概述  C-PHY 通过使用一种称为&quot;三相符号编码&quot;技术，三根线A，每根传输2.28">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MIPI-CPHY-1">
 <meta property="og:url" content="http://binbinqian.cn/2024/04/08/MIPI-CPHY-1/index.html">
 <meta property="og:site_name" content="可达达鸭">
-<meta property="og:description" content="参考 C-PHY 2.1 Spec https:&#x2F;&#x2F;blog.csdn.net&#x2F;xianghbo&#x2F;article&#x2F;details&#x2F;128992304 https:&#x2F;&#x2F;blog.csdn.net&#x2F;cy413026&#x2F;article&#x2F;details&#x2F;133130068     1. C-PHY 概述 C-PHY 通过使用一种称为”三相符号编码”技术，三根线A\B\C被称为一个Lane，每根传输2.28">
+<meta property="og:description" content="参考  C-PHY 2.1 Spec https:&#x2F;&#x2F;blog.csdn.net&#x2F;xianghbo&#x2F;article&#x2F;details&#x2F;128992304 https:&#x2F;&#x2F;blog.csdn.net&#x2F;cy413026&#x2F;article&#x2F;details&#x2F;133130068    1. C-PHY 概述  C-PHY 通过使用一种称为&quot;三相符号编码&quot;技术，三根线A，每根传输2.28">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://binbinqian.cn/2024/04/08/MIPI-CPHY-1/image-20240410161404176.png">
 <meta property="og:image" content="http://binbinqian.cn/2024/04/08/MIPI-CPHY-1/image-20240410162114755.png">
@@ -260,7 +260,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          2k 字
         
       </span>
     
@@ -271,7 +271,7 @@
         
         
         
-          16 分钟
+          17 分钟
         
       </span>
     
@@ -617,121 +617,141 @@
               <div class="markdown-body">
                 
                 <ul>
-<li>参考<ul>
+<li>参考
+<ul>
 <li>C-PHY 2.1 Spec</li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/xianghbo/article/details/128992304">https://blog.csdn.net/xianghbo/article/details/128992304</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/cy413026/article/details/133130068">https://blog.csdn.net/cy413026/article/details/133130068</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/xianghbo/article/details/128992304"
+class="uri">https://blog.csdn.net/xianghbo/article/details/128992304</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/cy413026/article/details/133130068"
+class="uri">https://blog.csdn.net/cy413026/article/details/133130068</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<hr>
-<h2 id="1-C-PHY-概述"><a href="#1-C-PHY-概述" class="headerlink" title="1. C-PHY 概述"></a>1. C-PHY 概述</h2><ul>
-<li><p>C-PHY 通过使用一种称为”三相符号编码”技术，三根线A\B\C被称为一个Lane，每根传输2.28bit数据。</p>
-</li>
+<hr />
+<h2 id="c-phy-概述">1. C-PHY 概述</h2>
+<ul>
+<li><p>C-PHY
+通过使用一种称为"三相符号编码"技术，三根线A，每根传输2.28bit数据。</p></li>
 <li><p>与DPHY相同，存在两个模式：High-Speed Mode 和 Low Power Mode.</p>
 <ul>
 <li>HS模式用于高速数据传输，电压摆幅较小，如250mV。</li>
 <li>LP模式用于传输控制信号，以及在Escape模式中，可以进行LPDT(低速数据传输)；电压摆幅较大，如1.2V.</li>
-</ul>
-</li>
+</ul></li>
 <li><p>Lane Signal States</p>
 <ul>
-<li><p>Lane的三根线ABC，假设每根线的电压可以有1&#x2F;4V、3&#x2F;4V、1&#x2F;2V三种情况，那么三根线组合输出有6种情况：+x、-x、+y、-y、+z、-z，如下表所示。</p>
-<p><img src="/2024/04/08/MIPI-CPHY-1/image-20240410161404176.png" alt="image-20240410161404176"></p>
-</li>
+<li><p>Lane的三根线ABC，假设每根线的电压可以有1/4V、3/4V、1/2V三种情况，那么三根线组合输出有6种情况：+x、-x、+y、-y、+z、-z，如下表所示。</p>
+<figure>
+<img src="image-20240410161404176.png" alt="image-20240410161404176" />
+<figcaption aria-hidden="true">image-20240410161404176</figcaption>
+</figure></li>
 <li><p>从其中一种导线状态到另一导线状态共有五种转换方式，如下图所示。</p>
 <ul>
-<li><p>在C-PHY种，符号值是从一个UI(Unit Interval,equal to the duration of any HS state)到下一个UI导线状态变化的编码。即有5种编码方式，分别是000、001、010、011、100.</p>
+<li><p>在C-PHY种，符号值是从一个UI(Unit Interval,equal to the duration
+of any HS
+state)到下一个UI导线状态变化的编码。即有5种编码方式，分别是000、001、010、011、100.</p>
 <ul>
-<li>变化规律<ul>
-<li>bit[2]:表示只有线态正负之间的跳变，其他不变，+x与-x之间，+y与-y之间。此时bit[1:0]&#x3D;2’b00，<strong>Flip</strong></li>
-<li>bit[1]: 0表示线态跳变是逆时针，1表示顺时针，<strong>Rotation</strong></li>
-<li>bit[0]: 1表示线态之间极性发生变化，且线态xyz符号也发生了变化，<strong>Polarity</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>C-PHY的HS模式下，数据传输的最小单元是两个字节即16bit，而16bit至少需要7个5进制符号进行传输。因此每个符号可传输2.28bit数据。<br>$$<br>log_25&#x3D;2.3219… \<br>7*log_25&#x3D;16.2533\ bit \<br>16&#x2F;7 &#x3D; 2.28…<br>$$<br>​		<img src="image-20240410162114755.png" alt="image-20240410162114755" style="zoom:67%;" /></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li>变化规律
+<ul>
+<li>bit[2]:表示只有线态正负之间的跳变，其他不变，+x与-x之间，+y与-y之间。此时bit[1:0]=2'b00，<strong>Flip</strong></li>
+<li>bit[1]:
+0表示线态跳变是逆时针，1表示顺时针，<strong>Rotation</strong></li>
+<li>bit[0]:
+1表示线态之间极性发生变化，且线态xyz符号也发生了变化，<strong>Polarity</strong></li>
+</ul></li>
+</ul></li>
+<li><p>C-PHY的HS模式下，数据传输的最小单元是两个字节即16bit，而16bit至少需要7个5进制符号进行传输。因此每个符号可传输2.28bit数据。
+<span class="math display">\[
+log_25=2.3219... \\
+7*log_25=16.2533\ bit \\
+16/7 = 2.28...
+\]</span> ​
+<img src="image-20240410162114755.png" alt="image-20240410162114755" style="zoom:67%;" /></p></li>
+</ul></li>
+</ul></li>
 <li><p>数据传输流程如下图</p>
 <ul>
-<li><p><strong>TX端</strong>，将16bit数据通过Mapper映射为7个5进制的Symbol，共21bit。</p>
-</li>
-<li><p>之后通过并-串转换器，将7个Symbol转化为串行的，输出为3bit。</p>
-</li>
-<li><p>符号编码器根据当前的3bit符号值以及上一个UI Wire State的值，将符号转换为这个UI的Wire State。</p>
-</li>
-<li><p><strong>RX端</strong>，符号解码器根据当前UI的Wire State和上一个UI Wire State，计算出接收到的符号值。</p>
-</li>
+<li><p><strong>TX端</strong>，将16bit数据通过Mapper映射为7个5进制的Symbol，共21bit。</p></li>
+<li><p>之后通过并-串转换器，将7个Symbol转化为串行的，输出为3bit。</p></li>
+<li><p>符号编码器根据当前的3bit符号值以及上一个UI Wire
+State的值，将符号转换为这个UI的Wire State。</p></li>
+<li><p><strong>RX端</strong>，符号解码器根据当前UI的Wire State和上一个UI
+Wire State，计算出接收到的符号值。</p></li>
 <li><p>之后通过串-并转换器，及Demapper，最后得到16bit数据。</p>
-<p><img src="/2024/04/08/MIPI-CPHY-1/image-20240410165247393.png" alt="image-20240410165247393"></p>
-</li>
+<figure>
+<img src="image-20240410165247393.png" alt="image-20240410165247393" />
+<figcaption aria-hidden="true">image-20240410165247393</figcaption>
+</figure></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="2-C-PHY-架构"><a href="#2-C-PHY-架构" class="headerlink" title="2. C-PHY 架构"></a>2. C-PHY 架构</h2><h3 id="2-1-Lane-Module"><a href="#2-1-Lane-Module" class="headerlink" title="2.1 Lane Module"></a>2.1 Lane Module</h3><ul>
+<h2 id="c-phy-架构">2. C-PHY 架构</h2>
+<h3 id="lane-module">2.1 Lane Module</h3>
+<ul>
 <li><p>通用Lane结构如下图所示，与D-PHY相同，集成了5个功能<code>LP-TX、LP-RX、HS-TX、HS-RX、LP-CD</code>。</p>
-<img src="image-20240410171202996.png" alt="image-20240410171202996" style="zoom:67%;" />
-</li>
+<p><img src="image-20240410171202996.png" alt="image-20240410171202996" style="zoom:67%;" /></p></li>
 <li><p>传输方向</p>
 <ul>
 <li><p>C-PHY中定义Primary和Secondary</p>
 <ul>
 <li>对于单向Lane，Primary是数据源那侧，Secondary是接收数据一侧。</li>
 <li>对于双向Lane，数据不仅可以从Primary到Secondary侧，还可以从Secondary接收数据。</li>
-</ul>
-</li>
+</ul></li>
 <li><p>双向Lane</p>
 <ul>
-<li>Bi-Directional 双向Lane主要有以下两种情况<ul>
+<li>Bi-Directional 双向Lane主要有以下两种情况
+<ul>
 <li>高速模式</li>
 <li>低功耗Escape模式</li>
-</ul>
-</li>
-<li>如果双向Lane模块中HS模式下没有反向功能，那么应该添加LP Escape模式下的反向功能。(似懂非懂)</li>
-<li>如果双向Lane模块中HS模式下有反向功能，那么也应该添加LP Escape模式下的反向功能。</li>
-</ul>
-</li>
+</ul></li>
+<li>如果双向Lane模块中HS模式下没有反向功能，那么应该添加LP
+Escape模式下的反向功能。(似懂非懂)</li>
+<li>如果双向Lane模块中HS模式下有反向功能，那么也应该添加LP
+Escape模式下的反向功能。</li>
+</ul></li>
 <li><p>几种传输方向配置</p>
 <ul>
 <li><p>（1）下图为多条Lane，正方向数据传输实例。注意，C-PHY规范并不要求所有的Lane都处于活动状态。</p>
-<p><img src="/2024/04/08/MIPI-CPHY-1/image-20240410221053580.png" alt="image-20240410221053580"></p>
-</li>
+<figure>
+<img src="image-20240410221053580.png" alt="image-20240410221053580" />
+<figcaption aria-hidden="true">image-20240410221053580</figcaption>
+</figure></li>
 <li><p>（2）下图为两条单向通信的Lane，但通信方向相反。</p>
 <ul>
 <li>与双向Lane不同，两个相反方向的Primary和Secondary侧不同。</li>
 <li>可以认为两个Lane是独立的，因此两条Lane之间的比特率不必匹配；但在实际实现中，为方便共享一些信号，最好匹配。</li>
 </ul>
-<p><img src="/2024/04/08/MIPI-CPHY-1/image-20240410221405508.png" alt="image-20240410221405508"></p>
-</li>
+<figure>
+<img src="image-20240410221405508.png" alt="image-20240410221405508" />
+<figcaption aria-hidden="true">image-20240410221405508</figcaption>
+</figure></li>
 <li><p>（3）下图为多条双向通信的Lane，C-PHY规范并不要求所有的Lane都是相同方向。</p>
-<p><img src="/2024/04/08/MIPI-CPHY-1/image-20240410221724178.png" alt="image-20240410221724178"></p>
-</li>
+<figure>
+<img src="image-20240410221724178.png" alt="image-20240410221724178" />
+<figcaption aria-hidden="true">image-20240410221724178</figcaption>
+</figure></li>
 <li><p>（4）下图为多条混合模式，混合单向和双向Lane。</p>
-<p><img src="/2024/04/08/MIPI-CPHY-1/image-20240410222027061.png" alt="image-20240410222027061"></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>下图是具有Control and Interface Logic (CIL)功能的通用Lane模块图。</p>
+<figure>
+<img src="image-20240410222027061.png" alt="image-20240410222027061" />
+<figcaption aria-hidden="true">image-20240410222027061</figcaption>
+</figure></li>
+</ul></li>
+</ul></li>
+<li><p>下图是具有Control and Interface Logic
+(CIL)功能的通用Lane模块图。</p>
 <ul>
 <li><p>具体实现可以根据设计要求进行裁剪，具体可参考协议P19.</p>
-<img src="image-20240410203458625.png" alt="image-20240410203458625" style="zoom:80%;" /></li>
+<p><img src="image-20240410203458625.png" alt="image-20240410203458625" style="zoom:80%;" /></p></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="2-2-物理层协议接口"><a href="#2-2-物理层协议接口" class="headerlink" title="2.2 物理层协议接口"></a>2.2 物理层协议接口</h3><ul>
-<li><p>一个完整的链路除了Lane Module外，PHY适配层，它将所有的Lane、时钟单元以及协议接口连接在一起。</p>
+<h3 id="物理层协议接口">2.2 物理层协议接口</h3>
+<ul>
+<li><p>一个完整的链路除了Lane
+Module外，PHY适配层，它将所有的Lane、时钟单元以及协议接口连接在一起。</p>
 <ul>
 <li>其中PPI是每个Lane与PHY适配层的协议接口，APPI是抽象出的物理层协议接口，它包含了所有Lane的接口。</li>
 </ul>
-<p><img src="/2024/04/08/MIPI-CPHY-1/image-20240410201854749.png" alt="image-20240410201854749"></p>
-</li>
+<figure>
+<img src="image-20240410201854749.png" alt="image-20240410201854749" />
+<figcaption aria-hidden="true">image-20240410201854749</figcaption>
+</figure></li>
 </ul>
 
                 

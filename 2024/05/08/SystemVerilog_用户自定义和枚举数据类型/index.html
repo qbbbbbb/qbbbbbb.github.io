@@ -24,10 +24,14 @@
 <meta property="og:site_name" content="可达达鸭">
 <meta property="og:description" content="参考   1. 用户自定义类型  Verilog 并没有提供用户自行扩展 变量和线网 类型的机制。 System Verilog 增加了用户定义新变量和线网类型的能力。  System Verilog 同C一样，可以使用typedef关键字来建立用户自定义类型。 其允许使用现有的数据类型建立新的数据类型；新的数据类型定义后，可以声明这个类型的变量。 123typedef">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://binbinqian.cn/2024/05/08/SystemVerilog_%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%92%8C%E6%9E%9A%E4%B8%BE%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/image-20240508121556726.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/05/08/SystemVerilog_%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%92%8C%E6%9E%9A%E4%B8%BE%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/image-20240508165342911.png">
+<meta property="og:image" content="http://binbinqian.cn/2024/05/08/SystemVerilog_%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%92%8C%E6%9E%9A%E4%B8%BE%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/image-20240508165427769.png">
 <meta property="article:published_time" content="2024-05-08T02:35:38.000Z">
-<meta property="article:modified_time" content="2024-05-08T12:05:26.745Z">
+<meta property="article:modified_time" content="2024-05-08T12:31:32.427Z">
 <meta property="article:author" content="qianbinbin">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://binbinqian.cn/2024/05/08/SystemVerilog_%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%92%8C%E6%9E%9A%E4%B8%BE%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/image-20240508121556726.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -249,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.6k 字
+          2.8k 字
         
       </span>
     
@@ -260,7 +264,7 @@
         
         
         
-          22 分钟
+          24 分钟
         
       </span>
     
@@ -318,7 +322,7 @@
         aria-expanded="true"
       >
         System Verilog
-        <span class="list-group-count">(4)</span>
+        <span class="list-group-count">(5)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
@@ -336,6 +340,15 @@
            class="list-group-item list-group-item-action
            ">
           <span class="category-post">SystemVerilog_数据类型</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/05/10/SystemVerilog_%E6%95%B0%E7%BB%84/" title="SystemVerilog_数组"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SystemVerilog_数组</span>
         </a>
       
     
@@ -460,9 +473,7 @@ state，但是并没有什么办法来限制state的值一定在声明的几个�
 <ul>
 <li><p>举例如下</p>
 <figure>
-<img
-src="./SystemVerilog_用户自定义和枚举数据类型.assets/image-20240508121556726.png"
-alt="image-20240508121556726" />
+<img src="image-20240508121556726.png" alt="image-20240508121556726" />
 <figcaption aria-hidden="true">image-20240508121556726</figcaption>
 </figure></li>
 <li><p>需要显式的导入每个标签，或者使用通配符导入整个包。</p></li>
@@ -477,9 +488,7 @@ alt="image-20240508121556726" />
 <ul>
 <li><p>不可以在同一个作用域内两个枚举类型列表中都包含相同的标签，如下所示。</p>
 <figure>
-<img
-src="./SystemVerilog_用户自定义和枚举数据类型.assets/image-20240508165342911.png"
-alt="image-20240508165342911" />
+<img src="image-20240508165342911.png" alt="image-20240508165342911" />
 <figcaption aria-hidden="true">image-20240508165342911</figcaption>
 </figure></li>
 <li><p>可以包含枚举类型声明的作用域包括：</p>
@@ -489,9 +498,7 @@ alt="image-20240508165342911" />
 </ul></li>
 <li><p>上面代码的错误可以将相同标签置于不同作用域中来修正，如下图所示。</p>
 <figure>
-<img
-src="./SystemVerilog_用户自定义和枚举数据类型.assets/image-20240508165427769.png"
-alt="image-20240508165427769" />
+<img src="image-20240508165427769.png" alt="image-20240508165427769" />
 <figcaption aria-hidden="true">image-20240508165427769</figcaption>
 </figure></li>
 </ul></li>
@@ -519,7 +526,20 @@ alt="image-20240508165427769" />
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs verilog">next_state = state_t(state+<span class="hljs-number">1</span>);  <span class="hljs-comment">//合法</span><br><span class="hljs-built_in">$cast</span>(next_state,state+<span class="hljs-number">1</span>);  <span class="hljs-comment">//合法</span><br></code></pre></td></tr></table></figure>
 <ul>
 <li>其中强制转换符不会检查转换表达式结果是否是合法值。但$cast()会对其进行检查，具体可见<a
-href="">这篇博客</a></li>
+href="https://binbinqian.cn/2024/05/05/SystemVerilog_%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">这篇博客</a>。</li>
+</ul></li>
+</ul></li>
+<li><p>枚举类型的专用系统任务和方法</p>
+<ul>
+<li>System Verilog
+提供了一些内置函数，被称为方法，可以轻松访问枚举类型列表中的值。举例如下：
+<ul>
+<li><枚举变量名>.first：返回枚举列表中的第一个成员的值。</li>
+<li>.last：返回列表中最后一个成员的值。</li>
+<li>.next&lt;N&gt;：返回枚举列表中下一个（后面第N个）成员的值。</li>
+<li>.prev&lt;N&gt;：返回枚举列表中前一个（前面第N个）成员的值。</li>
+<li>.num：返回枚举列表中元素的个数。</li>
+<li>.name：返回列表中当前值对应的字符串，如果不在枚举变量中，返回空字符串。</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -605,6 +625,12 @@ href="">这篇博客</a></li>
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/05/10/SystemVerilog_%E6%95%B0%E7%BB%84/" title="SystemVerilog_数组">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SystemVerilog_数组</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
